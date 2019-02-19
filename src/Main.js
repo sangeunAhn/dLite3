@@ -4,6 +4,9 @@ import MainButton from '../components/MainButton';
 import FindClub from './FindClub';
 
 export default class Login extends React.Component {
+  static navigationOptions = {
+      header : null,
+    };
   render() {
     return (
       <View style={styles.container}>
