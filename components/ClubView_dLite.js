@@ -6,10 +6,8 @@ import {
   View,
   Image
 } from 'react-native';
-import * as axios from 'axios';
-import ClubChars from './ClubChars';
 
-export default class ClubView extends Component{
+export default class ClubView_dLite extends Component{
 
   constructor(props){
     super(props);
@@ -19,67 +17,20 @@ export default class ClubView extends Component{
   }
 
 
-
-
-componentWillMount = () => {
-  this._getDatas();
-};
-
-
-_getDatas = () => {
-  const { clubName, school } = this.props;
-  const { clubChar } = this.state;
-  
-
-// 데이터 가져오기
-axios.post('http://dkstkdvkf00.cafe24.com/GetClubChars.php',{
-  clubName: clubName,
-  school: school,
-})
-.then((result) => {
-  const response  = result.data;
-  var clubCharArray = new Array();
-  
-  response.forEach(row => {
-    clubCharArray.push(row.chars);
-    });
-  
-  this.setState({
-    clubChar: clubChar.concat(clubCharArray),
-  });
-    
-  
-    
-});
-
-}
-  
-
-
-
-
-
   render(){
     let {clubLogo} = this.props;
-    let {clubChar} = this.state;
     return (
         <View style={styles.container}>
 
             <View style={styles.logo}>
               <Image
                 style={styles.Image}
-                source={{ uri: clubLogo }}/>
+                source={require('../images/momo.jpg')}/>
             </View>
             
             <TouchableOpacity style={styles.club}>
-                <Text style={styles.clubTitle}>{this.props.clubName}</Text>
-                <Text style={styles.clubChar}>
-                  {clubChar.map((chars, i) => {
-                        return (<ClubChars 
-                                  chars={clubChar[i]}
-                                  key={i}/>);
-                    })}
-                </Text>
+                <Text style={styles.clubTitle}>d:Lite</Text>
+                <Text style={styles.clubChar}>#동아리 플랫폼</Text>
             </TouchableOpacity>
 
         </View>

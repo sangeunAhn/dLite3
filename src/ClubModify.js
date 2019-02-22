@@ -16,12 +16,12 @@ export default class ClubModify extends React.Component {
             <MainButton
                 buttonColor={'#023e73'}
                 title={'특성 수정'}
-                onPress={() => this.props.navigation.navigate('FindClub')}/>
+                onPress={() => this._gotoChar()}/>
             <View style={{width:"100%",height:10}} />
             <MainButton
                 buttonColor={'#04B404'}
                 title={'기록 수정'}
-                onPress={() => this.props.navigation.navigate('FindClub')}/>
+                onPress={() => this._gotoRecord()}/>
        
       </View>
     );
@@ -33,6 +33,26 @@ export default class ClubModify extends React.Component {
     userNo = userNo.replace(/[^0-9]/g,'');
 
     this.props.navigation.navigate('ModifySignUp', {
+        userNo : userNo
+    })
+  }
+
+  _gotoChar = () => {
+    const { navigation } = this.props;
+    var userNo = navigation.getParam('userNo', 'NO-ID');
+    userNo = userNo.replace(/[^0-9]/g,'');
+
+    this.props.navigation.navigate('ModifyChar', {
+        userNo : userNo
+    })
+  }
+
+  _gotoRecord = () => {
+    const { navigation } = this.props;
+    var userNo = navigation.getParam('userNo', 'NO-ID');
+    userNo = userNo.replace(/[^0-9]/g,'');
+
+    this.props.navigation.navigate('ModifyRecord', {
         userNo : userNo
     })
   }

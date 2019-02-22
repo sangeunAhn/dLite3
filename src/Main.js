@@ -24,13 +24,13 @@ export default class Login extends React.Component {
         <View style={styles.content}>
             <MainButton
                 buttonColor={'#444'}
-                title={'동아리 회장'}
+                title={'동아리 생성 수정'}
                 onPress={() => this.props.navigation.navigate('codeConfirm')}/>
             <View style={{width:"100%",height:10}} />
             <MainButton
                 buttonColor={'#023e73'}
                 title={'일반'}
-                onPress={() => this.props.navigation.navigate('FindClub')}/>
+                onPress={() => this.props.navigation.navigate('SchoolChoice')}/>
         </View>
         <View style={styles.footer}>
           

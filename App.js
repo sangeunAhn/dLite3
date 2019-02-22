@@ -17,6 +17,8 @@ import RecordPictures from './src/RecordPictures';
 import SchoolChoice from './src/SchoolChoice';
 import ClubModify from './src/ClubModify';
 import ModifySignUp from './src/ModifySignUp';
+import ModifyChar from './src/ModifyChar';
+import ModifyRecord from './src/ModifyRecord';
 
 
 
@@ -71,13 +73,20 @@ const RootStack = createStackNavigator(
     },
     ModifySignUp: {
       screen: ModifySignUp,
-    }
+    },
+    ModifyChar: {
+      screen: ModifyChar,
+    },
+    ModifyRecord: {
+      screen: ModifyRecord,
+    },
   },
   {
     initialRouteName: 'Main',
   },
   
 );
+
 
 const AppContainer = createAppContainer(RootStack);
 

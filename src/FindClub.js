@@ -2,22 +2,36 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import ClubView from '../components/ClubView';
 import ClubDiv from '../components/ClubDiv';
+import ClubView_dLite from '../components/ClubView_dLite';
 import { AntDesign } from '@expo/vector-icons';
 
 
 export default class FindClub extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={
+      schoolName:''
+    };
+  }
+
+
+  componentWillMount = () => {
+    
+    const { navigation } = this.props;
+    const schoolName = navigation.getParam('schoolName', 'NO-ID');
+    this.setState({schoolName : schoolName})
+  };
+
   render() {
+    let { schoolName } = this.state;
     return (
       <View style={styles.container}>
-
+        
         {/* 전체화면 스크롤 */}
         <ScrollView style={styles.scroll}>
 
           {/* 맨 위 d:Lite */}
-          <ClubView
-            clubTitle={'d:Lite'}
-            clubChar={'동아리 관련 플랫폼'}/>
-
+          <ClubView_dLite/>
           {/* 대학교 이름과 동아리 종류 볼수있는 아이콘 */}
           <View style={styles.div}>
               <Text style={styles.school}>울산대학교</Text>
@@ -28,16 +42,40 @@ export default class FindClub extends React.Component {
 
           {/* 종류에 따라 동아리 구분 */}
           <ClubDiv
-            menuTitle={'내 동아리'}
+            clubKind={'예술 공연'}
+            school={schoolName}
           />
           <ClubDiv
-            menuTitle={'예술 공연'}
+            clubKind={'예술 교양'}
+            school={schoolName}
           />
           <ClubDiv
-            menuTitle={'체육 구기'}
+            clubKind={'체육 구기'}
+            school={schoolName}
           />
           <ClubDiv
-            menuTitle={'종교'}
+            clubKind={'체육 생활'}
+            school={schoolName}
+          />
+          <ClubDiv
+            clubKind={'봉사'}
+            school={schoolName}
+          />
+          <ClubDiv
+            clubKind={'국제'}
+            school={schoolName}
+          />
+          <ClubDiv
+            clubKind={'종교'}
+            school={schoolName}
+          />
+          <ClubDiv
+            clubKind={'학술'}
+            school={schoolName}
+          />
+          <ClubDiv
+            clubKind={'기타'}
+            school={schoolName}
           />
 
         </ScrollView>

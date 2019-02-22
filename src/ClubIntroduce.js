@@ -21,7 +21,7 @@ export default class ClubIntroduce extends React.Component {
 
             <Text style={styles.clubTitle}>꼴데</Text>
 
-            <Text style={styles.clubChar}>#야구</Text>
+            <Text style={styles.clubChar}>#야구 #소규모 #꿀잼 </Text>
             
         </View>
         
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     height:'60%',
     flexDirection: 'column',
     alignItems:'center',
-    backgroundColor: '#dcdcdc',
+    backgroundColor: '#F2F2F2',
     paddingTop: 25
   },
   content: {
@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
   clubExplain:{
       padding:30,
       fontSize: 20,
-      alignItems: 'center'
+      alignItems: 'center',
+      textAlign: 'center'
   }
 });

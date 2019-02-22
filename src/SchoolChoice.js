@@ -9,13 +9,17 @@ export default class SchoolChoice extends React.Component {
        
             <MainButton
                 buttonColor={'#444'}
-                title={'동의대학교'}
-                onPress={() => this.props.navigation.navigate('FindClub')}/>
+                title={'울산대학교'}
+                onPress={() => this.props.navigation.navigate('FindClub', {
+                  schoolName: '울대'
+                })}/>
             <View style={{width:"100%",height:10}} />
             <MainButton
                 buttonColor={'#023e73'}
                 title={'고려대학교'}
-                onPress={() => this.props.navigation.navigate('FindClub')}/>
+                onPress={() => this.props.navigation.navigate('FindClub', {
+                  schoolName: '고려대학교'
+                })}/>
        
       </View>
     );

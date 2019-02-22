@@ -68,8 +68,10 @@ export default class codeConfirm extends React.Component {
     })
     .then(function (response) {
       userNo = JSON.stringify(response.data.message.userNo)
+      school = JSON.stringify(response.data.message.school)
         t.props.navigation.navigate('SignUp', {
-          userNo: userNo
+          userNo: userNo,
+          school: school
         })
     });
       
