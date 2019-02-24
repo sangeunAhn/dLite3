@@ -122,8 +122,6 @@ export default class SignUp extends Component {
             aspect: [4, 3],
           });
       
-          console.log(result);
-      
           if (!result.cancelled) {
             this.setState({ clubLogo: result.uri });
           }
@@ -199,8 +197,7 @@ export default class SignUp extends Component {
       });
 
        this.props.navigation.navigate('CharChoice', {
-        userNo: userNo,
-        school: school
+        userNo: getUserNo
       })
   }
 

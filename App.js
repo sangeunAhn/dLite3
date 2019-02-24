@@ -19,6 +19,7 @@ import ClubModify from './src/ClubModify';
 import ModifySignUp from './src/ModifySignUp';
 import ModifyChar from './src/ModifyChar';
 import ModifyRecord from './src/ModifyRecord';
+import Record from './src/Record';
 
 
 
@@ -79,6 +80,9 @@ const RootStack = createStackNavigator(
     },
     ModifyRecord: {
       screen: ModifyRecord,
+    },
+    Record: {
+      screen: Record,
     },
   },
   {

@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import {
   Text,
   StyleSheet,
-  View
+  View,
+  TouchableOpacity,
+  Image
 } from 'react-native';
 import ClubView from './ClubView';
 import * as axios from 'axios';
 import PropTypes from "prop-types";
 import { update } from 'tcomb';
+import Overlay from 'react-native-modal-overlay';
 
 export default class ClubDiv extends Component{
   constructor(props){
@@ -21,6 +24,8 @@ export default class ClubDiv extends Component{
     school: PropTypes.string.isRequired,
   };
   
+
+
 componentWillMount = () => {
   this._getDatas();
 };
@@ -59,7 +64,9 @@ axios.post('http://dkstkdvkf00.cafe24.com/FindClubs.php',{
 }
 
 
-
+_gotoClubIntroduce = () => {
+  console.log()
+}
 
 
   render(){
@@ -74,12 +81,18 @@ axios.post('http://dkstkdvkf00.cafe24.com/FindClubs.php',{
 
             <Text style={styles.menuTitle}>{clubKind}</Text>
               {clubName.map((name, i) => {
-                        return (<ClubView clubName={clubName[i]}
+                        return (
+                                  
+                                  <ClubView clubName={clubName[i]}
                                             clubLogo={clubLogo[i]}
                                             school={school}
-                                            key={i} 
-                                 />);
+                                            key={i}
+                                            navigation={this.props.navigation}
+                                  />
+                                  
+                                 );
                     })}
+            
         </View>
 
     )
@@ -99,6 +112,6 @@ const styles = StyleSheet.create({
         paddingLeft:25,
         color: '#828282',
         fontSize: 15
-    }
-
+    },
+    
     });

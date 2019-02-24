@@ -22,6 +22,7 @@ export default class FindClub extends React.Component {
     this.setState({schoolName : schoolName})
   };
 
+
   render() {
     let { schoolName } = this.state;
     return (
@@ -29,6 +30,7 @@ export default class FindClub extends React.Component {
         
         {/* 전체화면 스크롤 */}
         <ScrollView style={styles.scroll}>
+
 
           {/* 맨 위 d:Lite */}
           <ClubView_dLite/>
@@ -44,38 +46,47 @@ export default class FindClub extends React.Component {
           <ClubDiv
             clubKind={'예술 공연'}
             school={schoolName}
+            navigation={this.props.navigation}
           />
           <ClubDiv
             clubKind={'예술 교양'}
             school={schoolName}
+            navigation={this.props.navigation}
           />
           <ClubDiv
             clubKind={'체육 구기'}
             school={schoolName}
+            navigation={this.props.navigation}
           />
           <ClubDiv
             clubKind={'체육 생활'}
             school={schoolName}
+            navigation={this.props.navigation}
           />
           <ClubDiv
             clubKind={'봉사'}
             school={schoolName}
+            navigation={this.props.navigation}
           />
           <ClubDiv
             clubKind={'국제'}
             school={schoolName}
+            navigation={this.props.navigation}
           />
           <ClubDiv
             clubKind={'종교'}
             school={schoolName}
+            navigation={this.props.navigation}
           />
           <ClubDiv
             clubKind={'학술'}
             school={schoolName}
+            navigation={this.props.navigation}
           />
           <ClubDiv
             clubKind={'기타'}
             school={schoolName}
+            navigation={this.props.navigation}
           />
 
         </ScrollView>

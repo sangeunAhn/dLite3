@@ -2,11 +2,51 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from 'react-native';
 import ConfirmButton from '../components/ConfirmButton';
 import CharButton from '../components/CharButton';
+import * as axios from 'axios';
 
 export default class CharChoice extends React.Component {
   static navigationOptions = {
       header : null,
     };
+
+    constructor(props){
+      super(props);
+      this.state={
+        clubChars:[],
+      };
+    }
+
+
+
+  _ButtonPress = () => {
+    const { navigation } = this.props;
+    var userNo = navigation.getParam('userNo', 'NO-ID');
+    this._setClubChars();
+    this.props.navigation.navigate('SignUpRecord', {
+      userNo: userNo
+    })
+  }
+
+
+    _setClubChars = () => {
+      const { navigation } = this.props;
+      const { clubChars } = this.state;
+      var userNo = navigation.getParam('userNo', 'NO-ID');
+      for(let i=0; i<clubChars.length; i++){
+          // 데이터베이스에 넣기
+          axios.post('http://dkstkdvkf00.cafe24.com/SetClubChars.php',{
+            chars: clubChars[i],
+            userNo: userNo
+          })
+          .then(function (response) {
+              ms = response.data.message;
+          });
+            }
+    }
+
+
+
+
   render() {
     return (
       <View style={styles.container}>
@@ -55,12 +95,17 @@ export default class CharChoice extends React.Component {
           <ConfirmButton
             style={styles.button}
             title={'선택완료'}
-            onPress={() => this.props.navigation.navigate('SignUpRecord')}/>
+            onPress={this._ButtonPress}/>
         </View>
       </View>
     );
   }
 }
+
+
+
+
+
 
 const styles = StyleSheet.create({
   container: {

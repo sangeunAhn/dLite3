@@ -6,6 +6,7 @@ import {
   View,
   Image
 } from 'react-native';
+import Overlay from 'react-native-modal-overlay';
 
 export default class ClubView_dLite extends Component{
 
@@ -16,22 +17,72 @@ export default class ClubView_dLite extends Component{
     }
   }
 
+  showOverlay() {
+    this.setState({modalVisible: true})
+  }
+
+  hideOverlay() {
+    this.setState({modalVisible: false})
+  }
+
+  onClose = () => this.setState({ modalVisible: false});
+
+
 
   render(){
     let {clubLogo} = this.props;
     return (
         <View style={styles.container}>
-
+          <TouchableOpacity
+              onPress={this.showOverlay.bind(this)}>
             <View style={styles.logo}>
               <Image
                 style={styles.Image}
                 source={require('../images/momo.jpg')}/>
             </View>
+          </TouchableOpacity>
             
-            <TouchableOpacity style={styles.club}>
+            <TouchableOpacity onPress={this.showOverlay.bind(this)} style={styles.club}>
                 <Text style={styles.clubTitle}>d:Lite</Text>
                 <Text style={styles.clubChar}>#동아리 플랫폼</Text>
             </TouchableOpacity>
+
+            <Overlay visible={this.state.modalVisible} onClose={this.onClose} closeOnTouchOutside animationType="zoomIn" animationDuration={200}
+                      childrenWrapperStyle={{width:'100%', backgroundColor: 'white', borderRadius: 15,}} containerStyle={{backgroundColor: 'rgba(50, 50, 50, 0.78)'}} >
+              <View style={{flexDriection:'column', }}>
+                  <View style={{flexDirection:'row',}}>
+                    <View style={styles.logo}>
+                      <Image
+                        style={styles.Image}
+                        source={require('../images/logo2.png')}/>
+                    </View>
+                    <View style={{marginBottom:30, flex:1}}>
+                        <Text style={styles.clubTitle}>d:Lite</Text>
+                        <Text style={styles.clubChar}>#행복</Text>
+                    </View>
+                  </View>
+                  <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
+                      <TouchableOpacity 
+                        style={styles.button}
+                        onPress={this._gotoClubIntroduce}
+                      >
+                          <Image
+                            style={styles.ImageR}
+                            source={require('../images/introduce.png')}/>
+                            <Text style={{textAlign:'center',fontSize:15}}>소개</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity 
+                        style={styles.button}
+                        onPress={this._gotoRecord}
+                      >
+                          <Image
+                            style={styles.ImageR}
+                            source={require('../images/record.png')}/>
+                            <Text style={{textAlign:'center', fontSize:15}}>기록</Text>
+                      </TouchableOpacity>
+                  </View>
+              </View>
+            </Overlay>
 
         </View>
 
@@ -58,13 +109,21 @@ const styles = StyleSheet.create({
     
     marginRight:25
   },
+  
   Image:{
     height:50,
     width:50,
     resizeMode:'cover',
     backgroundColor: '#fff',
-    borderRadius: 25,borderColor:'#0064FF',
+    borderRadius: 25,
+    borderColor:'#0064FF',
     borderWidth:1,
+  },
+  ImageR:{
+    left:-5,
+    height:60,
+    width:60,
+    resizeMode:'contain',
   },
   club:{
       flex:1,
@@ -78,5 +137,12 @@ const styles = StyleSheet.create({
   clubChar:{
       fontSize: 14,
       color: '#828282'
-  }
+  },
+  button:{
+    top:-40,
+    margin:30,
+    height:15,
+    width:50,
+    
+  },
 });
