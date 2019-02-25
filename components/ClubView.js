@@ -109,8 +109,10 @@ _gotoRecord = () => {
                 </Text>
             </TouchableOpacity>
 
-            <Overlay visible={this.state.modalVisible} onClose={this.onClose} closeOnTouchOutside animationType="zoomIn" animationDuration={200}
-                      childrenWrapperStyle={{width:'100%', backgroundColor: 'white', borderRadius: 15,}} containerStyle={{backgroundColor: 'rgba(50, 50, 50, 0.78)'}} >
+            <Overlay visible={this.state.modalVisible} onClose={this.onClose} 
+                      closeOnTouchOutside animationType="zoomIn" animationDuration={200}
+                      childrenWrapperStyle={{width:'100%', backgroundColor: 'white', borderRadius: 15,}} 
+                      containerStyle={{backgroundColor: 'rgba(50, 50, 50, 0.78)'}} >
               <View style={{flexDriection:'column', }}>
                   <View style={{flexDirection:'row',}}>
                     <View style={styles.logo}>
@@ -142,6 +144,7 @@ _gotoRecord = () => {
                             style={styles.ImageR}
                             source={require('../images/introduce.png')}/>
                             <Text style={{textAlign:'center',fontSize:15}}>소개</Text>
+                       
                       </TouchableOpacity>
                       <TouchableOpacity 
                         style={styles.button}
@@ -215,8 +218,9 @@ const styles = StyleSheet.create({
   button:{
     top:-40,
     margin:30,
-    height:15,
+    height:70,
     width:50,
-    
+    zIndex:999,
+    // backgroundColor:'red'
   },
 });

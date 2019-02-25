@@ -2,74 +2,47 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import RecordFalse from '../components/RecordFalse';
 import RecordTrue from '../components/RecordTrue';
+import { Header, Icon } from 'react-native-elements';
+import MasonryList from "react-native-masonry-list";
 
-export default class SignUpRecord extends React.Component {
+export default class Record extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-
-            {/* '+'버튼 */}
-            <View style={styles.header}>
-                <TouchableOpacity 
-                  style={styles.button}
-                  onPress={() => this.props.navigation.navigate('RecordRegister')}
-                >
-                    <Text style={styles.text}>+</Text>
-                </TouchableOpacity>
-            </View>
-
-            {/* 사진들 들어갈 곳 */}
-            <View style={styles.content}>
-                <ScrollView>
-
-                </ScrollView>
-            </View>
-
-            {/* 완료버튼 */}
-            <View style={styles.footer}>
-                {/* true면 <RecordTrue /> false면 <RecordFalse /> */}
-                <RecordTrue 
-              onPress={() => this.props.navigation.navigate('FindClub')}/>
-            </View>
-            
-      </View>
+      <>
+      <Header
+      leftComponent={{ icon: 'keyboard-arrow-left', color: 'blue' }}
+      centerComponent={{text:{fontSize:'200'}, text: ' 기록', style: { color: 'blue' } }}
+      
+      backgroundColor={"#fff"}
+    />
+    
+    <MasonryList
+            imageContainerStyle={{borderRadius:17, right:12}}
+            spacing={7}
+            images={[
+              { uri: 'http://etoland.co.kr//data/daumeditor02/190221/thumbnail3/33687715507189160.jpg',  },
+              { uri: 'http://etoland.co.kr/data/file0207/star/1743390505_TfphHEzC_U1NCbtMH6.jpg' },
+              { uri: 'http://etoland.co.kr/data/file0207/star/1743390505_2H1RX0k7_kiuMHutnZ.jpg' },
+              { uri: 'http://etoland.co.kr/data/file0207/star/thumbnail3/2041774303_gHOKcVMt_Screenshot_20190217-032858_Instagram.jpg' },
+              { uri: 'http://etoland.co.kr/data/daumeditor02/190120/15479464870.jpg' },
+              { uri: 'http://etoland.co.kr/data/mw.cheditor/190101/thumbnail3/1c7fa003a62cf5552d2788ed0ff73d07_PFpsIeTnwvCLkCbXu.jpg' },
+              { uri: 'http://dimg.donga.com/wps/NEWS/IMAGE/2016/05/27/78352163.1.jpg' },
+              { uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKaqws0tnHsY_jePJqGz3iltCjnitigbnTlghg4ciUjGe7RsYb' },
+              { uri: 'https://image.fmkorea.com/files/attach/new/20180517/3655109/48834235/1060661020/4c23a9fce45cd3e205b686d32b3b0324.jpg' },
+          ]}
+            onPressImage = {(item, index) => {
+                alert(index)
+            }}
+          />
+      
+      </>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor:'#fff'
-  },
-  header:{
-      width:'100%',
-      height:70,
-      // backgroundColor:'#A0AFFF',
-      flexDirection:"row",
-      justifyContent: "flex-end"
-  },
-  content:{
-    flex: 1
-  },
-  footer:{
-    width: '100%',
-    height: 70,
-    // backgroundColor: '#5CEEE6',
-    borderTopWidth:1
-  },
-  button:{
-      backgroundColor: '#0064FF',
-      width:50,
-      height:50,
-      marginTop:10,
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginRight: 20,
-      borderRadius: 50
-  },
-  text:{
-      fontSize: 25,
-      color: '#fff'
-  }
+container:{
+   flex:1,
+   padding:20
+}
 });

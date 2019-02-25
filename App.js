@@ -86,7 +86,7 @@ const RootStack = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'Main',
+    initialRouteName: 'RecordRegister',
   },
   
 );

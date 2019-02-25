@@ -33,6 +33,7 @@ export default class ConfirmButton extends Component{
 
 const styles = StyleSheet.create({
   button: {
+    width: 300,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 10,
