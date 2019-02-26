@@ -16,7 +16,7 @@ export default class SignUp extends Component {
         super(props);
         this.state={
           clubName:'',
-          clubKind:'',
+          clubKind:'예술 공연',
           clubWellcome:'',
           clubPhoneNumber:'',
           clubIntroduce:'',
@@ -25,6 +25,10 @@ export default class SignUp extends Component {
           clubLogo: 'http://file.mk.co.kr/meet/neds/2015/10/image_readtop_2015_958954_14441920852159833.png',
         };
       }
+
+      myCallback = (dataFromChild) => {
+        this.setState({ clubKind: dataFromChild });
+    }
 
   render() {
     let { clubLogo, clubMainPicture } = this.state;
@@ -43,7 +47,9 @@ export default class SignUp extends Component {
                 <View style={styles.block}>
                     <Text style={styles.text}>동아리 종류</Text>
                     <View style={{width:160,}}>
-                        <ClubPicker />
+                    <ClubPicker
+                        callbackFromParent={this.myCallback} />
+
                     </View>
                 </View>
                 <View style={styles.block}>

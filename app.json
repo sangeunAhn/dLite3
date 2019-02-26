@@ -26,7 +26,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "co.dLite.dLite"
+    },
+    "android": {
+      "package": "co.dLite.dLite"
     }
   }
 }

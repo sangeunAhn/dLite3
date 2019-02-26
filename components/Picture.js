@@ -21,7 +21,7 @@ export default class CharButton extends Component{
 
             <Image 
               style={styles.image}
-              source={require('../images/momo.jpg')}
+              source={{uri : this.props.picture}}
             />
 
             <Text style={styles.text}>{this.props.text}</Text>

@@ -20,6 +20,7 @@ import ModifySignUp from './src/ModifySignUp';
 import ModifyChar from './src/ModifyChar';
 import ModifyRecord from './src/ModifyRecord';
 import Record from './src/Record';
+import SignUpRecord2 from './src/SignUpRecord2';
 
 
 
@@ -84,9 +85,12 @@ const RootStack = createStackNavigator(
     Record: {
       screen: Record,
     },
+    SignUpRecord2: {
+      screen: SignUpRecord2,
+    }
   },
   {
-    initialRouteName: 'RecordRegister',
+    initialRouteName: 'Main',
   },
   
 );

@@ -27,25 +27,37 @@ export default class ClubView_dLite extends Component{
 
   onClose = () => this.setState({ modalVisible: false});
 
+  _gotoClubIntroduce = () => {
+    this.onClose()
+    this.props.navigation.navigate('ClubIntroduce_dLite', {
+      clubName: this.props.clubName,
+      school: this.props.school
+    })
+  }
+  
+  _gotoRecord = () => {
+    this.onClose()
+    this.props.navigation.navigate('Record_dLite', {
+      clubName: this.props.clubName,
+      school: this.props.school
+    })
+  }
 
 
   render(){
     let {clubLogo} = this.props;
     return (
         <View style={styles.container}>
-          <TouchableOpacity
-              onPress={this.showOverlay.bind(this)}>
             <View style={styles.logo}>
               <Image
                 style={styles.Image}
                 source={require('../images/momo.jpg')}/>
             </View>
-          </TouchableOpacity>
             
-            <TouchableOpacity onPress={this.showOverlay.bind(this)} style={styles.club}>
+            <View style={styles.club}>
                 <Text style={styles.clubTitle}>d:Lite</Text>
                 <Text style={styles.clubChar}>#동아리 플랫폼</Text>
-            </TouchableOpacity>
+            </View>
 
             <Overlay visible={this.state.modalVisible} onClose={this.onClose} closeOnTouchOutside animationType="zoomIn" animationDuration={200}
                       childrenWrapperStyle={{width:'100%', backgroundColor: 'white', borderRadius: 15,}} containerStyle={{backgroundColor: 'rgba(50, 50, 50, 0.78)'}} >
@@ -141,8 +153,9 @@ const styles = StyleSheet.create({
   button:{
     top:-40,
     margin:30,
-    height:15,
+    height:70,
     width:50,
+    zIndex:999,
     
   },
 });

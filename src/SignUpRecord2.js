@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import RecordFalse from '../components/RecordFalse';
-import RecordTrue from '../components/RecordTrue';
+import RecordTrue2 from '../components/RecordTrue2';
 import { Header, Icon } from 'react-native-elements';
 import MasonryList from "react-native-masonry-list";
 import * as axios from 'axios';
@@ -13,18 +13,15 @@ export default class SignUpRecord extends React.Component {
     super(props);
     this.state={
       records:[],
-      showImage:[],
-      school:'',
     };
 
     this.props.navigation.addListener('didFocus', () => {
-      this._getDatas()
-    });
-
+        this._getDatas()
+      });
   }
 
   componentWillMount = () => {
-    this._getSchool();
+    this._getDatas();
   };
 
 
@@ -49,10 +46,10 @@ export default class SignUpRecord extends React.Component {
           response.forEach(row => {
             recordArray.push({ uri : row.recordPicture});
             });
-          t.setState({
-            records: records.concat(recordArray),
-          });
           
+          t.setState({
+            records: records.concat(recordArray)
+          });
           
       
         });
@@ -67,32 +64,12 @@ export default class SignUpRecord extends React.Component {
   }
 
 
-  _getSchool = () => {
-    const { navigation } = this.props;
-    var userNo = navigation.getParam('userNo', 'NO-ID');
-    const t = this;
-
-
-    // 데이터 가져오기
-    axios.post('http://dkstkdvkf00.cafe24.com/GetSchool.php',{
-        userNo:userNo,
-      })
-      .then(function (response) {
-        var str = JSON.stringify(response.data.message.school);;
-        var school = str.substring(1, str.length-1);
-          t.setState({
-            school: school
-          });
-      });
-  }
-
 
   render() {
     const { navigation } = this.props;
-    var name = navigation.getParam('recordName', 'NO-ID');
     var userNo = navigation.getParam('userNo', 'NO-ID');
-    const {records, showImage} = this.state;
-    console.log(this.state.school)
+    const {records} = this.state;
+    // console.log(userNo)
     return (
       <>
       <View style={styles.container}>
@@ -115,21 +92,19 @@ export default class SignUpRecord extends React.Component {
             spacing={7}
             images={records}
             onPressImage = {(item, index) => {
-              this._RecordRegister(item.uri)
+              this._RecordRegister(item)
           }}
           />
 
             {/* 완료버튼 */}
             <View style={styles.footer}>
                 {/* true면 <RecordTrue /> false면 <RecordFalse /> */}
-                <RecordTrue 
-                  onPress={
-                    () => this.props.navigation.navigate('FindClub',{
-                      schoolName : this.state.school
-                    })
-                    // () => console.log(records)
-                  }
-                />
+                <TouchableOpacity 
+                    style={styles.true}
+                    onPress={() => this.props.navigation.navigate('Main')}
+                >
+                <Text style={styles.text1}>완료</Text>
+            </TouchableOpacity>
             </View>
             
       </View>
@@ -172,5 +147,16 @@ const styles = StyleSheet.create({
   text:{
       fontSize: 25,
       color: '#fff'
-  }
+  },
+  true:{
+    flex:1,
+    backgroundColor:'#1478FF',
+    alignItems:'center',
+    justifyContent: 'center'
+},
+text1:{
+    fontSize:25,
+    color:'#fff',
+    fontWeight:'700'
+}
 });

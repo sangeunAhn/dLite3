@@ -23,7 +23,7 @@ export default class Record extends React.Component {
 
 
   _RecordRegister = picture => {
-    this.props.navigation.navigate('RecordPictures', {
+    this.props.navigation.navigate('RecordPictures_dLite', {
       picture: picture.uri,
       userNo: this.props.userNo
     })

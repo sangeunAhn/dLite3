@@ -37,9 +37,9 @@ export default class FindClub extends React.Component {
           {/* 대학교 이름과 동아리 종류 볼수있는 아이콘 */}
           <View style={styles.div}>
               <Text style={styles.school}>울산대학교</Text>
-              <TouchableOpacity>
+              {/* <TouchableOpacity>
                 <AntDesign name="bars" size={25} color="#0A6EFF" />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
           </View>
 
           {/* 종류에 따라 동아리 구분 */}

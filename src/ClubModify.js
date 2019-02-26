@@ -42,7 +42,7 @@ export default class ClubModify extends React.Component {
     var userNo = navigation.getParam('userNo', 'NO-ID');
     userNo = userNo.replace(/[^0-9]/g,'');
 
-    this.props.navigation.navigate('CharChoice', {
+    this.props.navigation.navigate('ModifyChar', {
         userNo : userNo
     })
   }
@@ -52,7 +52,7 @@ export default class ClubModify extends React.Component {
     var userNo = navigation.getParam('userNo', 'NO-ID');
     userNo = userNo.replace(/[^0-9]/g,'');
 
-    this.props.navigation.navigate('ModifyRecord', {
+    this.props.navigation.navigate('SignUpRecord2', {
         userNo : userNo
     })
   }

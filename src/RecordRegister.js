@@ -1,11 +1,68 @@
 import React, {Component,Fragment} from 'react';
-import {StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput, AsyncStorage, Dimensions,KeyboardAvoidingView, Platform} from 'react-native';
-import RRContent from '../components/RRContent';
-import { Header, Icon, Overlay } from 'react-native-elements';
-import CSButton from '../components/CSButton';
+import {StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput, AsyncStorage, Dimensions,KeyboardAvoidingView, Platform, Image} from 'react-native';
+import { ImagePicker, Constants, Permissions } from 'expo';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import * as axios from 'axios';
+
+const { width, height } = Dimensions.get("window");
 
 export default class RecordRegister extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state={
+      image:null,
+      disabled: false,
+      count:0,
+      text: '',  
+      plds: [],
+      comment:'',
+      name:'',
+    };
+  }
+
+  _pickImage = async () => {
+    const permissions = Permissions.CAMERA_ROLL;
+    const { status } = await Permissions.askAsync(permissions);
+    
+    console.log(permissions, status);
+    if(status === 'granted') {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            allowsEditing: true,
+            aspect: [4, 3],
+          });
+      
+          if (!result.cancelled) {
+            this.setState({ image: result.uri });
+          }
+    }
+  }
+
+
+  _ButtonPress = () => {
+    const { name, image, comment } = this.state;
+    const { navigation } = this.props;
+    var userNo = navigation.getParam('userNo', 'NO-ID');
+
+    // console.log(userNo)
+    // for(let i=0; i<images.length; i++){
+      
+      // 데이터베이스에 넣기
+      axios.post('http://dkstkdvkf00.cafe24.com/SetRecord.php',{
+        recordName: name,
+        recordPicture: image,
+        recordContent: comment,
+        userNo: userNo
+      })
+      .then(function (response) {
+          ms = response.data.message;
+      });
+
+        // }
+        this.setState({image: null})
+        this.props.navigation.navigate('SignUpRecord')
+}
+
 
   componentDidMount = () => {
     AsyncStorage.getItem("plds").then(data => {
@@ -48,21 +105,14 @@ export default class RecordRegister extends React.Component {
   state={
     count:0
   }
-  constructor(props){
-    super(props);
-    this.state = {
-      disabled: false,
-      count:0,
-      text: '',  
-      plds: []
-    }
-  }
+  
   _updateCount = () => {
     this.setState({
       count:this.state.count+1
     });
   };
   render() {
+    const {image} = this.state;
     return (
      <>
    
@@ -77,6 +127,7 @@ export default class RecordRegister extends React.Component {
                         style={styles.titleInput}
                         placeholder={"활동 내용을 입력하세요."}
                         placeholderTextColor={"#fff"}
+                        onChangeText={(name) => this.setState({name})}
                     />           
                
                 </View>
@@ -88,28 +139,56 @@ export default class RecordRegister extends React.Component {
                 
               >
             {/* 밑에 완료버튼 빼고 나머지 화면 스크롤 */}
-            <ScrollView style={styles.scroll}>
             
                 {/* 맨 위 활동 내용 적는 곳 */}
                
                 
                 
                 {/* 사진 넣는 곳 */}
-                <RRContent />
+                 <View style={styles.contentBackground}>
+           
+                <TouchableOpacity onPress={this._pickImage}>
+                  <View style={styles.content}>
+                    { image === null ?
+                      <Image
+                        style={{height:'50%',width:'55%',resizeMode:'contain'}}
+                        source={require('../images/addPhoto.png')}/>
+                      :
+                      <Image
+                      style={{height:'100%',width:'100%',resizeMode:'cover'}}
+                      source={{ uri : image}}/>
+                      
+                  }
+                  
+                  </View>
+
+                </TouchableOpacity>
+
+                <TextInput
+                    style={styles.commentInput}
+                    placeholder={"간단한 코멘트를 입력해주세요"}
+                    placeholderTextColor={"#bebebe"}
+                    multiline={false}
+                    onChangeText={(comment) => this.setState({comment})}
+                />
+            </View>
+
+            <View style={styles.coment}>
+            </View>
                 
               
                 
-            </ScrollView>
              </KeyboardAwareScrollView>
             {/* 완료버튼 */}
             <View style={styles.footer}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity 
+                  style={styles.button}
+                  onPress={this._ButtonPress}
+                >
                     <Text style={styles.text}>완료</Text>
                 </TouchableOpacity>
             </View>
-            <CSButton
-        style={{ zIndex: 999 }}
-            onPress={()=>this._updateCount()}/>
+            
         </View>
         
         </>
@@ -170,4 +249,37 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 15,
    }, 
+   contentBackground:{
+    backgroundColor: '#eaebea',
+    marginBottom: 15,
+    width:'100%',
+
+    height:height*0.6,
+
+    borderRadius:10,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  content:{
+    backgroundColor:'#fff',
+    width:width*0.8,
+    height:width*0.8,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent:"center"
+  },
+  coment:{
+    width: '100%',
+    height: height*0.01,
+    // backgroundColor: '#c98cc9',
+   
+    paddingTop:10,
+    paddingLeft:10
+  },
+  commentInput:{
+    fontSize:21,
+    textAlign: 'center',
+    paddingTop:30,
+    paddingBottom:5
+}
 });
