@@ -103,7 +103,7 @@ const RootStack = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'codeConfirm',
+    initialRouteName: 'CharChoice',
   },
   
 );

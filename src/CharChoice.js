@@ -1,12 +1,27 @@
 import React, {Component} from 'react';
-import {StyleSheet, AsyncStorage, Text, View,  KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, ScrollView} from 'react-native';
+import {StyleSheet, AsyncStorage,Dimensions, Text, View,  KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, ScrollView,BackHandler,Platform} from 'react-native';
 import ConfirmButton from '../components/ConfirmButton';
+import ConfirmButtonN from '../components/ConfirmButtonN';
 import CharButton from '../components/CharButton';
 import CharInput from '../components/CharInput';
 import CharGoal from '../components/CharGoal';
 import * as axios from 'axios';
+import { scale, moderateScale, verticalScale} from '../components/Scaling';
+
+const DismissKeyboard = ({ children }) => (
+  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    {children}
+  </TouchableWithoutFeedback>
+);
+
+const  {width, height} = Dimensions.get("window");
 
 export default class CharChoice extends React.Component {
+  static navigationOptions = {
+    headerLeft: null,
+    gesturesEnabled: false,
+    header: null
+}
 
   constructor(props){
     super(props);
@@ -105,14 +120,9 @@ export default class CharChoice extends React.Component {
   render() {
     return (
       <>
-      
-     
-   
+      <DismissKeyboard>
       <View style={styles.container}>
-      <KeyboardAvoidingView
-      behavior="padding"
-      keyboardVerticalOffset="200"
-      >
+     
           <View style={styles.header} >
 
               {/* 제목 */}
@@ -121,9 +131,12 @@ export default class CharChoice extends React.Component {
                     <Text style={styles.text_2}>중복 선택 가능</Text>
               </View>
           </View>
-
+      
         {/* 샾버튼 모아놓은거 */}
-         
+        <KeyboardAvoidingView
+      behavior="padding"
+      keyboardVerticalOffset={Platform.OS=== 'ios' ? '200' : '50'}
+      >
         
             {/* 위에 샾버튼 클릭했을 때 생긴 샾버튼 들어가는 곳 */}
           <View style={styles.contain}>
@@ -131,28 +144,28 @@ export default class CharChoice extends React.Component {
                   chars={this.state.chars}
                   removeChar={this.removeChar}/>
           </View>
-            {
-              this.state.count >= 10 ?
+
+        
+              {this.state.count >= 10 ?
                 <View style={styles.dd}></View>
                 :
                 <CharInput addChar={this.addChar} />
             }
                 
-            
+                
         {/* 완료버튼 */}
           <View style={styles.footer}>
-            <ConfirmButton
-              style={styles.button}
-              title={'선택완료'}
-              onPress={this._ButtonPress}/>
+          {(this.state.chars ==0 )?<ConfirmButtonN title={'선택완료'}/>:<ConfirmButton title={'선택완료'}  onPress={this._ButtonPress} /> }
           </View>
+          
       </KeyboardAvoidingView>
         </View>
-     
+        </DismissKeyboard>
       </>
     );
   }
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -170,7 +183,7 @@ const styles = StyleSheet.create({
   },
   title: {
     width:'100%',
-    height:'10%',
+    paddingTop: scale(10),
     flexDirection: "row",
     alignItems:"flex-end",
     // backgroundColor: '#9aa9ff',
@@ -197,20 +210,19 @@ const styles = StyleSheet.create({
     marginTop:30
   },
   footer: {
-    width:'100%',
-   
+    width:"100%",
     // backgroundColor: '#1ad657',
     paddingTop: 10,
-    justifyContent: 'center',
-    alignItems:'center'
+  
   },
   
   text_1: {
-      fontSize: 25,
+    fontSize: moderateScale(25),
       color:"#0A6EFF",
       marginRight:3
   },
   text_2: {
+    fontSize: moderateScale(12),
       color: "#aaaaaa"
   },
   selectView:{

@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
+import { scale, moderateScale, verticalScale} from '../components/Scaling';
 
 export default class ConfirmButton extends Component{
   static defaultProps = {
@@ -33,15 +34,17 @@ export default class ConfirmButton extends Component{
 
 const styles = StyleSheet.create({
   button: {
-    width: 300,
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 10,
     borderRadius: 30,
-    height: 50
+    height: 50,
+    
   },
   title: {
     fontSize: 20,
     fontWeight: "700"
   },
+  
 });

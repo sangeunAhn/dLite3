@@ -34,6 +34,7 @@ export default class ConfirmButtonN extends Component{
 
 const styles = StyleSheet.create({
   button: {
+    width:'100%',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 10,

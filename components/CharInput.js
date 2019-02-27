@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from 'react-native';
 import CharButtonN from '../components/CharButtonN.js';
-
+import { scale, moderateScale, verticalScale} from '../components/Scaling';
 
 class CharInput extends Component {
 
@@ -32,7 +32,7 @@ render() {
             <TextInput
                 style={styles.input} 
                 placeholder={"직접입력"}
-                autoCorrect={ false }
+              
                 placeholderTextColor={"#32B8FF"}
                 value={this.state.newChar}
                 onChangeText={(newChar) => this.setState({newChar})}
@@ -49,7 +49,7 @@ render() {
                 onPressOut={this.addNewChar}
                 >
                 
-                <Text style={{color : 'white'}}>추가</Text>
+                <Text style={{color : 'white', zIndex:999}}>추가</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
  
    
     input: {
+      height:45,
       flex:3,
       padding: 10,
       borderColor: "#32B8FF",
@@ -74,7 +75,8 @@ const styles = StyleSheet.create({
    
     selectView:{
       flexDirection: "row",
-      marginTop:20
+      marginTop:20,
+      padding: scale(10),
     },
     STBT:{
       flex:1,
@@ -82,20 +84,20 @@ const styles = StyleSheet.create({
       marginLeft:50,
     },
     AB:{
-      
+      zIndex:999,
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor:"red",
       height: 40,
-      width: 50,
+      width: moderateScale(50),
       borderWidth:1, 
     borderColor:'#f1b3ae', 
     borderRadius:7,
     shadowColor: 'rgba(0,0,0, .4)', // IOS
     shadowOffset: { height: 1, width: 1 }, // IOS
     shadowOpacity: 1, // IOS
-		shadowRadius: 1, //IOS
-		elevation: 2, // Android 
+      shadowRadius: 1, //IOS
+      elevation: 2, // Android 
     },
     BT:{
       flex:1,
