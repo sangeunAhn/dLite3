@@ -52,7 +52,7 @@ export default class ClubModify extends React.Component {
     var userNo = navigation.getParam('userNo', 'NO-ID');
     userNo = userNo.replace(/[^0-9]/g,'');
 
-    this.props.navigation.navigate('SignUpRecord2', {
+    this.props.navigation.navigate('ModifyRecord', {
         userNo : userNo
     })
   }

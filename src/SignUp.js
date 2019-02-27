@@ -6,6 +6,8 @@ import ConfirmButtonN from '../components/ConfirmButtonN';
 import { Avatar } from 'react-native-elements';
 import * as axios from 'axios';
 import { ImagePicker, Constants, Permissions } from 'expo';
+import ImgToBase64 from 'react-native-image-base64';
+import base64 from 'react-native-base64'
 
 
 export default class SignUp extends Component {
@@ -32,6 +34,7 @@ export default class SignUp extends Component {
 
   render() {
     let { clubLogo, clubMainPicture } = this.state;
+    // console.log(clubMainPicture)
     return (
         <View style={styles.container}>
             <Text style={styles.blank}>ㅁㅁㅁㅁ</Text>
@@ -123,33 +126,38 @@ export default class SignUp extends Component {
     
     console.log(permissions, status);
     if(status === 'granted') {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            allowsEditing: true,
-            aspect: [4, 3],
-          });
-      
-          if (!result.cancelled) {
-            this.setState({ clubLogo: result.uri });
-          }
-    }
+      let result = await ImagePicker.launchImageLibraryAsync({
+          allowsEditing: true,
+          aspect: [4, 3],
+          base64: true,
+        });
+
+        if (!result.cancelled) {
+          this.setState({ clubLogo: `data:image/jpg;base64,` + result.base64 });
+          // this.setState({ clubLogo: result.uri });
+        }
+        
   }
+}
+
 
     // 메인사진 가져오기
     _pickMainPicture = async () => {
       const permissions = Permissions.CAMERA_ROLL;
       const { status } = await Permissions.askAsync(permissions);
       
-      console.log(permissions, status);
       if(status === 'granted') {
           let result = await ImagePicker.launchImageLibraryAsync({
               allowsEditing: true,
               aspect: [4, 3],
+              base64: true,
             });
-        
-            console.log(result);
-        
+
+
             if (!result.cancelled) {
-              this.setState({ clubMainPicture: result.uri });
+              // this.setState({ clubMainPicture: 'data:image/jpg;charset=utf-8;base64,'+resultEncode });
+              this.setState({ clubMainPicture: `data:image/jpg;base64,` + result.base64 });
+              // this.setState({ clubMainPicture: result.uri });
             }
       }
   }

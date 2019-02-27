@@ -4,67 +4,133 @@ import RecordFalse from '../components/RecordFalse';
 import RecordTrue from '../components/RecordTrue';
 import { Header, Icon } from 'react-native-elements';
 import MasonryList from "react-native-masonry-list";
+import * as axios from 'axios';
+
 
 export default class Record extends React.Component {
-
-
 
   constructor(props){
     super(props);
     this.state={
       records:[],
-      showImage:[],
+      school:'',
     };
+
+    this.props.navigation.addListener('didFocus', () => {
+      this._getDatas()
+    });
+
+  }
+
+  componentWillMount = () => {
+    this._getDatas()
+    // this._getSchool();
+    
+  };
+
+
+  // 이미지들 가져오기
+  _getDatas = () => {
+      //userNo 가지고 오기
+      const { navigation } = this.props;
+      const {records} = this.state;
+      var clubName = navigation.getParam('clubName', 'NO-ID');
+      var school = navigation.getParam('school', 'NO-ID');
+      // console.log(userNo);
+      // var userNo = 26;
+      const t = this;
+  
+      // 데이터 가져오기
+      axios.post('http://dkstkdvkf00.cafe24.com/GetImages2.php',{
+        clubName:clubName,
+        school:school,
+        })
+        .then((result) => {
+          // t._setDatas(response);
+          const  response  = result.data;
+          var recordArray = new Array();
+          response.forEach(row => {
+            recordArray.push({ uri : row.recordPicture});
+            });
+          t.setState({
+            records: recordArray,
+          });
+        });
   }
 
 
-
-
-
-
-  _RecordRegister = picture => {
+  _RecordRegister = item => {
     this.props.navigation.navigate('RecordPictures', {
-      picture: picture.uri,
-      userNo: this.props.userNo
+      picture: item,
     })
   }
 
 
 
-
-
   render() {
+    const { navigation } = this.props;
+    var name = navigation.getParam('recordName', 'NO-ID');
+    var userNo = navigation.getParam('userNo', 'NO-ID');
+    const {records} = this.state;
+    console.log(records)
     return (
       <>
-      
-    
-    <MasonryList
+      <View style={styles.container}>
+
+           
+
+                        {/* 사진들 들어갈 곳 */}
+          <MasonryList
             imageContainerStyle={{borderRadius:17, right:12}}
             spacing={7}
-            images={[
-              { uri: 'http://etoland.co.kr//data/daumeditor02/190221/thumbnail3/33687715507189160.jpg',  },
-              { uri: 'http://etoland.co.kr/data/file0207/star/1743390505_TfphHEzC_U1NCbtMH6.jpg' },
-              { uri: 'http://etoland.co.kr/data/file0207/star/1743390505_2H1RX0k7_kiuMHutnZ.jpg' },
-              { uri: 'http://etoland.co.kr/data/file0207/star/thumbnail3/2041774303_gHOKcVMt_Screenshot_20190217-032858_Instagram.jpg' },
-              { uri: 'http://etoland.co.kr/data/daumeditor02/190120/15479464870.jpg' },
-              { uri: 'http://etoland.co.kr/data/mw.cheditor/190101/thumbnail3/1c7fa003a62cf5552d2788ed0ff73d07_PFpsIeTnwvCLkCbXu.jpg' },
-              { uri: 'http://dimg.donga.com/wps/NEWS/IMAGE/2016/05/27/78352163.1.jpg' },
-              { uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKaqws0tnHsY_jePJqGz3iltCjnitigbnTlghg4ciUjGe7RsYb' },
-              { uri: 'https://image.fmkorea.com/files/attach/new/20180517/3655109/48834235/1060661020/4c23a9fce45cd3e205b686d32b3b0324.jpg' },
-          ]}
+            images={records}
             onPressImage = {(item, index) => {
+              // alert(index)
               this._RecordRegister(item.uri)
-            }}
+          }}
           />
-      
+
+            
+            
+      </View>
       </>
     );
   }
 }
 
 const styles = StyleSheet.create({
-container:{
-   flex:1,
-   padding:20
-}
+  container: {
+    flex: 1,
+    backgroundColor:'#fff'
+  },
+  header:{
+      width:'100%',
+      height:70,
+      // backgroundColor:'#A0AFFF',
+      flexDirection:"row",
+      justifyContent: "flex-end"
+  },
+  content:{
+    flex: 1
+  },
+  footer:{
+    width: '100%',
+    height: 70,
+    // backgroundColor: '#5CEEE6',
+    borderTopWidth:1
+  },
+  button:{
+      backgroundColor: '#0064FF',
+      width:50,
+      height:50,
+      marginTop:10,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginRight: 20,
+      borderRadius: 50
+  },
+  text:{
+      fontSize: 25,
+      color: '#fff'
+  }
 });

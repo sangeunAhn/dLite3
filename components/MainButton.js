@@ -4,12 +4,13 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
+import { scale, moderateScale, verticalScale} from '../components/Scaling';
 
 export default class MainButton extends Component{
   static defaultProps = {
     title: 'untitled',
-    buttonColor: '#000',
-    titleColor: '#fff',
+    buttonColor: '#f0f0f0',
+    titleColor: '#4d4d4d',
     onPress: () => null,
   }
 
@@ -23,7 +24,7 @@ export default class MainButton extends Component{
         style={[styles.button,{backgroundColor: this.props.buttonColor}]}
         onPress={this.props.onPress}>
 
-        <Text style={[styles.title,{color: this.props.titleColor}]}>
+        <Text style={[styles.title,{color: this.props.titleColor, fontSize: moderateScale(15),}]}>
           {this.props.title}
         </Text>
 
@@ -34,11 +35,17 @@ export default class MainButton extends Component{
 
 const styles = StyleSheet.create({
   button: {
+    width: moderateScale(300),
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 10,
     borderRadius: 30,
-    height:50
+    height:moderateScale(50, 0.25),
+    shadowColor: 'rgba(0,0,0, .4)', // IOS
+    shadowOffset: { height: 1, width: 1 }, // IOS
+    shadowOpacity: 1, // IOS
+      shadowRadius: 1, //IOS
+      elevation: 2, // Android
   },
   title: {
     fontSize: 18,

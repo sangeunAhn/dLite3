@@ -21,6 +21,48 @@ export default class RecordRegister extends React.Component {
     };
   }
 
+  componentWillMount = () => {
+    this._getDatas();
+  };
+
+  _getDatas = () => {
+       //userNo 가지고 오기
+       const { navigation } = this.props;
+       var recordNo = navigation.getParam('recordNo', 'NO-ID');
+       const t = this;
+   
+       // 데이터 가져오기
+       axios.post('http://dkstkdvkf00.cafe24.com/GetRecordPictureM.php',{
+        recordNo: recordNo,
+         })
+         .then(function (response) {
+           t._setDatas(response);
+           
+         });
+  }
+  _setDatas = response => {
+    var str = JSON.stringify(response.data.message.recordName);;
+    var recordName = str.substring(1, str.length-1);
+      this.setState({
+        name: recordName
+      });
+
+      var str = JSON.stringify(response.data.message.recordPicture);;
+      var recordPicture = str.substring(1, str.length-1);
+        this.setState({
+          image: recordPicture
+        });
+
+      var str = JSON.stringify(response.data.message.recordContent);;
+    var recordContent = str.substring(1, str.length-1);
+      this.setState({
+        comment: recordContent
+      });
+
+      
+}
+
+
 
   _pickImage = async () => {
     const permissions = Permissions.CAMERA_ROLL;
@@ -43,17 +85,17 @@ export default class RecordRegister extends React.Component {
   _ButtonPress = () => {
     const { name, image, comment } = this.state;
     const { navigation } = this.props;
-    var userNo = navigation.getParam('userNo', 'NO-ID');
+    var recordNo = navigation.getParam('recordNo', 'NO-ID');
 
     // console.log(userNo)
     // for(let i=0; i<images.length; i++){
       
       // 데이터베이스에 넣기
-      axios.post('http://dkstkdvkf00.cafe24.com/SetRecord.php',{
+      axios.post('http://dkstkdvkf00.cafe24.com/UpdateRecord.php',{
         recordName: name,
         recordPicture: image,
         recordContent: comment,
-        userNo: userNo
+        recordNo: recordNo
       })
       .then(function (response) {
           ms = response.data.message;
@@ -61,9 +103,7 @@ export default class RecordRegister extends React.Component {
 
         // }
         this.setState({image: null})
-        this.props.navigation.navigate('SignUpRecord',{
-          image: image
-        })
+        this.props.navigation.navigate('SignUpRecord')
 }
 
 

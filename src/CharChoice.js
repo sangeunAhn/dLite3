@@ -61,9 +61,12 @@ export default class CharChoice extends React.Component {
     const { navigation } = this.props;
     var userNo = navigation.getParam('userNo', 'NO-ID');
     this._setClubChars();
-    this.props.navigation.navigate('SignUpRecord', {
-      userNo: userNo
+    setTimeout(()=>{
+      this.props.navigation.navigate('SignUpRecord', {
+        userNo: userNo
+      },3000)
     })
+    
   }
 
 

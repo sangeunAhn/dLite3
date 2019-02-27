@@ -8,6 +8,9 @@ import SignUp from './src/SignUp';
 import CharChoice from './src/CharChoice';
 import SignUpRecord from './src/SignUpRecord';
 import RecordRegister from './src/RecordRegister';
+import RecordRegisterM from './src/RecordRegisterM';
+import RecordRegister2 from './src/RecordRegister2';
+import RecordRegisterM2 from './src/RecordRegisterM2';
 import FindClub from './src/FindClub';
 import InputSchool from './src/InputSchool';
 import ClubSearch from './src/ClubSearch';
@@ -49,6 +52,9 @@ const RootStack = createStackNavigator(
     RecordRegister: {
       screen: RecordRegister,
     },
+    RecordRegister2: {
+      screen: RecordRegister2,
+    },
     FindClub: {
       screen: FindClub,
     },
@@ -82,15 +88,22 @@ const RootStack = createStackNavigator(
     ModifyRecord: {
       screen: ModifyRecord,
     },
+    
     Record: {
       screen: Record,
     },
     SignUpRecord2: {
       screen: SignUpRecord2,
+    },
+    RecordRegisterM: {
+      screen: RecordRegisterM
+    },
+    RecordRegisterM2: {
+      screen: RecordRegisterM2
     }
   },
   {
-    initialRouteName: 'Main',
+    initialRouteName: 'codeConfirm',
   },
   
 );

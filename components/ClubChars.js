@@ -7,7 +7,7 @@ export default class ClubChars extends React.Component {
   }
   render() {
     return (
-        <Text>#{this.props.chars} </Text>
+        <Text>#{this.props.chars}  </Text>
     );
   }
 

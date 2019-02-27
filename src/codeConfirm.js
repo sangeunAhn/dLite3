@@ -1,30 +1,57 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, Image, TextInput} from 'react-native';
+import {StyleSheet, TouchableWithoutFeedback, Keyboard,Text, View, Image, TextInput,Platform} from 'react-native';
 import ConfirmButton from '../components/ConfirmButton';
+import ConfirmButtonN from '../components/ConfirmButtonN';
 import * as axios from 'axios';
 import SchoolChoice from './SchoolChoice';
+import { TextField } from 'react-native-material-textfield';
 
+const DismissKeyboard = ({ children }) => (
+  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    {children}
+  </TouchableWithoutFeedback>
+);
 export default class codeConfirm extends React.Component {
+
+
+  static navigationOptions = {
+    title: "코드입력",
+    style: {elevation: 0, shadowOpacity: 0,},
+    headerStyle: { height: Platform.OS === 'ios' ? 70 : 10, elevation: 0,shadowColor: 'transparent', borderBottomWidth:0, paddingBottom:10, paddingTop: Platform.OS === 'ios' ? 40 : 5},
+    headerTitleStyle: { 
+        color:"#2eaeff",
+        fontSize:Platform.OS === 'ios' ? 25 : 18,
+        textAlign:"center", 
+        flex:1 ,
+        fontWeight: "bold"
+    },
+    tintColor: "#2eaeff"
+}
+
   constructor(props) {
     super(props);
     this.state = {userCode: ''};
   }
   render() {
+    let { code } = this.state;
     return (
+      <>
+      <DismissKeyboard>
       <View style={styles.container}>
         <View style={styles.header} />
 
         {/* 코드입력부분 */}
         <View style={styles.title}>
-          <Text style={styles.codeInput}>코드입력</Text>
-          <TextInput
-              style={styles.input}
-              placeholder={"발부받은코드를 입력하세요."}
-              placeholderTextColor={"#999"}
+          {/* <Text style={styles.codeInput}>코드입력</Text> */}
+          <TextField
+         title='발급받은 코드를 입력해 주세요.'
+            label='코드입력'
               returnKeyType={"done"}
               autoCorrect={false}
-              underlineColorAndroid={"transparent"}
+              value={code}
+              multiline={false}
               onChangeText={(userCode) => this.setState({userCode})}
+             
             />
         </View>
 
@@ -32,11 +59,11 @@ export default class codeConfirm extends React.Component {
 
         {/* 확인 버튼 */}
         <View style={styles.footer}>
-          <ConfirmButton 
-            title={'확인'}
-            onPress={this.login}/>
+        {(this.state.userCode.length==0 )?<ConfirmButtonN title={'확인'}/>:<ConfirmButton title={'확인'} onPress={this.login} /> }
         </View>
       </View>
+      </DismissKeyboard>
+      </>
     );
   }
 
@@ -140,6 +167,7 @@ const styles = StyleSheet.create({
     // backgroundColor: '#ff9a9a',
   },
   title: {
+    
     width:'100%',
     height:'30%',
     // backgroundColor: '#9aa9ff'

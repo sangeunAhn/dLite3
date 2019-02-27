@@ -13,7 +13,6 @@ export default class SignUpRecord extends React.Component {
     super(props);
     this.state={
       records:[],
-      showImage:[],
       school:'',
     };
 
@@ -25,6 +24,7 @@ export default class SignUpRecord extends React.Component {
 
   componentWillMount = () => {
     this._getSchool();
+    
   };
 
 
@@ -35,7 +35,7 @@ export default class SignUpRecord extends React.Component {
       const {records} = this.state;
       var userNo = navigation.getParam('userNo', 'NO-ID');
       // console.log(userNo);
-      // var userNo = 27;
+      // var userNo = 26;
       const t = this;
   
       // 데이터 가져오기
@@ -50,19 +50,26 @@ export default class SignUpRecord extends React.Component {
             recordArray.push({ uri : row.recordPicture});
             });
           t.setState({
-            records: records.concat(recordArray),
+            records: recordArray,
           });
-          
-          
-      
         });
   }
 
 
   _RecordRegister = item => {
-    this.props.navigation.navigate('RecordRegister', {
-      item: item.uri,
-      userNo: this.props.userNo
+    var t = this;
+    axios.post('http://dkstkdvkf00.cafe24.com/GetRecordPicture.php',{
+           recordPicture:item,
+         })
+         .then(function (response) {
+          var str = JSON.stringify(response.data.message.recordNo);;
+          var recordNo = response.data.message.recordNo
+          setTimeout(()=>{
+            t.props.navigation.navigate('RecordRegisterM', {
+              recordNo: recordNo,
+          },1000)
+         });
+   
     })
   }
 
@@ -70,6 +77,7 @@ export default class SignUpRecord extends React.Component {
   _getSchool = () => {
     const { navigation } = this.props;
     var userNo = navigation.getParam('userNo', 'NO-ID');
+    // var userNo = 26;
     const t = this;
 
 
@@ -91,8 +99,8 @@ export default class SignUpRecord extends React.Component {
     const { navigation } = this.props;
     var name = navigation.getParam('recordName', 'NO-ID');
     var userNo = navigation.getParam('userNo', 'NO-ID');
-    const {records, showImage} = this.state;
-    console.log(this.state.school)
+    const {records} = this.state;
+    console.log(records)
     return (
       <>
       <View style={styles.container}>
@@ -115,6 +123,7 @@ export default class SignUpRecord extends React.Component {
             spacing={7}
             images={records}
             onPressImage = {(item, index) => {
+              // alert(index)
               this._RecordRegister(item.uri)
           }}
           />

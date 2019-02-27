@@ -59,9 +59,9 @@ export default class ClubIntroduce extends React.Component {
           });
 
           var str = JSON.stringify(response.data.message.clubIntroduce);;
-        var ClubIntroduce = str.substring(1, str.length-1);
+        var clubIntroduce = str.substring(1, str.length-1);
           this.setState({
-            ClubIntroduce: ClubIntroduce
+            clubIntroduce: clubIntroduce
           });
 
           var str = JSON.stringify(response.data.message.clubLogo);;

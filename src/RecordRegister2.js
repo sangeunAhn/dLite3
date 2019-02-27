@@ -61,7 +61,7 @@ export default class RecordRegister extends React.Component {
 
         // }
         this.setState({image: null})
-        this.props.navigation.navigate('SignUpRecord',{
+        this.props.navigation.navigate('ModifyRecord',{
           image: image
         })
 }

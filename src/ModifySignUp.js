@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, Image, image, Button} from 'react-native';
 import ConfirmButton from '../components/ConfirmButton';
-import ClubPicker from '../components/ClubPicker';
+import ClubPickerM from '../components/ClubPickerM';
 import ConfirmButtonN from '../components/ConfirmButtonN';
 import { Avatar } from 'react-native-elements';
 import * as axios from 'axios';
@@ -26,13 +26,16 @@ export default class ModifySignUp extends Component {
       }
 
       componentWillMount = () => {
-        this._getDatas();
+          this._getDatas();
+        
       };
 
+      myCallback = (dataFromChild) => {
+        this.setState({ clubKind: dataFromChild });
+    }
 
   render() {
     let { clubLogo, clubMainPicture } = this.state;
-    console.log(clubMainPicture);
     return (
         <View style={styles.container}>
             <Text style={styles.blank}>ㅁㅁㅁㅁ</Text>
@@ -49,7 +52,9 @@ export default class ModifySignUp extends Component {
                 <View style={styles.block}>
                     <Text style={styles.text}>동아리 종류</Text>
                     <View style={{width:160,}}>
-                        <ClubPicker />
+                        <ClubPickerM 
+                          clubKind={this.state.clubKind}
+                          callbackFromParent={this.myCallback}/>
                     </View>
                 </View>
                 <View style={styles.block}>
@@ -219,6 +224,12 @@ export default class ModifySignUp extends Component {
     var clubWellcome = str.substring(1, str.length-1);
         this.setState({
             clubWellcome: clubWellcome
+        });
+
+    var str = JSON.stringify(response.data.message.clubKind);;
+    var clubKind = str.substring(1, str.length-1);
+        this.setState({
+          clubKind: clubKind
         });
 
     var str = JSON.stringify(response.data.message.clubPhoneNumber);;

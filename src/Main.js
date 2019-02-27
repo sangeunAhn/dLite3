@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import MainButton from '../components/MainButton';
 import FindClub from './FindClub';
+import { scale, moderateScale, verticalScale} from '../components/Scaling';
+
 
 export default class Login extends React.Component {
   static navigationOptions = {
@@ -14,21 +16,25 @@ export default class Login extends React.Component {
 
         {/* 로고랑 설명 */}
         <View style={styles.title}>
+        
         <Image
-            style={{height:'80%',width:'80%',resizeMode:'contain'}}
+            style={{height:'55%',width:'55%',resizeMode:'contain'}}
             source={require('../images/logo.png')}/>
-        <Text>동아리 관리를 편하게 하기 위한 완벽 솔루션</Text>
+     
+     <View style={{ paddingTop:scale(10)}}>
+        <Text style={{color:'#4d4d4d',fontSize: moderateScale(15),}}>우리 대학교에는 어떤 동아리들이 있을까?</Text>
+        
         </View>
-
+        </View>
         {/* 버튼2개 */}
         <View style={styles.content}>
             <MainButton
-                buttonColor={'#444'}
+                buttonColor={'#fafafa'}
                 title={'동아리 생성 수정'}
                 onPress={() => this.props.navigation.navigate('codeConfirm')}/>
             <View style={{width:"100%",height:10}} />
             <MainButton
-                buttonColor={'#023e73'}
+                buttonColor={'#fafafa'}
                 title={'일반'}
                 onPress={() => this.props.navigation.navigate('SchoolChoice')}/>
         </View>
@@ -48,7 +54,7 @@ const styles = StyleSheet.create({
   },
   header: {
     width:'100%',
-    height:'10%',
+    height:'15%',
     // backgroundColor: '#ff9a9a',
   },
   title: {
@@ -63,7 +69,9 @@ const styles = StyleSheet.create({
     paddingLeft:10,
     paddingRight:10,
     paddingBottom:10,
-    paddingTop:120,
+    paddingTop:scale(150),
+    justifyContent:'center',
+    alignItems:'center'
     // backgroundColor: '#d6ca1a',
   },
   footer: {
