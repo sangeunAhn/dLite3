@@ -16,8 +16,8 @@ export default class SignUpRecord extends React.Component {
       school:'',
     };
 
-    this.props.navigation.addListener('didFocus', () => {
-      this._getDatas()
+    this.props.navigation.addListener('didFocus', async () => {
+       await this._getDatas()
     });
 
   }
@@ -30,6 +30,7 @@ export default class SignUpRecord extends React.Component {
 
   // 이미지들 가져오기
   _getDatas = () => {
+    
       //userNo 가지고 오기
       const { navigation } = this.props;
       const {records} = this.state;
@@ -66,6 +67,7 @@ export default class SignUpRecord extends React.Component {
           var recordNo = response.data.message.recordNo
           t.props.navigation.navigate('RecordRegisterM2', {
             recordNo: recordNo,
+            image: item
          });
    
     })

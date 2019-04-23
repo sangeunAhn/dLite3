@@ -11,6 +11,10 @@
       "ios",
       "android"
     ],
+    "androidStatusBar": {
+      "backgroundColor": "#ffffff",
+      "translucent" : false
+    },
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

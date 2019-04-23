@@ -7,6 +7,9 @@ import {
   Image
 } from 'react-native';
 import Overlay from 'react-native-modal-overlay';
+import { scale, moderateScale, verticalScale} from '../components/Scaling';
+import { Icon } from 'react-native-elements'
+
 
 export default class ClubView_dLite extends Component{
 
@@ -48,16 +51,25 @@ export default class ClubView_dLite extends Component{
     let {clubLogo} = this.props;
     return (
         <View style={styles.container}>
+        <View style={{flexDirection:'row',alignItems:'center'}}>
+          <View style={{flexDirection:'row'}}>
+
             <View style={styles.logo}>
               <Image
                 style={styles.Image}
-                source={require('../images/momo.jpg')}/>
+                source={require('../images/logo.png')}/>
             </View>
             
             <View style={styles.club}>
                 <Text style={styles.clubTitle}>d:Lite</Text>
                 <Text style={styles.clubChar}>#동아리 플랫폼</Text>
             </View>
+
+          </View>
+           
+
+        </View>
+          
 
             <Overlay visible={this.state.modalVisible} onClose={this.onClose} closeOnTouchOutside animationType="zoomIn" animationDuration={200}
                       childrenWrapperStyle={{width:'100%', backgroundColor: 'white', borderRadius: 15,}} containerStyle={{backgroundColor: 'rgba(50, 50, 50, 0.78)'}} >
@@ -125,7 +137,7 @@ const styles = StyleSheet.create({
   Image:{
     height:50,
     width:50,
-    resizeMode:'cover',
+    resizeMode:'contain',
     backgroundColor: '#fff',
     borderRadius: 25,
     borderColor:'#0064FF',

@@ -24,16 +24,18 @@ export default class RecordTrue extends Component{
   }
 }
 
+
 const styles = StyleSheet.create({
-    true:{
-        flex:1,
-        backgroundColor:'#1478FF',
-        alignItems:'center',
-        justifyContent: 'center'
-    },
-    text1:{
-        fontSize:25,
-        color:'#fff',
-        fontWeight:'700'
-    }
+  true:{
+      flex:1,
+      borderColor:'white',
+      backgroundColor:'#28E7FF',
+      alignItems:'center',
+      justifyContent: 'center'
+  },
+  text1:{
+      fontSize:25,
+      color:'#fff',
+      fontWeight:'700'
+  }
 });

@@ -69,7 +69,9 @@ _gotoClubIntroduce = () => {
   this.onClose()
   this.props.navigation.navigate('ClubIntroduce', {
     clubName: this.props.clubName,
-    school: this.props.school
+    school: this.props.school,
+    clubLogo: this.props.clubLogo,
+    clubMainPicture: this.props.clubMainPicture
   })
 }
 
@@ -183,7 +185,7 @@ const styles = StyleSheet.create({
     width:50,
     borderRadius:25,
     backgroundColor:'#fff',
-    
+    borderColor:'#6a85a0',
     marginRight:25
   },
   

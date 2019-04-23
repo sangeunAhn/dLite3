@@ -18,6 +18,7 @@ export default class ClubDiv extends Component{
     this.state={
       clubName:[],
       clubLogo:[],
+      clubMainPicture:[],
     };
   }
   static propTypes = {
@@ -26,13 +27,13 @@ export default class ClubDiv extends Component{
   
 
 
-componentWillMount = () => {
-  this._getDatas();
+componentWillMount = async () => {
+  await this._getDatas();
 };
 
 
 _getDatas = () => {
-const { clubName, clubLogo } = this.state;
+const { clubName, clubLogo, clubMainPicture } = this.state;
 const { school, clubKind } = this.props;
 this.setState({school : school})
 
@@ -47,15 +48,18 @@ axios.post('http://dkstkdvkf00.cafe24.com/FindClubs.php',{
     const  response  = result.data;
     var clubNameArray = new Array();
     var clubLogoArray = new Array();
+    var clubMainPictureArray = new Array();
     
     response.forEach(row => {
       clubNameArray.push(row.clubName);
       clubLogoArray.push(row.clubLogo);
+      clubMainPictureArray.push(row.clubMainPicture);
       });
     
     this.setState({
       clubName: clubName.concat(clubNameArray),
       clubLogo: clubLogo.concat(clubLogoArray),
+      clubMainPicture: clubMainPicture.concat(clubMainPictureArray),
     });
       
     
@@ -70,7 +74,7 @@ _gotoClubIntroduce = () => {
 
 
   render(){
-    const {clubName, clubLogo} = this.state;
+    const {clubName, clubLogo, clubMainPicture} = this.state;
     const { school, clubKind } = this.props;
     // console.log(count);
 
@@ -85,6 +89,7 @@ _gotoClubIntroduce = () => {
                                   
                                   <ClubView clubName={clubName[i]}
                                             clubLogo={clubLogo[i]}
+                                            clubMainPicture={clubMainPicture[i]}
                                             school={school}
                                             key={i}
                                             navigation={this.props.navigation}

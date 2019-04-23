@@ -1,11 +1,27 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, Image, Dimensions, ScrollView} from 'react-native';
+import {StyleSheet, Platform, Text, View, Image, Dimensions, ScrollView} from 'react-native';
 import * as axios from 'axios';
 import ClubChars from '../components/ClubChars';
 
 const { width, height } = Dimensions.get("window");
 
 export default class ClubIntroduce extends React.Component {
+
+
+  static navigationOptions = {
+    title: "동아리 소개",
+    style: {elevation: 0, shadowOpacity: 0,},
+    headerStyle: { height: Platform.OS === 'ios' ? 40 : 5, elevation: 0,shadowColor: 'transparent', borderBottomWidth:0, paddingBottom:20},
+    headerTitleStyle: { 
+        color:"#2eaeff",
+        fontSize:18,
+        textAlign:"center", 
+        flex:1 ,
+        fontWeight: "bold"
+    },
+    tintColor: "#2eaeff"
+}
+  
   constructor(props){
     super(props);
     this.state={
@@ -22,6 +38,14 @@ export default class ClubIntroduce extends React.Component {
   componentWillMount = () => {
     this._getDatas();
     this._getChars();
+
+    const { navigation } = this.props;
+    var clubLogo = navigation.getParam('clubLogo', 'NO-ID');
+    var clubMainPicture = navigation.getParam('clubMainPicture', 'NO-ID');
+    this.setState({
+      clubLogo: clubLogo,
+      clubMainPicture: clubMainPicture
+    })
   };
 
   
@@ -64,17 +88,19 @@ export default class ClubIntroduce extends React.Component {
             clubIntroduce: clubIntroduce
           });
 
-          var str = JSON.stringify(response.data.message.clubLogo);;
-          var clubLogo = str.substring(1, str.length-1);
-              this.setState({
-                  clubLogo: clubLogo
-              });
+          // var str = JSON.stringify(response.data.message.clubLogo);;
+          // console.log(str)
+          // var clubLogo = str.substring(1, str.length-1);
+          //     this.setState({
+          //         clubLogo: clubLogo
+          //     });
 
-          var str = JSON.stringify(response.data.message.clubMainPicture);;
-          var clubMainPicture = str.substring(1, str.length-1);
-              this.setState({
-                  clubMainPicture: clubMainPicture
-              });
+          // var str = JSON.stringify(response.data.message.clubMainPicture);;
+          // console.log(str)
+          // var clubMainPicture = str.substring(1, str.length-1);
+          //     this.setState({
+          //         clubMainPicture: clubMainPicture
+          //     });
     }
 
 
@@ -113,8 +139,8 @@ export default class ClubIntroduce extends React.Component {
 
 
   render() {
-    console.log(clubLogo)
-    let {clubName, clubWellcome, clubPhoneNumber, clubIntroduce, clubLogo, clubMainPicture, clubChar} = this.state;
+    let {clubName, clubWellcome, clubPhoneNumber, clubIntroduce, clubChar, clubLogo, clubMainPicture} = this.state;
+    console.log(clubMainPicture)
     return (
       <ScrollView style={styles.container}>
 
@@ -123,7 +149,7 @@ export default class ClubIntroduce extends React.Component {
 
             {/* 동아리 대표 이미지 */}
                  {
-                          clubMainPicture === null ?
+                          clubMainPicture.length == 0 ?
                           <Image source={require('../images/momo.jpg')} style={styles.clubImage} />
                           :
                           {clubMainPicture} &&
@@ -132,7 +158,7 @@ export default class ClubIntroduce extends React.Component {
 
             {/* 로고 이미지 */}
             {
-                          clubLogo === null ?
+                          clubLogo.length == 0 ?
                           <Image source={require('../images/momo.jpg')} style={styles.logo} />
                           :
                           {clubLogo} &&

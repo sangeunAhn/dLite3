@@ -8,14 +8,14 @@ export default class SchoolChoice extends React.Component {
       <View style={styles.container}>
        
             <MainButton
-                buttonColor={'#444'}
+                buttonColor={'#CEF6CE'}
                 title={'울산대학교'}
                 onPress={() => this.props.navigation.navigate('FindClub', {
                   schoolName: '울대'
                 })}/>
             <View style={{width:"100%",height:10}} />
             <MainButton
-                buttonColor={'#023e73'}
+                buttonColor={'#CEE3F6'}
                 title={'고려대학교'}
                 onPress={() => this.props.navigation.navigate('FindClub', {
                   schoolName: '고려대학교'
@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    justifyContent : 'center'
+    justifyContent : 'center',
+    alignItems:'center'
   },
   
 });

@@ -1,13 +1,29 @@
 import React, {Component,Fragment} from 'react';
-import {StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput, AsyncStorage, Dimensions,KeyboardAvoidingView, Platform, Image} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput, AsyncStorage, Dimensions,KeyboardAvoidingView, Platform, Image, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import { ImagePicker, Constants, Permissions } from 'expo';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import * as axios from 'axios';
+import RegisterButton from '../components/RegisterButton';
+import RegisterButtonN from '../components/RegisterButtonN';
+import { scale, moderateScale, verticalScale} from '../components/Scaling';
 
 const { width, height } = Dimensions.get("window");
 
 export default class RecordRegister extends React.Component {
 
+  static navigationOptions = {
+    title: "기록생성",
+    style: {elevation: 0, shadowOpacity: 0,},
+    headerStyle: { height: Platform.OS === 'ios' ? 70 : 10, elevation: 0,shadowColor: 'transparent', borderBottomWidth:0, paddingBottom:10, paddingTop: Platform.OS === 'ios' ? 40 : 5},
+    headerTitleStyle: { 
+        color:"#2eaeff",
+        fontSize:Platform.OS === 'ios' ? 25 : 18,
+        textAlign:"center", 
+        flex:1 ,
+        fontWeight: "bold"
+    },
+    tintColor: "#2eaeff"
+}
   constructor(props){
     super(props);
     this.state={
@@ -23,6 +39,7 @@ export default class RecordRegister extends React.Component {
 
   componentWillMount = () => {
     this._getDatas();
+    this.setState({ image: this.props.recordPicture})
   };
 
   _getDatas = () => {
@@ -64,48 +81,54 @@ export default class RecordRegister extends React.Component {
 
 
 
-  _pickImage = async () => {
-    const permissions = Permissions.CAMERA_ROLL;
-    const { status } = await Permissions.askAsync(permissions);
+_pickImage = async () => {
+  const permissions = Permissions.CAMERA_ROLL;
+  const { status } = await Permissions.askAsync(permissions);
+  
+  console.log(permissions, status);
+  if(status === 'granted') {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        allowsEditing: true,
+        aspect: [4, 3],
+        base64: true,
+        quality: 0.5
+        });
     
-    console.log(permissions, status);
-    if(status === 'granted') {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            allowsEditing: true,
-            aspect: [4, 3],
-          });
-      
-          if (!result.cancelled) {
-            this.setState({ image: result.uri });
-          }
-    }
+        if (!result.cancelled) {
+          // this.setState({ clubMainPicture: 'data:image/jpg;charset=utf-8;base64,'+resultEncode });
+          this.setState({ image: `data:image/jpg;base64,` + result.base64 });
+          // this.setState({ clubMainPicture: result.uri });
+        }
   }
-
-
-  _ButtonPress = () => {
-    const { name, image, comment } = this.state;
-    const { navigation } = this.props;
-    var recordNo = navigation.getParam('recordNo', 'NO-ID');
-
-    // console.log(userNo)
-    // for(let i=0; i<images.length; i++){
-      
-      // 데이터베이스에 넣기
-      axios.post('http://dkstkdvkf00.cafe24.com/UpdateRecord.php',{
-        recordName: name,
-        recordPicture: image,
-        recordContent: comment,
-        recordNo: recordNo
-      })
-      .then(function (response) {
-          ms = response.data.message;
-      });
-
-        // }
-        this.setState({image: null})
-        this.props.navigation.navigate('SignUpRecord')
 }
 
+
+  _ButtonPress = async () => {
+    await this._input()
+    
+    this.setState({image: null})
+    this.props.navigation.navigate('SignUpRecord')
+}
+
+_input = () => {
+  const { name, image, comment } = this.state;
+  const { navigation } = this.props;
+  var recordNo = navigation.getParam('recordNo', 'NO-ID');
+
+  // console.log(userNo)
+  // for(let i=0; i<images.length; i++){
+    
+    // 데이터베이스에 넣기
+      axios.post('http://dkstkdvkf00.cafe24.com/UpdateRecord.php',{
+      recordName: name,
+      recordPicture: image,
+      recordContent: comment,
+      recordNo: recordNo
+    })
+    .then(function (response) {
+        ms = response.data.message;
+    });
+}
 
   componentDidMount = () => {
     AsyncStorage.getItem("plds").then(data => {
@@ -156,32 +179,22 @@ export default class RecordRegister extends React.Component {
   };
   render() {
     const {image} = this.state;
+    console.log(this.state.image)
     return (
      <>
    
      
         
 
+   <ScrollView>
 
         <View style={styles.container}>
-        <View
-                  style={styles.header}>
-                    <TextInput 
-                        style={styles.titleInput}
-                        placeholder={"활동 내용을 입력하세요."}
-                        placeholderTextColor={"#fff"}
-                        onChangeText={(name) => this.setState({name})}
-                        value={this.state.name}
-                    />           
-               
-                </View>
-                <KeyboardAwareScrollView
-                enableOnAndroid
-                enableAutomaticScroll
-                keyboardOpeningTime={0}
-                extraScrollHeight={150}
-                
-              >
+        
+        <KeyboardAvoidingView
+      behavior="padding"
+      
+      keyboardVerticalOffset={Platform.OS=== 'ios' ? '200' : '10'}
+      >
             {/* 밑에 완료버튼 빼고 나머지 화면 스크롤 */}
             
                 {/* 맨 위 활동 내용 적는 곳 */}
@@ -223,19 +236,29 @@ export default class RecordRegister extends React.Component {
                 
               
                 
-             </KeyboardAwareScrollView>
+             </KeyboardAvoidingView>
             {/* 완료버튼 */}
-            <View style={styles.footer}>
-                <TouchableOpacity 
-                  style={styles.button}
-                  onPress={this._ButtonPress}
-                >
-                    <Text style={styles.text}>완료</Text>
-                </TouchableOpacity>
             </View>
-            
-        </View>
-        
+            </ScrollView>
+            <View style={styles.footer}>
+              
+              {this.state.comment.length==0 && this.state.image==null
+                  ?
+                    <RegisterButtonN title={'사진과 코멘트를 모두 입력해 주세요.'}/>
+                  :
+                  this.state.comment.length==0?
+                  <RegisterButtonN title={'확인'}/>
+                :
+                this.state.image==null?
+                    <RegisterButtonN title={'사진과 코멘트를 모두 입력해 주세요.'}/>
+                    :
+                    <TouchableOpacity onPress={this._ButtonPress}>
+                      <RegisterButton title={'확인'}/>
+                    </TouchableOpacity>
+                }
+                
+                </View>
+              
         </>
     );
   }
@@ -246,28 +269,27 @@ const styles = StyleSheet.create({
   container: {
     flex:1,
     backgroundColor:'#fff',
-    padding:5,
-    
+    padding:20,
+    justifyContent:'center',
+    alignItems:'center'
   },
   scroll:{
     flex:1,
     padding:10
   },
   header:{
-      width:'100%',
+    width: moderateScale(300),
       height:50,
       backgroundColor:'#32AAFF',
-     
       justifyContent: "center",
+      alignItems:'center',
       borderRadius: 10,
-      marginBottom: 20,
-     
+      marginBottom: 40,
       textAlign:'center'
   },
   footer:{
     width: '100%',
     height: 70,
-    backgroundColor: '#5CEEE6'
   },
   button:{
       flex:1,
@@ -295,23 +317,32 @@ const styles = StyleSheet.create({
     marginVertical: 15,
    }, 
    contentBackground:{
-    backgroundColor: '#eaebea',
+     marginTop:scale(50),
+    backgroundColor: '#f2f2f2',
     marginBottom: 15,
-    width:'100%',
-
-    height:height*0.6,
-
+    width: moderateScale(310),
+    height: verticalScale(360),
     borderRadius:10,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    //그림자효과
+    shadowColor: "#dbdbdb",
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    shadowOffset: {
+      height: 5,
+      width: 5
+    },
+    elevation: 3,
   },
   content:{
     backgroundColor:'#fff',
-    width:width*0.8,
-    height:width*0.8,
+    width: moderateScale(270),
+    height:moderateScale(280),
     borderRadius: 10,
     alignItems: "center",
-    justifyContent:"center"
+    justifyContent:"center",
+    marginTop:10
   },
   coment:{
     width: '100%',

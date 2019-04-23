@@ -84,6 +84,7 @@ export default class SignUp extends Component {
                            }]} 
                         onChangeText={(clubName) => this.setState({clubName})}
                         maxLength={20}
+                        value={this.state.clubName}
                     />
                 </View>
                 <View style={styles.block}>
@@ -214,9 +215,11 @@ export default class SignUp extends Component {
           allowsEditing: true,
           aspect: [4, 3],
           base64: true,
+          quality: 0.5
         });
 
         if (!result.cancelled) {
+          console.log(result.uri)
           this.setState({ clubLogo: `data:image/jpg;base64,` + result.base64 });
           // this.setState({ clubLogo: result.uri });
         }
@@ -235,10 +238,12 @@ export default class SignUp extends Component {
               allowsEditing: true,
               aspect: [4, 3],
               base64: true,
+              quality: 0.5
             });
 
 
             if (!result.cancelled) {
+              console.log(result.uri)
               // this.setState({ clubMainPicture: 'data:image/jpg;charset=utf-8;base64,'+resultEncode });
               this.setState({ clubMainPicture: `data:image/jpg;base64,` + result.base64 });
               // this.setState({ clubMainPicture: result.uri });

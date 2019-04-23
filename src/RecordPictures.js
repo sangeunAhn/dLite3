@@ -1,12 +1,24 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, Platform} from 'react-native';
 import Picture from '../components/Picture';
 import * as axios from 'axios';
 
 
 
 export default class RecordPictures extends React.Component {
-
+  static navigationOptions = {
+    title: "세부기록",
+    style: {elevation: 0, shadowOpacity: 0,},
+    headerStyle: { height: Platform.OS === 'ios' ? 70 : 10, elevation: 0,shadowColor: 'transparent', borderBottomWidth:0, paddingBottom:10, paddingTop: Platform.OS === 'ios' ? 40 : 5},
+    headerTitleStyle: { 
+        color:"#2eaeff",
+        fontSize:Platform.OS === 'ios' ? 25 : 18,
+        textAlign:"center", 
+        flex:1 ,
+        fontWeight: "bold"
+    },
+    tintColor: "#2eaeff"
+}
   constructor(props){
     super(props);
     this.state={
@@ -56,11 +68,6 @@ export default class RecordPictures extends React.Component {
     const {recordName, recordContent, picture} = this.state;
     return (
       <ScrollView style={styles.container}>
-
-        {/* 제목부분 */}
-        <View style={styles.header}>
-          <Text style={styles.title}>{recordName}</Text>
-        </View>
 
           {/* 회색부분 */}
           <Picture

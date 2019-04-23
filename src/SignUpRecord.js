@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import {StyleSheet,  Platform,Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import RecordFalse from '../components/RecordFalse';
 import RecordTrue from '../components/RecordTrue';
 import { Header, Icon } from 'react-native-elements';
@@ -8,12 +8,25 @@ import * as axios from 'axios';
 
 
 export default class SignUpRecord extends React.Component {
-
+  static navigationOptions = {
+    title: "기록추가",
+    style: {elevation: 0, shadowOpacity: 0,},
+    headerStyle: { height: Platform.OS === 'ios' ? 70 : 10, elevation: 0,shadowColor: 'transparent', borderBottomWidth:0, paddingBottom:10, paddingTop: Platform.OS === 'ios' ? 40 : 5},
+    headerTitleStyle: { 
+        color:"#2eaeff",
+        fontSize:Platform.OS === 'ios' ? 25 : 18,
+        textAlign:"center", 
+        flex:1 ,
+        fontWeight: "bold"
+    },
+    tintColor: "#2eaeff"
+}
   constructor(props){
     super(props);
     this.state={
       records:[],
       school:'',
+      count : 0,
     };
 
     this.props.navigation.addListener('didFocus', () => {
@@ -48,6 +61,7 @@ export default class SignUpRecord extends React.Component {
           var recordArray = new Array();
           response.forEach(row => {
             recordArray.push({ uri : row.recordPicture});
+            t.setState({count: this.state.count + 1})
             });
           t.setState({
             records: recordArray,
@@ -67,6 +81,7 @@ export default class SignUpRecord extends React.Component {
           setTimeout(()=>{
             t.props.navigation.navigate('RecordRegisterM', {
               recordNo: recordNo,
+              recordPicture: item,
           },1000)
          });
    
@@ -130,15 +145,23 @@ export default class SignUpRecord extends React.Component {
 
             {/* 완료버튼 */}
             <View style={styles.footer}>
+
+            {
+              this.state.count >= 1 ?
+              <RecordTrue 
+              onPress={
+                () => this.props.navigation.navigate('FindClub',{
+                  schoolName : this.state.school
+                })
+                // () => console.log(records)
+              }
+            />
+              
+              :
+              <RecordFalse />
+            }
                 {/* true면 <RecordTrue /> false면 <RecordFalse /> */}
-                <RecordTrue 
-                  onPress={
-                    () => this.props.navigation.navigate('FindClub',{
-                      schoolName : this.state.school
-                    })
-                    // () => console.log(records)
-                  }
-                />
+               
             </View>
             
       </View>
@@ -166,7 +189,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 70,
     // backgroundColor: '#5CEEE6',
-    borderTopWidth:1
+    borderTopWidth:0
   },
   button:{
       backgroundColor: '#0064FF',

@@ -1,12 +1,36 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import {StyleSheet, Image, Text, View, ScrollView, TouchableOpacity, Platform} from 'react-native';
 import ClubView from '../components/ClubView';
 import ClubDiv from '../components/ClubDiv';
 import ClubView_dLite from '../components/ClubView_dLite';
+import HomeButton from '../components/HomeButton';
 import { AntDesign } from '@expo/vector-icons';
+import { scale, moderateScale, verticalScale} from '../components/Scaling';
+import { Icon } from 'react-native-elements'
 
 
 export default class FindClub extends React.Component {
+
+  static navigationOptions = ({navigation})=> {
+    const{navigate}=navigation
+    return{
+    title: "동아리 찾기",
+    style: {elevation: 0, shadowOpacity: 0,},
+    headerRight: (<Icon
+    onPress={()=>navigate('Main')}
+    iconStyle={{width:70}}
+      name='home' type='entypo' color='#2eaeff'/>),
+      headerStyle: { height: Platform.OS === 'ios' ? 70 : 40, elevation: 0,shadowColor: 'transparent', borderBottomWidth:0, paddingBottom:10, paddingTop: Platform.OS === 'ios' ? 40 : 5},
+    headerTitleStyle: { 
+        color:"#2eaeff",
+        fontSize:Platform.OS === 'ios' ? 25 : 18,
+        textAlign:"center", 
+        flex:1 ,
+        fontWeight: "bold"
+    },
+    tintColor: "#2eaeff"
+  }
+}
   constructor(props){
     super(props);
     this.state={

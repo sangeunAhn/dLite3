@@ -14,7 +14,7 @@ export default class RecordFalse extends Component{
   render(){
     return (
             <View style={styles.false}>
-                <Text style={styles.text1}>*최소 3개이상 작성하셔야 합니다.</Text>
+                <Text style={styles.text1}>*최소 1개이상 작성하셔야 합니다.</Text>
                 <Text style={styles.text2}>완료</Text>
             </View>
 

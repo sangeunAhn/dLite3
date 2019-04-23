@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import {StyleSheet,Platform, Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import RecordFalse from '../components/RecordFalse';
 import RecordTrue from '../components/RecordTrue';
 import { Header, Icon } from 'react-native-elements';
@@ -8,7 +8,19 @@ import * as axios from 'axios';
 
 
 export default class Record extends React.Component {
-
+  static navigationOptions = {
+    title: "기록",
+    style: {elevation: 0, shadowOpacity: 0,},
+    headerStyle: { height: Platform.OS === 'ios' ? 70 : 10, elevation: 0,shadowColor: 'transparent', borderBottomWidth:0, paddingBottom:10, paddingTop: Platform.OS === 'ios' ? 40 : 5},
+    headerTitleStyle: { 
+        color:"#2eaeff",
+        fontSize:Platform.OS === 'ios' ? 25 : 18,
+        textAlign:"center", 
+        flex:1 ,
+        fontWeight: "bold"
+    },
+    tintColor: "#2eaeff"
+}
   constructor(props){
     super(props);
     this.state={
@@ -16,8 +28,8 @@ export default class Record extends React.Component {
       school:'',
     };
 
-    this.props.navigation.addListener('didFocus', () => {
-      this._getDatas()
+    this.props.navigation.addListener('didFocus', async () => {
+      // await this._getDatas()
     });
 
   }
