@@ -3,7 +3,8 @@ import {
   TouchableOpacity,
   Text,
   StyleSheet,
-  View
+  View,
+  ActivityIndicator
 } from 'react-native';
 
 export default class RegisterButton extends Component{
@@ -22,10 +23,15 @@ export default class RegisterButton extends Component{
       <View 
       style={[styles.button,{backgroundColor: this.props.buttonColor}]}
      >
-
-        <Text style={[styles.title, {color: this.props.titleColor}]}>
-          {this.props.title}
-        </Text>
+        {this.props.title=='로딩'
+          ?
+          <ActivityIndicator color="white" />
+          :
+          <Text style={[styles.title, {color: this.props.titleColor}]}>
+            {this.props.title}
+          </Text>
+        }
+        
 
       </View>
     )

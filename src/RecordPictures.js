@@ -65,7 +65,7 @@ export default class RecordPictures extends React.Component {
 
 
   render() {
-    const {recordName, recordContent, picture} = this.state;
+    const {recordContent, picture} = this.state;
     return (
       <ScrollView style={styles.container}>
 

@@ -38,8 +38,9 @@ export default class ClubModify extends React.Component {
     var userNo = navigation.getParam('userNo', 'NO-ID');
     userNo = userNo.replace(/[^0-9]/g,'');
 
-    this.props.navigation.navigate('ModifySignUp', {
-        userNo : userNo
+    this.props.navigation.navigate('SignUp', {
+        userNo : userNo,
+        from: 'm'
     })
   }
 
@@ -48,8 +49,9 @@ export default class ClubModify extends React.Component {
     var userNo = navigation.getParam('userNo', 'NO-ID');
     userNo = userNo.replace(/[^0-9]/g,'');
 
-    this.props.navigation.navigate('ModifyChar', {
-        userNo : userNo
+    this.props.navigation.navigate('CharChoice', {
+        userNo : userNo,
+        from: 'm'
     })
   }
 
@@ -58,8 +60,9 @@ export default class ClubModify extends React.Component {
     var userNo = navigation.getParam('userNo', 'NO-ID');
     userNo = userNo.replace(/[^0-9]/g,'');
 
-    this.props.navigation.navigate('ModifyRecord', {
-        userNo : userNo
+    this.props.navigation.navigate('SignUpRecord', {
+        userNo : userNo,
+        from: 'm'
     })
   }
 }

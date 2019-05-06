@@ -48,8 +48,6 @@ export default class Record extends React.Component {
       const {records} = this.state;
       var clubName = navigation.getParam('clubName', 'NO-ID');
       var school = navigation.getParam('school', 'NO-ID');
-      // console.log(userNo);
-      // var userNo = 26;
       const t = this;
   
       // 데이터 가져오기
@@ -84,7 +82,6 @@ export default class Record extends React.Component {
     var name = navigation.getParam('recordName', 'NO-ID');
     var userNo = navigation.getParam('userNo', 'NO-ID');
     const {records} = this.state;
-    console.log(records)
     return (
       <>
       <View style={styles.container}>

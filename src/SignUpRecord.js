@@ -36,27 +36,25 @@ export default class SignUpRecord extends React.Component {
   }
 
   componentWillMount = () => {
-    this._getSchool();
-    
+    if(this.props.navigation.getParam('from', 'NO-ID')!='m'){
+      this._getSchool();
+    }
   };
 
 
   // 이미지들 가져오기
-  _getDatas = () => {
+  _getDatas = async () => {
       //userNo 가지고 오기
       const { navigation } = this.props;
       const {records} = this.state;
       var userNo = navigation.getParam('userNo', 'NO-ID');
-      // console.log(userNo);
-      // var userNo = 26;
       const t = this;
   
       // 데이터 가져오기
-      axios.post('http://dkstkdvkf00.cafe24.com/GetImages.php',{
+      await axios.post('http://dkstkdvkf00.cafe24.com/GetImages.php',{
           userNo:userNo,
         })
         .then((result) => {
-          // t._setDatas(response);
           const  response  = result.data;
           var recordArray = new Array();
           response.forEach(row => {
@@ -70,34 +68,39 @@ export default class SignUpRecord extends React.Component {
   }
 
 
-  _RecordRegister = item => {
+  _RecordRegister = async item => {
     var t = this;
-    axios.post('http://dkstkdvkf00.cafe24.com/GetRecordPicture.php',{
+    await axios.post('http://dkstkdvkf00.cafe24.com/GetRecordPicture.php',{
            recordPicture:item,
          })
          .then(function (response) {
-          var str = JSON.stringify(response.data.message.recordNo);;
           var recordNo = response.data.message.recordNo
-          setTimeout(()=>{
-            t.props.navigation.navigate('RecordRegisterM', {
+          if(t.props.navigation.getParam('from','NO-ID')=='m'){
+            t.props.navigation.navigate('RecordRegister', {
               recordNo: recordNo,
-              recordPicture: item,
-          },1000)
-         });
-   
+              image: item,
+              from: 'm',
+              to: 'm'
+            });
+          } else {
+            t.props.navigation.navigate('RecordRegister', {
+              recordNo: recordNo,
+              to: 'm'
+              }
+            );
+          }
     })
   }
 
 
-  _getSchool = () => {
+  _getSchool = async () => {
     const { navigation } = this.props;
     var userNo = navigation.getParam('userNo', 'NO-ID');
-    // var userNo = 26;
     const t = this;
 
 
     // 데이터 가져오기
-    axios.post('http://dkstkdvkf00.cafe24.com/GetSchool.php',{
+    await axios.post('http://dkstkdvkf00.cafe24.com/GetSchool.php',{
         userNo:userNo,
       })
       .then(function (response) {
@@ -108,6 +111,17 @@ export default class SignUpRecord extends React.Component {
           });
       });
   }
+  
+  _btnPress = () => {
+    if(this.props.navigation.getParam('from','NO-ID')=='m'){
+      this.props.navigation.navigate('Main')
+    } else {
+      this.props.navigation.navigate('FindClub',{
+        schoolName : this.state.school
+      })
+    }
+    
+  }
 
 
   render() {
@@ -115,7 +129,6 @@ export default class SignUpRecord extends React.Component {
     var name = navigation.getParam('recordName', 'NO-ID');
     var userNo = navigation.getParam('userNo', 'NO-ID');
     const {records} = this.state;
-    console.log(records)
     return (
       <>
       <View style={styles.container}>
@@ -138,7 +151,6 @@ export default class SignUpRecord extends React.Component {
             spacing={7}
             images={records}
             onPressImage = {(item, index) => {
-              // alert(index)
               this._RecordRegister(item.uri)
           }}
           />
@@ -150,10 +162,7 @@ export default class SignUpRecord extends React.Component {
               this.state.count >= 1 ?
               <RecordTrue 
               onPress={
-                () => this.props.navigation.navigate('FindClub',{
-                  schoolName : this.state.school
-                })
-                // () => console.log(records)
+                () => this._btnPress()
               }
             />
               

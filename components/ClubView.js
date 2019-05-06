@@ -93,9 +93,16 @@ _gotoRecord = () => {
             <TouchableOpacity
               onPress={this.showOverlay.bind(this)}>
             <View style={styles.logo}>
+            { clubLogo === null ?
               <Image
-                style={styles.Image}
-                source={{ uri: clubLogo }}/>
+              style={styles.Image}
+              source={require('../images/momo.jpg')}/>
+              :
+              <Image
+              style={styles.Image}
+              source={{ uri: clubLogo }}/>
+            }
+             
             </View>
             </TouchableOpacity>
             <TouchableOpacity 

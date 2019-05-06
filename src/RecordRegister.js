@@ -1,7 +1,6 @@
 import React, {Component,Fragment} from 'react';
-import {StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput, AsyncStorage, Dimensions,KeyboardAvoidingView, Platform, Image, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput, AsyncStorage, Dimensions,KeyboardAvoidingView, Platform, Image} from 'react-native';
 import { ImagePicker, Constants, Permissions } from 'expo';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import * as axios from 'axios';
 import RegisterButton from '../components/RegisterButton';
 import RegisterButtonN from '../components/RegisterButtonN';
@@ -34,15 +33,60 @@ export default class RecordRegister extends React.Component {
       plds: [],
       comment:'',
       name:'',
+      isSubmitting: false
     };
   }
 
 
+
+  componentWillMount = async () => {
+    if(this.props.navigation.getParam('to', 'NO-ID')=='m'){
+      await this._getDatas();
+    }
+  };
+
+  _getDatas = async () => {
+       //userNo 가지고 오기
+       const { navigation } = this.props;
+       var recordNo = navigation.getParam('recordNo', 'NO-ID');
+       const t = this;
+   
+       // 데이터 가져오기
+       await axios.post('http://dkstkdvkf00.cafe24.com/GetRecordPictureM.php',{
+        recordNo: recordNo,
+         })
+         .then(function (response) {
+           t._setDatas(response);
+           
+         });
+  }
+  _setDatas = async response => {
+    var str = JSON.stringify(response.data.message.recordName);
+    var recordName = str.substring(1, str.length-1);
+      this.setState({
+        name: recordName
+      });
+
+      var str = await JSON.stringify(response.data.message.recordPicture);
+      var recordPicture = await str.substring(1, str.length-1);
+        await this.setState({
+          image: recordPicture
+        });
+
+      var str = JSON.stringify(response.data.message.recordContent);
+    var recordContent = str.substring(1, str.length-1);
+      this.setState({
+        comment: recordContent
+      });
+
+      
+}
+
+  // 이미지피커
   _pickImage = async () => {
     const permissions = Permissions.CAMERA_ROLL;
     const { status } = await Permissions.askAsync(permissions);
     
-    console.log(permissions, status);
     if(status === 'granted') {
         let result = await ImagePicker.launchImageLibraryAsync({
           allowsEditing: true,
@@ -53,35 +97,56 @@ export default class RecordRegister extends React.Component {
       
           if (!result.cancelled) {
             // this.setState({ clubMainPicture: 'data:image/jpg;charset=utf-8;base64,'+resultEncode });
-            this.setState({ image: `data:image/jpg;base64,` + result.base64 });
-            // this.setState({ clubMainPicture: result.uri });
+            await this.setState({ image: `data:image/jpg;base64,` + result.base64 });
+            // this.setState({ image: result.uri });
           }
     }
   }
 
 
   _ButtonPress = async () => {
-    this._input()
-
+    const { navigation } = this.props;
+    if(navigation.getParam('to', 'NO-ID')=='m'){
+      await this._inputM1()
+    } else {
+      await this._input1()
+    }
+    
     this.setState({image: null})
-    this.props.navigation.navigate('SignUpRecord',)
-       
+    this.props.navigation.navigate('SignUpRecord')
 }
 
-_input = () => {
+_input1 = async () => {
   const { name, image, comment } = this.state;
   const { navigation } = this.props;
   var userNo = navigation.getParam('userNo', 'NO-ID');
-
-  // console.log(userNo)
-  // for(let i=0; i<images.length; i++){
+  this.setState({ isSubmitting: true });
     
     // 데이터베이스에 넣기
-      axios.post('http://dkstkdvkf00.cafe24.com/SetRecord.php',{
+      await axios.post('http://dkstkdvkf00.cafe24.com/SetRecord.php',{
       recordName: name,
       recordPicture: image,
       recordContent: comment,
       userNo: userNo
+    })
+    .then(function (response) {
+        ms = response.data.message;
+    });
+}
+
+
+_inputM1 = async () => {
+  const { name, image, comment } = this.state;
+  const { navigation } = this.props;
+  var recordNo = navigation.getParam('recordNo', 'NO-ID');
+  this.setState({ isSubmitting: true });
+
+    // 데이터베이스에 넣기
+      await axios.post('http://dkstkdvkf00.cafe24.com/UpdateRecord.php',{
+      recordName: name,
+      recordPicture: image,
+      recordContent: comment,
+      recordNo: recordNo
     })
     .then(function (response) {
         ms = response.data.message;
@@ -116,8 +181,6 @@ _input = () => {
       return prevState;
       });
       
-    // 콘솔창에 출력해보자~
-    console.log(this.state.plds);
   }
   componentWillMount(){
     this.setState({
@@ -135,14 +198,14 @@ _input = () => {
       count:this.state.count+1
     });
   };
+
+
+
   render() {
     const {image} = this.state;
     return (
      <>
-   
-     
-        
-  <ScrollView>
+      <ScrollView>
         <View style={styles.container}>
        
        <KeyboardAvoidingView
@@ -183,6 +246,7 @@ _input = () => {
                     multiline={false}
                     onChangeText={(comment) => this.setState({comment})}
                     value={this.state.comment}
+                    autoCorrect={false}
                 />
             </View>
 
@@ -208,7 +272,13 @@ _input = () => {
                     <RegisterButtonN title={'사진과 코멘트를 모두 입력해 주세요.'}/>
                     :
                     <TouchableOpacity onPress={this._ButtonPress}>
-                      <RegisterButton title={'확인'}/>
+                      {this.state.isSubmitting
+                        ?
+                        <RegisterButton title={'로딩'}/>
+                        :
+                        <RegisterButton title={'확인'}/>
+                      }
+                      
                     </TouchableOpacity>
                 }
                 

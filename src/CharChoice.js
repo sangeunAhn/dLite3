@@ -32,6 +32,38 @@ export default class CharChoice extends React.Component {
     };
   }
 
+
+  componentWillMount = () => {
+    if(this.props.navigation.getParam('from','NO-ID')=='m'){
+      this._getChars()
+    }
+  }
+
+  _getChars = () => {
+    //userNo 가지고 오기
+    const { navigation } = this.props;
+    const {clubChars} = this.state;
+    var userNo = navigation.getParam('userNo', 'NO-ID');
+    const t = this;
+    // 데이터 가져오기
+    axios.post('http://dkstkdvkf00.cafe24.com/ModifyChar.php',{
+        userNo: userNo,
+      })
+      .then((result) => {
+        const response  = result.data;
+        var CharArray = new Array();
+
+        response.forEach(row => {
+          CharArray.push(row.chars);
+          });
+        
+          for(let i=0; i<CharArray.length; i++){
+            this.addChar(CharArray[i]);
+          }
+      });
+  }
+
+
   componentDidMount = () => {
     AsyncStorage.getItem("chars").then(data => {
       const chars = JSON.parse(data || '[]');
@@ -72,26 +104,28 @@ export default class CharChoice extends React.Component {
 
 
   _ButtonPress = () => {
-    // console.log(this.state.count);
     const { navigation } = this.props;
     var userNo = navigation.getParam('userNo', 'NO-ID');
-    this._setClubChars();
-    setTimeout(()=>{
-      this.props.navigation.navigate('SignUpRecord', {
+    if(this.props.navigation.getParam('from','NO-ID')=='m'){
+      this._modifySetClubChars();
+      navigation.navigate('Main')
+    }else{
+      this._setClubChars();
+      navigation.navigate('SignUpRecord', {
         userNo: userNo
-      },3000)
-    })
+      })
+    }
     
   }
 
 
-  _setClubChars = () => {
+  _setClubChars = async () => {
     const { navigation } = this.props;
     const { clubChars } = this.state;
     var userNo = navigation.getParam('userNo', 'NO-ID');
     for(let i=0; i<clubChars.length; i++){
         // 데이터베이스에 넣기
-        axios.post('http://dkstkdvkf00.cafe24.com/SetClubChars.php',{
+        await axios.post('http://dkstkdvkf00.cafe24.com/SetClubChars.php',{
           chars: clubChars[i],
           userNo: userNo
         })
@@ -101,6 +135,27 @@ export default class CharChoice extends React.Component {
           }
   }
 
+
+  _modifySetClubChars = async () => {
+    const { navigation } = this.props;
+    const { clubChars } = this.state;
+    var userNo = navigation.getParam('userNo', 'NO-ID');
+
+    await axios.post('http://dkstkdvkf00.cafe24.com/DeleteClubChars.php',{
+          userNo: userNo
+        })
+        
+    for(let i=0; i<clubChars.length; i++){
+        // 데이터베이스에 넣기
+        await axios.post('http://dkstkdvkf00.cafe24.com/SetClubChars.php',{
+          chars: clubChars[i],
+          userNo: userNo
+        })
+        .then(function (response) {
+            ms = response.data.message;
+        });
+          }
+  }
 
   componentWillMount(){
     this.setState({
