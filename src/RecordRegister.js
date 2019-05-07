@@ -1,4 +1,4 @@
-import React, {Component,Fragment} from 'react';
+import React from 'react';
 import {StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput, AsyncStorage, Dimensions,KeyboardAvoidingView, Platform, Image} from 'react-native';
 import { ImagePicker, Constants, Permissions } from 'expo';
 import * as axios from 'axios';
@@ -50,6 +50,8 @@ export default class RecordRegister extends React.Component {
        const { navigation } = this.props;
        var recordNo = navigation.getParam('recordNo', 'NO-ID');
        const t = this;
+
+       this.setState({image: navigation.getParam('image','NO-ID')})
    
        // 데이터 가져오기
        await axios.post('http://dkstkdvkf00.cafe24.com/GetRecordPictureM.php',{
@@ -66,12 +68,6 @@ export default class RecordRegister extends React.Component {
       this.setState({
         name: recordName
       });
-
-      var str = await JSON.stringify(response.data.message.recordPicture);
-      var recordPicture = await str.substring(1, str.length-1);
-        await this.setState({
-          image: recordPicture
-        });
 
       var str = JSON.stringify(response.data.message.recordContent);
     var recordContent = str.substring(1, str.length-1);
@@ -224,7 +220,7 @@ _inputM1 = async () => {
            
                 <TouchableOpacity onPress={this._pickImage}>
                   <View style={styles.content}>
-                    { image === null ?
+                    { (image === null) || (image == '') ?
                       <Image
                         style={{height:'50%',width:'55%',resizeMode:'contain'}}
                         source={require('../images/addPhoto.png')}/>

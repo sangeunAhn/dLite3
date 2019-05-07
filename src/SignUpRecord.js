@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {StyleSheet,  Platform,Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {StyleSheet,  Platform, View} from 'react-native';
 import RecordFalse from '../components/RecordFalse';
 import RecordTrue from '../components/RecordTrue';
 import { Header, Icon } from 'react-native-elements';
@@ -75,20 +75,12 @@ export default class SignUpRecord extends React.Component {
          })
          .then(function (response) {
           var recordNo = response.data.message.recordNo
-          if(t.props.navigation.getParam('from','NO-ID')=='m'){
             t.props.navigation.navigate('RecordRegister', {
               recordNo: recordNo,
               image: item,
-              from: 'm',
               to: 'm'
             });
-          } else {
-            t.props.navigation.navigate('RecordRegister', {
-              recordNo: recordNo,
-              to: 'm'
-              }
-            );
-          }
+          
     })
   }
 

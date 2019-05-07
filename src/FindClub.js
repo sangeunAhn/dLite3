@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Image, Text, View, ScrollView, TouchableOpacity, Platform} from 'react-native';
-import ClubView from '../components/ClubView';
 import ClubDiv from '../components/ClubDiv';
 import ClubView_dLite from '../components/ClubView_dLite';
-import HomeButton from '../components/HomeButton';
-import { AntDesign } from '@expo/vector-icons';
-import { scale, moderateScale, verticalScale} from '../components/Scaling';
 import { Icon } from 'react-native-elements'
 
 

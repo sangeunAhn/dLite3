@@ -3,14 +3,10 @@ import {
   Text,
   StyleSheet,
   View,
-  TouchableOpacity,
-  Image
 } from 'react-native';
 import ClubView from './ClubView';
 import * as axios from 'axios';
 import PropTypes from "prop-types";
-import { update } from 'tcomb';
-import Overlay from 'react-native-modal-overlay';
 
 export default class ClubDiv extends Component{
   constructor(props){
@@ -32,7 +28,7 @@ componentWillMount = async () => {
 };
 
 
-_getDatas = () => {
+_getDatas = async () => {
 const { clubName, clubLogo, clubMainPicture } = this.state;
 const { school, clubKind } = this.props;
 this.setState({school : school})
@@ -40,7 +36,7 @@ this.setState({school : school})
 
 
 // 데이터 가져오기
-axios.post('http://dkstkdvkf00.cafe24.com/FindClubs.php',{
+await axios.post('http://dkstkdvkf00.cafe24.com/FindClubs.php',{
     school:school,
     clubKind: clubKind,
   })
@@ -61,9 +57,6 @@ axios.post('http://dkstkdvkf00.cafe24.com/FindClubs.php',{
       clubLogo: clubLogo.concat(clubLogoArray),
       clubMainPicture: clubMainPicture.concat(clubMainPictureArray),
     });
-      
-    
-      
   });
 }
 

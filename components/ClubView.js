@@ -93,7 +93,7 @@ _gotoRecord = () => {
             <TouchableOpacity
               onPress={this.showOverlay.bind(this)}>
             <View style={styles.logo}>
-            { clubLogo === null ?
+            { (clubLogo === null) || (clubLogo == '') ?
               <Image
               style={styles.Image}
               source={require('../images/momo.jpg')}/>
@@ -126,7 +126,7 @@ _gotoRecord = () => {
                   <View style={{flexDirection:'row',}}>
                     <View style={styles.logo}>
                     {
-                          clubLogo === null ?
+                          (clubLogo === null) || (clubLogo == '') ?
                           <Image source={require('../images/momo.jpg')} style={styles.Image} />
                           :
                           {clubLogo} &&

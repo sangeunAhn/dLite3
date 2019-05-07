@@ -7,8 +7,6 @@ import {
   Image
 } from 'react-native';
 import Overlay from 'react-native-modal-overlay';
-import { scale, moderateScale, verticalScale} from '../components/Scaling';
-import { Icon } from 'react-native-elements'
 
 
 export default class ClubView_dLite extends Component{

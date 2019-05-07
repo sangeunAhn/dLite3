@@ -3,7 +3,6 @@ import {StyleSheet, TouchableWithoutFeedback, Keyboard,Text, View, Image, TextIn
 import ConfirmButton from '../components/ConfirmButton';
 import ConfirmButtonN from '../components/ConfirmButtonN';
 import * as axios from 'axios';
-import SchoolChoice from './SchoolChoice';
 import { TextField } from 'react-native-material-textfield';
 
 const DismissKeyboard = ({ children }) => (

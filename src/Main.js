@@ -36,7 +36,9 @@ export default class Login extends React.Component {
             <MainButton
                 buttonColor={'#fafafa'}
                 title={'일반'}
-                onPress={() => this.props.navigation.navigate('SchoolChoice')}/>
+                onPress={() => this.props.navigation.navigate('FindClub', {
+                  schoolName: '울대'
+                })}/>
         </View>
         <View style={styles.footer}>
           

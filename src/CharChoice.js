@@ -1,12 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {StyleSheet, AsyncStorage,Dimensions, Text, View,  KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, ScrollView,BackHandler,Platform} from 'react-native';
 import ConfirmButton from '../components/ConfirmButton';
 import ConfirmButtonN from '../components/ConfirmButtonN';
-import CharButton from '../components/CharButton';
 import CharInput from '../components/CharInput';
 import CharGoal from '../components/CharGoal';
 import * as axios from 'axios';
-import { scale, moderateScale, verticalScale} from '../components/Scaling';
+import { scale, moderateScale} from '../components/Scaling';
 
 const DismissKeyboard = ({ children }) => (
   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -14,7 +13,6 @@ const DismissKeyboard = ({ children }) => (
   </TouchableWithoutFeedback>
 );
 
-const  {width, height} = Dimensions.get("window");
 
 export default class CharChoice extends React.Component {
   static navigationOptions = {

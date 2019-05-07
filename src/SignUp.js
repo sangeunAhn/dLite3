@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, Button, image, Image, Alert} from 'react-native';
+import {StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, Button, image, Image, Alert, ActivityIndicator} from 'react-native';
 import ConfirmButton from '../components/ConfirmButton';
 import ClubPicker from '../components/ClubPicker';
 import ClubPickerM from '../components/ClubPickerM';
@@ -25,6 +25,7 @@ export default class SignUp extends Component {
           clubMainPicture: null,
           userNo:'',
           clubLogo: null,
+          isGetting: false,
         };
       }
 
@@ -50,6 +51,8 @@ export default class SignUp extends Component {
     .then(function (response) {
       t._setDatas(response);
     });
+
+    this.setState({isGetting: true})
   }
 
   // 데이터 넣기
@@ -163,7 +166,7 @@ export default class SignUp extends Component {
 
 
   // 처음 가입
-  _insertRegister = () => {
+  _insertRegister = async () => {
     //userNo 가지고 오기
     const { navigation } = this.props;
     var getUserNo = navigation.getParam('userNo', 'NO-ID');
@@ -181,7 +184,7 @@ export default class SignUp extends Component {
     } else {
 
       // 데이터베이스에 넣기
-      axios.post('http://dkstkdvkf00.cafe24.com/UserRegister.php',{
+      await axios.post('http://dkstkdvkf00.cafe24.com/UserRegister.php',{
         clubName:clubName,
         clubKind:clubKind,
         clubWellcome:clubWellcome,
@@ -270,11 +273,18 @@ export default class SignUp extends Component {
 
 
   render() {
-    let { clubLogo, clubMainPicture } = this.state;
+    let { clubLogo, clubMainPicture, isGetting } = this.state;
     return (
 
       <>  
-      <ScrollView>
+      {
+        (isGetting == false) && (this.props.navigation.getParam('from', 'NO-ID')=='m') ?
+
+        <ActivityIndicator size="large" style={styles.activityIndicator}/>
+
+        :
+
+        <ScrollView>
         <View style={styles.container}>
             <Text style={styles.blank}>ㅁㅁㅁㅁ</Text>
             
@@ -424,6 +434,8 @@ export default class SignUp extends Component {
             
         </View>
         </ScrollView>
+      }
+      
 
         </>
     );
@@ -467,6 +479,12 @@ const styles = StyleSheet.create({
   blank: {
     fontSize: 40,
     color:'white'
+  },
+  activityIndicator: {
+    flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: 80
   }
 });
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Platform, Text, View, Image, Dimensions, ScrollView} from 'react-native';
+import {StyleSheet, Platform, Text, View, Image, Dimensions, ScrollView, ActivityIndicator} from 'react-native';
 import * as axios from 'axios';
 import ClubChars from '../components/ClubChars';
 
@@ -31,7 +31,9 @@ export default class ClubIntroduce extends React.Component {
       clubIntroduce:'',
       clubLogo:null,
       clubMainPicture:null,
-      clubChar:[]
+      clubChar:[],
+      isGetting1: false,
+      isGetting2: false,
     };
   }
 
@@ -49,7 +51,7 @@ export default class ClubIntroduce extends React.Component {
   };
 
   
-  _getDatas = () => {
+  _getDatas = async () => {
       const t = this;
       const { navigation } = this.props;
       var clubName = navigation.getParam('clubName', 'NO-ID');
@@ -59,13 +61,15 @@ export default class ClubIntroduce extends React.Component {
   
   
       // 데이터 가져오기
-      axios.post('http://dkstkdvkf00.cafe24.com/GetClubIntroduce.php',{
+      await axios.post('http://dkstkdvkf00.cafe24.com/GetClubIntroduce.php',{
           clubName: clubName,
           school: school
         })
         .then(function (response) {
             t._setDatas(response);
         });
+
+        this.setState({isGetting1: true})
     }
 
     _setDatas = response => {
@@ -88,25 +92,12 @@ export default class ClubIntroduce extends React.Component {
             clubIntroduce: clubIntroduce
           });
 
-          // var str = JSON.stringify(response.data.message.clubLogo);;
-          // console.log(str)
-          // var clubLogo = str.substring(1, str.length-1);
-          //     this.setState({
-          //         clubLogo: clubLogo
-          //     });
-
-          // var str = JSON.stringify(response.data.message.clubMainPicture);;
-          // console.log(str)
-          // var clubMainPicture = str.substring(1, str.length-1);
-          //     this.setState({
-          //         clubMainPicture: clubMainPicture
-          //     });
     }
 
 
 
     //특성 가져오기
-    _getChars = () => {
+    _getChars = async () => {
       const t = this;
       const { navigation } = this.props;
       const {clubChar} = this.state;
@@ -115,7 +106,7 @@ export default class ClubIntroduce extends React.Component {
 
 
     // 데이터 가져오기
-    axios.post('http://dkstkdvkf00.cafe24.com/GetClubChars.php',{
+    await axios.post('http://dkstkdvkf00.cafe24.com/GetClubChars.php',{
       clubName: clubName,
       school: school,
     })
@@ -129,6 +120,7 @@ export default class ClubIntroduce extends React.Component {
       
       this.setState({
         clubChar: clubChar.concat(clubCharArray),
+        isGetting2: true
       });
         
       
@@ -139,11 +131,12 @@ export default class ClubIntroduce extends React.Component {
 
 
   render() {
-    let {clubName, clubWellcome, clubPhoneNumber, clubIntroduce, clubChar, clubLogo, clubMainPicture} = this.state;
+    let {clubName, clubWellcome, clubPhoneNumber, clubIntroduce, clubChar, clubLogo, clubMainPicture, isGetting1, isGetting2} = this.state;
     console.log(clubMainPicture)
     return (
-      <ScrollView style={styles.container}>
-
+      <>
+      { isGetting1 && isGetting2 ? 
+        <ScrollView style={styles.container}>
         {/* 회색부분 */}
         <View style={styles.title}>
 
@@ -198,6 +191,10 @@ export default class ClubIntroduce extends React.Component {
         </View>
         
       </ScrollView>
+      :
+      <ActivityIndicator size="large" style={styles.activityIndicator}/>
+      }
+      </>
     );
   }
 }
@@ -251,5 +248,11 @@ const styles = StyleSheet.create({
       padding:20,
       fontSize: 20,
       alignItems: 'center',
+  },
+  activityIndicator: {
+    flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: 80
   }
 });

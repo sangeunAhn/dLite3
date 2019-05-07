@@ -1,8 +1,5 @@
-import React, {Component} from 'react';
-import {StyleSheet,Platform, Text, View, ScrollView, TouchableOpacity} from 'react-native';
-import RecordFalse from '../components/RecordFalse';
-import RecordTrue from '../components/RecordTrue';
-import { Header, Icon } from 'react-native-elements';
+import React from 'react';
+import {StyleSheet,Platform, View, ActivityIndicator} from 'react-native';
 import MasonryList from "react-native-masonry-list";
 import * as axios from 'axios';
 
@@ -26,6 +23,7 @@ export default class Record extends React.Component {
     this.state={
       records:[],
       school:'',
+      isGetting: false,
     };
 
     this.props.navigation.addListener('didFocus', async () => {
@@ -36,27 +34,24 @@ export default class Record extends React.Component {
 
   componentWillMount = () => {
     this._getDatas()
-    // this._getSchool();
     
   };
 
 
   // 이미지들 가져오기
-  _getDatas = () => {
+  _getDatas = async () => {
       //userNo 가지고 오기
       const { navigation } = this.props;
-      const {records} = this.state;
       var clubName = navigation.getParam('clubName', 'NO-ID');
       var school = navigation.getParam('school', 'NO-ID');
       const t = this;
   
       // 데이터 가져오기
-      axios.post('http://dkstkdvkf00.cafe24.com/GetImages2.php',{
+      await axios.post('http://dkstkdvkf00.cafe24.com/GetImages2.php',{
         clubName:clubName,
         school:school,
         })
         .then((result) => {
-          // t._setDatas(response);
           const  response  = result.data;
           var recordArray = new Array();
           response.forEach(row => {
@@ -66,6 +61,8 @@ export default class Record extends React.Component {
             records: recordArray,
           });
         });
+      
+        this.setState({isGetting: true})
   }
 
 
@@ -81,26 +78,26 @@ export default class Record extends React.Component {
     const { navigation } = this.props;
     var name = navigation.getParam('recordName', 'NO-ID');
     var userNo = navigation.getParam('userNo', 'NO-ID');
-    const {records} = this.state;
+    const {records, isGetting} = this.state;
     return (
       <>
       <View style={styles.container}>
 
-           
-
-                        {/* 사진들 들어갈 곳 */}
-          <MasonryList
-            imageContainerStyle={{borderRadius:17, right:12}}
-            spacing={7}
-            images={records}
-            onPressImage = {(item, index) => {
-              // alert(index)
-              this._RecordRegister(item.uri)
-          }}
-          />
-
-            
-            
+           {
+             isGetting 
+              ?
+                <MasonryList
+                imageContainerStyle={{borderRadius:17, right:12}}
+                spacing={7}
+                images={records}
+                onPressImage = {(item, index) => {
+                  this._RecordRegister(item.uri)
+                }}
+                />
+              :
+                <ActivityIndicator size="large" style={styles.activityIndicator}/>
+           }
+          
       </View>
       </>
     );
@@ -141,5 +138,11 @@ const styles = StyleSheet.create({
   text:{
       fontSize: 25,
       color: '#fff'
+  },
+  activityIndicator: {
+    flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: 80
   }
 });

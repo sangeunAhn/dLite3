@@ -8,11 +8,8 @@ import CharChoice from './src/CharChoice';
 import SignUpRecord from './src/SignUpRecord';
 import RecordRegister from './src/RecordRegister';
 import FindClub from './src/FindClub';
-import ClubSearch from './src/ClubSearch';
 import ClubIntroduce from './src/ClubIntroduce';
-import ClubFix from './src/ClubFix';
 import RecordPictures from './src/RecordPictures';
-import SchoolChoice from './src/SchoolChoice';
 import ClubModify from './src/ClubModify';
 import Record from './src/Record';
 
@@ -43,20 +40,11 @@ const RootStack = createStackNavigator(
     FindClub: {
       screen: FindClub,
     },
-    ClubSearch: {
-      screen: ClubSearch,
-    },
     ClubIntroduce: {
       screen: ClubIntroduce,
     },
-    ClubFix: {
-      screen: ClubFix,
-    },
     RecordPictures: {
       screen: RecordPictures,
-    },
-    SchoolChoice: {
-      screen: SchoolChoice,
     },
     ClubModify: {
       screen: ClubModify,
