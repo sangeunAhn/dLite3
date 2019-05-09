@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput, AsyncStorage, Dimensions,KeyboardAvoidingView, Platform, Image} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput, AsyncStorage, Dimensions,KeyboardAvoidingView, Platform, Image, ActivityIndicator} from 'react-native';
 import { ImagePicker, Constants, Permissions } from 'expo';
 import * as axios from 'axios';
 import RegisterButton from '../components/RegisterButton';
@@ -33,7 +33,8 @@ export default class RecordRegister extends React.Component {
       plds: [],
       comment:'',
       name:'',
-      isSubmitting: false
+      isSubmitting: false,
+      isGetting: false,
     };
   }
 
@@ -61,6 +62,8 @@ export default class RecordRegister extends React.Component {
            t._setDatas(response);
            
          });
+      
+         this.setState({isGetting: true})
   }
   _setDatas = async response => {
     var str = JSON.stringify(response.data.message.recordName);
@@ -88,7 +91,7 @@ export default class RecordRegister extends React.Component {
           allowsEditing: true,
           aspect: [4, 3],
           base64: true,
-          quality: 0.5
+          quality: 0.2
           });
       
           if (!result.cancelled) {
@@ -198,10 +201,18 @@ _inputM1 = async () => {
 
 
   render() {
-    const {image} = this.state;
+    const {image, isGetting} = this.state;
     return (
      <>
-      <ScrollView>
+     {
+       (isGetting == false) && (this.props.navigation.getParam('to', 'NO-ID')=='m') ?
+        
+       <ActivityIndicator size="large" style={styles.activityIndicator}/>
+        
+        :
+
+        <>
+            <ScrollView>
         <View style={styles.container}>
        
        <KeyboardAvoidingView
@@ -279,6 +290,9 @@ _inputM1 = async () => {
                 }
                 
                 </View>
+        </>
+     }
+      
               
         </>
     );

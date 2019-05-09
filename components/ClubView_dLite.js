@@ -69,42 +69,7 @@ export default class ClubView_dLite extends Component{
         </View>
           
 
-            <Overlay visible={this.state.modalVisible} onClose={this.onClose} closeOnTouchOutside animationType="zoomIn" animationDuration={200}
-                      childrenWrapperStyle={{width:'100%', backgroundColor: 'white', borderRadius: 15,}} containerStyle={{backgroundColor: 'rgba(50, 50, 50, 0.78)'}} >
-              <View style={{flexDriection:'column', }}>
-                  <View style={{flexDirection:'row',}}>
-                    <View style={styles.logo}>
-                      <Image
-                        style={styles.Image}
-                        source={require('../images/logo2.png')}/>
-                    </View>
-                    <View style={{marginBottom:30, flex:1}}>
-                        <Text style={styles.clubTitle}>d:Lite</Text>
-                        <Text style={styles.clubChar}>#행복</Text>
-                    </View>
-                  </View>
-                  <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
-                      <TouchableOpacity 
-                        style={styles.button}
-                        onPress={this._gotoClubIntroduce}
-                      >
-                          <Image
-                            style={styles.ImageR}
-                            source={require('../images/introduce.png')}/>
-                            <Text style={{textAlign:'center',fontSize:15}}>소개</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity 
-                        style={styles.button}
-                        onPress={this._gotoRecord}
-                      >
-                          <Image
-                            style={styles.ImageR}
-                            source={require('../images/record.png')}/>
-                            <Text style={{textAlign:'center', fontSize:15}}>기록</Text>
-                      </TouchableOpacity>
-                  </View>
-              </View>
-            </Overlay>
+            
 
         </View>
 

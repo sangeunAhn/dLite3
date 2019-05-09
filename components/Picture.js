@@ -9,7 +9,7 @@ import {
 
 const { width, height } = Dimensions.get("window");
 
-export default class CharButton extends Component{
+export default class Picture extends Component{
 
   constructor(props){
     super(props);

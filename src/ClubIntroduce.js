@@ -132,7 +132,6 @@ export default class ClubIntroduce extends React.Component {
 
   render() {
     let {clubName, clubWellcome, clubPhoneNumber, clubIntroduce, clubChar, clubLogo, clubMainPicture, isGetting1, isGetting2} = this.state;
-    console.log(clubMainPicture)
     return (
       <>
       { isGetting1 && isGetting2 ? 

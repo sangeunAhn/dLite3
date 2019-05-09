@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet,  Platform, View} from 'react-native';
+import {StyleSheet,  Platform, View, ActivityIndicator} from 'react-native';
 import RecordFalse from '../components/RecordFalse';
 import RecordTrue from '../components/RecordTrue';
 import { Header, Icon } from 'react-native-elements';
@@ -25,21 +25,17 @@ export default class SignUpRecord extends React.Component {
     super(props);
     this.state={
       records:[],
-      school:'',
       count : 0,
+      isGetting: false,
     };
 
     this.props.navigation.addListener('didFocus', () => {
+      this.setState({isGetting: false})
       this._getDatas()
     });
 
   }
 
-  componentWillMount = () => {
-    if(this.props.navigation.getParam('from', 'NO-ID')!='m'){
-      this._getSchool();
-    }
-  };
 
 
   // 이미지들 가져오기
@@ -65,6 +61,8 @@ export default class SignUpRecord extends React.Component {
             records: recordArray,
           });
         });
+      
+        this.setState({isGetting: true})
   }
 
 
@@ -85,31 +83,13 @@ export default class SignUpRecord extends React.Component {
   }
 
 
-  _getSchool = async () => {
-    const { navigation } = this.props;
-    var userNo = navigation.getParam('userNo', 'NO-ID');
-    const t = this;
-
-
-    // 데이터 가져오기
-    await axios.post('http://dkstkdvkf00.cafe24.com/GetSchool.php',{
-        userNo:userNo,
-      })
-      .then(function (response) {
-        var str = JSON.stringify(response.data.message.school);;
-        var school = str.substring(1, str.length-1);
-          t.setState({
-            school: school
-          });
-      });
-  }
   
   _btnPress = () => {
     if(this.props.navigation.getParam('from','NO-ID')=='m'){
       this.props.navigation.navigate('Main')
     } else {
       this.props.navigation.navigate('FindClub',{
-        schoolName : this.state.school
+        schoolName : '울대'
       })
     }
     
@@ -120,10 +100,12 @@ export default class SignUpRecord extends React.Component {
     const { navigation } = this.props;
     var name = navigation.getParam('recordName', 'NO-ID');
     var userNo = navigation.getParam('userNo', 'NO-ID');
-    const {records} = this.state;
+    const {records, isGetting} = this.state;
     return (
       <>
-      <View style={styles.container}>
+      {
+        isGetting ?
+        <View style={styles.container}>
 
             <Icon
               raised
@@ -165,7 +147,13 @@ export default class SignUpRecord extends React.Component {
                
             </View>
             
-      </View>
+        </View>
+        
+        :
+
+        <ActivityIndicator size="large" style={styles.activityIndicator}/>
+      }
+      
       </>
     );
   }

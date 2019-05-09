@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from 'react-native';
-import CharButtonN from '../components/CharButtonN';
 import {Icon} from 'react-native-elements';
 
 class CharGoal extends Component {

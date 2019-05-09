@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from 'react-native';
-import CharButtonN from '../components/CharButtonN.js';
 import { scale, moderateScale, verticalScale} from '../components/Scaling';
 
 class CharInput extends Component {

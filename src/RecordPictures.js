@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, ScrollView, Platform} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, Platform, ActivityIndicator} from 'react-native';
 import Picture from '../components/Picture';
 import * as axios from 'axios';
 
@@ -25,6 +25,7 @@ export default class RecordPictures extends React.Component {
       recordName:'',
       recordContent:'',
       picture: null,
+      isGetting: false
     };
   }
 
@@ -33,19 +34,21 @@ export default class RecordPictures extends React.Component {
   }
 
 
-  _getDatas = () => {
+  _getDatas = async () => {
     const { navigation } = this.props;
     var picture = navigation.getParam('picture', 'NO-ID');
     const t = this;
     this.setState({picture: picture})
 
     // 데이터 가져오기
-    axios.post('http://dkstkdvkf00.cafe24.com/GetRecordPicture.php',{
+    await axios.post('http://dkstkdvkf00.cafe24.com/GetRecordPicture.php',{
         recordPicture:picture,
       })
       .then(function (response) {
         t._setDatas(response);
       });
+
+      this.setState({isGetting: true})
   }
 
   _setDatas = response => {
@@ -65,16 +68,24 @@ export default class RecordPictures extends React.Component {
 
 
   render() {
-    const {recordContent, picture} = this.state;
+    const {recordContent, picture, isGetting} = this.state;
     return (
-      <ScrollView style={styles.container}>
+      <>
+      {
+        isGetting ? 
+          <ScrollView style={styles.container}>
 
-          {/* 회색부분 */}
-          <Picture
-            picture={picture}
-            text={recordContent}/>
-            
-      </ScrollView>
+            {/* 회색부분 */}
+            <Picture
+              picture={picture}
+              text={recordContent}/>
+              
+          </ScrollView>
+          :
+          <ActivityIndicator size="large" style={styles.activityIndicator}/>
+      }
+      
+      </>
     );
   }
 }
@@ -98,5 +109,11 @@ const styles = StyleSheet.create({
     fontSize: 23,
     color: '#fff'
   },
+  activityIndicator: {
+    flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: 80
+  }
   
 });
