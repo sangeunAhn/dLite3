@@ -62,7 +62,6 @@ await axios.post('http://dkstkdvkf00.cafe24.com/FindClubs.php',{
 
 
 _gotoClubIntroduce = () => {
-  console.log()
 }
 
 

@@ -4,6 +4,7 @@ import MasonryList from "react-native-masonry-list";
 import * as axios from 'axios';
 
 
+
 export default class Record extends React.Component {
   static navigationOptions = {
     title: "기록",
@@ -81,11 +82,13 @@ export default class Record extends React.Component {
     const {records, isGetting} = this.state;
     return (
       <>
+      
       <View style={styles.container}>
-
+      
            {
              isGetting 
               ?
+              
                 <MasonryList
                 imageContainerStyle={{borderRadius:17, right:12}}
                 spacing={7}
@@ -93,12 +96,15 @@ export default class Record extends React.Component {
                 onPressImage = {(item, index) => {
                   this._RecordRegister(item.uri)
                 }}
+              
                 />
+                
               :
                 <ActivityIndicator size="large" style={styles.activityIndicator}/>
            }
           
       </View>
+      
       </>
     );
   }

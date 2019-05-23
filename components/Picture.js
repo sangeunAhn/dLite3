@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
       image: {
         width: width*0.75,
         height: width*0.75,
-        resizeMode:'cover',
+        resizeMode:'stretch',
         backgroundColor: '#fff'
       },
       text:{

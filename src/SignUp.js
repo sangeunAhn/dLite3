@@ -22,9 +22,9 @@ export default class SignUp extends Component {
           clubWellcome:'',
           clubPhoneNumber:'',
           clubIntroduce:'',
-          clubMainPicture: [],
+          clubMainPicture: null,
           userNo:'',
-          clubLogo: [],
+          clubLogo: null,
           isGetting: false,
         };
       }
@@ -32,7 +32,7 @@ export default class SignUp extends Component {
       componentWillMount = async () => {
         if( this.props.navigation.getParam('from', 'NO-ID')=='m' ){
           await this._getDatas();
-          await this._getImage();
+          // await this._getImage();
         }
     };
 
@@ -117,6 +117,19 @@ export default class SignUp extends Component {
             clubIntroduce: clubIntroduce
         });
 
+    var str = JSON.stringify(response.data.message.clubLogo);;
+    var clubLogo = str.substring(1, str.length-1);
+        this.setState({
+          clubLogo: clubLogo
+        });
+
+    var str = JSON.stringify(response.data.message.clubMainPicture);;
+    var clubMainPicture = str.substring(1, str.length-1);
+        this.setState({
+          clubMainPicture: clubMainPicture
+        });
+    
+    this.setState({isGetting: true})
   }
 
 
@@ -130,14 +143,12 @@ export default class SignUp extends Component {
       let result = await ImagePicker.launchImageLibraryAsync({
           allowsEditing: true,
           aspect: [4, 3],
-          base64: true,
-          quality: 0.2
+          quality: 0.5
         });
 
         if (!result.cancelled) {
-          console.log(result.uri)
-          this.setState({ clubLogo: clubLogo.concat(`data:image/jpg;base64,` + result.base64)});
-          // this.setState({ clubLogo: result.uri });
+          // this.setState({ clubLogo: clubLogo.concat(`data:image/jpg;base64,` + result.base64)});
+          this.setState({ clubLogo: result.uri });
         }
         
   }
@@ -154,14 +165,13 @@ export default class SignUp extends Component {
           let result = await ImagePicker.launchImageLibraryAsync({
               allowsEditing: true,
               aspect: [4, 3],
-              base64: true,
-              quality: 0.2
+              quality: 0.5
             });
 
 
             if (!result.cancelled) {
-              this.setState({ clubMainPicture: clubMainPicture.concat(`data:image/jpg;base64,` + result.base64)});
-              // this.setState({ clubMainPicture: result.uri });
+              // this.setState({ clubMainPicture: clubMainPicture.concat(`data:image/jpg;base64,` + result.base64)});
+              this.setState({ clubMainPicture: result.uri });
             }
       }
   }
@@ -185,25 +195,31 @@ export default class SignUp extends Component {
 
     } else {
 
-      // 데이터베이스에 넣기
-      await axios.post('http://dkstkdvkf00.cafe24.com/UserRegister.php',{
-        clubName:clubName,
-        clubKind:clubKind,
-        clubWellcome:clubWellcome,
-        clubPhoneNumber:clubPhoneNumber,
-        clubIntroduce:clubIntroduce,
-        clubLogo: clubLogo[clubLogo.length-1],
-        clubMainPicture: clubMainPicture[clubMainPicture.length-1],
-        userNo:getUserNo,
-        school:getSchool,
-      })
-      .then(function (response) {
-          ms = response.data.message;
-      });
 
-      this.props.navigation.navigate('CharChoice', {
-        userNo: getUserNo
-      })
+      let formData = new FormData();
+      formData.append('clubName', clubName);
+      formData.append('clubKind', clubKind);
+      formData.append('clubWellcome', clubWellcome);
+      formData.append('clubPhoneNumber', clubPhoneNumber);
+      formData.append('clubIntroduce', clubIntroduce);
+      formData.append('userNo', getUserNo);
+      formData.append('school', getSchool);
+      formData.append('clubLogo', { uri: clubLogo, name: 'image.png', type: 'image/png' });
+      formData.append('clubMainPicture', { uri: clubMainPicture, name: 'image.png', type: 'image/png' });
+
+      // 데이터베이스에 넣기
+      await fetch('http://dkstkdvkf00.cafe24.com/UserRegister.php',{
+      method: 'POST',
+      body: formData,
+      header: {
+        'content-type': 'multipart/form-data',
+      }
+    })
+
+
+    this.props.navigation.navigate('CharChoice', {
+      userNo: getUserNo
+    })
 
     }
   }
@@ -227,8 +243,8 @@ export default class SignUp extends Component {
         clubWellcome:clubWellcome,
         clubPhoneNumber:clubPhoneNumber,
         clubIntroduce:clubIntroduce,
-        clubLogo: clubLogo[clubLogo.length-1],
-        clubMainPicture: clubMainPicture[clubMainPicture.length-1],
+        clubLogo: clubLogo,
+        clubMainPicture: clubMainPicture,
         userNo:userNo,
       })
       .then(function (response) {
@@ -276,7 +292,6 @@ export default class SignUp extends Component {
 
   render() {
     let { clubLogo, clubMainPicture, isGetting } = this.state;
-    console.log(clubLogo)
     return (
 
       <>  
@@ -406,7 +421,7 @@ export default class SignUp extends Component {
                           (clubLogo == null) || (clubLogo == '') ?
                             <Image source={require('../images/logoEdit.png')} style={{ width: 100, height: 100, alignItems :'center',flex:1, marginTop:20 }} />
                           :
-                            <Image source={{ uri: clubLogo[clubLogo.length-1] }} style={{ width: 100, height: 100, alignItems :'center',flex:1, marginTop:20, backgroundColor: 'red'  }} />
+                            <Image source={{ uri: clubLogo }} style={{ width: 100, height: 100, alignItems :'center',flex:1, marginTop:20, backgroundColor: 'red'  }} />
                         }
                         </TouchableOpacity>
                 </View>
@@ -418,7 +433,7 @@ export default class SignUp extends Component {
                             <Image source={require('../images/pictureEdit.png')} style={{ width:moderateScale(210), height:verticalScale(160), marginTop:20 }} />
                           :
                           clubMainPicture &&
-                            <Image source={{ uri: clubMainPicture[clubMainPicture.length-1] }} style={{width:moderateScale(210), height:verticalScale(160), marginTop:20  }} />
+                            <Image source={{ uri: clubMainPicture }} style={{width:moderateScale(210), height:verticalScale(160), marginTop:20  }} />
                         }
                     </TouchableOpacity>
                 </View>

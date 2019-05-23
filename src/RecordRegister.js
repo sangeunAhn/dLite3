@@ -89,14 +89,13 @@ export default class RecordRegister extends React.Component {
     if(status === 'granted') {
         let result = await ImagePicker.launchImageLibraryAsync({
           allowsEditing: true,
-          base64: true,
-          quality: 0.2
+          quality: 0.5
           });
       
           if (!result.cancelled) {
             // this.setState({ clubMainPicture: 'data:image/jpg;charset=utf-8;base64,'+resultEncode });
-            await this.setState({ image: `data:image/jpg;base64,` + result.base64 });
-            // this.setState({ image: result.uri });
+            // await this.setState({ image: `data:image/jpg;base64,` + result.base64 });
+            this.setState({ image: result.uri });
           }
     }
   }
@@ -119,17 +118,24 @@ _input1 = async () => {
   const { navigation } = this.props;
   var userNo = navigation.getParam('userNo', 'NO-ID');
   this.setState({ isSubmitting: true });
+
+
+  let formData = new FormData();
+  formData.append('recordName', name);
+  formData.append('image', { uri: image, name: 'image.png', type: 'image/png' });
+  formData.append('recordContent', comment);
+  formData.append('userNo', userNo);
+
+
     
     // 데이터베이스에 넣기
-      await axios.post('http://dkstkdvkf00.cafe24.com/SetRecord.php',{
-      recordName: name,
-      recordPicture: image,
-      recordContent: comment,
-      userNo: userNo
+    await fetch('http://dkstkdvkf00.cafe24.com/SetRecord.php',{
+      method: 'POST',
+      body: formData,
+      header: {
+        'content-type': 'multipart/form-data',
+      }
     })
-    .then(function (response) {
-        ms = response.data.message;
-    });
 }
 
 
@@ -139,16 +145,22 @@ _inputM1 = async () => {
   var recordNo = navigation.getParam('recordNo', 'NO-ID');
   this.setState({ isSubmitting: true });
 
+
+  let formData = new FormData();
+  formData.append('recordName', name);
+  formData.append('image', { uri: image, name: 'image.png', type: 'image/png' });
+  formData.append('recordContent', comment);
+  formData.append('recordNo', recordNo);
+
+
     // 데이터베이스에 넣기
-      await axios.post('http://dkstkdvkf00.cafe24.com/UpdateRecord.php',{
-      recordName: name,
-      recordPicture: image,
-      recordContent: comment,
-      recordNo: recordNo
+      await fetch('http://dkstkdvkf00.cafe24.com/UpdateRecord.php',{
+        method: 'POST',
+        body: formData,
+        header: {
+          'content-type': 'multipart/form-data',
+        }
     })
-    .then(function (response) {
-        ms = response.data.message;
-    });
 }
 
   componentDidMount = () => {
