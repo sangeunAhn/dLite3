@@ -141,7 +141,7 @@ export default class ClubIntroduce extends React.Component {
 
             {/* 동아리 대표 이미지 */}
                  {
-                          clubMainPicture.length == 0 ?
+                          (clubMainPicture === null) || (clubMainPicture == '') ?
                           <Image source={require('../images/momo.jpg')} style={styles.clubImage} />
                           :
                           {clubMainPicture} &&
@@ -150,7 +150,7 @@ export default class ClubIntroduce extends React.Component {
 
             {/* 로고 이미지 */}
             {
-                          clubLogo.length == 0 ?
+                          (clubLogo === null) || (clubLogo == '') ?
                           <Image source={require('../images/momo.jpg')} style={styles.logo} />
                           :
                           {clubLogo} &&

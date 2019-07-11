@@ -204,9 +204,21 @@ export default class SignUp extends Component {
       formData.append('clubIntroduce', clubIntroduce);
       formData.append('userNo', getUserNo);
       formData.append('school', getSchool);
-      formData.append('clubLogo', { uri: clubLogo, name: 'image.png', type: 'image/png' });
-      formData.append('clubMainPicture', { uri: clubMainPicture, name: 'image.png', type: 'image/png' });
 
+      
+      if(clubLogo==null){
+        formData.append('clubLogo', null);
+      }else{
+        formData.append('clubLogo', { uri: clubLogo, name: 'image.png', type: 'image/png' });
+      }
+
+      if(clubMainPicture==null){
+        formData.append('clubMainPicture', null);
+      }else{
+        formData.append('clubMainPicture', { uri: clubMainPicture, name: 'image.png', type: 'image/png' });
+      }
+      
+      
       // 데이터베이스에 넣기
       await fetch('http://dkstkdvkf00.cafe24.com/UserRegister.php',{
       method: 'POST',
