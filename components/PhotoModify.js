@@ -8,14 +8,21 @@ export default class PhotoModify extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			comment: '',
+			commentValue: '',
 		};
 	}
 	static propTypes = {
 		id: PropTypes.string.isRequired,
 		deleteImage: PropTypes.func.isRequired,
 		image: PropTypes.string.isRequired,
+		comment: PropTypes.string.isRequired,
 	};
+
+	componentWillMount = async () => {
+		const { comment } = this.props;
+		this.setState({ commentValue: comment})
+	};
+
 	render() {
 		const { id, deleteImage, image } = this.props;
 		return (
@@ -32,7 +39,7 @@ export default class PhotoModify extends React.Component {
 					placeholderTextColor={'#bebebe'}
 					multiline={false}
 					onChangeText={comment => this._updateComment(comment)}
-					value={this.state.comment}
+					value={this.state.commentValue}
 					autoCorrect={false}
 				/>
                 <TouchableOpacity style={styles.delBtn} onPressOut={() => deleteImage(id)} >
@@ -46,7 +53,7 @@ export default class PhotoModify extends React.Component {
 	}
 
 	_updateComment = comment => {
-		this.setState({ comment })
+		this.setState({ commentValue: comment })
 		const { id, updateComment } = this.props;
 		updateComment(id, comment);
 	}

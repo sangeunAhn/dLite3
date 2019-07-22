@@ -7,7 +7,6 @@ import SignUp from './src/SignUp';
 import CharChoice from './src/CharChoice';
 import SignUpRecord from './src/SignUpRecord';
 import RecordRegister from './src/RecordRegister';
-import RecordRegister2 from './src/RecordRegister2';
 import FindClub from './src/FindClub';
 import ClubIntroduce from './src/ClubIntroduce';
 import RecordPictures from './src/RecordPictures';
@@ -38,9 +37,6 @@ const RootStack = createStackNavigator(
     RecordRegister: {
       screen: RecordRegister,
     },
-    RecordRegister2: {
-      screen: RecordRegister2,
-    },
     FindClub: {
       screen: FindClub,
     },
@@ -58,7 +54,7 @@ const RootStack = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'RecordRegister2',
+    initialRouteName: 'Main',
   },
   
 );
