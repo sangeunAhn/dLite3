@@ -68,6 +68,13 @@ export default class RecordRegister extends React.Component {
 
 	render() {
 		const { images, isGetting } = this.state;
+
+		// console.log(images);
+
+		// {Object.values(images).map(image => (
+		// 	console.log(image)
+		// ))}
+		
 		return (
 			<>
 				{isGetting == false && this.props.navigation.getParam('to', 'NO-ID') == 'm' ? (
