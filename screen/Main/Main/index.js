@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {StyleSheet, Image, Text, View, ScrollView, TouchableOpacity, Platform} from 'react-native';
-import ClubDiv from '../components/ClubDiv';
-import ClubView_dLite from '../components/ClubView_dLite';
+import ClubDiv from '../../../components/ClubDiv';
+import ClubView_dLite from '../../../components/ClubView_dLite';
 import { Icon } from 'react-native-elements'
 
 
-export default class FindClub extends React.Component {
+export default class Main extends React.Component {
 
   static navigationOptions = ({navigation})=> {
     const{navigate}=navigation
@@ -57,9 +57,6 @@ export default class FindClub extends React.Component {
           {/* 대학교 이름과 동아리 종류 볼수있는 아이콘 */}
           <View style={styles.div}>
               <Text style={styles.school}>울산대학교</Text>
-              {/* <TouchableOpacity>
-                <AntDesign name="bars" size={25} color="#0A6EFF" />
-              </TouchableOpacity> */}
           </View>
 
           {/* 종류에 따라 동아리 구분 */}

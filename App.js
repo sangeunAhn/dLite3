@@ -1,44 +1,40 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 import { createAppContainer, createStackNavigator } from 'react-navigation'; 
-import Main from './src/Main';
-import codeConfirm from './src/codeConfirm';
-import SignUp from './src/SignUp';
-import CharChoice from './src/CharChoice';
-import SignUpRecord from './src/SignUpRecord';
-import RecordRegister from './src/RecordRegister';
-import FindClub from './src/FindClub';
-import ClubIntroduce from './src/ClubIntroduce';
-import RecordPictures from './src/RecordPictures';
-import ClubModify from './src/ClubModify';
-import Record from './src/Record';
-
-
-
-
+import Home from './screen/Home/Home';
+import Code from './screen/Code';
+import MakeClub from './screen/MakeClub/MakeClub';
+import MakeChars from './screen/MakeClub/MakeChars';
+import MakeRecord from './screen/MakeClub/MakeRecord';
+import MakeRecordPictures from './screen/MakeClub/MakeRecordPictures';
+import Main from './screen/Main/Main';
+import ClubIntroduce from './screen/Main/ClubIntroduce';
+import RecordPictures from './screen/Main/ClubRecordPictures';
+import UpdateClub from './screen/MakeClub/UpdateClub';
+import Record from './screen/Main/ClubRecord';
 
 const RootStack = createStackNavigator(
   {
+    Home: {
+      screen: Home,
+    },
+    Code: {
+      screen: Code,
+    },
+    MakeClub: {
+      screen: MakeClub,
+    },
+    MakeChars: {
+      screen: MakeChars,
+    },
+    MakeRecord: {
+      screen: MakeRecord,
+    },
+    MakeRecordPictures: {
+      screen: MakeRecordPictures,
+    },
     Main: {
       screen: Main,
-    },
-    codeConfirm: {
-      screen: codeConfirm,
-    },
-    SignUp: {
-      screen: SignUp,
-    },
-    CharChoice: {
-      screen: CharChoice,
-    },
-    SignUpRecord: {
-      screen: SignUpRecord,
-    },
-    RecordRegister: {
-      screen: RecordRegister,
-    },
-    FindClub: {
-      screen: FindClub,
     },
     ClubIntroduce: {
       screen: ClubIntroduce,
@@ -46,15 +42,15 @@ const RootStack = createStackNavigator(
     RecordPictures: {
       screen: RecordPictures,
     },
-    ClubModify: {
-      screen: ClubModify,
+    UpdateClub: {
+      screen: UpdateClub,
     },
     Record: {
       screen: Record,
     },
   },
   {
-    initialRouteName: 'Main',
+    initialRouteName: 'Home',
   },
   
 );

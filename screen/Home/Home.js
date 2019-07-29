@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
-import MainButton from '../components/MainButton';
-import FindClub from './FindClub';
-import { scale, moderateScale, verticalScale} from '../components/Scaling';
+import MainButton from '../../components/Button/MainButton';
+import { scale, moderateScale, verticalScale} from '../../components/Scaling';
 
 
 export default class Login extends React.Component {
@@ -19,7 +18,7 @@ export default class Login extends React.Component {
         
         <Image
             style={{height:'55%',width:'55%',resizeMode:'contain'}}
-            source={require('../images/logo.png')}/>
+            source={require('../../images/logo.png')}/>
      
      <View style={{ paddingTop:scale(10)}}>
         <Text style={{color:'#4d4d4d',fontSize: moderateScale(15),}}>우리 대학교에는 어떤 동아리들이 있을까?</Text>
@@ -31,12 +30,12 @@ export default class Login extends React.Component {
             <MainButton
                 buttonColor={'#fafafa'}
                 title={'동아리 생성 수정'}
-                onPress={() => this.props.navigation.navigate('codeConfirm')}/>
+                onPress={() => this.props.navigation.navigate('Code')}/>
             <View style={{width:"100%",height:10}} />
             <MainButton
                 buttonColor={'#fafafa'}
                 title={'일반'}
-                onPress={() => this.props.navigation.navigate('FindClub', {
+                onPress={() => this.props.navigation.navigate('Main', {
                   schoolName: '울대'
                 })}/>
         </View>

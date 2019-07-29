@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Platform, View, ActivityIndicator } from 'react-native';
-import MasonryList from 'react-native-masonry-list';
+import { Platform } from 'react-native';
 import * as axios from 'axios';
+import ClubRecord from './presenter';
 
-export default class Record extends React.Component {
+class Container extends React.Component {
 	static navigationOptions = {
 		title: '기록',
 		style: { elevation: 0, shadowOpacity: 0 },
@@ -35,6 +35,17 @@ export default class Record extends React.Component {
 		};
 	}
 
+
+	render() {
+		return (
+			<ClubRecord 
+                {...this.state}
+                {...this.props}
+                goToPictures={this._goToPictures}
+            />
+		);
+	}
+
 	componentWillMount = async () => {
 		await this._getImageRoom();
 		const { imageRoom } = this.state;
@@ -61,7 +72,7 @@ export default class Record extends React.Component {
 
 		// 데이터 가져오기
 		await axios
-			.post('http://dkstkdvkf00.cafe24.com/getImageRooms2.php', {
+			.post('http://dkstkdvkf00.cafe24.com/php/Main/GetImageRooms2.php', {
 				clubName: clubName,
 				school: school,
 			})
@@ -84,7 +95,7 @@ export default class Record extends React.Component {
 
 		// 데이터 가져오기
 		await axios
-			.post('http://dkstkdvkf00.cafe24.com/GetImages2.php', {
+			.post('http://dkstkdvkf00.cafe24.com/php/Main/GetImages2.php', {
 				clubName: clubName,
 				school: school,
 				imageRoom: imageRoom,
@@ -107,7 +118,7 @@ export default class Record extends React.Component {
 		const clubName = this.props.navigation.getParam('clubName', 'NO-ID');
 		const school = this.props.navigation.getParam('school', 'NO-ID');
 		await axios
-			.post('http://dkstkdvkf00.cafe24.com/GetRecordPicture.php', {
+			.post('http://dkstkdvkf00.cafe24.com/php/Main/GetRecordPicture.php', {
 				recordPicture: item,
 			})
 			.then(function(response) {
@@ -121,69 +132,6 @@ export default class Record extends React.Component {
 			});
 	};
 
-	render() {
-		const { listRecords, isGetting } = this.state;
-		return (
-			<>
-				<View style={styles.container}>
-					{isGetting ? (
-						<MasonryList
-							imageContainerStyle={{ borderRadius: 17, right: 12 }}
-							spacing={7}
-							images={listRecords}
-							onPressImage={(item, index) => {
-								this._goToPictures(item.uri);
-							}}
-							sorted={true}
-						/>
-					) : (
-						<ActivityIndicator size="large" style={styles.activityIndicator} />
-					)}
-				</View>
-			</>
-		);
-	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-	},
-	header: {
-		width: '100%',
-		height: 70,
-		// backgroundColor:'#A0AFFF',
-		flexDirection: 'row',
-		justifyContent: 'flex-end',
-	},
-	content: {
-		flex: 1,
-	},
-	footer: {
-		width: '100%',
-		height: 70,
-		// backgroundColor: '#5CEEE6',
-		borderTopWidth: 1,
-	},
-	button: {
-		backgroundColor: '#0064FF',
-		width: 50,
-		height: 50,
-		marginTop: 10,
-		alignItems: 'center',
-		justifyContent: 'center',
-		marginRight: 20,
-		borderRadius: 50,
-	},
-	text: {
-		fontSize: 25,
-		color: '#fff',
-	},
-	activityIndicator: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		height: 80,
-	},
-});
+export default Container;

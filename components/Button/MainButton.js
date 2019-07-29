@@ -4,7 +4,7 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
-import { scale, moderateScale, verticalScale} from '../components/Scaling';
+import { scale, moderateScale, verticalScale} from '../Scaling';
 
 export default class MainButton extends Component{
   static defaultProps = {
