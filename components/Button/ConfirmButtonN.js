@@ -3,11 +3,14 @@ import {
   TouchableOpacity,
   Text,
   StyleSheet,
+  Dimensions
 } from 'react-native';
+
+const { width, height } = Dimensions.get("window");
 
 export default class ConfirmButtonN extends Component{
   static defaultProps = {
-    buttonColor: '#28E7FF',
+    buttonColor: '#CDE0F1',
     titleColor: '#fff',
     onPress: () => null,
   }
@@ -38,12 +41,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 10,
-    borderRadius: 30,
-    height: 50,
-    opacity: 0.3
+    borderRadius: 15,
+    height: height*0.07,
+    opacity: 0.3,
+    shadowColor: 'rgba(0,0,0, .4)', // IOS
+    shadowOffset: { height: 1, width: 1 }, // IOS
+    shadowOpacity: 1, // IOS
+      shadowRadius: 1, //IOS
+      elevation: 2, // Android 
   },
   title: {
-    fontSize: 20,
+    fontSize: width*0.055,
     fontWeight: "700"
   },
 });

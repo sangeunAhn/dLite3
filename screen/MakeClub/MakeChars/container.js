@@ -1,5 +1,5 @@
 import React from 'react';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, BackHandler } from 'react-native';
 import * as axios from 'axios';
 import MakeChars from './presenter';
 
@@ -12,6 +12,7 @@ class Container extends React.Component {
 
   constructor(props){
     super(props);
+    this._handleBackButtonClick = this._handleBackButtonClick.bind(this);
     this.state={
       clubChars:[],
       chars:[],
@@ -32,6 +33,8 @@ class Container extends React.Component {
   }
 
   componentWillMount = () => {
+    BackHandler.addEventListener('hardwareBackPress', this._handleBackButtonClick);
+
     if(this.props.navigation.getParam('from','NO-ID')=='m'){
       this._getChars()
     }
@@ -40,6 +43,12 @@ class Container extends React.Component {
         chars:[],
       })
   }
+
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this._handleBackButtonClick);
+  }
+
 
   _getChars = () => {
     //userNo 가지고 오기
@@ -156,6 +165,16 @@ class Container extends React.Component {
             ms = response.data.message;
         });
           }
+  }
+
+
+  _handleBackButtonClick = () => {
+    this.props.navigation.getParam('from', 'NO-ID') == 'm'
+		?
+		this.props.navigation.goBack()
+		:
+		this.props.navigation.navigate('Code');
+    return true;
   }
 
 }

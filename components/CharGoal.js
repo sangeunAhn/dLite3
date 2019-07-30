@@ -4,6 +4,20 @@ import {Icon} from 'react-native-elements';
 
 class CharGoal extends Component {
 
+
+    constructor(props){
+        super(props);
+        this.state = {
+          disabled: true,
+        }
+      }
+       
+    
+    Press = () => {
+      this.state.disabled == true ? this.setState({disabled:false}) : this.setState({disabled:true})
+    }
+
+
     render() {
         return (
             <>
@@ -11,9 +25,16 @@ class CharGoal extends Component {
                 {
                     this.props.chars.map((data,index,chars) => (
                         <View key={index} >
-                            <TouchableOpacity style={styles.button}>
-                                <Text style={{color:'white'}}>{data.text}</Text>
-                                <TouchableOpacity style={styles.icon} onPress={this.props.removeChar.bind(this, index)}>
+                            {
+                                (this.state.disabled == true)?
+                            <TouchableOpacity onPress={this.Press} style={styles.button}>
+                                <Text style={{color:'#3B3B3B'}}>{data.text}</Text>
+                                
+                            </TouchableOpacity>
+                            :
+                            <TouchableOpacity style={styles.button} onPress={this.Press}>
+                            <Text style={{color:'white'}}>{data.text}</Text>
+                            <TouchableOpacity style={{position: 'absolute'}} onPress={this.props.removeChar.bind(this, index)}>
                                     <Icon
                                         reverse
                                         size={10}
@@ -23,7 +44,7 @@ class CharGoal extends Component {
                                         />
                             </TouchableOpacity>
                             </TouchableOpacity>
-                            
+                            }
                         </View> 
 
                     ))
@@ -45,13 +66,18 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 15,
     height: 40, 
-    backgroundColor: '#2eaeff',
+    backgroundColor: 'white',
     paddingRight: 10,
-    paddingLeft:15,
+    paddingLeft:10,
     marginRight:10,
-    borderColor: '#32AAFF',
-    borderWidth:1,
-    flexDirection: 'row'
+   
+    
+    flexDirection: 'row',
+    shadowColor: 'rgba(0,0,0, .4)', // IOS
+    shadowOffset: { height: 1, width: 1 }, // IOS
+    shadowOpacity: 1, // IOS
+      shadowRadius: 1, //IOS
+      elevation: 1, // Android
   },
     inputView:{
         width:'100%',
@@ -61,10 +87,7 @@ const styles = StyleSheet.create({
         alignItems: "flex-start",
         marginTop:20
       },
-      icon:{
-        left: 10,
-        paddingRight:5
-      }
+    
     });
 
     export default CharGoal;

@@ -4,11 +4,6 @@ import { TouchableOpacity, Text, StyleSheet, Dimensions, ActivityIndicator } fro
 const { width, height } = Dimensions.get('window');
 
 export default class ConfirmButton extends Component {
-	static defaultProps = {
-		buttonColor: '#ADCDE9',
-		titleColor: '#3B3B3B',
-		onPress: () => null,
-	};
 
 	constructor(props) {
 		super(props);
@@ -16,15 +11,24 @@ export default class ConfirmButton extends Component {
 
 	render() {
 		return (
-			<TouchableOpacity
-				style={[styles.button, { backgroundColor: this.props.buttonColor }]}
-				onPress={this.props.onPress}
-			>
-				{this.props.title == '로딩' ? (
-					<ActivityIndicator color="white" />
-				) : (
-					<Text style={[styles.title, { color: this.props.titleColor }]}>{this.props.title}</Text>
-				)}
+			<TouchableOpacity style={{}} onPress={() => this._gotoSignUp()}>
+				<View style={styles.box}>
+					<View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+						<View style={{ flexDirection: 'row' }}>
+							<View style={styles.logo}>
+								<EvilIcons name="user" size={width * 0.12} />
+							</View>
+							<View style={styles.content}>
+								<View style={styles.title}>
+									<Text style={{ fontSize: width * 0.07, fontWeight: 'bold' }}>정보 수정</Text>
+								</View>
+								<View style={styles.sub}>
+									<Text style={{ fontSize: width * 0.032, color: '#BBBBBB' }}>우리 동아리는요!</Text>
+								</View>
+							</View>
+						</View>
+					</View>
+				</View>
 			</TouchableOpacity>
 		);
 	}

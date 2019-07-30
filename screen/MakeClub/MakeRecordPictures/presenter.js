@@ -1,17 +1,14 @@
 import React from 'react';
-import {
-	StyleSheet,
-	View,
-	ScrollView,
-	TouchableOpacity,
-	ActivityIndicator,
-} from 'react-native';
+import { StyleSheet, Dimensions, View, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import RegisterButton from '../../../components/Button/RegisterButton';
 import RegisterButtonN from '../../../components/Button/RegisterButtonN';
 import { scale, moderateScale, verticalScale } from '../../../components/Scaling';
 import PhotoRegister from '../../../components/PhotoRegister';
 import PhotoModify from '../../../components/PhotoModify';
+import { Ionicons } from '@expo/vector-icons';
+import HeaderScrollView from 'react-native-header-scroll-view';
 
+const { width, height } = Dimensions.get('window');
 
 const MakeRecordPictures = props => (
 	<>
@@ -19,7 +16,38 @@ const MakeRecordPictures = props => (
 			<ActivityIndicator size="large" style={styles.activityIndicator} />
 		) : (
 			<>
-				<ScrollView>
+				<TouchableOpacity
+					style={{
+						position: 'absolute',
+						width: width * 0.2,
+						height: height * 0.1,
+						top: 15,
+						left: 10,
+						zIndex: 1,
+					}}
+					onPress={() => {
+						props.navigation.goBack();
+					}}
+				>
+					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+				</TouchableOpacity>
+
+				<HeaderScrollView
+					headerContainerStyle={{ height: height * 0.08 }}
+					headlineStyle={{
+						paddingTop: 23,
+						textAlign: 'center',
+						justifyContent: 'center',
+						alignItems: 'center',
+						alignSelf: 'center',
+						fontSize: width * 0.05,
+					}}
+					headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
+					titleStyle={{ fontSize: width * 0.08 }}
+					scrollEnabled={false}
+					fadeDirection="up"
+					title="기록 생성"
+				>
 					<View style={styles.container}>
 						{/* 사진 넣는 곳 */}
 						{Object.values(props.images).map(image => (
@@ -33,18 +61,23 @@ const MakeRecordPictures = props => (
 						))}
 						<PhotoRegister addImage={props.addImage} />
 					</View>
-				</ScrollView>
+					<View style={{ height: 80 }} />
+				</HeaderScrollView>
 				<View style={styles.footer}>
 					{props.count === 0 ? (
-						<RegisterButtonN title={'사진을 넣어주세요.'} />
+						<View style={{ width: '100%' }}>
+							<RegisterButtonN title={'사진을 넣어주세요.'} />
+						</View>
 					) : (
-						<TouchableOpacity onPress={props.btnPress}>
+						<View style={{ width: '100%' }}>
 							{props.isSubmitting ? (
 								<RegisterButton title={'로딩'} />
 							) : (
-								<RegisterButton title={'확인'} />
+								<TouchableOpacity onPress={props.btnPress}>
+									<RegisterButton title={'확인'} />
+								</TouchableOpacity>
 							)}
-						</TouchableOpacity>
+						</View>
 					)}
 				</View>
 			</>
@@ -56,7 +89,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: '#fff',
-		padding: 20,
+		paddingTop: 20,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
@@ -75,8 +108,17 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 	},
 	footer: {
+		flex: 1,
+		position: 'absolute',
+		alignItems: 'center',
+		bottom: 0,
 		width: '100%',
-		height: 70,
+		textAlign: 'center',
+		// backgroundColor: '#1ad657',
+		paddingBottom: height * 0.01,
+		alignSelf: 'center',
+		backgroundColor: 'white',
+		paddingHorizontal: width * 0.03,
 	},
 	button: {
 		flex: 1,

@@ -180,7 +180,7 @@ class Container extends Component {
 			clubMainPicture,
 		} = this.state;
 
-		if (clubName == '' || clubWellcome == '' || clubPhoneNumber == '' || clubIntroduce == '') {
+		if (clubName == '' || clubPhoneNumber == '' || clubIntroduce == '') {
 			Alert.alert('내용을 채워주세요');
 		} else {
 			let formData = new FormData();

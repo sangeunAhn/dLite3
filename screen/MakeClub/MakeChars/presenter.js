@@ -1,55 +1,94 @@
 import React from 'react';
 import {
 	StyleSheet,
+	TouchableOpacity,
+	AsyncStorage,
+	Dimensions,
 	Text,
 	View,
-	KeyboardAvoidingView,
 	TouchableWithoutFeedback,
 	Keyboard,
-	Platform,
+	BackHandler,
 } from 'react-native';
 import ConfirmButton from '../../../components/Button/ConfirmButton';
 import ConfirmButtonN from '../../../components/Button/ConfirmButtonN';
 import CharInput from '../../../components/CharInput';
 import CharGoal from '../../../components/CharGoal';
+import CharEX from '../../../components/CharEX';
+import HeaderScrollView from 'react-native-header-scroll-view';
 import { scale, moderateScale } from '../../../components/Scaling';
+import { Ionicons } from '@expo/vector-icons';
 
-const DismissKeyboard = ({ children }) => (
-	<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>{children}</TouchableWithoutFeedback>
-);
+const { width, height } = Dimensions.get('window');
 
 const MakeChars = props => (
 	<>
-		<DismissKeyboard>
-			<View style={styles.container}>
-				<View style={styles.header}>
-					{/* 제목 */}
-					<View style={styles.title}>
-						<Text style={styles.text_1}>특징선택</Text>
-						<Text style={styles.text_2}>중복 선택 가능</Text>
-					</View>
+		<View style={styles.container}>
+			<TouchableOpacity
+				style={{ position: 'absolute', width: width * 0.2, height: height * 0.1, top: 15, left: 10, zIndex: 1 }}
+				onPress={() => {
+					props.navigation.getParam('from', 'NO-ID') == 'm'
+						? props.navigation.goBack()
+						: props.navigation.navigate('Code')
+				}}
+			>
+				<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+			</TouchableOpacity>
+			<HeaderScrollView
+				// scrollContainerStyle={{backgroundColor:'red'}}
+				scrollEnabled={false}
+				fadeDirection="up"
+				title="특징 입력"
+			>
+				<View style={{ flex: 1 }}>
+					{props.count >= 15 ? <View style={styles.dd} /> : <CharInput addChar={props.addChar} />}
+					{/* 위에 샾버튼 클릭했을 때 생긴 샾버튼 들어가는 곳 */}
 				</View>
 
 				{/* 샾버튼 모아놓은거 */}
-				<KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={Platform.OS === 'ios' ? '200' : '50'}>
-					{/* 위에 샾버튼 클릭했을 때 생긴 샾버튼 들어가는 곳 */}
-					<View style={styles.contain}>
+				{/* 위에 샾버튼 클릭했을 때 생긴 샾버튼 들어가는 곳 */}
+				<View style={styles.contain}>
+					{props.chars == 0 ? (
+						<>
+							<View style={{ flexDirection: 'column' }}>
+								<Text style={{ fontSize: moderateScale(12), color: '#BBBBBB', marginBottom: 10 }}>
+									{' '}
+									예시)
+									{'\n'}
+								</Text>
+								<View
+									style={{
+										flexDirection: 'row',
+										flexWrap: 'wrap',
+										justifyContent: 'space-evenly',
+									}}
+								>
+									<CharEX title="#소규모" />
+									<CharEX title="#꿀잼" />
+									<CharEX title="#잘생긴놈들" />
+									<CharEX title="#아싸들의 성지" />
+									<CharEX title="#페북/인스타 운영" />
+									<CharEX title="#친근함" />
+									<CharEX title="#대규모" />
+									<CharEX title="#매주 여행" />
+								</View>
+							</View>
+						</>
+					) : (
 						<CharGoal chars={props.chars} removeChar={props.removeChar} />
-					</View>
-
-					{props.count >= 10 ? <View style={styles.dd} /> : <CharInput addChar={props.addChar} />}
-
-					{/* 완료버튼 */}
-					<View style={styles.footer}>
-						{props.chars == 0 ? (
-							<ConfirmButtonN title={'선택완료'} />
-						) : (
-							<ConfirmButton title={'선택완료'} onPress={props.ButtonPress} />
-						)}
-					</View>
-				</KeyboardAvoidingView>
+					)}
+				</View>
+				<View style={{ height: 80 }} />
+			</HeaderScrollView>
+			{/* 완료버튼 */}
+			<View style={styles.footer}>
+				{props.chars == 0 ? (
+					<ConfirmButtonN title={'선택완료'} />
+				) : (
+					<ConfirmButton title={'선택완료'} onPress={props.ButtonPress} />
+				)}
 			</View>
-		</DismissKeyboard>
+		</View>
 	</>
 );
 
@@ -57,14 +96,13 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		flexDirection: 'column',
-		paddingTop: 10,
-		padding: 10,
+		paddingHorizontal: 10,
 		paddingBottom: 10,
 		backgroundColor: 'white',
 	},
 	header: {
 		width: '100%',
-		height: '50%',
+
 		paddingTop: 20,
 		// backgroundColor: '#ff9a9a',
 	},
@@ -95,9 +133,16 @@ const styles = StyleSheet.create({
 		marginTop: 30,
 	},
 	footer: {
+		flex: 1,
+		position: 'absolute',
+		alignItems: 'center',
+		bottom: 10,
 		width: '100%',
+		textAlign: 'center',
 		// backgroundColor: '#1ad657',
 		paddingTop: 10,
+		alignSelf: 'center',
+		backgroundColor: 'white',
 	},
 
 	text_1: {

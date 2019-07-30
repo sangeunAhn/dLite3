@@ -1,98 +1,200 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Text, StyleSheet, View, Image } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, View, Image, Dimensions } from 'react-native';
 import Overlay from 'react-native-modal-overlay';
 import ClubChars from '../ClubChars';
+import { moderateScale } from '../Scaling';
+
+const { width, height } = Dimensions.get('window');
 
 const ClubView = props => (
 	<View style={styles.container}>
-		<TouchableOpacity onPress={props.showOverlay.bind(this)}>
-			<View style={styles.logo}>
-				{props.clubLogo === null || props.clubLogo == '' ? (
-					<Image style={styles.Image} source={require('../../images/momo.jpg')} />
-				) : (
-					<Image style={styles.Image} source={{ uri: props.clubLogo }} />
-				)}
-			</View>
-		</TouchableOpacity>
-		<TouchableOpacity onPress={props.showOverlay.bind(this)} style={styles.club}>
-			<Text style={styles.clubTitle}>{props.clubName}</Text>
-			<Text style={styles.clubChar}>
-				{props.clubChar.map((chars, i) => {
-					return <ClubChars chars={props.clubChar[i]} key={i} />;
-				})}
-			</Text>
-		</TouchableOpacity>
+		<View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+			<View style={{ flexDirection: 'row' }}>
+				<View style={styles.logo}>
+					{props.clubLogo === null || props.clubLogo == '' ? (
+						<Image style={styles.Image} source={require('../../images/momo.jpg')} />
+					) : (
+						<Image style={styles.Image} source={{ uri: props.clubLogo }} />
+					)}
+				</View>
 
-		<Overlay
-			visible={props.modalVisible}
-			onClose={props.onClose}
-			closeOnTouchOutside
-			animationType="zoomIn"
-			animationDuration={200}
-			childrenWrapperStyle={{ width: '100%', backgroundColor: 'white', borderRadius: 15 }}
-			containerStyle={{ backgroundColor: 'rgba(50, 50, 50, 0.78)' }}
-		>
-			<View style={{ flexDriection: 'column' }}>
-				<View style={{ flexDirection: 'row' }}>
-					<View style={styles.logo}>
-						{props.clubLogo === null || props.clubLogo == '' ? (
-							<Image source={require('../../images/momo.jpg')} style={styles.Image} />
-						) : (
-							<Image source={{ uri: props.clubLogo }} style={styles.Image} />
-						)}
-					</View>
-					<View style={{ marginBottom: 30, flex: 1 }}>
-						<Text style={styles.clubTitle}>{props.clubName}</Text>
-						<Text style={styles.clubChar}>
-							{props.clubChar.map((chars, i) => {
-								return <ClubChars chars={props.clubChar[i]} key={i} />;
-							})}
-						</Text>
-					</View>
-				</View>
-				<View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-					<TouchableOpacity style={styles.button} onPress={props.gotoClubIntroduce}>
-						<Image style={styles.ImageR} source={require('../../images/introduce.png')} />
-						<Text style={{ textAlign: 'center', fontSize: 15 }}>소개</Text>
-					</TouchableOpacity>
-					<TouchableOpacity style={styles.button} onPress={props.gotoRecord}>
-						<Image style={styles.ImageR} source={require('../../images/record.png')} />
-						<Text style={{ textAlign: 'center', fontSize: 15 }}>기록</Text>
-					</TouchableOpacity>
+				<View style={styles.club}>
+					<Text style={styles.clubTitle}>{props.clubName}</Text>
+					<Text style={styles.clubChar}>
+						{props.clubChar.map((chars, i) => {
+							return <ClubChars chars={props.clubChar[i]} key={i} />;
+						})}
+					</Text>
 				</View>
 			</View>
-		</Overlay>
+		</View>
+
+		{props.disabled == true ? (
+			<TouchableOpacity onPress={props.press}>
+				{props.clubLogo === null || props.clubLogo === 'ul' || props.clubLogo == '' ? (
+					<Image style={styles.picture} source={require('../../images/ssam.jpg')} />
+				) : (
+					<Image style={styles.picture} source={{ uri: props.clubMainPicture }} />
+				)}
+			</TouchableOpacity>
+		) : (
+			<TouchableOpacity onPress={props.press}>
+				{props.clubLogo === null || props.clubLogo === 'ul' || props.clubLogo == '' ? (
+					<>
+						<View style={{ zIndex: 0 }}>
+							<Image blurRadius={5} style={styles.picture} source={require('../../images/ssam.jpg')} />
+						</View>
+						<View
+							style={{
+								position: 'absolute',
+								top: 10,
+								left: 0,
+								right: 0,
+								bottom: 0,
+								justifyContent: 'center',
+								alignItems: 'center',
+								zIndex: 20,
+							}}
+						>
+							<View
+								style={{
+									width: width * 0.5,
+									height: height * 0.085,
+									backgroundColor: 'white',
+									borderRadius: 50,
+									justifyContent: 'space-around',
+									alignItems: 'center',
+									flexDirection: 'row',
+								}}
+							>
+								<View style={styles.logo2}>
+									<Image
+										resizeMode="center"
+										style={styles.Image2}
+										source={require('../../images/momo.jpg')}
+									/>
+								</View>
+
+								<TouchableOpacity onPress={props.gotoClubIntroduce} style={{ flex: 1 }}>
+									<View style={{ height: height * 0.1, justifyContent: 'center' }}>
+										<Text style={{ fontSize: width * 0.035 }}>소개</Text>
+									</View>
+								</TouchableOpacity>
+								<TouchableOpacity onPress={props.gotoRecord} style={{ flex: 1 }}>
+									<View style={{ height: height * 0.1, justifyContent: 'center' }}>
+										<Text style={{ fontSize: width * 0.035 }}>기록</Text>
+									</View>
+								</TouchableOpacity>
+							</View>
+						</View>
+					</>
+				) : (
+					<>
+						<View style={{ zIndex: 0 }}>
+							<Image blurRadius={5} style={styles.picture} source={{ uri: props.clubMainPicture }} />
+						</View>
+						<View
+							style={{
+								position: 'absolute',
+								top: 10,
+								left: 0,
+								right: 0,
+								bottom: 0,
+								justifyContent: 'center',
+								alignItems: 'center',
+								zIndex: 20,
+							}}
+						>
+							<View
+								style={{
+									width: width * 0.5,
+									height: height * 0.085,
+									backgroundColor: 'white',
+									borderRadius: 50,
+									justifyContent: 'space-around',
+									alignItems: 'center',
+									flexDirection: 'row',
+								}}
+							>
+								<View style={styles.logo2}>
+									<Image resizeMode="center" style={styles.Image2} source={{ uri: props.clubLogo }} />
+								</View>
+
+								<TouchableOpacity
+									onPress={props.gotoClubIntroduce}
+									style={{ flex: 1, height: height * 0.1 }}
+								>
+									<View style={{ height: height * 0.1, justifyContent: 'center' }}>
+										<Text style={{ fontSize: width * 0.035 }}>소개</Text>
+									</View>
+								</TouchableOpacity>
+								<TouchableOpacity onPress={props.gotoRecord} style={{ flex: 1 }}>
+									<View style={{ height: height * 0.1, justifyContent: 'center' }}>
+										<Text style={{ fontSize: width * 0.035 }}>기록</Text>
+									</View>
+								</TouchableOpacity>
+							</View>
+						</View>
+					</>
+				)}
+			</TouchableOpacity>
+		)}
 	</View>
 );
 
 const styles = StyleSheet.create({
 	container: {
 		width: '100%',
-		height: 70,
-		//   backgroundColor:'#FAFABE',
-		flexDirection: 'row',
+		height: height * 0.35,
+		// backgroundColor:'#FAFABE',
+		flexDirection: 'column',
 		justifyContent: 'flex-start',
-		padding: 15,
-		paddingLeft: 25,
+		paddingHorizontal: width * 0.05,
 		alignItems: 'center',
+		marginBottom: height * 0.04,
 	},
 	logo: {
-		height: 50,
-		width: 50,
-		borderRadius: 25,
-		backgroundColor: '#fff',
-		borderColor: '#6a85a0',
+		width: width * 0.16,
+		height: width * 0.16,
+		overflow: 'hidden',
+		shadowColor: 'gray', // IOS
+		shadowOffset: { height: 1, width: 1 }, // IOS
+		shadowOpacity: 1, // IOS
+		shadowRadius: 5, //IOS
+		elevation: 5, // Android
+		borderRadius: width * 0.16 * 0.5,
+		borderWidth: 3,
+		borderColor: 'white',
 		marginRight: 25,
+	},
+	logo2: {
+		margin: width * 0.05,
+		width: width * 0.1,
+		height: width * 0.1,
+		overflow: 'hidden',
+		borderRadius: width * 0.1 * 0.5,
+		borderWidth: 2,
+		borderColor: 'white',
+		shadowColor: 'gray', // IOS
+		shadowOffset: { height: 1, width: 1 }, // IOS
+		shadowOpacity: 1, // IOS
+		shadowRadius: 5, //IOS
+		elevation: 5, // Android
 	},
 
 	Image: {
-		height: 50,
-		width: 50,
-		resizeMode: 'cover',
+		width: width * 0.15,
+		height: width * 0.15,
+
 		backgroundColor: '#fff',
-		borderRadius: 25,
-		borderColor: '#0064FF',
-		borderWidth: 1,
+		borderRadius: width * 0.15 * 0.5,
+	},
+	Image2: {
+		flex: 1,
+		width: width * 0.09,
+		height: width * 0.09,
+		borderRadius: width * 0.09 * 0.5,
+		backgroundColor: '#fff',
 	},
 	ImageR: {
 		left: -5,
@@ -102,16 +204,27 @@ const styles = StyleSheet.create({
 	},
 	club: {
 		flex: 1,
-		//   backgroundColor: '#DCEBFF',
+		textAlignVertical: 'center',
+		flexWrap: 'wrap',
+		// backgroundColor: '#DCEBFF',
 	},
 	clubTitle: {
-		fontSize: 20,
-		fontWeight: '500',
-		marginBottom: 8,
+		flex: 1,
+		marginTop: 0,
+		textAlignVertical: 'center',
+		fontSize: moderateScale(20),
+		fontWeight: '100',
+
+		// backgroundColor: 'red',
 	},
 	clubChar: {
-		fontSize: 14,
-		color: '#828282',
+		flex: 1.5,
+		textAlignVertical: 'center',
+		fontSize: moderateScale(10),
+		color: '#BBBBBB',
+		marginBottom: -5,
+		lineHeight: 15,
+		// backgroundColor: 'green',
 	},
 	button: {
 		top: -40,
@@ -119,9 +232,18 @@ const styles = StyleSheet.create({
 		height: 70,
 		width: 50,
 		zIndex: 999,
-		// backgroundColor:'red'
+	},
+	picture: {
+		zIndex: 0,
+		// alignItems:'flex-start',
+		// justifyContent:'flex-start',
+		marginTop: 10,
+		borderRadius: 13,
+
+		width: width * 0.9,
+		height: height * 0.23,
+	
 	},
 });
-
 
 export default ClubView;

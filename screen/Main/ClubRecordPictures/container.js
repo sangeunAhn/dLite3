@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform } from 'react-native';
+import { View, Platform } from 'react-native';
 import * as axios from 'axios';
 import ClubRecordPictures from './presenter';
 
@@ -22,6 +22,7 @@ class Container extends React.Component {
 			flex: 1,
 			fontWeight: 'bold',
 		},
+		headerRight: <View />,
 		tintColor: '#2eaeff',
 	};
 	constructor(props) {

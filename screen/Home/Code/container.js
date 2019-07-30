@@ -4,26 +4,11 @@ import * as axios from 'axios';
 import Code from './presenter';
 
 class Container extends React.Component {
-	static navigationOptions = {
-		title: '코드입력',
-		style: { elevation: 0, shadowOpacity: 0 },
-		headerStyle: {
-			height: Platform.OS === 'ios' ? 70 : 10,
-			elevation: 0,
-			shadowColor: 'transparent',
-			borderBottomWidth: 0,
-			paddingBottom: 10,
-			paddingTop: Platform.OS === 'ios' ? 40 : 5,
-		},
-		headerTitleStyle: {
-			color: '#2eaeff',
-			fontSize: Platform.OS === 'ios' ? 25 : 18,
-			textAlign: 'center',
-			flex: 1,
-			fontWeight: 'bold',
-		},
-		tintColor: '#2eaeff',
-	};
+	static navigationOptions = ({ navigation, screenProps }) => ({
+
+		header: null
+	
+	  });
 
 	constructor(props) {
 		super(props);

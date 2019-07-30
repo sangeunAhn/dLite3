@@ -9,6 +9,7 @@ export default class Container extends Component {
 		super(props);
 		this.state = {
 			clubChar: [],
+			disabled: true,
 		};
     }
     
@@ -21,7 +22,8 @@ export default class Container extends Component {
               hideOverlay={this._hideOverlay}
               onClose={this._onClose}
               gotoClubIntroduce={this._gotoClubIntroduce}
-              gotoRecord={this._gotoRecord}
+			  gotoRecord={this._gotoRecord}
+			  press={this._press}
             />
         )
 	}
@@ -82,6 +84,10 @@ export default class Container extends Component {
 					clubChar: clubChar.concat(clubCharArray),
 				});
 			});
+	};
+
+	_press = () => {
+		this.state.disabled == true ? this.setState({ disabled: false }) : this.setState({ disabled: true });
 	};
 
 }

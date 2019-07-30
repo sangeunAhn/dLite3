@@ -6,24 +6,7 @@ import MakeRecordPictures from './presenter';
 
 export default class RecordRegister extends React.Component {
 	static navigationOptions = {
-		title: '기록생성',
-		style: { elevation: 0, shadowOpacity: 0 },
-		headerStyle: {
-			height: Platform.OS === 'ios' ? 70 : 10,
-			elevation: 0,
-			shadowColor: 'transparent',
-			borderBottomWidth: 0,
-			paddingBottom: 10,
-			paddingTop: Platform.OS === 'ios' ? 40 : 5,
-		},
-		headerTitleStyle: {
-			color: '#2eaeff',
-			fontSize: Platform.OS === 'ios' ? 25 : 18,
-			textAlign: 'center',
-			flex: 1,
-			fontWeight: 'bold',
-		},
-		tintColor: '#2eaeff',
+		header: null
 	};
 	constructor(props) {
 		super(props);
@@ -178,6 +161,7 @@ export default class RecordRegister extends React.Component {
 
 	_btnPress = async () => {
 		const { navigation } = this.props;
+		console.log('썅');
 		this.setState({ isSubmitting: true });
 		await this._input1();
 		if (navigation.getParam('to', 'NO-ID') == 'm') {

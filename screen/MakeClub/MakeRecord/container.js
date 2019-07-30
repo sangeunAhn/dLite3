@@ -1,31 +1,15 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { BackHandler } from 'react-native';
 import * as axios from 'axios';
 import MakeRecord from './presenter';
 
 class Container extends React.Component {
 	static navigationOptions = {
-		title: '기록추가',
-		style: { elevation: 0, shadowOpacity: 0 },
-		headerStyle: {
-			height: Platform.OS === 'ios' ? 70 : 10,
-			elevation: 0,
-			shadowColor: 'transparent',
-			borderBottomWidth: 0,
-			paddingBottom: 10,
-			paddingTop: Platform.OS === 'ios' ? 40 : 5,
-		},
-		headerTitleStyle: {
-			color: '#2eaeff',
-			fontSize: Platform.OS === 'ios' ? 25 : 18,
-			textAlign: 'center',
-			flex: 1,
-			fontWeight: 'bold',
-		},
-		tintColor: '#2eaeff',
+		header: null,
 	};
 	constructor(props) {
 		super(props);
+		this._handleBackButtonClick = this._handleBackButtonClick.bind(this);
 		this.state = {
 			records: [],
 			listRecords: [],
@@ -58,11 +42,21 @@ class Container extends React.Component {
 				{...this.state}
 				{...this.props}
 				RecordRegister={this._RecordRegister}
-                btnPress={this._btnPress}
-                iconPress={this._iconPress}
+				btnPress={this._btnPress}
+				iconPress={this._iconPress}
 			/>
 		);
 	}
+
+
+	componentWillMount = () => {
+		BackHandler.addEventListener('hardwareBackPress', this._handleBackButtonClick);
+	  }
+	
+	
+	  componentWillUnmount() {
+		BackHandler.removeEventListener('hardwareBackPress', this._handleBackButtonClick);
+	  }
 
 	_getImageRoom = async () => {
 		//userNo 가지고 오기
@@ -113,7 +107,7 @@ class Container extends React.Component {
 
 	_RecordRegister = async item => {
 		var t = this;
-        var userNo = this.props.navigation.getParam('userNo', 'NO-ID');
+		var userNo = this.props.navigation.getParam('userNo', 'NO-ID');
 		await axios
 			.post('http://dkstkdvkf00.cafe24.com/php/MakeClub/GetRecordPicture.php', {
 				recordPicture: item,
@@ -129,21 +123,44 @@ class Container extends React.Component {
 			});
 	};
 
+	_goToMain = () => {
+		var t = this;
+		var userNo = this.props.navigation.getParam('userNo', 'NO-ID');
+		axios
+			.post('http://dkstkdvkf00.cafe24.com/php/MakeClub/GetSchool.php', {
+				userNo: userNo,
+			})
+			.then(function(response) {
+				var school = response.data.message.school;
+				t.props.navigation.navigate('Main', {
+					schoolName: school,
+				});
+			});
+	};
+
 	_btnPress = () => {
 		if (this.props.navigation.getParam('from', 'NO-ID') == 'm') {
 			this.props.navigation.navigate('Home');
 		} else {
-			this.props.navigation.navigate('Main', {
-				schoolName: '울대',
-			});
+			this._goToMain()
 		}
-    };
-    
-    _iconPress = () => {
-        this.props.navigation.navigate('MakeRecordPictures', {
-            userNo: this.props.navigation.getParam('userNo', 'NO-ID')
-        })
-    }
+	};
+
+	_iconPress = () => {
+		this.props.navigation.navigate('MakeRecordPictures', {
+			userNo: this.props.navigation.getParam('userNo', 'NO-ID'),
+		});
+	};
+
+	_handleBackButtonClick = () => {
+		this.props.navigation.getParam('from', 'NO-ID') == 'm'
+		?
+		this.props.navigation.goBack()
+		:
+		this.props.navigation.navigate('Code');
+
+		return true;
+	  }
 }
 
 export default Container;

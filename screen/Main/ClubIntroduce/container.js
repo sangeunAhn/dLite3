@@ -1,27 +1,10 @@
 import React, { Component } from 'react';
 import * as axios from 'axios';
-import { Platform } from 'react-native';
 import ClubIntroduce from './presenter';
 
 class Container extends Component {
 	static navigationOptions = {
-		title: '동아리 소개',
-		style: { elevation: 0, shadowOpacity: 0 },
-		headerStyle: {
-			height: Platform.OS === 'ios' ? 40 : 5,
-			elevation: 0,
-			shadowColor: 'transparent',
-			borderBottomWidth: 0,
-			paddingBottom: 20,
-		},
-		headerTitleStyle: {
-			color: '#2eaeff',
-			fontSize: 18,
-			textAlign: 'center',
-			flex: 1,
-			fontWeight: 'bold',
-		},
-		tintColor: '#2eaeff',
+		header: null,
 	};
 
 	constructor(props) {
