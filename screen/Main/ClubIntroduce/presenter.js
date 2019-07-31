@@ -64,7 +64,7 @@ const ClubIntroduce = props => (
 									width: width * 0.9,
 									height: height * 0.23,
 									borderRadius: 15,
-									backgroundColor: '#CEE1F2',
+									backgroundColor: '#95a5a6',
 								}}
 							/>
 						) : (
@@ -74,7 +74,7 @@ const ClubIntroduce = props => (
 									width: width * 0.9,
 									height: height * 0.23,
 									borderRadius: 15,
-									backgroundColor: '#CEE1F2',
+									backgroundColor: '#95a5a6',
 								}}
 								source={{ uri: props.clubMainPicture }}
 							/>
@@ -96,7 +96,7 @@ const ClubIntroduce = props => (
 									<Image
 										source={require('../../../images/momo.jpg')}
 										style={{
-											backgroundColor: 'green',
+											backgroundColor: '#95a5a6',
 											width: width * 0.27,
 											height: width * 0.27,
 											borderRadius: width * 0.27 * 0.5,
@@ -105,7 +105,7 @@ const ClubIntroduce = props => (
 								) : (
 									<Image
 										style={{
-											backgroundColor: 'green',
+											backgroundColor: '#95a5a6',
 											width: width * 0.27,
 											height: width * 0.27,
 											borderRadius: width * 0.27 * 0.5,

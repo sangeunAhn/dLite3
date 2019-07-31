@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BackHandler } from 'react-native';
 import * as axios from 'axios';
 import ClubIntroduce from './presenter';
 
@@ -9,6 +10,7 @@ class Container extends Component {
 
 	constructor(props) {
 		super(props);
+		this._handleBackButtonClick = this._handleBackButtonClick.bind(this);
 		this.state = {
 			clubName: '',
 			clubWellcome: '',
@@ -30,6 +32,7 @@ class Container extends Component {
 		this._getDatas();
 		this._getChars();
 
+		BackHandler.addEventListener('hardwareBackPress', this._handleBackButtonClick);
 		const { navigation } = this.props;
 		var clubLogo = navigation.getParam('clubLogo', 'NO-ID');
 		var clubMainPicture = navigation.getParam('clubMainPicture', 'NO-ID');
@@ -38,6 +41,10 @@ class Container extends Component {
 			clubMainPicture: clubMainPicture,
 		});
 	};
+
+	componentWillUnmount() {
+		BackHandler.removeEventListener('hardwareBackPress', this._handleBackButtonClick);
+	  }
 
 	_getDatas = async () => {
 		const t = this;
@@ -108,6 +115,13 @@ class Container extends Component {
 				});
 			});
 	};
+
+
+	_handleBackButtonClick = () => {
+		this.props.navigation.navigate('Main');
+
+		return true;
+	  }
 }
 
 export default Container;

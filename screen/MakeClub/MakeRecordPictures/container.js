@@ -152,7 +152,6 @@ export default class RecordRegister extends React.Component {
 		this.setState({ isGetting: true });
 	};
 	_setDatas = async response => {
-		// console.log(response.data)
 		const t = this;
 		for (item of response.data) {
 			await t._addImageM(item.recordPicture, item.recordContent, item.createdAt);
@@ -161,7 +160,6 @@ export default class RecordRegister extends React.Component {
 
 	_btnPress = async () => {
 		const { navigation } = this.props;
-		console.log('썅');
 		this.setState({ isSubmitting: true });
 		await this._input1();
 		if (navigation.getParam('to', 'NO-ID') == 'm') {

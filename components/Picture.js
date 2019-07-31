@@ -1,44 +1,74 @@
 import React, { Component } from 'react';
-import { Text, Dimensions } from 'react-native';
-import { Container, Content, Card, CardItem, Left, Body } from 'native-base';
+import { StyleSheet, Text, Dimensions, View} from 'react-native';
 import AutoHeightImage from 'react-native-auto-height-image';
 
-const { width, height } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
-export default class Picture extends Component {
-	constructor(props) {
-		super(props);
-	}
-
+export default class Pictures extends React.Component {
 	render() {
 		return (
 			<>
-				<Container style={{ padding: 10 }}>
-					<Content>
-						<Card>
-							<CardItem>
-								<Left>
-									<Body>
-										<Text> </Text>
-									</Body>
-								</Left>
-							</CardItem>
-							<CardItem cardBody>
-								<AutoHeightImage
-									width={width - 80}
-									style={{ flex: 1 }}
-									source={{ uri: this.props.picture }}
-								/>
-							</CardItem>
-							<CardItem>
-								<Body style={{ paddingVertical: 10 }}>
-									<Text style={{ fontSize: 25 }}>{this.props.text}</Text>
-								</Body>
-							</CardItem>
-						</Card>
-					</Content>
-				</Container>
+				<View style={styles.container}>
+						<AutoHeightImage
+							width={width - 22}
+							style={{ borderTopLeftRadius: 10, borderTopRightRadius: 10 }}
+							source={{ uri: this.props.picture }}
+						/>
+						
+					<View style={styles.bottom}>
+						<Text style={styles.text}>{this.props.text}</Text>
+					</View>
+				</View>
 			</>
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		width: width-20,
+		marginTop: 12,
+		marginBottom: 12,
+		backgroundColor: 'white',
+		borderWidth: 1,
+		borderColor: '#ddd',
+		borderBottomWidth: 0,
+		borderRadius: 10,
+		shadowColor: '#000',
+		shadowOffset: { width: 0, height: 1 },
+		shadowOpacity: 0.8,
+		shadowRadius: 2,
+		elevation: 2,
+		alignItems: 'center'
+	},
+	top: {
+		height: 40,
+		backgroundColor: 'white',
+	},
+	bottom: {
+		height: 80,
+		borderRadius: 10,
+		backgroundColor: 'white',
+		justifyContent: 'center',
+	},
+	text: {
+		textAlign: 'center',
+		fontSize: 20,
+		color: '#2c3e50',
+	},
+
+	delBtn: {
+		position: 'absolute',
+		borderColor: 'gray',
+		borderWidth: 0.3,
+		backgroundColor: 'white',
+		top: -7,
+		right: -7,
+		width: 35,
+		height: 35,
+		alignItems: 'center',
+		justifyContent: 'center',
+		borderRadius: 17,
+	},
+});

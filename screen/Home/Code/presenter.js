@@ -17,7 +17,7 @@ const Code = props => (
 		<TouchableOpacity
 			style={{ position: 'absolute', width: width * 0.2, height: height * 0.1, top: 15, left: 10, zIndex: 1 }}
 			onPress={() => {
-				this.props.navigation.navigate('Main');
+				props.navigation.navigate('Home');
 			}}
 		>
 			<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />

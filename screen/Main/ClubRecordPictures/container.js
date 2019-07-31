@@ -1,32 +1,15 @@
 import React, { Component } from 'react';
-import { View, Platform } from 'react-native';
+import { BackHandler } from 'react-native';
 import * as axios from 'axios';
 import ClubRecordPictures from './presenter';
 
 class Container extends React.Component {
 	static navigationOptions = {
-		title: '세부기록',
-		style: { elevation: 0, shadowOpacity: 0 },
-		headerStyle: {
-			height: Platform.OS === 'ios' ? 70 : 10,
-			elevation: 0,
-			shadowColor: 'transparent',
-			borderBottomWidth: 0,
-			paddingBottom: 10,
-			paddingTop: Platform.OS === 'ios' ? 40 : 5,
-		},
-		headerTitleStyle: {
-			color: '#2eaeff',
-			fontSize: Platform.OS === 'ios' ? 25 : 18,
-			textAlign: 'center',
-			flex: 1,
-			fontWeight: 'bold',
-		},
-		headerRight: <View />,
-		tintColor: '#2eaeff',
+		header: null,
 	};
 	constructor(props) {
 		super(props);
+		this._handleBackButtonClick = this._handleBackButtonClick.bind(this);
 		this.state = {
 			recordName: '',
 			recordContent: '',
@@ -42,7 +25,12 @@ class Container extends React.Component {
 
 	componentWillMount = () => {
 		this._getDatas();
+		BackHandler.addEventListener('hardwareBackPress', this._handleBackButtonClick);
 	};
+
+	componentWillUnmount() {
+		BackHandler.removeEventListener('hardwareBackPress', this._handleBackButtonClick);
+	}
 
 	_getDatas = async () => {
 		//userNo 가지고 오기
@@ -59,6 +47,12 @@ class Container extends React.Component {
 			});
 
 		this.setState({ isGetting: true });
+	};
+
+	_handleBackButtonClick = () => {
+		this.props.navigation.goBack();
+
+		return true;
 	};
 }
 

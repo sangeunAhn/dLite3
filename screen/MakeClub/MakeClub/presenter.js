@@ -4,7 +4,6 @@ import {
 	Text,
 	View,
 	TextInput,
-	ScrollView,
 	TouchableOpacity,
 	Dimensions,
 	Image,
@@ -35,9 +34,7 @@ const MakeClub = props => (
 						left: 10,
 						zIndex: 1,
 					}}
-					onPress={() =>
-						props.navigation.goBack()
-					}
+					onPress={() => props.navigation.goBack()}
 				>
 					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 				</TouchableOpacity>

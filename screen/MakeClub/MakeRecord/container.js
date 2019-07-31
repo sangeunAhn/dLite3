@@ -134,6 +134,7 @@ class Container extends React.Component {
 				var school = response.data.message.school;
 				t.props.navigation.navigate('Main', {
 					schoolName: school,
+					makeClub: 'done'
 				});
 			});
 	};

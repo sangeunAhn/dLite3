@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, Text, Dimensions, View, ScrollView, TouchableOpacity, Platform, BackHandler } from 'react-native';
+import {
+	StyleSheet,
+	Image,
+	Text,
+	Dimensions,
+	View,
+	ScrollView,
+	TouchableOpacity,
+	Platform,
+	BackHandler,
+} from 'react-native';
 import ClubDiv from '../../../components/ClubDiv';
 import ClubView_dLite from '../../../components/ClubView_dLite';
 import { Icon } from 'react-native-elements';
@@ -34,7 +44,7 @@ export default class Main extends React.Component {
 
 	componentWillMount = () => {
 		BackHandler.addEventListener('hardwareBackPress', this._handleBackButtonClick);
-	
+
 		const { navigation } = this.props;
 		const schoolName = navigation.getParam('schoolName', 'NO-ID');
 		this.setState({ schoolName: schoolName });
@@ -42,18 +52,15 @@ export default class Main extends React.Component {
 
 	componentWillUnmount() {
 		BackHandler.removeEventListener('hardwareBackPress', this._handleBackButtonClick);
-	  }
+	}
 
+	_handleBackButtonClick = () => {
+		this.props.navigation.getParam('makeClub', 'NO-ID') == 'done'
+			? this.props.navigation.navigate('Home')
+			: this.props.navigation.goBack();
+		return true;
+	};
 
-  _handleBackButtonClick = () => {
-    // this.props.navigation.getParam('from', 'NO-ID') == 'm'
-	// 	?
-	// 	this.props.navigation.goBack()
-	// 	:
-	// 	this.props.navigation.navigate('');
-    // return true;
-  }
-	
 	render() {
 		let { schoolName } = this.state;
 		return (
@@ -62,7 +69,9 @@ export default class Main extends React.Component {
 				<TouchableOpacity
 					style={{ position: 'absolute', width: width * 0.2, height: 30, top: 22, left: 10, zIndex: 1 }}
 					onPress={() => {
-						this.props.navigation.goBack();
+						this.props.navigation.getParam('makeClub', 'NO-ID') == 'done'
+							? this.props.navigation.navigate('Home')
+							: this.props.navigation.goBack();
 					}}
 				>
 					<Ionicons name="ios-arrow-back" size={28} color="black" />
@@ -107,7 +116,6 @@ export default class Main extends React.Component {
 	}
 }
 
-
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
@@ -151,4 +159,3 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white',
 	},
 });
-

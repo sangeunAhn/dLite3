@@ -1,31 +1,15 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, BackHandler } from 'react-native';
 import * as axios from 'axios';
 import ClubRecord from './presenter';
 
 class Container extends React.Component {
 	static navigationOptions = {
-		title: '기록',
-		style: { elevation: 0, shadowOpacity: 0 },
-		headerStyle: {
-			height: Platform.OS === 'ios' ? 70 : 10,
-			elevation: 0,
-			shadowColor: 'transparent',
-			borderBottomWidth: 0,
-			paddingBottom: 10,
-			paddingTop: Platform.OS === 'ios' ? 40 : 5,
-		},
-		headerTitleStyle: {
-			color: '#2eaeff',
-			fontSize: Platform.OS === 'ios' ? 25 : 18,
-			textAlign: 'center',
-			flex: 1,
-			fontWeight: 'bold',
-		},
-		tintColor: '#2eaeff',
+		header: null,
 	};
 	constructor(props) {
 		super(props);
+		this._handleBackButtonClick = this._handleBackButtonClick.bind(this);
 		this.state = {
 			records: [],
 			listRecords: [],
@@ -35,15 +19,8 @@ class Container extends React.Component {
 		};
 	}
 
-
 	render() {
-		return (
-			<ClubRecord 
-                {...this.state}
-                {...this.props}
-                goToPictures={this._goToPictures}
-            />
-		);
+		return <ClubRecord {...this.state} {...this.props} goToPictures={this._goToPictures} />;
 	}
 
 	componentWillMount = async () => {
@@ -51,6 +28,7 @@ class Container extends React.Component {
 		const { imageRoom } = this.state;
 		const t = this;
 
+		BackHandler.addEventListener('hardwareBackPress', this._handleBackButtonClick);
 		if (imageRoom.length !== 0) {
 			for (const item of imageRoom) {
 				await t._getDatas(item);
@@ -61,6 +39,10 @@ class Container extends React.Component {
 		await this.setState({ listRecords: this.state.records });
 		this.setState({ isGetting: true });
 	};
+
+	componentWillUnmount() {
+		BackHandler.removeEventListener('hardwareBackPress', this._handleBackButtonClick);
+	}
 
 	_getImageRoom = async () => {
 		//userNo 가지고 오기
@@ -132,6 +114,11 @@ class Container extends React.Component {
 			});
 	};
 
+	_handleBackButtonClick = () => {
+		this.props.navigation.navigate('Main');
+
+		return true;
+	};
 }
 
 export default Container;

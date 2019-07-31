@@ -4,15 +4,7 @@ import UpdateClub from './presenter';
 
 export default class ClubModify extends React.Component {
 	static navigationOptions = {
-		style: { elevation: 0, shadowOpacity: 0 },
-		headerStyle: {
-			height: Platform.OS === 'ios' ? 70 : 10,
-			elevation: 0,
-			shadowColor: 'transparent',
-			borderBottomWidth: 0,
-			paddingBottom: 10,
-			paddingTop: Platform.OS === 'ios' ? 40 : 5,
-		},
+		header: null
 	};
 	render() {
 		return (

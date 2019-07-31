@@ -18,13 +18,13 @@ export default class PhotoModify extends React.Component {
 
 	componentWillMount = async () => {
 		const { comment } = this.props;
-		this.setState({ commentValue: comment})
+		this.setState({ commentValue: comment });
 	};
 
 	Press = () => {
-		this.state.disabled == true ? this.setState({disabled:false}) : this.setState({disabled:true})
-	  }
-	  
+		this.state.disabled == true ? this.setState({ disabled: false }) : this.setState({ disabled: true });
+	};
+
 	static propTypes = {
 		id: PropTypes.string.isRequired,
 		deleteImage: PropTypes.func.isRequired,
@@ -33,67 +33,79 @@ export default class PhotoModify extends React.Component {
 	};
 	render() {
 		const { id, deleteImage, image } = this.props;
-		var {height, width} = Dimensions.get('window');
+		var { height, width } = Dimensions.get('window');
 		return (
 			<>
-			 <View style={styles.container}>
-				 
-				 	<View style={styles.body}>
-						 {
-							 (this.state.disabled == true) 
-							 ?
-						<TouchableOpacity onPress={this.Press}>
-							<AutoHeightImage
-							width={width-20}
-							style={{borderTopLeftRadius:10,borderTopRightRadius:10}}
-							source={{ uri : image}}
-							/>
-						</TouchableOpacity>
-						:
-						<TouchableOpacity onPress={this.Press}>
-							<AutoHeightImage
-							width={width-20}
-							blurRadius={10}
-							style={{ borderTopLeftRadius:10,borderTopRightRadius:10}}
-							source={{ uri : image}}
-							/>
-							<View style={{position: 'absolute', top: 0, left:'25%', right: 0, bottom: 0, justifyContent: 'center', }}>
-								<TouchableOpacity style={{ }} onPress={this._pickImage}>
-								<Feather name="edit" size={width * 0.15} color="black" />
-								</TouchableOpacity>
-							</View>
-							<View style={{position: 'absolute', top: 0,  right: '25%', bottom: 0, justifyContent: 'center', }}>
-								<TouchableOpacity style={{}} onPressOut={() => deleteImage(id)}>
-								<Entypo name="circle-with-cross" size={width * 0.15} color="black" />
-								</TouchableOpacity>
-							</View>
-						</TouchableOpacity>
-						 }
+				<View style={styles.container}>
+					<View style={styles.body}>
+						{this.state.disabled == true ? (
+							<TouchableOpacity onPress={this.Press}>
+								<AutoHeightImage
+									width={width - 20}
+									style={{ borderTopLeftRadius: 10, borderTopRightRadius: 10 }}
+									source={{ uri: image }}
+								/>
+							</TouchableOpacity>
+						) : (
+							<TouchableOpacity onPress={this.Press}>
+								<AutoHeightImage
+									width={width - 20}
+									blurRadius={10}
+									style={{ borderTopLeftRadius: 10, borderTopRightRadius: 10 }}
+									source={{ uri: image }}
+								/>
+								<View
+									style={{
+										position: 'absolute',
+										top: 0,
+										left: '25%',
+										right: 0,
+										bottom: 0,
+										justifyContent: 'center',
+									}}
+								>
+									<TouchableOpacity style={{}} onPress={this._pickImage}>
+										<Feather name="edit" size={width * 0.15} color="black" />
+									</TouchableOpacity>
+								</View>
+								<View
+									style={{
+										position: 'absolute',
+										top: 0,
+										right: '25%',
+										bottom: 0,
+										justifyContent: 'center',
+									}}
+								>
+									<TouchableOpacity style={{}} onPressOut={() => deleteImage(id)}>
+										<Entypo name="circle-with-cross" size={width * 0.15} color="black" />
+									</TouchableOpacity>
+								</View>
+							</TouchableOpacity>
+						)}
 					</View>
 
-
-			<View style={styles.bottom}>
-				<TextInput
-					style={styles.text}
-					placeholder={'간단한 코멘트를 입력해주세요'}
-					placeholderTextColor={'#bebebe'}
-					multiline={false}
-					onChangeText={comment => this._updateComment(comment)}
-					value={this.state.commentValue}
-					autoCorrect={false}
-				/>
-			</View>
-               
-			</View>
+					<View style={styles.bottom}>
+						<TextInput
+							style={styles.text}
+							placeholder={'간단한 코멘트를 입력해주세요'}
+							placeholderTextColor={'#bebebe'}
+							multiline={false}
+							onChangeText={comment => this._updateComment(comment)}
+							value={this.state.commentValue}
+							autoCorrect={false}
+						/>
+					</View>
+				</View>
 			</>
 		);
 	}
 
 	_updateComment = comment => {
-		this.setState({ commentValue: comment })
+		this.setState({ commentValue: comment });
 		const { id, updateComment } = this.props;
 		updateComment(id, comment);
-	}
+	};
 
 	// 이미지피커
 	_pickImage = async () => {
@@ -113,52 +125,50 @@ export default class PhotoModify extends React.Component {
 			}
 		}
 	};
-
 }
 
 const styles = StyleSheet.create({
-	container:{
-        flex:1,
-        margin:5,
-        backgroundColor:'white',
-        borderWidth: 1,
-        borderColor: '#ddd',
+	container: {
+		flex: 1,
+		margin: 5,
+		backgroundColor: 'white',
+		borderWidth: 1,
+		borderColor: '#ddd',
 		borderBottomWidth: 0,
-		borderRadius:10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        elevation: 2,
-    
-    },
-    top:{
-        height:40,
-        backgroundColor:'white'
-    },
-    bottom:{
-		height:80,
-		borderRadius:10,
-        backgroundColor:'white',
-        justifyContent:'center'
-    },
-    text:{
+		borderRadius: 10,
+		shadowColor: '#000',
+		shadowOffset: { width: 0, height: 1 },
+		shadowOpacity: 0.8,
+		shadowRadius: 2,
+		elevation: 2,
+	},
+	top: {
+		height: 40,
+		backgroundColor: 'white',
+	},
+	bottom: {
+		height: 80,
+		borderRadius: 10,
+		backgroundColor: 'white',
+		justifyContent: 'center',
+	},
+	text: {
 		textAlign: 'center',
 		fontSize: 20,
 		color: '#bebebe',
-    },
+	},
 
-    delBtn: {
+	delBtn: {
 		position: 'absolute',
-		borderColor:'gray',
-		borderWidth:0.3,
-        backgroundColor: 'white',
-        top: -7,
-        right: -7,
-        width: 35,
-        height: 35,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 17
-    }
+		borderColor: 'gray',
+		borderWidth: 0.3,
+		backgroundColor: 'white',
+		top: -7,
+		right: -7,
+		width: 35,
+		height: 35,
+		alignItems: 'center',
+		justifyContent: 'center',
+		borderRadius: 17,
+	},
 });
