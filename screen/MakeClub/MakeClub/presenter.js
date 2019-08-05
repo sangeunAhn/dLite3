@@ -225,17 +225,17 @@ const MakeClub = props => (
 									styles.input,
 									styles.introduce,
 									{
-										borderColor: props.isFocused
+										borderColor: props.isFocused1
 											? Platform.OS === 'ios'
 												? 'white'
 												: 'transparent'
 											: '#DCDCDC',
 										borderWidth: 1,
-										shadowColor: props.isFocused ? 'rgba(0,0,0, .2)' : null, // IOS
-										shadowOffset: props.isFocused ? { height: 1, width: 1 } : null, // IOS
-										shadowOpacity: props.isFocused ? 1 : null, // IOS
-										shadowRadius: props.isFocused ? 1 : null, // IOS
-										elevation: props.isFocused ? 2 : null, // IOS
+										shadowColor: props.isFocused1 ? 'rgba(0,0,0, .2)' : null, // IOS
+										shadowOffset: props.isFocused1 ? { height: 1, width: 1 } : null, // IOS
+										shadowOpacity: props.isFocused1 ? 1 : null, // IOS
+										shadowRadius: props.isFocused1 ? 1 : null, // IOS
+										elevation: props.isFocused1 ? 2 : null, // IOS
 									},
 								]}
 								multiline={true}
@@ -251,29 +251,29 @@ const MakeClub = props => (
 								style={[
 									styles.text,
 									{
-										color: props.isFocused3 ? '#000000' : '#8d97a5',
+										color: props.isFocused2 ? '#000000' : '#8d97a5',
 									},
 								]}
 							>
 								연락 가능 연락처
 							</Text>
 							<TextInput
-								onFocus={props.handleFocus3}
+								onFocus={props.handleFocus2}
 								onBlur={props.clubPhoneNumber.length == 0 ? props.handleBlur3 : null}
 								style={[
 									styles.input,
 									{
-										borderColor: props.isFocused
+										borderColor: props.isFocused2
 											? Platform.OS === 'ios'
 												? 'white'
 												: 'transparent'
 											: '#DCDCDC',
 										borderWidth: 1,
-										shadowColor: props.isFocused ? 'rgba(0,0,0, .2)' : null, // IOS
-										shadowOffset: props.isFocused ? { height: 1, width: 1 } : null, // IOS
-										shadowOpacity: props.isFocused ? 1 : null, // IOS
-										shadowRadius: props.isFocused ? 1 : null, // IOS
-										elevation: props.isFocused ? 2 : null, // IOS
+										shadowColor: props.isFocused2 ? 'rgba(0,0,0, .2)' : null, // IOS
+										shadowOffset: props.isFocused2 ? { height: 1, width: 1 } : null, // IOS
+										shadowOpacity: props.isFocused2 ? 1 : null, // IOS
+										shadowRadius: props.isFocused2 ? 1 : null, // IOS
+										elevation: props.isFocused2 ? 2 : null, // IOS
 									},
 								]}
 								multiline={true}
