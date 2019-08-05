@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
 
 		color: '#ADCDE9',
 		fontSize: width * 0.07,
-		fontWeight: 'bold',
 	},
 	line: {
 		borderBottomWidth: 0.7,

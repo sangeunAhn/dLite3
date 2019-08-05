@@ -19,7 +19,7 @@ class Container extends React.Component {
 		};
 
 		this.props.navigation.addListener('didFocus', async () => {
-			await this.setState({ isGetting: false, records: [] });
+			await this.setState({ isGetting: false, records: [], count: 0 });
 			await this._getImageRoom();
 			const { imageRoom } = this.state;
 			const t = this;

@@ -65,9 +65,23 @@ const MakeRecordPictures = props => (
 				</HeaderScrollView>
 				<View style={styles.footer}>
 					{props.count === 0 ? (
-						<View style={{ width: '100%' }}>
-							<RegisterButtonN title={'사진을 넣어주세요.'} />
-						</View>
+						<>
+							{props.navigation.getParam('to', 'NO-ID') == 'm' ? (
+								<View style={{ width: '100%' }}>
+									{props.isSubmitting ? (
+										<RegisterButton title={'로딩'} />
+									) : (
+										<TouchableOpacity onPress={props.btnDeleteAll}>
+											<RegisterButton title={'기록 삭제'} />
+										</TouchableOpacity>
+									)}
+								</View>
+							) : (
+								<View style={{ width: '100%' }}>
+									<RegisterButtonN title={'사진을 넣어주세요.'} />
+								</View>
+							)}
+						</>
 					) : (
 						<View style={{ width: '100%' }}>
 							{props.isSubmitting ? (

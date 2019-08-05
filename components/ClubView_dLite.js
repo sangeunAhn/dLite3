@@ -81,7 +81,7 @@ export default class ClubView_dLite extends Component {
           (this.state.disabled == true) ?
 
             <TouchableOpacity onPress={this.press}  >
-              <Image style={styles.picture} source={require('../images/ssam.jpg')} />
+              <View style={styles.picture} backgroundColor={'#CEE1F2'} />
               <View>
               </View>
             </TouchableOpacity>
@@ -90,7 +90,7 @@ export default class ClubView_dLite extends Component {
 
             <TouchableOpacity onPress={this.press}  >
               <View style={{ zIndex: 0 }}>
-                <Image blurRadius={5} style={styles.picture} source={require('../images/ssam.jpg')} />
+                <View style={styles.picture} backgroundColor={'#CEE1F2'} />
               </View>
               <View style={{ position: 'absolute', top: 10, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center', zIndex: 20, }}>
                 <View style={{ width: width * 0.5, height: height * 0.085, backgroundColor: 'white', borderRadius: 50, justifyContent: 'space-around', alignItems: 'center', flexDirection: 'row' }}>

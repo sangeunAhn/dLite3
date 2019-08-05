@@ -1,5 +1,5 @@
 import React from 'react';
-import { AsyncStorage, BackHandler } from 'react-native';
+import { AsyncStorage, BackHandler, TouchableWithoutFeedback } from 'react-native';
 import * as axios from 'axios';
 import MakeChars from './presenter';
 
@@ -14,9 +14,12 @@ class Container extends React.Component {
 		super(props);
 		this._handleBackButtonClick = this._handleBackButtonClick.bind(this);
 		this.state = {
-			clubChars: [],
-			chars: [],
+			clubChars: {},
+			chars: {},
 			count: 0,
+			isSubmitting: false,
+			allDelBtn: false,
+			idCount: 0,
 		};
 	}
 
@@ -25,9 +28,11 @@ class Container extends React.Component {
 			<MakeChars
 				{...this.state}
 				{...this.props}
+				screenPress={this._screenPress}
 				removeChar={this._removeChar}
 				addChar={this._addChar}
-				ButtonPress={this._ButtonPress}
+				buttonPress={this._buttonPress}
+				charPress={this._charPress}
 			/>
 		);
 	}
@@ -55,21 +60,44 @@ class Container extends React.Component {
 		const t = this;
 		// 데이터 가져오기
 		axios
-			.post('http://dkstkdvkf00.cafe24.com/php/MakeClub/ModifyChar.php', {
+			.post('http://dkstkdvkf00.cafe24.com/php/MakeClub/GetChars.php', {
 				userNo: userNo,
 			})
-			.then(result => {
-				const response = result.data;
-				var CharArray = new Array();
-
-				response.forEach(row => {
-					CharArray.push(row.chars);
-				});
-
-				for (let i = 0; i < CharArray.length; i++) {
-					this._addChar(CharArray[i]);
-				}
+			.then(response => {
+				t._setDatas(response);
 			});
+	};
+
+	_setDatas = async response => {
+		const t = this;
+		for (item of response.data) {
+			await t._addGetChars(item.chars, item.createdAt);
+		}
+	};
+
+	_addGetChars = (char, createdAt) => {
+		const t = this;
+		this.setState(prevState => {
+			const ID = t.state.idCount.toString();
+			const { count, idCount } = this.state;
+			const newCharObject = {
+				[ID]: {
+					id: ID, // 등록시간
+					char: char, // 특성 내용
+					delBtn: false,
+					createdAt,
+				},
+			};
+			const newState = {
+				count: count + 1,
+				idCount: idCount + 1,
+				chars: {
+					...prevState.chars,
+					...newCharObject,
+				},
+			};
+			return { ...newState };
+		});
 	};
 
 	componentDidMount = () => {
@@ -79,37 +107,54 @@ class Container extends React.Component {
 		});
 	};
 
-	_removeChar = index => {
-		let clubChars = [...this.state.clubChars];
-		let chars = [...this.state.chars];
-		let { count } = this.state;
-		chars.splice(index, 1);
-		clubChars.splice(index, 1);
-		this.setState({
-			chars: chars,
-			clubChars: clubChars,
-			count: count - 1,
+	_removeChar = id => {
+		this.setState(prevState => {
+			const chars = prevState.chars;
+			const count = this.state.count;
+			delete chars[id];
+			const newState = {
+				...prevState,
+				...chars,
+				count: count - 1,
+			};
+			return { ...newState };
 		});
 	};
 
 	_addChar = char => {
-		let { count } = this.state;
-		this.setState({ count: count + 1 });
-		// 새로운 특성(char) 객체 생성
-		const newChar = {
-			id: Date.now(), // 등록시간
-			text: char, // 특성 내용
-		};
-		// state 업데이트
+		const t = this;
 		this.setState(prevState => {
-			prevState.clubChars.push(char);
-			prevState.chars.push(newChar);
-			return prevState;
+			const ID = t.state.idCount.toString();
+			const { count, idCount } = this.state;
+			const newCharObject = {
+				[ID]: {
+					id: ID, // 등록시간
+					char: char, // 특성 내용
+					delBtn: false,
+					createdAt: Date.now(),
+				},
+			};
+			const newState = {
+				count: count + 1,
+				idCount: idCount + 1,
+				chars: {
+					...prevState.chars,
+					...newCharObject,
+				},
+			};
+			return { ...newState };
 		});
 	};
 
-	_ButtonPress = () => {
+	_screenPress = async () => {
+		const chars = this.state.chars;
+		await this.setState({ chars: {} });
+		this.setState({ chars })
+	};
+
+	_buttonPress = () => {
 		const { navigation } = this.props;
+		this.setState({ isSubmitting: true });
 		var userNo = navigation.getParam('userNo', 'NO-ID');
 		if (this.props.navigation.getParam('from', 'NO-ID') == 'm') {
 			this._modifySetClubChars();
@@ -123,42 +168,41 @@ class Container extends React.Component {
 	};
 
 	_setClubChars = async () => {
+		const { chars } = this.state;
+		const t = this;
+
+		await Promise.all(Object.values(chars).map(char => t._inputDatas(char.id, char.char)));
+	};
+
+	_inputDatas = async (id, char) => {
 		const { navigation } = this.props;
-		const { clubChars } = this.state;
 		var userNo = navigation.getParam('userNo', 'NO-ID');
-		for (let i = 0; i < clubChars.length; i++) {
-			// 데이터베이스에 넣기
-			await axios
-				.post('http://dkstkdvkf00.cafe24.com/php/MakeClub/SetClubChars.php', {
-					chars: clubChars[i],
-					userNo: userNo,
-				})
-				.then(function(response) {
-					ms = response.data.message;
-				});
-		}
+
+		let formData = new FormData();
+		formData.append('createdAt', id);
+		formData.append('chars', char);
+		formData.append('userNo', userNo);
+
+		await fetch('http://dkstkdvkf00.cafe24.com/php/MakeClub/SetClubChars.php', {
+			method: 'POST',
+			body: formData,
+			header: {
+				'content-type': 'multipart/form-data',
+			},
+		});
 	};
 
 	_modifySetClubChars = async () => {
 		const { navigation } = this.props;
-		const { clubChars } = this.state;
+		const { chars } = this.state;
+		const t = this;
 		var userNo = navigation.getParam('userNo', 'NO-ID');
 
 		await axios.post('http://dkstkdvkf00.cafe24.com/php/MakeClub/DeleteClubChars.php', {
 			userNo: userNo,
 		});
 
-		for (let i = 0; i < clubChars.length; i++) {
-			// 데이터베이스에 넣기
-			await axios
-				.post('http://dkstkdvkf00.cafe24.com/php/MakeClub/SetClubChars.php', {
-					chars: clubChars[i],
-					userNo: userNo,
-				})
-				.then(function(response) {
-					ms = response.data.message;
-				});
-		}
+		await Promise.all(Object.values(chars).map(char => t._inputDatas(char.id, char.char)));
 	};
 
 	_handleBackButtonClick = () => {
@@ -167,6 +211,7 @@ class Container extends React.Component {
 			: this.props.navigation.navigate('Code');
 		return true;
 	};
+
 }
 
 export default Container;
