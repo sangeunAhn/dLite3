@@ -10,7 +10,7 @@ const Schools = props => (
 	<>
 		<View style={styles.container}>
 			<TouchableOpacity
-				style={{ position: 'absolute', width: width * 0.2, height: height * 0.1, top: 15, left: 10, zIndex: 1 }}
+				style={styles.backButton}
 				onPress={() => {
 						props.navigation.goBack()
 				}}
@@ -18,39 +18,68 @@ const Schools = props => (
 				<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 			</TouchableOpacity>
 			<Text style={styles.title}>학교 선택</Text>
+			<View style={{flexDirection:'column'}}>
 				<View style={styles.schools}>
 					<SchoolBtn
 						school={'울산대학교'}
-						backgroundColor={'#c7ecee'}
-						textColor={'#1289A7'}
+						backgroundColor={'white'}
+						lineColor={'#5EC598'}
 						onPress={props.ulsanUiv}
 					/>
+						<SchoolBtn
+						school={'울산대학교'}
+						backgroundColor={'white'}
+						lineColor={'#5EC598'}
+						onPress={props.ulsanUiv}
+					/>
+					</View>
+					<View>
+					<View style={styles.schools}>
+					<SchoolBtn
+						school={'울산대학교'}
+						backgroundColor={'white'}
+						lineColor={'#5EC598'}
+						onPress={props.ulsanUiv}
+					/>
+						<SchoolBtn
+						school={'울산대학교'}
+						backgroundColor={'white'}
+						lineColor={'#5EC598'}
+						onPress={props.ulsanUiv}
+					/>
+					</View>
+					</View>
 				</View>
 		</View>
 	</>
 );
 
 const styles = StyleSheet.create({
+	backButton:{
+		position: 'absolute', 
+		width: width * 0.2, 
+		height: height * 0.1, 
+		top: 15, 
+		left: 10, 
+		zIndex: 1 
+	},
 	container: {
 		flex: 1,
 		flexDirection: 'column',
-		paddingHorizontal: 10,
-		paddingBottom: 10,
 		backgroundColor: 'white',
 	},
 	title:{
 		marginTop:45,
-		marginLeft: 8,
+		marginLeft: width*0.05,
+		marginBottom:height*0.02,
 		fontSize: 30,
 		fontWeight: '700'
 	},	
 	schools: {
-		flex: 1,
-		padding: 40,
-		paddingBottom: 120,
-		backgroundColor: 'white',
-		alignItems: 'center',
-		justifyContent: 'center',
+		flex:1,
+		marginHorizontal:width*0.03,
+		flexDirection:'row',
+		justifyContent: 'space-around'
 	},
 });
 

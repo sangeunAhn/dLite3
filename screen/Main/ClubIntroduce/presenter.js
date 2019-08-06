@@ -21,14 +21,7 @@ const ClubIntroduce = props => (
 		{props.isGetting1 && props.isGetting2 ? (
 			<View style={styles.container}>
 				<TouchableOpacity
-					style={{
-						position: 'absolute',
-						width: width * 0.2,
-						height: height * 0.1,
-						top: 15,
-						left: 10,
-						zIndex: 1,
-					}}
+					style={styles.backButton}
 					onPress={() => {
 						props.navigation.goBack();
 					}}
@@ -38,14 +31,7 @@ const ClubIntroduce = props => (
 
 				<HeaderScrollView
 					headerContainerStyle={{ height: height * 0.08 }}
-					headlineStyle={{
-						paddingTop: 23,
-						textAlign: 'center',
-						justifyContent: 'center',
-						alignItems: 'center',
-						alignSelf: 'center',
-						fontSize: width * 0.05,
-					}}
+					headlineStyle={styles.header}
 					headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
 					titleStyle={{ fontSize: width * 0.08 }}
 					scrollEnabled={false}
@@ -159,9 +145,25 @@ const ClubIntroduce = props => (
 );
 
 const styles = StyleSheet.create({
+	backButton:{
+		position: 'absolute', 
+		width: width * 0.2, 
+		height: height * 0.1, 
+		top: 15, 
+		left: 10, 
+		zIndex: 1 
+	},
 	container: {
 		flex: 1,
 		backgroundColor: 'white',
+	},
+	header:{
+		paddingTop: 23,
+		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
+		alignSelf: 'center',
+		fontSize: width * 0.05,
 	},
 	blank: {
 		fontSize: 25,
