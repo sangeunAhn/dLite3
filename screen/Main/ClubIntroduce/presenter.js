@@ -43,27 +43,9 @@ const ClubIntroduce = props => (
 
 					<View style={{ alignItems: 'center', marginTop: 5, marginHorizontal: width * 0.05 }}>
 						{props.clubMainPicture === null || props.clubMainPicture == '' ? (
-							<Image
-								source={require('../../../images/momo.jpg')}
-								style={{
-									marginTop: 5,
-									width: width * 0.9,
-									height: height * 0.23,
-									borderRadius: 15,
-									backgroundColor: '#95a5a6',
-								}}
-							/>
+							<View style={styles.clubMainPicture} />
 						) : (
-							<Image
-								style={{
-									marginTop: 5,
-									width: width * 0.9,
-									height: height * 0.23,
-									borderRadius: 15,
-									backgroundColor: '#95a5a6',
-								}}
-								source={{ uri: props.clubMainPicture }}
-							/>
+							<Image style={styles.clubMainPicture} source={{ uri: props.clubMainPicture }} />
 						)}
 					</View>
 
@@ -80,9 +62,8 @@ const ClubIntroduce = props => (
 							>
 								{props.clubLogo === null || props.clubLogo == '' ? (
 									<Image
-										source={require('../../../images/momo.jpg')}
 										style={{
-											backgroundColor: '#95a5a6',
+											backgroundColor: '#ADCDE9',
 											width: width * 0.27,
 											height: width * 0.27,
 											borderRadius: width * 0.27 * 0.5,
@@ -91,7 +72,7 @@ const ClubIntroduce = props => (
 								) : (
 									<Image
 										style={{
-											backgroundColor: '#95a5a6',
+											backgroundColor: '#ADCDE9',
 											width: width * 0.27,
 											height: width * 0.27,
 											borderRadius: width * 0.27 * 0.5,
@@ -126,16 +107,6 @@ const ClubIntroduce = props => (
 							</View>
 						</View>
 					</View>
-
-					{/* <View style={styles.title}>
-						<Text style={styles.clubTitle}>{props.clubName}</Text>
-
-						<Text style={styles.clubChar}>
-							{props.clubChar.map((chars, i) => {
-								return <ClubChars chars={props.clubChar[i]} key={i} />;
-							})}
-						</Text>
-					</View> */}
 				</HeaderScrollView>
 			</View>
 		) : (
@@ -169,10 +140,6 @@ const styles = StyleSheet.create({
 		fontSize: 25,
 		color: 'white',
 	},
-	container: {
-		flex: 1,
-		backgroundColor: 'white',
-	},
 
 	input: {
 		borderRadius: 8,
@@ -201,44 +168,8 @@ const styles = StyleSheet.create({
 	textIn: {
 		fontSize: width * 0.04,
 	},
-	title: {
-		width: width,
-		height: height * 0.6,
-		flexDirection: 'column',
-		alignItems: 'center',
-		backgroundColor: '#F2F2F2',
-		paddingTop: 25,
-	},
-	clubImage: {
-		width: '90%',
-		height: '65%',
-		resizeMode: 'cover',
-		backgroundColor: '#323232',
-		borderRadius: 15,
-	},
-	logo: {
-		height: 70,
-		width: 70,
-		resizeMode: 'cover',
-		backgroundColor: '#fff',
-		borderRadius: 35,
-		top: -30,
-
-		zIndex: 1,
-	},
-	toDos: {
-		alignItems: 'center',
-	},
 	block: {
 		paddingBottom: 30,
-	},
-	introduce: {
-		height: 120,
-	},
-	button: {
-		height: 60,
-		marginTop: 30,
-		paddingHorizontal: width * 0.03,
 	},
 	activityIndicator: {
 		flex: 1,
@@ -246,7 +177,13 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		height: 80,
 	},
+	clubMainPicture: {
+		marginTop: 5,
+		width: width * 0.9,
+		height: height * 0.23,
+		borderRadius: 15,
+		backgroundColor: '#CEE1F2',
+	},
 });
-
 
 export default ClubIntroduce;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { AsyncStorage, Platform } from 'react-native';
+import { BackHandler } from 'react-native';
 import * as axios from 'axios';
 import uuidv1 from 'uuid/v1';
 import MakeRecordPictures from './presenter';
@@ -10,6 +11,7 @@ export default class RecordRegister extends React.Component {
 	};
 	constructor(props) {
 		super(props);
+		this._handleBackButtonClick = this._handleBackButtonClick.bind(this);
 		this.state = {
 			images: {},
 			disabled: false,
@@ -34,15 +36,22 @@ export default class RecordRegister extends React.Component {
 				updateImage={this._updateImage}
 				updateComment={this._updateComment}
 				btnPress={this._btnPress}
+				btnDeleteAll={this._btnDeleteAll}
 			/>
 		);
 	}
 
 	componentWillMount = async () => {
+		BackHandler.addEventListener('hardwareBackPress', this._handleBackButtonClick);
 		if (this.props.navigation.getParam('to', 'NO-ID') == 'm') {
 			await this._getDatas();
 		}
 	};
+
+
+	componentWillUnmount() {
+		BackHandler.removeEventListener('hardwareBackPress', this._handleBackButtonClick);
+	  }
 
 	_addImage = image => {
 		const t = this;
@@ -218,4 +227,14 @@ export default class RecordRegister extends React.Component {
 			},
 		});
 	};
+
+	_handleBackButtonClick = () => {
+		this.props.navigation.goBack()
+		return true;
+	  }
+
+	  _btnDeleteAll = () => {
+		  this._deletePrevDatas()
+		  this.props.navigation.navigate('MakeRecord');
+	  }
 }

@@ -77,47 +77,47 @@ class Container extends Component {
 	};
 
 	// 데이터 넣기
-	_setDatas = response => {
+	_setDatas = async response => {
 		var str = JSON.stringify(response.data.message.clubName);
 		var clubName = str.substring(1, str.length - 1);
-		this.setState({
+		await this.setState({
 			clubName: clubName,
 		});
 
 		var str = JSON.stringify(response.data.message.clubWellcome);
 		var clubWellcome = str.substring(1, str.length - 1);
-		this.setState({
+		await this.setState({
 			clubWellcome: clubWellcome,
 		});
 
 		var str = JSON.stringify(response.data.message.clubKind);
 		var clubKind = str.substring(1, str.length - 1);
-		this.setState({
+		await this.setState({
 			clubKind: clubKind,
 		});
 
 		var str = JSON.stringify(response.data.message.clubPhoneNumber);
 		var clubPhoneNumber = str.substring(1, str.length - 1);
-		this.setState({
+		await this.setState({
 			clubPhoneNumber: clubPhoneNumber,
 		});
 
 		var str = JSON.stringify(response.data.message.clubIntroduce);
 		var clubIntroduce = str.substring(1, str.length - 1);
-		this.setState({
+		await this.setState({
 			clubIntroduce: clubIntroduce,
 		});
 
 		var str = JSON.stringify(response.data.message.clubLogo);
 		var clubLogo = str.substring(1, str.length - 1);
-		this.setState({
+		await this.setState({
 			clubLogo: clubLogo,
 			prevClubLogo: clubLogo,
 		});
 
 		var str = JSON.stringify(response.data.message.clubMainPicture);
 		var clubMainPicture = str.substring(1, str.length - 1);
-		this.setState({
+		await this.setState({
 			clubMainPicture: clubMainPicture,
 			prevClubMainPicture: clubMainPicture,
 		});
@@ -236,7 +236,7 @@ class Container extends Component {
 			clubMainPicture,
 		} = this.state;
 
-		if (clubName == '' || clubWellcome == '' || clubPhoneNumber == '' || clubIntroduce == '') {
+		if (clubName == '' || clubPhoneNumber == '' || clubIntroduce == '') {
 			Alert.alert('내용을 채워주세요');
 		} else {
 			let formData = new FormData();

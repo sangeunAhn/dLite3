@@ -22,16 +22,7 @@ const MAX_HEIGHT = 50.5;
 
 export default class Main extends React.Component {
 	static navigationOptions = ({ navigation, screenProps }) => ({
-		headerTintColor: 'black',
-		headerTransparent: true,
-		headerStyle: {
-			height: Platform.OS === 'ios' ? 70 : 10,
-			elevation: 0,
-			shadowColor: 'transparent',
-			borderBottomWidth: 0,
-			paddingBottom: 10,
-			paddingTop: Platform.OS === 'ios' ? 40 : 5,
-		},
+		
 		header: null,
 	});
 	constructor(props) {

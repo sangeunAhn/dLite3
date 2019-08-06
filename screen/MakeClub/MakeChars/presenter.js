@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-	StyleSheet,
-	TouchableOpacity,
-	AsyncStorage,
-	Dimensions,
-	Text,
-	View,
-	TouchableWithoutFeedback,
-	Keyboard,
-	BackHandler,
-} from 'react-native';
+import { StyleSheet, TouchableOpacity, Dimensions, Text, View, TouchableWithoutFeedback } from 'react-native';
 import ConfirmButton from '../../../components/Button/ConfirmButton';
 import ConfirmButtonN from '../../../components/Button/ConfirmButtonN';
 import CharInput from '../../../components/CharInput';
@@ -23,72 +13,107 @@ const { width, height } = Dimensions.get('window');
 
 const MakeChars = props => (
 	<>
-		<View style={styles.container}>
-			<TouchableOpacity
-				style={{ position: 'absolute', width: width * 0.2, height: height * 0.1, top: 15, left: 10, zIndex: 1 }}
-				onPress={() => {
-					props.navigation.getParam('from', 'NO-ID') == 'm'
-						? props.navigation.goBack()
-						: props.navigation.navigate('Code')
-				}}
-			>
-				<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
-			</TouchableOpacity>
-			<HeaderScrollView
-				// scrollContainerStyle={{backgroundColor:'red'}}
-				scrollEnabled={false}
-				fadeDirection="up"
-				title="특징 입력"
-			>
-				<View style={{ flex: 1 }}>
-					{props.count >= 15 ? <View style={styles.dd} /> : <CharInput addChar={props.addChar} />}
-					{/* 위에 샾버튼 클릭했을 때 생긴 샾버튼 들어가는 곳 */}
-				</View>
+		<TouchableWithoutFeedback onPress={props.screenPress}>
+			<View style={styles.container}>
+				<TouchableOpacity
+					style={{
+						position: 'absolute',
+						width: width * 0.2,
+						height: height * 0.1,
+						top: 15,
+						left: 10,
+						zIndex: 1,
+					}}
+					onPress={() => {
+						props.navigation.getParam('from', 'NO-ID') == 'm'
+							? props.navigation.goBack()
+							: props.navigation.navigate('Code');
+					}}
+				>
+					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+				</TouchableOpacity>
+				<HeaderScrollView
+					// scrollContainerStyle={{backgroundColor:'red'}}
+					scrollEnabled={false}
+					fadeDirection="up"
+					title="특징 입력"
+				>
+					<View style={{ flex: 1 }}>
+						{props.count >= 15 ? <View style={styles.dd} /> : <CharInput addChar={props.addChar} />}
+						{/* 위에 샾버튼 클릭했을 때 생긴 샾버튼 들어가는 곳 */}
+					</View>
 
-				{/* 샾버튼 모아놓은거 */}
-				{/* 위에 샾버튼 클릭했을 때 생긴 샾버튼 들어가는 곳 */}
-				<View style={styles.contain}>
-					{props.chars == 0 ? (
-						<>
-							<View style={{ flexDirection: 'column' }}>
-								<Text style={{ fontSize: moderateScale(12), color: '#BBBBBB', marginBottom: 10 }}>
-									{' '}
-									예시)
-									{'\n'}
-								</Text>
-								<View
-									style={{
-										flexDirection: 'row',
-										flexWrap: 'wrap',
-										justifyContent: 'space-evenly',
-									}}
-								>
-									<CharEX title="#소규모" />
-									<CharEX title="#꿀잼" />
-									<CharEX title="#잘생긴놈들" />
-									<CharEX title="#아싸들의 성지" />
-									<CharEX title="#페북/인스타 운영" />
-									<CharEX title="#친근함" />
-									<CharEX title="#대규모" />
-									<CharEX title="#매주 여행" />
+					{/* 샾버튼 모아놓은거 */}
+					{/* 위에 샾버튼 클릭했을 때 생긴 샾버튼 들어가는 곳 */}
+					<View style={styles.contain}>
+						{props.chars == 0 ? (
+							<>
+								<View style={{ flexDirection: 'column' }}>
+									<Text style={{ fontSize: moderateScale(12), color: '#BBBBBB', marginBottom: 10 }}>
+										{' '}
+										예시)
+										{'\n'}
+									</Text>
+									<View
+										style={{
+											flexDirection: 'row',
+											flexWrap: 'wrap',
+											justifyContent: 'space-evenly',
+										}}
+									>
+										<CharEX title="#소규모" />
+										<CharEX title="#꿀잼" />
+										<CharEX title="#잘생긴놈들" />
+										<CharEX title="#아싸들의 성지" />
+										<CharEX title="#페북/인스타 운영" />
+										<CharEX title="#친근함" />
+										<CharEX title="#대규모" />
+										<CharEX title="#매주 여행" />
+									</View>
 								</View>
+							</>
+						) : (
+							<View
+								style={{
+									width: '100%',
+									flexWrap: 'wrap',
+									flex: 1,
+									flexDirection: 'row',
+									alignItems: 'flex-start',
+									marginTop: 20,
+								}}
+							>
+								{Object.values(props.chars).map((data) => (
+									<CharGoal
+										key={data.id}
+										text={data.char}
+										removeChar={props.removeChar}
+										delBtn={data.delBtn}
+										{...data}
+									/>
+								))}
 							</View>
-						</>
+						)}
+					</View>
+					<View style={{ height: 80 }} />
+				</HeaderScrollView>
+				{/* 완료버튼 */}
+				<View style={styles.footer}>
+					{props.chars == 0 ? (
+						<ConfirmButtonN title={'선택완료'} />
+					) : props.isSubmitting ? (
+						<ConfirmButton buttonColor={'#ADCDE9'} titleColor={'#3B3B3B'} title={'로딩'} />
 					) : (
-						<CharGoal chars={props.chars} removeChar={props.removeChar} />
+						<ConfirmButton
+							buttonColor={'#ADCDE9'}
+							titleColor={'#3B3B3B'}
+							title={'선택완료'}
+							onPress={props.buttonPress}
+						/>
 					)}
 				</View>
-				<View style={{ height: 80 }} />
-			</HeaderScrollView>
-			{/* 완료버튼 */}
-			<View style={styles.footer}>
-				{props.chars == 0 ? (
-					<ConfirmButtonN title={'선택완료'} />
-				) : (
-					<ConfirmButton title={'선택완료'} onPress={props.ButtonPress} />
-				)}
 			</View>
-		</View>
+		</TouchableWithoutFeedback>
 	</>
 );
 
@@ -102,16 +127,13 @@ const styles = StyleSheet.create({
 	},
 	header: {
 		width: '100%',
-
 		paddingTop: 20,
-		// backgroundColor: '#ff9a9a',
 	},
 	title: {
 		width: '100%',
 		paddingTop: scale(10),
 		flexDirection: 'row',
 		alignItems: 'flex-end',
-		// backgroundColor: '#9aa9ff',
 		paddingLeft: 15,
 	},
 	dd: {
