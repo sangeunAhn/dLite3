@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 
-class CharGoal extends Component {
+class Char extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -61,4 +61,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default CharGoal;
+export default Char;

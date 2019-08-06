@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity, Dimensions, Text, View, TouchableWithoutF
 import ConfirmButton from '../../../components/Button/ConfirmButton';
 import ConfirmButtonN from '../../../components/Button/ConfirmButtonN';
 import CharInput from '../../../components/CharInput';
-import CharGoal from '../../../components/CharGoal';
+import Char from '../../../components/Char';
 import CharEX from '../../../components/CharEX';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import { scale, moderateScale } from '../../../components/Scaling';
@@ -84,7 +84,7 @@ const MakeChars = props => (
 								}}
 							>
 								{Object.values(props.chars).map((data) => (
-									<CharGoal
+									<Char
 										key={data.id}
 										text={data.char}
 										removeChar={props.removeChar}
