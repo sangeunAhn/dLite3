@@ -33,7 +33,7 @@ class Container extends Component {
     _getDatas = async () => {
     const { clubName, clubLogo, clubMainPicture } = this.state;
     const { school, clubKind } = this.props;
-    this.setState({school : school})
+    this.setState({school})
     
     
     

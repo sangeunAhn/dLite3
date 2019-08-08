@@ -22,7 +22,6 @@ const MAX_HEIGHT = 50.5;
 
 export default class Main extends React.Component {
 	static navigationOptions = ({ navigation, screenProps }) => ({
-
 		header: null,
 	});
 	constructor(props) {
@@ -57,11 +56,11 @@ export default class Main extends React.Component {
 		return (
 			<View style={styles.container}>
 				<TouchableOpacity
-					style={{
-						position: 'absolute', width: width * 0.2, height: height * 0.1, top: Platform.OS === 'ios' ? 30 : 15, left: 10, zIndex: 1
-					}}
+					style={styles.backBtn}
 					onPress={() => {
-						props.navigation.navigate('Home');
+						this.props.navigation.getParam('makeClub', 'NO-ID') == 'done'
+							? this.props.navigation.navigate('Home')
+							: this.props.navigation.goBack();
 					}}
 				>
 					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
@@ -72,9 +71,9 @@ export default class Main extends React.Component {
 					headlineStyle={styles.header}
 					headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
 					titleStyle={{
-						paddingTop: Platform.OS === 'ios'
-							? 15
-							: 0, color: '#3B3B3B', fontSize: width * 0.09
+						paddingTop: Platform.OS === 'ios' ? 15 : 0,
+						color: '#3B3B3B',
+						fontSize: width * 0.09,
 					}}
 					fadeDirection="up"
 					title="동아리 찾기"
@@ -98,6 +97,14 @@ export default class Main extends React.Component {
 }
 
 const styles = StyleSheet.create({
+	backBtn: {
+		position: 'absolute',
+		width: width * 0.2,
+		height: height * 0.1,
+		top: Platform.OS === 'ios' ? 30 : 15,
+		left: 10,
+		zIndex: 1,
+	},
 	container: {
 		flex: 1,
 		backgroundColor: '#fff',
@@ -107,7 +114,7 @@ const styles = StyleSheet.create({
 		paddingTop: 10,
 	},
 	div: {
-		height: height*0.1,
+		height: height * 0.1,
 		// backgroundColor:'#dcdcdc',
 		paddingLeft: 15,
 		paddingTop: 15,

@@ -14,28 +14,17 @@ export default class TouchMainPicture extends React.Component {
 					{this.props.clubMainPicture === null ? (
 						<View style={styles.picture} backgroundColor={'#CEE1F2'} />
 					) : (
-							<Image blurRadius={5} style={styles.picture} source={{ uri: this.props.clubMainPicture }} />
-						)}
+						<Image blurRadius={5} style={styles.picture} source={{ uri: this.props.clubMainPicture }} />
+					)}
 				</View>
-				<View
-					style={styles.popup}
-				>
-					<View
-						style={styles.inPopup}
-					>
+				<View style={styles.popup}>
+					<View style={styles.inPopup}>
 						<View style={styles.logo}>
 							{this.props.clubLogo === null ? (
-								<View
-									style={styles.Image}
-									backgroundColor={'#ADCDE9'}
-								/>
+								<View style={styles.Image} backgroundColor={'#ADCDE9'} />
 							) : (
-									<Image
-										resizeMode="center"
-										style={styles.Image}
-										source={{ uri: this.props.clubLogo }}
-									/>
-								)}
+								<Image resizeMode="center" style={styles.Image} source={{ uri: this.props.clubLogo }} />
+							)}
 						</View>
 
 						<TouchableOpacity onPress={this.props.gotoClubIntroduce} style={{ flex: 1 }}>
@@ -91,7 +80,7 @@ const styles = StyleSheet.create({
 	},
 	clickArea: {
 		height: height * 0.1,
-		justifyContent: 'center'
+		justifyContent: 'center',
 	},
 	Image: {
 		flex: 1,
@@ -108,6 +97,6 @@ const styles = StyleSheet.create({
 		height: height * 0.23,
 	},
 	text: {
-		fontSize: width * 0.035
-	}
+		fontSize: width * 0.035,
+	},
 });

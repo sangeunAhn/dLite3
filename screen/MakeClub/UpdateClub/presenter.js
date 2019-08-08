@@ -19,7 +19,7 @@ const UpdateClub = props => (
 		<Text style={styles.screenTitle}>동아리 수정</Text>
 
 		<View style={styles.container}>
-			<ClubUpdateBtn goToSignUp={props.gotoSignUp} />
+			<ClubUpdateBtn gotoSignUp={props.gotoSignUp} />
 			<View style={styles.emptyPlace} />
 			<CharUpdateBtn gotoChar={props.gotoChar} />
 			<View style={styles.emptyPlace} />
