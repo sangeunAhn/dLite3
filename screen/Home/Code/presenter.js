@@ -7,6 +7,7 @@ import {
 	View,
 	BackHandler,
 	TouchableOpacity,
+	Platform
 } from 'react-native';
 import ConfirmButton from '../../../components/Button/ConfirmButton';
 import ConfirmButtonN from '../../../components/Button/ConfirmButtonN';
@@ -23,7 +24,9 @@ const DismissKeyboard = ({ children }) => (
 const Code = props => (
 	<>
 		<TouchableOpacity
-			style={{ position: 'absolute', width: width * 0.2, height: height * 0.1, top: 15, left: 10, zIndex: 1 }}
+			style={{
+				position: 'absolute', width: width * 0.2, height: height * 0.1, top: Platform.OS === 'ios'? 30 : 15, left: 10, zIndex: 1
+			}}
 			onPress={() => {
 				props.navigation.navigate('Home');
 			}}
@@ -31,7 +34,16 @@ const Code = props => (
 			<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 		</TouchableOpacity>
 		<View style={styles.container}>
-			<HeaderScrollView scrollEnabled={false} fadeDirection="up" title="코드 입력">
+			<HeaderScrollView
+				headerContainerStyle={{ height: height * 0.08 }}
+				headlineStyle={styles.header}
+				headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
+				titleStyle={{ paddingTop:Platform.OS === 'ios'
+																? 15
+																: 0,color: '#3B3B3B', fontSize: width * 0.09 }}
+				fadeDirection="up"
+				title="동아리 소개"
+			>
 				<View style={styles.header} />
 
 				{/* 코드입력부분 */}
@@ -55,8 +67,8 @@ const Code = props => (
 				{props.userCode.length == 0 ? (
 					<ConfirmButtonN title={'확인'} />
 				) : (
-					<ConfirmButton title={'확인'} onPress={props.login} />
-				)}
+						<ConfirmButton title={'확인'} onPress={props.login} />
+					)}
 			</View>
 		</View>
 	</>

@@ -11,7 +11,7 @@ export default class Pictures extends React.Component {
 				<View style={styles.container}>
 						<AutoHeightImage
 							width={width - 22}
-							style={{ borderTopLeftRadius: 10, borderTopRightRadius: 10 }}
+							style={styles.image}
 							source={{ uri: this.props.picture }}
 						/>
 						
@@ -41,6 +41,10 @@ const styles = StyleSheet.create({
 		shadowRadius: 2,
 		elevation: 2,
 		alignItems: 'center'
+	},
+	image : { 
+		borderTopLeftRadius: 10, 
+		borderTopRightRadius: 10 
 	},
 	top: {
 		height: 40,

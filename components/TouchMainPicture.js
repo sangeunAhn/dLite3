@@ -3,7 +3,7 @@ import { StyleSheet, Dimensions, Text, View, Image, TouchableOpacity } from 'rea
 
 const { width, height } = Dimensions.get('window');
 
-export default class ClubChars extends React.Component {
+export default class TouchMainPicture extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -14,31 +14,14 @@ export default class ClubChars extends React.Component {
 					{this.props.clubMainPicture === null ? (
 						<View style={styles.picture} backgroundColor={'#CEE1F2'} />
 					) : (
-						<Image blurRadius={5} style={styles.picture} source={{ uri: this.props.clubMainPicture }} />
-					)}
+							<Image blurRadius={5} style={styles.picture} source={{ uri: this.props.clubMainPicture }} />
+						)}
 				</View>
 				<View
-					style={{
-						position: 'absolute',
-						top: 10,
-						left: 0,
-						right: 0,
-						bottom: 0,
-						justifyContent: 'center',
-						alignItems: 'center',
-						zIndex: 20,
-					}}
+					style={styles.popup}
 				>
 					<View
-						style={{
-							width: width * 0.5,
-							height: height * 0.085,
-							backgroundColor: 'white',
-							borderRadius: 50,
-							justifyContent: 'space-around',
-							alignItems: 'center',
-							flexDirection: 'row',
-						}}
+						style={styles.inPopup}
 					>
 						<View style={styles.logo}>
 							{this.props.clubLogo === null ? (
@@ -47,22 +30,22 @@ export default class ClubChars extends React.Component {
 									backgroundColor={'#ADCDE9'}
 								/>
 							) : (
-								<Image
-									resizeMode="center"
-									style={styles.Image}
-									source={{uri: this.props.clubLogo}}
-								/>
-							)}
+									<Image
+										resizeMode="center"
+										style={styles.Image}
+										source={{ uri: this.props.clubLogo }}
+									/>
+								)}
 						</View>
 
 						<TouchableOpacity onPress={this.props.gotoClubIntroduce} style={{ flex: 1 }}>
-							<View style={{ height: height * 0.1, justifyContent: 'center' }}>
-								<Text style={{ fontSize: width * 0.035 }}>소개</Text>
+							<View style={styles.clickArea}>
+								<Text style={styles.text}>소개</Text>
 							</View>
 						</TouchableOpacity>
 						<TouchableOpacity onPress={this.props.gotoRecord} style={{ flex: 1 }}>
-							<View style={{ height: height * 0.1, justifyContent: 'center' }}>
-								<Text style={{ fontSize: width * 0.035 }}>기록</Text>
+							<View style={styles.clickArea}>
+								<Text style={styles.text}>기록</Text>
 							</View>
 						</TouchableOpacity>
 					</View>
@@ -73,6 +56,25 @@ export default class ClubChars extends React.Component {
 }
 
 const styles = StyleSheet.create({
+	popup: {
+		position: 'absolute',
+		top: 10,
+		left: 0,
+		right: 0,
+		bottom: 0,
+		justifyContent: 'center',
+		alignItems: 'center',
+		zIndex: 20,
+	},
+	inPopup: {
+		width: width * 0.5,
+		height: height * 0.085,
+		backgroundColor: 'white',
+		borderRadius: 50,
+		justifyContent: 'space-around',
+		alignItems: 'center',
+		flexDirection: 'row',
+	},
 	logo: {
 		margin: width * 0.05,
 		width: width * 0.1,
@@ -86,6 +88,10 @@ const styles = StyleSheet.create({
 		shadowOpacity: 1, // IOS
 		shadowRadius: 5, //IOS
 		elevation: 5, // Android
+	},
+	clickArea: {
+		height: height * 0.1,
+		justifyContent: 'center'
 	},
 	Image: {
 		flex: 1,
@@ -101,4 +107,7 @@ const styles = StyleSheet.create({
 		width: width * 0.9,
 		height: height * 0.23,
 	},
+	text: {
+		fontSize: width * 0.035
+	}
 });

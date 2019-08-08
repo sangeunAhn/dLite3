@@ -42,7 +42,7 @@ export default class PhotoModify extends React.Component {
 							<TouchableOpacity onPress={this.Press}>
 								<AutoHeightImage
 									width={width - 20}
-									style={{ borderTopLeftRadius: 10, borderTopRightRadius: 10 }}
+									style={styles.image}
 									source={{ uri: image }}
 								/>
 							</TouchableOpacity>
@@ -51,31 +51,18 @@ export default class PhotoModify extends React.Component {
 								<AutoHeightImage
 									width={width - 20}
 									blurRadius={10}
-									style={{ borderTopLeftRadius: 10, borderTopRightRadius: 10 }}
+									style={styles.image}
 									source={{ uri: image }}
 								/>
 								<View
-									style={{
-										position: 'absolute',
-										top: 0,
-										left: '25%',
-										right: 0,
-										bottom: 0,
-										justifyContent: 'center',
-									}}
+									style={styles.edit}
 								>
 									<TouchableOpacity style={{}} onPress={this._pickImage}>
 										<Feather name="edit" size={width * 0.15} color="black" />
 									</TouchableOpacity>
 								</View>
 								<View
-									style={{
-										position: 'absolute',
-										top: 0,
-										right: '25%',
-										bottom: 0,
-										justifyContent: 'center',
-									}}
+									style={styles.delete}
 								>
 									<TouchableOpacity style={{}} onPressOut={() => deleteImage(id)}>
 										<Entypo name="circle-with-cross" size={width * 0.15} color="black" />
@@ -142,11 +129,26 @@ const styles = StyleSheet.create({
 		shadowRadius: 2,
 		elevation: 2,
 	},
-	top: {
-		height: 40,
-		backgroundColor: 'white',
+	image : { 
+		borderTopLeftRadius: 10, 
+		borderTopRightRadius: 10 
 	},
-	bottom: {
+	edit : {
+		position: 'absolute',
+		top: 0,
+		left: '25%',
+		right: 0,
+		bottom: 0,
+		justifyContent: 'center',
+	},
+	delete : {
+		position: 'absolute',
+		top: 0,
+		right: '25%',
+		bottom: 0,
+		justifyContent: 'center',
+	},
+	bottom : {
 		height: 80,
 		borderRadius: 10,
 		backgroundColor: 'white',
@@ -156,19 +158,5 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		fontSize: 20,
 		color: '#bebebe',
-	},
-
-	delBtn: {
-		position: 'absolute',
-		borderColor: 'gray',
-		borderWidth: 0.3,
-		backgroundColor: 'white',
-		top: -7,
-		right: -7,
-		width: 35,
-		height: 35,
-		alignItems: 'center',
-		justifyContent: 'center',
-		borderRadius: 17,
 	},
 });

@@ -8,8 +8,8 @@ const { width, height } = Dimensions.get('window');
 
 const ClubView = props => (
 	<View style={styles.container}>
-		<View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-			<View style={{ flexDirection: 'row' }}>
+		<View style={styles.clubViewTop}>
+			
 				<View style={styles.logo}>
 					{props.clubLogo === null || props.clubLogo == '' ? (
 						<View style={styles.Image} backgroundColor={'#ADCDE9'} />
@@ -26,7 +26,7 @@ const ClubView = props => (
 						})}
 					</Text>
 				</View>
-			</View>
+			
 		</View>
 
 		{props.disabled == true ? (
@@ -91,6 +91,11 @@ const styles = StyleSheet.create({
 		paddingHorizontal: width * 0.05,
 		alignItems: 'center',
 		marginBottom: height * 0.04,
+	},
+	clubViewTop : { 
+		flex: 1, 
+		flexDirection: 'row', 
+		alignItems: 'center' 
 	},
 	logo: {
 		width: width * 0.16,

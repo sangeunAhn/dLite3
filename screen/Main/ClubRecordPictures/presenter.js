@@ -10,38 +10,28 @@ const ClubRecordPictures = props => (
 	<>
 		{props.isGetting ? (
 			<View style={styles.container}>
-				<TouchableOpacity
+							<TouchableOpacity
 					style={{
-						position: 'absolute',
-						width: width * 0.2,
-						height: height * 0.1,
-						top: 15,
-						left: 10,
-						zIndex: 1,
+						position: 'absolute', width: width * 0.2, height: height * 0.1, top: Platform.OS === 'ios' ? 30 : 15, left: 10, zIndex: 1
 					}}
 					onPress={() => {
-						props.navigation.goBack();
+						props.navigation.navigate('Home');
 					}}
 				>
 					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 				</TouchableOpacity>
-
-				<HeaderScrollView
-					headerContainerStyle={{ height: height * 0.08 }}
-					headlineStyle={{
-						paddingTop: 23,
-						textAlign: 'center',
-						justifyContent: 'center',
-						alignItems: 'center',
-						alignSelf: 'center',
-						fontSize: width * 0.05,
-					}}
-					headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
-					titleStyle={{ fontSize: width * 0.08 }}
-					scrollEnabled={false}
-					fadeDirection="up"
-					title="기록 사진"
-				>
+					<HeaderScrollView
+						headerContainerStyle={{ height: height * 0.08 }}
+						headlineStyle={styles.header}
+						headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
+						titleStyle={{
+							paddingTop: Platform.OS === 'ios'
+								? 15
+								: 0, color: '#3B3B3B', fontSize: width * 0.09
+						}}
+						fadeDirection="up"
+						title="기록 사진"
+					>
 					{/* 회색부분 */}
 					{Object.values(props.getDatas).map(image => (
 						<Picture key={image.createdAt} picture={image.recordPicture} text={image.recordContent} />
