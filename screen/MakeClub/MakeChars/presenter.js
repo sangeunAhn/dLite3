@@ -2,9 +2,9 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, Dimensions, Platform, Text, View, TouchableWithoutFeedback } from 'react-native';
 import ConfirmButton from '../../../components/Button/ConfirmButton';
 import ConfirmButtonN from '../../../components/Button/ConfirmButtonN';
-import CharInput from '../../../components/CharInput';
-import Char from '../../../components/Char';
-import CharEX from '../../../components/CharEX';
+import CharInput from '../../../components/Char/CharInput';
+import Char from '../../../components/Char/Char';
+import CharEX from '../../../components/Char/CharEX';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import { scale, moderateScale } from '../../../components/Scaling';
 import { Ionicons } from '@expo/vector-icons';
@@ -16,11 +16,9 @@ const MakeChars = props => (
 		<TouchableWithoutFeedback onPress={props.screenPress}>
 			<View style={styles.container}>
 				<TouchableOpacity
-					style={{
-						position: 'absolute', width: width * 0.2, height: height * 0.1, top: Platform.OS === 'ios' ? 30 : 15, left: 10, zIndex: 1
-					}}
+					style={styles.backBtn}
 					onPress={() => {
-						props.navigation.navigate('Home');
+						props.navigation.navigate('Code');
 					}}
 				>
 					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
@@ -30,25 +28,22 @@ const MakeChars = props => (
 					headlineStyle={styles.header}
 					headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
 					titleStyle={{
-						paddingTop: Platform.OS === 'ios'
-							? 15
-							: 0, color: '#3B3B3B', fontSize: width * 0.09
+						paddingTop: Platform.OS === 'ios' ? 15 : 0,
+						color: '#3B3B3B',
+						fontSize: width * 0.09,
 					}}
 					fadeDirection="up"
 					title="특징 입력"
 				>
 					<View style={{ flex: 1 }}>
-						{props.count >= 15 ? <View style={styles.dd} /> : <CharInput addChar={props.addChar} />}
-						{/* 위에 샾버튼 클릭했을 때 생긴 샾버튼 들어가는 곳 */}
+						{props.count >= 15 ? <View style={{ height: '5%' }} /> : <CharInput addChar={props.addChar} />}
 					</View>
 
-					{/* 샾버튼 모아놓은거 */}
-					{/* 위에 샾버튼 클릭했을 때 생긴 샾버튼 들어가는 곳 */}
 					<View style={styles.contain}>
 						{props.chars == 0 ? (
 							<>
 								<View style={{ flexDirection: 'column' }}>
-									<Text style={{ fontSize: moderateScale(12), color: '#BBBBBB', marginBottom: 10 }}>
+									<Text style={styles.ex}>
 										{' '}
 										예시)
 										{'\n'}
@@ -72,32 +67,22 @@ const MakeChars = props => (
 								</View>
 							</>
 						) : (
-
-							<View
-								style={{
-									width: '100%',
-									flexWrap: 'wrap',
-									flex: 1,
-									flexDirection: 'row',
-									alignItems: 'flex-start',
-									marginTop: 20,
-								}}
-							>
-								{Object.values(props.chars).map((data) => (
-									<Char
-										key={data.id}
-										text={data.char}
-										removeChar={props.removeChar}
-										delBtn={data.delBtn}
-										{...data}
-									/>
-								))}
-							</View>
-						)}
-
+								<View style={styles.chars}>
+									{Object.values(props.chars).map(data => (
+										<Char
+											key={data.id}
+											text={data.char}
+											removeChar={props.removeChar}
+											delBtn={data.delBtn}
+											{...data}
+										/>
+									))}
+								</View>
+							)}
 					</View>
 					<View style={{ height: 80 }} />
 				</HeaderScrollView>
+
 				{/* 완료버튼 */}
 				<View style={styles.footer}>
 					{props.chars == 0 ? (
@@ -119,6 +104,14 @@ const MakeChars = props => (
 );
 
 const styles = StyleSheet.create({
+	backBtn: {
+		position: 'absolute',
+		width: width * 0.2,
+		height: height * 0.1,
+		top: Platform.OS === 'ios' ? 30 : 15,
+		left: 10,
+		zIndex: 1,
+	},
 	container: {
 		flex: 1,
 		flexDirection: 'column',
@@ -130,30 +123,18 @@ const styles = StyleSheet.create({
 		width: '100%',
 		paddingTop: 20,
 	},
-	title: {
+	ex: {
+		fontSize: moderateScale(12),
+		color: '#BBBBBB',
+		marginBottom: 10,
+	},
+	chars: {
 		width: '100%',
-		paddingTop: scale(10),
-		flexDirection: 'row',
-		alignItems: 'flex-end',
-		paddingLeft: 15,
-	},
-	dd: {
-		height: '5%',
-	},
-	content: {
-		// backgroundColor: '#d6ca1a',
-		padding: 15,
-		paddingTop: 30,
-		flexDirection: 'row',
 		flexWrap: 'wrap',
-		paddingBottom: 50,
-	},
-	inputView: {
-		width: '100%',
-		height: 110,
-		flexDirection: 'column',
+		flex: 1,
+		flexDirection: 'row',
 		alignItems: 'flex-start',
-		marginTop: 30,
+		marginTop: 20,
 	},
 	footer: {
 		flex: 1,
@@ -162,30 +143,9 @@ const styles = StyleSheet.create({
 		bottom: 10,
 		width: '100%',
 		textAlign: 'center',
-		// backgroundColor: '#1ad657',
 		paddingTop: 10,
 		alignSelf: 'center',
 		backgroundColor: 'white',
-	},
-
-	text_1: {
-		fontSize: moderateScale(25),
-		color: '#0A6EFF',
-		marginRight: 3,
-	},
-	text_2: {
-		fontSize: moderateScale(12),
-		color: '#aaaaaa',
-	},
-	selectView: {
-		flexDirection: 'row',
-	},
-	STBT: {
-		paddingLeft: 50,
-		marginLeft: 50,
-	},
-	AB: {
-		backgroundColor: 'red',
 	},
 	contain: {
 		height: '25%',

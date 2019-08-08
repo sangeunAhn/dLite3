@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from 'react-native';
-import { scale, moderateScale, verticalScale} from '../components/Scaling';
+import { scale, moderateScale, verticalScale} from '../Scaling';
 
 class CharInput extends Component {
 

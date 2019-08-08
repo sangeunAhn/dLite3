@@ -12,13 +12,13 @@ const Schools = props => (
 			<TouchableOpacity
 				style={styles.backButton}
 				onPress={() => {
-						props.navigation.goBack()
+					props.navigation.goBack();
 				}}
 			>
 				<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 			</TouchableOpacity>
 			<Text style={styles.title}>학교 선택</Text>
-			<View style={{flexDirection:'column'}}>
+			<View style={{ flexDirection: 'column' }}>
 				<View style={styles.schools}>
 					<SchoolBtn
 						school={'울산대학교'}
@@ -26,42 +26,20 @@ const Schools = props => (
 						lineColor={'#5EC598'}
 						onPress={props.ulsanUiv}
 					/>
-						<SchoolBtn
-						school={'울산대학교'}
-						backgroundColor={'white'}
-						lineColor={'#5EC598'}
-						onPress={props.ulsanUiv}
-					/>
-					</View>
-					<View>
-					<View style={styles.schools}>
-					<SchoolBtn
-						school={'울산대학교'}
-						backgroundColor={'white'}
-						lineColor={'#5EC598'}
-						onPress={props.ulsanUiv}
-					/>
-						<SchoolBtn
-						school={'울산대학교'}
-						backgroundColor={'white'}
-						lineColor={'#5EC598'}
-						onPress={props.ulsanUiv}
-					/>
-					</View>
-					</View>
 				</View>
+			</View>
 		</View>
 	</>
 );
 
 const styles = StyleSheet.create({
-	backButton:{
-		position: 'absolute', 
-		width: width * 0.2, 
-		height: height * 0.1, 
-		top: 15, 
-		left: 10, 
-		zIndex: 1 
+	backButton: {
+		position: 'absolute',
+		width: width * 0.2,
+		height: height * 0.1,
+		top: 15,
+		left: 10,
+		zIndex: 1,
 	},
 	container: {
 		flex: 1,
@@ -76,10 +54,10 @@ const styles = StyleSheet.create({
 		fontWeight: '700'
 	},	
 	schools: {
-		flex:1,
-		marginHorizontal:width*0.03,
-		flexDirection:'row',
-		justifyContent: 'space-around'
+		flex: 1,
+		marginHorizontal: width * 0.03,
+		flexDirection: 'row',
+		justifyContent: 'space-around',
 	},
 });
 

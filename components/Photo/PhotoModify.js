@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, Dimensions, View, Image, TouchableOpacity, TextInput } from 'react-native';
-import { scale, moderateScale, verticalScale } from './Scaling';
+import { scale, moderateScale, verticalScale } from '../Scaling';
 import AutoHeightImage from 'react-native-auto-height-image';
 import { ImagePicker, Constants, Permissions } from 'expo';
 import PropTypes from 'prop-types';
