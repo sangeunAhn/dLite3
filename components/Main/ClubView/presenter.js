@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Text, StyleSheet, View, Image, Dimensions } from 'react-native';
-import ClubChars from '../ClubChars';
-import { moderateScale } from '../Scaling';
+import ClubChars from '../../Char/ClubChars';
+import { moderateScale } from '../../Scaling';
 import TouchMainPicture from '../TouchMainPicture';
 
 const { width, height } = Dimensions.get('window');

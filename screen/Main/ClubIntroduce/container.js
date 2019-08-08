@@ -118,7 +118,7 @@ class Container extends Component {
 
 
 	_handleBackButtonClick = () => {
-		this.props.navigation.navigate('Main');
+		this.props.navigation.goBack();
 
 		return true;
 	  }

@@ -3,8 +3,8 @@ import { StyleSheet, Dimensions, View, ScrollView, TouchableOpacity, ActivityInd
 import RegisterButton from '../../../components/Button/RegisterButton';
 import RegisterButtonN from '../../../components/Button/RegisterButtonN';
 import { scale, moderateScale, verticalScale } from '../../../components/Scaling';
-import PhotoRegister from '../../../components/PhotoRegister';
-import PhotoModify from '../../../components/PhotoModify';
+import PhotoRegister from '../../../components/Photo/PhotoRegister';
+import PhotoModify from '../../../components/Photo/PhotoModify';
 import { Ionicons } from '@expo/vector-icons';
 import HeaderScrollView from 'react-native-header-scroll-view';
 

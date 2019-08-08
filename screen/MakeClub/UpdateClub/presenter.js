@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Dimensions, TouchableOpacity, Text, View, Image, Platform } from 'react-native';
+import { StyleSheet, Dimensions, TouchableOpacity, Text, View,} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { EvilIcons } from '@expo/vector-icons';
-import { FontAwesome } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
+import ClubUpdateBtn from '../../../components/Button/updateClubButton/ClubUpdateBtn';
+import CharUpdateBtn from '../../../components/Button/updateClubButton/CharUpdateBtn';
+import RecordUpdateBtn from '../../../components/Button/updateClubButton/RecordUpdateBtn';
 
 const { width, height } = Dimensions.get('window');
 
@@ -19,75 +19,11 @@ const UpdateClub = props => (
 		<Text style={styles.screenTitle}>동아리 수정</Text>
 
 		<View style={styles.container}>
-			<TouchableOpacity style={{}} onPress={props.gotoSignUp}>
-				<View style={styles.box}>
-					<View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-						<View style={{ flexDirection: 'row' }}>
-							<View style={styles.logo}>
-								<EvilIcons name="user" size={width * 0.12} />
-							</View>
-							<View style={styles.content}>
-								<View style={styles.title}>
-									<Text style={{ fontSize: width * 0.07, fontWeight: 'bold' }}>정보 수정</Text>
-								</View>
-								<View style={styles.sub}>
-									<Text style={{ fontSize: width * 0.032, color: '#BBBBBB' }}>우리 동아리는요!</Text>
-								</View>
-							</View>
-						</View>
-					</View>
-				</View>
-			</TouchableOpacity>
-
-			<View style={{ width: '100%', height: height * 0.05 }} />
-
-			<TouchableOpacity style={{}} onPress={props.gotoChar}>
-				<View style={styles.box}>
-					<View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-						<View style={{ flexDirection: 'row' }}>
-							<View style={styles.logo}>
-								<FontAwesome name="hashtag" size={width * 0.1} />
-							</View>
-							<View style={styles.content}>
-								<View style={styles.title}>
-									<Text style={{ fontSize: width * 0.07, fontWeight: 'bold' }}>특징 수정</Text>
-								</View>
-								<View style={styles.sub}>
-									<Text style={{ fontSize: width * 0.032, color: '#BBBBBB' }}>
-										이렇게 다양한 매력을 가졌답니다 :)
-									</Text>
-								</View>
-							</View>
-						</View>
-					</View>
-				</View>
-			</TouchableOpacity>
-
-			<View style={{ width: '100%', height: height * 0.05 }} />
-
-			<TouchableOpacity onPress={props.gotoRecord}>
-				<View style={styles.box}>
-					<View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-						<View style={{ flexDirection: 'row' }}>
-							<View style={styles.logo}>
-								<AntDesign name="slack" size={width * 0.1} />
-							</View>
-							<View style={styles.content}>
-								<View style={styles.title}>
-									<Text style={{ fontSize: width * 0.07, fontWeight: 'bold', color: '#343434' }}>
-										기록 수정
-									</Text>
-								</View>
-								<View style={styles.sub}>
-									<Text style={{ fontSize: width * 0.032, color: '#BBBBBB' }}>
-										이야기 책 속의 여행처럼, 우리 함께 할래요?
-									</Text>
-								</View>
-							</View>
-						</View>
-					</View>
-				</View>
-			</TouchableOpacity>
+			<ClubUpdateBtn goToSignUp={props.gotoSignUp} />
+			<View style={styles.emptyPlace} />
+			<CharUpdateBtn gotoChar={props.gotoChar} />
+			<View style={styles.emptyPlace} />
+			<RecordUpdateBtn gotoRecord={props.gotoRecord} />
 		</View>
 	</>
 );
@@ -105,7 +41,7 @@ const styles = StyleSheet.create({
 		fontSize: 30,
 		fontWeight: '700',
 	},
-	box: {
+	box1: {
 		width: width * 0.9,
 		height: height * 0.1,
 		backgroundColor: 'white',
@@ -115,6 +51,14 @@ const styles = StyleSheet.create({
 		shadowOpacity: 1, // IOS
 		shadowRadius: 1, //IOS
 		elevation: 2,
+	},
+	box2: {
+		flex: 1,
+		flexDirection: 'row',
+		alignItems: 'center',
+	},
+	box3: {
+		flexDirection: 'row'
 	},
 	logo: {
 		marginHorizontal: width * 0.03,
@@ -131,6 +75,17 @@ const styles = StyleSheet.create({
 		marginLeft: width * 0.007,
 		justifyContent: 'center',
 	},
+	titleText: {
+		fontSize: width * 0.07,
+		fontWeight: 'bold',
+	},
+	subText: {
+		fontSize: width * 0.032,
+		color: '#BBBBBB',
+	},
+	emptyPlace: {
+		width: '100%', height: height * 0.05
+	}
 });
 
 export default UpdateClub;

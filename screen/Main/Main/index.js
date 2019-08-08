@@ -10,7 +10,7 @@ import {
 	Platform,
 	BackHandler,
 } from 'react-native';
-import ClubDiv from '../../../components/ClubDiv';
+import ClubDiv from '../../../components/Main/ClubDiv';
 import ClubView_dLite from '../../../components/ClubView_dLite';
 import { Icon } from 'react-native-elements';
 import HeaderScrollView from 'react-native-header-scroll-view';

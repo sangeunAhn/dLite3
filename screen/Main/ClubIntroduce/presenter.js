@@ -10,7 +10,7 @@ import {
 	ActivityIndicator,
 	TouchableOpacity,
 } from 'react-native';
-import ClubChars from '../../../components/ClubChars';
+import ClubChars from '../../../components/Char/ClubChars';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -21,31 +21,29 @@ const ClubIntroduce = props => (
 		{props.isGetting1 && props.isGetting2 ? (
 			<View style={styles.container}>
 				<TouchableOpacity
-					style={{
-						position: 'absolute', width: width * 0.2, height: height * 0.1, top: Platform.OS === 'ios' ? 30 : 15, left: 10, zIndex: 1
-					}}
+					style={styles.backBtn}
 					onPress={() => {
-						props.navigation.navigate('Home');
+						props.navigation.goBack();
 					}}
 				>
 					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 				</TouchableOpacity>
-					<HeaderScrollView
-						headerContainerStyle={{ height: height * 0.08 }}
-						headlineStyle={styles.header}
-						headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
-						titleStyle={{
-							paddingTop: Platform.OS === 'ios'
-								? 15
-								: 0, color: '#3B3B3B', fontSize: width * 0.09
-						}}
-						fadeDirection="up"
-						title="동아리 소개"
-					>
+				<HeaderScrollView
+					headerContainerStyle={{ height: height * 0.08 }}
+					headlineStyle={styles.header}
+					headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
+					titleStyle={{
+						paddingTop: Platform.OS === 'ios' ? 15 : 0,
+						color: '#3B3B3B',
+						fontSize: width * 0.09,
+					}}
+					fadeDirection="up"
+					title="동아리 소개"
+				>
 					<Text style={styles.blank}>ㅁㅁㅁㅁ</Text>
 					<Text style={styles.text1}>동아리 로고, 메인 사진</Text>
 
-					<View style={{ alignItems: 'center', marginTop: 5, marginHorizontal: width * 0.05 }}>
+					<View style={styles.MainPictureView}>
 						{props.clubMainPicture === null || props.clubMainPicture == '' ? (
 							<View style={styles.clubMainPicture} />
 						) : (
@@ -53,34 +51,16 @@ const ClubIntroduce = props => (
 						)}
 					</View>
 
-					<View style={{ alignItems: 'center', top: -width * 0.07, zIndex: 1 }}>
+					<View style={styles.logoView1}>
 						{
-							<View
-								style={{
-									width: width * 0.27,
-									height: width * 0.27,
-									top: -width * 0.07,
-									zIndex: 1,
-									borderRadius: width * 0.27 * 0.5,
-								}}
-							>
+							<View style={styles.logoView2}>
 								{props.clubLogo === null || props.clubLogo == '' ? (
 									<Image
-										style={{
-											backgroundColor: '#ADCDE9',
-											width: width * 0.27,
-											height: width * 0.27,
-											borderRadius: width * 0.27 * 0.5,
-										}}
+										style={styles.clubLogo}
 									/>
 								) : (
 									<Image
-										style={{
-											backgroundColor: '#ADCDE9',
-											width: width * 0.27,
-											height: width * 0.27,
-											borderRadius: width * 0.27 * 0.5,
-										}}
+										style={styles.clubLogo}
 										source={{ uri: props.clubLogo }}
 									/>
 								)}
@@ -120,19 +100,19 @@ const ClubIntroduce = props => (
 );
 
 const styles = StyleSheet.create({
-	backButton:{
-		position: 'absolute', 
-		width: width * 0.2, 
-		height: height * 0.1, 
-		top: 15, 
-		left: 10, 
-		zIndex: 1 
+	backBtn: {
+		position: 'absolute',
+		width: width * 0.2,
+		height: height * 0.1,
+		top: Platform.OS === 'ios' ? 30 : 15,
+		left: 10,
+		zIndex: 1,
 	},
 	container: {
 		flex: 1,
 		backgroundColor: 'white',
 	},
-	header:{
+	header: {
 		paddingTop: 23,
 		textAlign: 'center',
 		justifyContent: 'center',
@@ -144,7 +124,29 @@ const styles = StyleSheet.create({
 		fontSize: 25,
 		color: 'white',
 	},
-
+	MainPictureView: {
+		alignItems: 'center',
+		marginTop: 5,
+		marginHorizontal: width * 0.05,
+	},
+	logoView1: {
+		alignItems: 'center',
+		top: -width * 0.07,
+		zIndex: 1,
+	},
+	logoView2: {
+		width: width * 0.27,
+		height: width * 0.27,
+		top: -width * 0.07,
+		zIndex: 1,
+		borderRadius: width * 0.27 * 0.5,
+	},
+	clubLogo: {
+		backgroundColor: '#ADCDE9',
+		width: width * 0.27,
+		height: width * 0.27,
+		borderRadius: width * 0.27 * 0.5,
+	},
 	input: {
 		borderRadius: 8,
 		width: '100%',

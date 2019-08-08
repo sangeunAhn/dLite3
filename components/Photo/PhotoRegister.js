@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions, Text, View, Image, TouchableOpacity } from 'react-native';
-import { scale, moderateScale, verticalScale } from './Scaling';
+import { scale, moderateScale, verticalScale } from '../Scaling';
 import { ImagePicker, Constants, Permissions } from 'expo';
 import AutoHeightImage from 'react-native-auto-height-image';
 
@@ -19,7 +19,7 @@ export default class ClubChars extends React.Component {
 					<AutoHeightImage
 							width={width-20}
 							style={{borderTopLeftRadius:10, borderTopRightRadius:10,}}
-							source={require('../images/addPhoto5.png')}
+							source={require('../../images/addPhoto5.png')}
 							/>
 					</TouchableOpacity>
 					

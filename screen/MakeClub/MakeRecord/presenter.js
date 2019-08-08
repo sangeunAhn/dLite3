@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, Dimensions, ActivityIndicator } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Dimensions, ActivityIndicator, Platform } from 'react-native';
 import RecordFalse from '../../../components/Button/RecordButtonN';
 import RecordTrue from '../../../components/Button/RecordButton';
 import { Icon } from 'react-native-elements';
@@ -14,11 +14,9 @@ const MakeRecord = props => (
 		{props.isGetting ? (
 			<>
 				<TouchableOpacity
-					style={{
-						position: 'absolute', width: width * 0.2, height: height * 0.1, top: Platform.OS === 'ios' ? 30 : 15, left: 10, zIndex: 1
-					}}
+					style={styles.backBtn}
 					onPress={() => {
-						props.navigation.navigate('Home');
+						props.navigation.navigate('Code');
 					}}
 				>
 					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
@@ -29,9 +27,9 @@ const MakeRecord = props => (
 						headlineStyle={styles.header}
 						headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
 						titleStyle={{
-							paddingTop: Platform.OS === 'ios'
-								? 15
-								: 0, color: '#3B3B3B', fontSize: width * 0.09
+							paddingTop: Platform.OS === 'ios' ? 15 : 0,
+							color: '#3B3B3B',
+							fontSize: width * 0.09,
 						}}
 						fadeDirection="up"
 						title="기록 추가"
@@ -66,12 +64,20 @@ const MakeRecord = props => (
 				</View>
 			</>
 		) : (
-				<ActivityIndicator size="large" style={styles.activityIndicator} />
-			)}
+			<ActivityIndicator size="large" style={styles.activityIndicator} />
+		)}
 	</>
 );
 
 const styles = StyleSheet.create({
+	backBtn: {
+		position: 'absolute',
+		width: width * 0.2,
+		height: height * 0.1,
+		top: Platform.OS === 'ios' ? 30 : 15,
+		left: 10,
+		zIndex: 1,
+	},
 	container: {
 		flex: 1,
 		backgroundColor: '#fff',
