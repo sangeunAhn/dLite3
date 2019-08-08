@@ -16,7 +16,9 @@ const MakeRecord = props => (
 				<TouchableOpacity
 					style={styles.backBtn}
 					onPress={() => {
-						props.navigation.navigate('Code');
+						props.navigation.getParam('from', 'NO-ID') == 'm'
+							? props.navigation.goBack()
+							: props.navigation.navigate('Code');
 					}}
 				>
 					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />

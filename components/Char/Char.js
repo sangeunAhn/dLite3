@@ -33,7 +33,7 @@ class Char extends Component {
 	}
 
 	_charPress = async () => {
-		await this.state.delBtn == false ? this.setState({ delBtn: true }) : this.setState({ delBtn: false });
+		(await this.state.delBtn) == false ? this.setState({ delBtn: true }) : this.setState({ delBtn: false });
 	};
 }
 

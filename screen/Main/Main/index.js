@@ -20,7 +20,6 @@ const { width, height } = Dimensions.get('window');
 
 export default class Main extends React.Component {
 	static navigationOptions = ({ navigation, screenProps }) => ({
-
 		header: null,
 	});
 	constructor(props) {
@@ -57,7 +56,13 @@ export default class Main extends React.Component {
 				<TouchableOpacity
 					style={styles.backBtn}
 					onPress={() => {
+<<<<<<< HEAD
 						props.navigation.goBack();
+=======
+						this.props.navigation.getParam('makeClub', 'NO-ID') == 'done'
+							? this.props.navigation.navigate('Home')
+							: this.props.navigation.goBack();
+>>>>>>> 0ac2033b895e442dbd235ec233ffb5cee1fd0812
 					}}
 				>
 					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
@@ -93,6 +98,14 @@ export default class Main extends React.Component {
 }
 
 const styles = StyleSheet.create({
+	backBtn: {
+		position: 'absolute',
+		width: width * 0.2,
+		height: height * 0.1,
+		top: Platform.OS === 'ios' ? 30 : 15,
+		left: 10,
+		zIndex: 1,
+	},
 	container: {
 		flex: 1,
 		backgroundColor: '#fff',

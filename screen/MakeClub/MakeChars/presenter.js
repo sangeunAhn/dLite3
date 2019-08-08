@@ -18,7 +18,9 @@ const MakeChars = props => (
 				<TouchableOpacity
 					style={styles.backBtn}
 					onPress={() => {
-						props.navigation.navigate('Code');
+						props.navigation.getParam('from', 'NO-ID') == 'm'
+							? props.navigation.goBack()
+							: props.navigation.navigate('Code');
 					}}
 				>
 					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
@@ -67,18 +69,18 @@ const MakeChars = props => (
 								</View>
 							</>
 						) : (
-								<View style={styles.chars}>
-									{Object.values(props.chars).map(data => (
-										<Char
-											key={data.id}
-											text={data.char}
-											removeChar={props.removeChar}
-											delBtn={data.delBtn}
-											{...data}
-										/>
-									))}
-								</View>
-							)}
+							<View style={styles.chars}>
+								{Object.values(props.chars).map(data => (
+									<Char
+										key={data.id}
+										text={data.char}
+										removeChar={props.removeChar}
+										delBtn={data.delBtn}
+										{...data}
+									/>
+								))}
+							</View>
+						)}
 					</View>
 					<View style={{ height: 80 }} />
 				</HeaderScrollView>
@@ -90,13 +92,13 @@ const MakeChars = props => (
 					) : props.isSubmitting ? (
 						<ConfirmButton buttonColor={'#ADCDE9'} titleColor={'#3B3B3B'} title={'로딩'} />
 					) : (
-								<ConfirmButton
-									buttonColor={'#ADCDE9'}
-									titleColor={'#3B3B3B'}
-									title={'선택완료'}
-									onPress={props.buttonPress}
-								/>
-							)}
+						<ConfirmButton
+							buttonColor={'#ADCDE9'}
+							titleColor={'#3B3B3B'}
+							title={'선택완료'}
+							onPress={props.buttonPress}
+						/>
+					)}
 				</View>
 			</View>
 		</TouchableWithoutFeedback>
