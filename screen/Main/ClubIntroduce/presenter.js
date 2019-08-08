@@ -21,23 +21,27 @@ const ClubIntroduce = props => (
 		{props.isGetting1 && props.isGetting2 ? (
 			<View style={styles.container}>
 				<TouchableOpacity
-					style={styles.backButton}
+					style={{
+						position: 'absolute', width: width * 0.2, height: height * 0.1, top: Platform.OS === 'ios' ? 30 : 15, left: 10, zIndex: 1
+					}}
 					onPress={() => {
-						props.navigation.goBack();
+						props.navigation.navigate('Home');
 					}}
 				>
 					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 				</TouchableOpacity>
-
-				<HeaderScrollView
-					headerContainerStyle={{ height: height * 0.08 }}
-					headlineStyle={styles.header}
-					headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
-					titleStyle={{ fontSize: width * 0.08 }}
-					scrollEnabled={false}
-					fadeDirection="up"
-					title="동아리 소개"
-				>
+					<HeaderScrollView
+						headerContainerStyle={{ height: height * 0.08 }}
+						headlineStyle={styles.header}
+						headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
+						titleStyle={{
+							paddingTop: Platform.OS === 'ios'
+								? 15
+								: 0, color: '#3B3B3B', fontSize: width * 0.09
+						}}
+						fadeDirection="up"
+						title="동아리 소개"
+					>
 					<Text style={styles.blank}>ㅁㅁㅁㅁ</Text>
 					<Text style={styles.text1}>동아리 로고, 메인 사진</Text>
 

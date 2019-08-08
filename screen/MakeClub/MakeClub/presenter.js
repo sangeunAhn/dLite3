@@ -26,17 +26,24 @@ const MakeClub = props => (
 		) : (
 				<View style={styles.container}>
 					<TouchableOpacity
-						style={styles.backButton}
-						onPress={() => props.navigation.goBack()}
+						style={{
+							position: 'absolute', width: width * 0.2, height: height * 0.1, top: Platform.OS === 'ios' ? 30 : 15, left: 10, zIndex: 1
+						}}
+						onPress={() => {
+							props.navigation.navigate('Home');
+						}}
 					>
 						<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 					</TouchableOpacity>
-
 					<HeaderScrollView
 						headerContainerStyle={{ height: height * 0.08 }}
 						headlineStyle={styles.header}
 						headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
-						titleStyle={{ fontSize: width * 0.08 }}
+						titleStyle={{
+							paddingTop: Platform.OS === 'ios'
+								? 15
+								: 0, color: '#3B3B3B', fontSize: width * 0.09
+						}}
 						fadeDirection="up"
 						title="동아리 소개"
 					>
@@ -48,198 +55,198 @@ const MakeClub = props => (
 							style={styles.MainPictureClick}
 							onPress={props.pickMainPicture}
 						>
-						<Image
-							style={styles.PhotoAddMainPicture}
-							source={require('../../../images/pAdd.png')}
-						/>
-						{props.clubMainPicture == null ||
-							props.clubMainPicture == 'ul' ||
-							props.clubMainPicture == '' ? (
-								<View
-									style={styles.MainPictureImage}
-								/>
-							) : (
-								props.clubMainPicture && (
-									<Image
+							<Image
+								style={styles.PhotoAddMainPicture}
+								source={require('../../../images/pAdd.png')}
+							/>
+							{props.clubMainPicture == null ||
+								props.clubMainPicture == 'ul' ||
+								props.clubMainPicture == '' ? (
+									<View
 										style={styles.MainPictureImage}
-										source={{ uri: props.clubMainPicture }}
 									/>
-								)
-							)}
-					</TouchableOpacity>
+								) : (
+									props.clubMainPicture && (
+										<Image
+											style={styles.MainPictureImage}
+											source={{ uri: props.clubMainPicture }}
+										/>
+									)
+								)}
+						</TouchableOpacity>
 
-					<View style={styles.logo}>
-						{props.clubLogo == null || props.clubLogo == 'ul' || props.clubLogo == '' ? (
-							<TouchableOpacity
-								onPress={props.pickLogo}
-								style={styles.logoClick}
-							>
-								<Image
-									style={styles.photoAddLogo}
-									source={require('../../../images/pAdd.png')}
-								/>
-							</TouchableOpacity>
-						) : (
+						<View style={styles.logo}>
+							{props.clubLogo == null || props.clubLogo == 'ul' || props.clubLogo == '' ? (
 								<TouchableOpacity
 									onPress={props.pickLogo}
 									style={styles.logoClick}
 								>
 									<Image
-										style={styles.logoImage}
-										source={{ uri: props.clubLogo }}
-									/>
-									<Image
-										style={styles.PhotoAddLogo}
+										style={styles.photoAddLogo}
 										source={require('../../../images/pAdd.png')}
 									/>
 								</TouchableOpacity>
-							)}
-					</View>
-
-					<View style={styles.containerFromClubName}>
-						<View style={styles.block}>
-							<Text
-								style={[
-									styles.text,
-									{
-										color: props.isFocused ? '#000000' : '#8d97a5',
-									},
-								]}
-							>
-								동아리 이름
-							</Text>
-							<TextInput
-								onFocus={props.handleFocus}
-								onBlur={props.clubName.length == 0 ? props.handleBlur : null}
-								style={[
-									styles.input,
-									{
-										borderColor: props.isFocused
-											? Platform.OS === 'ios'
-												? 'white'
-												: 'transparent'
-											: '#DCDCDC',
-										borderWidth: 1,
-										shadowColor: props.isFocused ? 'rgba(0,0,0, .2)' : null, // IOS
-										shadowOffset: props.isFocused ? { height: 1, width: 1 } : null, // IOS
-										shadowOpacity: props.isFocused ? 1 : null, // IOS
-										shadowRadius: props.isFocused ? 1 : null, // IOS
-										elevation: props.isFocused ? 2 : null, // IOS
-									},
-								]}
-								onChangeText={props.clubNameChange}
-								maxLength={20}
-								value={props.clubName}
-								autoCorrect={false}
-							/>
+							) : (
+									<TouchableOpacity
+										onPress={props.pickLogo}
+										style={styles.logoClick}
+									>
+										<Image
+											style={styles.logoImage}
+											source={{ uri: props.clubLogo }}
+										/>
+										<Image
+											style={styles.PhotoAddLogo}
+											source={require('../../../images/pAdd.png')}
+										/>
+									</TouchableOpacity>
+								)}
 						</View>
-						<View style={styles.block}>
-							<Text style={styles.text}>동아리 종류</Text>
-							<View style={{ width: 160 }}>
-								{props.navigation.getParam('from', 'NO-ID') == 'm' ? (
-									<ClubPickerM clubKind={props.clubKind} setPrevClubKind={props.setPrevClubKind} />
-								) : (
-										<ClubPicker setPrevClubKind={props.setPrevClubKind} />
-									)}
+
+						<View style={styles.containerFromClubName}>
+							<View style={styles.block}>
+								<Text
+									style={[
+										styles.text,
+										{
+											color: props.isFocused ? '#000000' : '#8d97a5',
+										},
+									]}
+								>
+									동아리 이름
+							</Text>
+								<TextInput
+									onFocus={props.handleFocus}
+									onBlur={props.clubName.length == 0 ? props.handleBlur : null}
+									style={[
+										styles.input,
+										{
+											borderColor: props.isFocused
+												? Platform.OS === 'ios'
+													? 'white'
+													: 'transparent'
+												: '#DCDCDC',
+											borderWidth: 1,
+											shadowColor: props.isFocused ? 'rgba(0,0,0, .2)' : null, // IOS
+											shadowOffset: props.isFocused ? { height: 1, width: 1 } : null, // IOS
+											shadowOpacity: props.isFocused ? 1 : null, // IOS
+											shadowRadius: props.isFocused ? 1 : null, // IOS
+											elevation: props.isFocused ? 2 : null, // IOS
+										},
+									]}
+									onChangeText={props.clubNameChange}
+									maxLength={20}
+									value={props.clubName}
+									autoCorrect={false}
+								/>
+							</View>
+							<View style={styles.block}>
+								<Text style={styles.text}>동아리 종류</Text>
+								<View style={{ width: 160 }}>
+									{props.navigation.getParam('from', 'NO-ID') == 'm' ? (
+										<ClubPickerM clubKind={props.clubKind} setPrevClubKind={props.setPrevClubKind} />
+									) : (
+											<ClubPicker setPrevClubKind={props.setPrevClubKind} />
+										)}
+								</View>
+							</View>
+							<View style={styles.block}>
+								<Text
+									style={[
+										styles.text,
+										{
+											color: props.isFocused1 ? '#000000' : '#8d97a5',
+										},
+									]}
+								>
+									동아리 소개
+							</Text>
+								<TextInput
+									onFocus={props.handleFocus1}
+									onBlur={props.clubIntroduce.length == 0 ? props.handleBlur1 : null}
+									style={[
+										styles.input,
+										styles.introduce,
+										{
+											borderColor: props.isFocused1
+												? Platform.OS === 'ios'
+													? 'white'
+													: 'transparent'
+												: '#DCDCDC',
+											borderWidth: 1,
+											shadowColor: props.isFocused1 ? 'rgba(0,0,0, .2)' : null, // IOS
+											shadowOffset: props.isFocused1 ? { height: 1, width: 1 } : null, // IOS
+											shadowOpacity: props.isFocused1 ? 1 : null, // IOS
+											shadowRadius: props.isFocused1 ? 1 : null, // IOS
+											elevation: props.isFocused1 ? 2 : null, // IOS
+										},
+									]}
+									multiline={true}
+									onChangeText={props.clubIntroduceChange}
+									maxLength={100}
+									autoCorrect={false}
+									value={props.clubIntroduce}
+								/>
+							</View>
+
+							<View style={styles.block}>
+								<Text
+									style={[
+										styles.text,
+										{
+											color: props.isFocused2 ? '#000000' : '#8d97a5',
+										},
+									]}
+								>
+									연락 가능 연락처
+							</Text>
+								<TextInput
+									onFocus={props.handleFocus2}
+									onBlur={props.clubPhoneNumber.length == 0 ? props.handleBlur3 : null}
+									style={[
+										styles.input,
+										{
+											borderColor: props.isFocused2
+												? Platform.OS === 'ios'
+													? 'white'
+													: 'transparent'
+												: '#DCDCDC',
+											borderWidth: 1,
+											shadowColor: props.isFocused2 ? 'rgba(0,0,0, .2)' : null, // IOS
+											shadowOffset: props.isFocused2 ? { height: 1, width: 1 } : null, // IOS
+											shadowOpacity: props.isFocused2 ? 1 : null, // IOS
+											shadowRadius: props.isFocused2 ? 1 : null, // IOS
+											elevation: props.isFocused2 ? 2 : null, // IOS
+										},
+									]}
+									multiline={true}
+									onChangeText={props.clubPhoneNumberChange}
+									value={props.clubPhoneNumber}
+									maxLength={100}
+									autoCorrect={false}
+								/>
 							</View>
 						</View>
-						<View style={styles.block}>
-							<Text
-								style={[
-									styles.text,
-									{
-										color: props.isFocused1 ? '#000000' : '#8d97a5',
-									},
-								]}
-							>
-								동아리 소개
-							</Text>
-							<TextInput
-								onFocus={props.handleFocus1}
-								onBlur={props.clubIntroduce.length == 0 ? props.handleBlur1 : null}
-								style={[
-									styles.input,
-									styles.introduce,
-									{
-										borderColor: props.isFocused1
-											? Platform.OS === 'ios'
-												? 'white'
-												: 'transparent'
-											: '#DCDCDC',
-										borderWidth: 1,
-										shadowColor: props.isFocused1 ? 'rgba(0,0,0, .2)' : null, // IOS
-										shadowOffset: props.isFocused1 ? { height: 1, width: 1 } : null, // IOS
-										shadowOpacity: props.isFocused1 ? 1 : null, // IOS
-										shadowRadius: props.isFocused1 ? 1 : null, // IOS
-										elevation: props.isFocused1 ? 2 : null, // IOS
-									},
-								]}
-								multiline={true}
-								onChangeText={props.clubIntroduceChange}
-								maxLength={100}
-								autoCorrect={false}
-								value={props.clubIntroduce}
-							/>
-						</View>
 
-						<View style={styles.block}>
-							<Text
-								style={[
-									styles.text,
-									{
-										color: props.isFocused2 ? '#000000' : '#8d97a5',
-									},
-								]}
-							>
-								연락 가능 연락처
-							</Text>
-							<TextInput
-								onFocus={props.handleFocus2}
-								onBlur={props.clubPhoneNumber.length == 0 ? props.handleBlur3 : null}
-								style={[
-									styles.input,
-									{
-										borderColor: props.isFocused2
-											? Platform.OS === 'ios'
-												? 'white'
-												: 'transparent'
-											: '#DCDCDC',
-										borderWidth: 1,
-										shadowColor: props.isFocused2 ? 'rgba(0,0,0, .2)' : null, // IOS
-										shadowOffset: props.isFocused2 ? { height: 1, width: 1 } : null, // IOS
-										shadowOpacity: props.isFocused2 ? 1 : null, // IOS
-										shadowRadius: props.isFocused2 ? 1 : null, // IOS
-										elevation: props.isFocused2 ? 2 : null, // IOS
-									},
-								]}
-								multiline={true}
-								onChangeText={props.clubPhoneNumberChange}
-								value={props.clubPhoneNumber}
-								maxLength={100}
-								autoCorrect={false}
-							/>
+						<View style={styles.button}>
+							{props.clubName.length == 0 &&
+								props.clubWellcome.length == 0 &&
+								props.clubPhoneNumber.length == 0 ? (
+									<ConfirmButtonN buttonColor={'#CEE1F2'} titleColor={'#BBBBBB'} title={'확인'} />
+								) : props.isSubmitting ? (
+									<ConfirmButton buttonColor={'#ADCDE9'} titleColor={'#3B3B3B'} title={'로딩'} />
+								) : (
+										<ConfirmButton
+											buttonColor={'#ADCDE9'}
+											titleColor={'#3B3B3B'}
+											title={'확인'}
+											onPress={props.btnPress}
+										/>
+									)}
 						</View>
-					</View>
-
-					<View style={styles.button}>
-						{props.clubName.length == 0 &&
-							props.clubWellcome.length == 0 &&
-							props.clubPhoneNumber.length == 0 ? (
-								<ConfirmButtonN buttonColor={'#CEE1F2'} titleColor={'#BBBBBB'} title={'확인'} />
-							) : props.isSubmitting ? (
-								<ConfirmButton buttonColor={'#ADCDE9'} titleColor={'#3B3B3B'} title={'로딩'} />
-							) : (
-									<ConfirmButton
-										buttonColor={'#ADCDE9'}
-										titleColor={'#3B3B3B'}
-										title={'확인'}
-										onPress={props.btnPress} 
-									/>
-								)}
-					</View>
-				</HeaderScrollView>
-			</View>
-	)}
+					</HeaderScrollView>
+				</View>
+			)}
 	</>
 );
 
@@ -270,7 +277,7 @@ const styles = StyleSheet.create({
 		marginTop: 5,
 		marginHorizontal: width * 0.05
 	},
-	PhotoAddMainPicture:{
+	PhotoAddMainPicture: {
 		width: width * 0.1,
 		height: width * 0.1,
 		position: 'absolute',
@@ -278,19 +285,19 @@ const styles = StyleSheet.create({
 		right: -15,
 		bottom: -15,
 	},
-	MainPictureImage:{
+	MainPictureImage: {
 		marginTop: 5,
 		width: width * 0.9,
 		height: height * 0.23,
 		borderRadius: 15,
 		backgroundColor: '#CEE1F2',
 	},
-	logo:{ 
-		alignItems: 'center', 
-		top: -width * 0.07, 
-		zIndex: 1 
+	logo: {
+		alignItems: 'center',
+		top: -width * 0.07,
+		zIndex: 1
 	},
-	logoClick:{
+	logoClick: {
 		width: width * 0.27,
 		height: width * 0.27,
 		top: -width * 0.07,
@@ -298,7 +305,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#ADCDE9',
 		borderRadius: width * 0.27 * 0.5,
 	},
-	photoAddLogo:{
+	photoAddLogo: {
 		width: width * 0.1,
 		height: width * 0.1,
 		position: 'absolute',
@@ -306,13 +313,13 @@ const styles = StyleSheet.create({
 		right: -5,
 		bottom: -5,
 	},
-	logoImage:{
+	logoImage: {
 		width: width * 0.27,
 		height: width * 0.27,
 		borderRadius: width * 0.27 * 0.5,
 	},
-	containerFromClubName:{ 
-		paddingHorizontal: width * 0.05 
+	containerFromClubName: {
+		paddingHorizontal: width * 0.05
 	},
 	input: {
 		borderRadius: 8,

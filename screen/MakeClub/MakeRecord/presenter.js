@@ -14,17 +14,28 @@ const MakeRecord = props => (
 		{props.isGetting ? (
 			<>
 				<TouchableOpacity
-					style={{ position: 'absolute', width: width * 0.2, height: 30, top: 20, left: 10, zIndex: 1 }}
+					style={{
+						position: 'absolute', width: width * 0.2, height: height * 0.1, top: Platform.OS === 'ios' ? 30 : 15, left: 10, zIndex: 1
+					}}
 					onPress={() => {
-						props.navigation.getParam('from', 'NO-ID') == 'm'
-						? props.navigation.goBack()
-						: props.navigation.navigate('Code')
+						props.navigation.navigate('Home');
 					}}
 				>
-					<Ionicons name="ios-arrow-back" size={28} color="black" />
+					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 				</TouchableOpacity>
 				<View style={styles.container}>
-					<HeaderScrollView fadeDirection="up" title="기록 추가">
+					<HeaderScrollView
+						headerContainerStyle={{ height: height * 0.08 }}
+						headlineStyle={styles.header}
+						headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
+						titleStyle={{
+							paddingTop: Platform.OS === 'ios'
+								? 15
+								: 0, color: '#3B3B3B', fontSize: width * 0.09
+						}}
+						fadeDirection="up"
+						title="기록 추가"
+					>
 						<Icon
 							raised
 							reverse
@@ -55,8 +66,8 @@ const MakeRecord = props => (
 				</View>
 			</>
 		) : (
-			<ActivityIndicator size="large" style={styles.activityIndicator} />
-		)}
+				<ActivityIndicator size="large" style={styles.activityIndicator} />
+			)}
 	</>
 );
 

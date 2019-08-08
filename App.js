@@ -54,7 +54,7 @@ const RootStack = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'UpdateClub',
+    initialRouteName: 'Home',
   },
   
 );

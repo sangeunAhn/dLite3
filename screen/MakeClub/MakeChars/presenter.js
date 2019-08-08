@@ -17,24 +17,23 @@ const MakeChars = props => (
 			<View style={styles.container}>
 				<TouchableOpacity
 					style={{
-						position: 'absolute',
-						width: width * 0.2,
-						height: height * 0.1,
-						top: 15,
-						left: 10,
-						zIndex: 1,
+						position: 'absolute', width: width * 0.2, height: height * 0.1, top: Platform.OS === 'ios' ? 30 : 15, left: 10, zIndex: 1
 					}}
 					onPress={() => {
-						props.navigation.getParam('from', 'NO-ID') == 'm'
-							? props.navigation.goBack()
-							: props.navigation.navigate('Code');
+						props.navigation.navigate('Home');
 					}}
 				>
 					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 				</TouchableOpacity>
 				<HeaderScrollView
-					// scrollContainerStyle={{backgroundColor:'red'}}
-					scrollEnabled={false}
+					headerContainerStyle={{ height: height * 0.08 }}
+					headlineStyle={styles.header}
+					headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
+					titleStyle={{
+						paddingTop: Platform.OS === 'ios'
+							? 15
+							: 0, color: '#3B3B3B', fontSize: width * 0.09
+					}}
 					fadeDirection="up"
 					title="특징 입력"
 				>
@@ -73,27 +72,27 @@ const MakeChars = props => (
 								</View>
 							</>
 						) : (
-							<View
-								style={{
-									width: '100%',
-									flexWrap: 'wrap',
-									flex: 1,
-									flexDirection: 'row',
-									alignItems: 'flex-start',
-									marginTop: 20,
-								}}
-							>
-								{Object.values(props.chars).map((data) => (
-									<CharGoal
-										key={data.id}
-										text={data.char}
-										removeChar={props.removeChar}
-										delBtn={data.delBtn}
-										{...data}
-									/>
-								))}
-							</View>
-						)}
+								<View
+									style={{
+										width: '100%',
+										flexWrap: 'wrap',
+										flex: 1,
+										flexDirection: 'row',
+										alignItems: 'flex-start',
+										marginTop: 20,
+									}}
+								>
+									{Object.values(props.chars).map((data) => (
+										<CharGoal
+											key={data.id}
+											text={data.char}
+											removeChar={props.removeChar}
+											delBtn={data.delBtn}
+											{...data}
+										/>
+									))}
+								</View>
+							)}
 					</View>
 					<View style={{ height: 80 }} />
 				</HeaderScrollView>
@@ -104,13 +103,13 @@ const MakeChars = props => (
 					) : props.isSubmitting ? (
 						<ConfirmButton buttonColor={'#ADCDE9'} titleColor={'#3B3B3B'} title={'로딩'} />
 					) : (
-						<ConfirmButton
-							buttonColor={'#ADCDE9'}
-							titleColor={'#3B3B3B'}
-							title={'선택완료'}
-							onPress={props.buttonPress}
-						/>
-					)}
+								<ConfirmButton
+									buttonColor={'#ADCDE9'}
+									titleColor={'#3B3B3B'}
+									title={'선택완료'}
+									onPress={props.buttonPress}
+								/>
+							)}
 				</View>
 			</View>
 		</TouchableWithoutFeedback>
