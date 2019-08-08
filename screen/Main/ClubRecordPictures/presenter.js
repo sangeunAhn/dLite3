@@ -57,14 +57,9 @@ const styles = StyleSheet.create({
 		
 	},
 	header: {
-<<<<<<< HEAD
-		paddingTop: 23,
-		textAlign: 'center',
-=======
 		width: '100%',
 		height: 40,
 		borderRadius: 10,
->>>>>>> 0ac2033b895e442dbd235ec233ffb5cee1fd0812
 		justifyContent: 'center',
 		alignItems: 'center',
 		alignSelf: 'center',

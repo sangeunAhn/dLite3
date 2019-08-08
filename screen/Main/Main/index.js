@@ -56,13 +56,9 @@ export default class Main extends React.Component {
 				<TouchableOpacity
 					style={styles.backBtn}
 					onPress={() => {
-<<<<<<< HEAD
-						props.navigation.goBack();
-=======
 						this.props.navigation.getParam('makeClub', 'NO-ID') == 'done'
 							? this.props.navigation.navigate('Home')
 							: this.props.navigation.goBack();
->>>>>>> 0ac2033b895e442dbd235ec233ffb5cee1fd0812
 					}}
 				>
 					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />

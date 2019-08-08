@@ -1,9 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
 import { StyleSheet, Dimensions, View, ScrollView, Platform,TouchableOpacity, ActivityIndicator } from 'react-native';
-=======
-import { StyleSheet, Dimensions, View, ScrollView, TouchableOpacity, ActivityIndicator, Platform } from 'react-native';
->>>>>>> 0ac2033b895e442dbd235ec233ffb5cee1fd0812
 import RegisterButton from '../../../components/Button/RegisterButton';
 import RegisterButtonN from '../../../components/Button/RegisterButtonN';
 import { scale, moderateScale, verticalScale } from '../../../components/Scaling';
@@ -114,16 +110,13 @@ const styles = StyleSheet.create({
 		zIndex: 1,
 	},
 	header: {
-<<<<<<< HEAD
-		paddingTop: 23,
-=======
+
 		width: moderateScale(300),
 		height: 50,
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderRadius: 10,
 		marginBottom: 40,
->>>>>>> 0ac2033b895e442dbd235ec233ffb5cee1fd0812
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',

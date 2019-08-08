@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 		width: '100%',
 		alignItems: 'center',
 		justifyContent: 'center',
-		marginBottom: 10,
+		marginBottom: height*0.01,
 		borderRadius: 15,
 		height: height * 0.07,
 		shadowColor: 'rgba(0,0,0, .4)', // IOS

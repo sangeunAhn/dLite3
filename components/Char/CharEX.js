@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, View, Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
 
 export default class CharEX extends Component {
 	static defaultProps = {
@@ -25,18 +27,17 @@ const styles = StyleSheet.create({
 	button: {
 		alignItems: 'center',
 		justifyContent: 'center',
-		marginBottom: 10,
-		borderRadius: 20,
-		height: 40,
+		marginBottom: height*0.02,
+		borderRadius:  height*0.055*0.5,
+		height: height*0.055,
 		backgroundColor: '#fff',
-		paddingRight: 15,
-		paddingLeft: 15,
+		paddingHorizontal:width*0.02,
 		marginRight: 10,
 		borderColor: '#DADADA',
 		borderWidth: 1,
 	},
 	title: {
-		fontSize: 13,
+		fontSize: width*0.04,
 		color: '#BBBBBB',
 	},
 });
