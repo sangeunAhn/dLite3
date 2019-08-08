@@ -70,6 +70,10 @@ const MakeRecord = props => (
 );
 
 const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		backgroundColor: '#fff',
+	},
 	backBtn: {
 		position: 'absolute',
 		width: width * 0.2,
@@ -78,16 +82,13 @@ const styles = StyleSheet.create({
 		left: 10,
 		zIndex: 1,
 	},
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-	},
 	header: {
-		width: '100%',
-		height: 70,
-		// backgroundColor:'#A0AFFF',
-		flexDirection: 'row',
-		justifyContent: 'flex-end',
+		paddingTop: 23,
+		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
+		alignSelf: 'center',
+		fontSize: width * 0.05,
 	},
 	content: {
 		flex: 1,

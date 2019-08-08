@@ -31,7 +31,7 @@ const ClubRecord = props => (
 			>
 				{props.isGetting ? (
 					<MasonryList
-						imageContainerStyle={{ borderRadius: 17, right: 12 }}
+						imageContainerStyle={{ borderRadius: 17 }}
 						spacing={7}
 						images={props.listRecords}
 						onPressImage={(item, index) => {

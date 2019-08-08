@@ -70,7 +70,7 @@ const MakeClub = props => (
 						) : (
 							<TouchableOpacity onPress={props.pickLogo} style={styles.logoClick}>
 								<Image style={styles.logoImage} source={{ uri: props.clubLogo }} />
-								<Image style={styles.PhotoAddLogo} source={require('../../../images/photoAdd.png')} />
+								<Image style={styles.photoAddLogo} source={require('../../../images/photoAdd.png')} />
 							</TouchableOpacity>
 						)}
 					</View>

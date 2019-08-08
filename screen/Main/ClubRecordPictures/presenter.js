@@ -54,16 +54,15 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: 'white',
-		alignItems: 'center',
+		
 	},
 	header: {
-		width: '100%',
-		height: 40,
-		backgroundColor: '#3296FF',
-		borderRadius: 10,
+		paddingTop: 23,
+		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginBottom: 15,
+		alignSelf: 'center',
+		fontSize: width * 0.05,
 	},
 	title: {
 		fontSize: 23,
