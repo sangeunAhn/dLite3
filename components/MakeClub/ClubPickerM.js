@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, Picker, StyleSheet } from 'react-native';
+import { View, Text, Picker, Dimensions,StyleSheet } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+
+const { width, height } = Dimensions.get('window');
 
 class ClubPickerM extends Component {
 	state = { user: this.props.clubKind };
