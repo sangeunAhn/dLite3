@@ -100,10 +100,10 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	screenTitle: {
-		marginTop: 50,
-		marginLeft: 15,
-		fontSize: 30,
-		fontWeight: '700',
+		marginTop:height*0.07,
+		marginLeft: width*0.05,
+		fontSize: width * 0.09,
+		fontWeight: '700'
 	},
 	box: {
 		width: width * 0.9,

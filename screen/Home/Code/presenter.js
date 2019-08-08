@@ -42,7 +42,7 @@ const Code = props => (
 																? 15
 																: 0,color: '#3B3B3B', fontSize: width * 0.09 }}
 				fadeDirection="up"
-				title="동아리 소개"
+				title="코드 입력"
 			>
 				<View style={styles.header} />
 

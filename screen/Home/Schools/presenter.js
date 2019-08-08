@@ -69,10 +69,10 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white',
 	},
 	title:{
-		marginTop:45,
+		marginTop:height*0.07,
 		marginLeft: width*0.05,
 		marginBottom:height*0.02,
-		fontSize: 30,
+		fontSize: width * 0.09,
 		fontWeight: '700'
 	},	
 	schools: {

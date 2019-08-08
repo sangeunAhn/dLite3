@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     textAlignVertical: "center",
     fontSize: moderateScale(20),
     fontWeight: '100',
-
+    color:'#3B3B3B'
     // backgroundColor: 'red',
   },
   clubChar: {

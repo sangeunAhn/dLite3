@@ -35,12 +35,12 @@ const styles = StyleSheet.create({
 	menuTitle: {
 		marginBottom: 0,
 		paddingTop: 15,
-
+		fontWeight:'bold',
 		color: '#ADCDE9',
 		fontSize: width * 0.07,
 	},
 	line: {
-		borderBottomWidth: 0.7,
+		borderBottomWidth: width*0.002,
 		borderColor: '#ADCDE9',
 		width: '85%',
 		alignItems: 'flex-end',

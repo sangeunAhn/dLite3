@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Dimensions, Text, View, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, TouchableOpacity, Dimensions, Platform, Text, View, TouchableWithoutFeedback } from 'react-native';
 import ConfirmButton from '../../../components/Button/ConfirmButton';
 import ConfirmButtonN from '../../../components/Button/ConfirmButtonN';
 import CharInput from '../../../components/CharInput';

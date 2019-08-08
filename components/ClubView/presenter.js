@@ -133,19 +133,6 @@ const styles = StyleSheet.create({
 		backgroundColor: '#fff',
 		borderRadius: width * 0.15 * 0.5,
 	},
-	Image2: {
-		flex: 1,
-		width: width * 0.09,
-		height: width * 0.09,
-		borderRadius: width * 0.09 * 0.5,
-		backgroundColor: '#fff',
-	},
-	ImageR: {
-		left: -5,
-		height: 60,
-		width: 60,
-		resizeMode: 'contain',
-	},
 	club: {
 		flex: 1,
 		textAlignVertical: 'center',
@@ -154,22 +141,23 @@ const styles = StyleSheet.create({
 	},
 	clubTitle: {
 		flex: 1,
-		marginTop: 0,
+		marginTop: 3,
 		textAlignVertical: 'center',
 		fontSize: moderateScale(20),
 		fontWeight: '100',
-
+		color:'#3B3B3B'
 		// backgroundColor: 'red',
 	},
 	clubChar: {
 		flex: 1.5,
-		textAlignVertical: 'center',
-		fontSize: moderateScale(12),
+		textAlignVertical: "center",
+		fontSize: moderateScale(10),
 		color: '#BBBBBB',
+		paddingBottom:5,
 		marginBottom: -5,
-		lineHeight: 15,
+		lineHeight: 12,
 		// backgroundColor: 'green',
-	},
+	  },
 	button: {
 		top: -40,
 		margin: 30,

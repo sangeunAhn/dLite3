@@ -30,7 +30,7 @@ export default class ConfirmButton extends Component {
 					<View style={styles.address}>
 						<Text style={styles.addressText}>{'울산광역시 \n남구'}</Text>
 					</View>
-					<View style={[styles.symbolLine, { borderColor : this.props.lineColor }]}></View>
+					<View style={[styles.symbolLine, { borderColor: this.props.lineColor }]}></View>
 				</TouchableOpacity>
 			</View>
 		);
@@ -39,14 +39,14 @@ export default class ConfirmButton extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-	
+
 	},
 	button: {
 		width: width * 0.38,
 		height: height * 0.34,
 		backgroundColor: 'white',
 		elevation: 3,
-		borderRadius: 30,
+		borderRadius: width * 0.38 * 0.2,
 		shadowColor: 'rgba(0,0,.2, .2)',
 		shadowOffset: { height: 1, width: 1 },
 		shadowOpacity: 1,
@@ -79,23 +79,22 @@ const styles = StyleSheet.create({
 	titleText: {
 		fontSize: width * 0.05,
 		fontWeight: '700',
-		color:'#505050'
+		color: '#3B3B3B'
 	},
-	address:{
+	address: {
 		marginLeft: width * 0.04,
-		marginTop: height*0.01
+		marginTop: height * 0.01
 	},
-	addressText:{
-		fontSize: width *0.035,
-		color:'#BBBBBB',
-		lineHeight:17
+	addressText: {
+		fontSize: width * 0.035,
+		color: '#BBBBBB',
+		lineHeight: height * 0.025
 	},
-	symbolLine:{
-		marginTop:height*0.03,
+	symbolLine: {
+		marginTop: height * 0.03,
 		marginLeft: width * 0.05,
-		borderBottomWidth:4,
-		borderRadius:10,
-		
-		width:width*0.09
+		borderBottomWidth: height * 0.006,
+		borderRadius: 10,
+		width: width * 0.09
 	}
 });

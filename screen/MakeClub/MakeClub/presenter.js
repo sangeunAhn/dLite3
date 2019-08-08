@@ -344,7 +344,7 @@ const styles = StyleSheet.create({
 		height: 120,
 	},
 	button: {
-		height: 60,
+		height: height*0.09,
 		marginTop: 30,
 		paddingHorizontal: width * 0.03,
 	},

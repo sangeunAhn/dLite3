@@ -6,6 +6,7 @@ import {
   Dimensions
 } from 'react-native';
 import { scale, moderateScale, verticalScale} from '../../components/Scaling';
+import { LinearGradient } from 'expo';
 
 const  {width, height} = Dimensions.get("window");
 
@@ -24,14 +25,13 @@ export default class MainButton extends Component{
 
   render(){
     return (
-      <TouchableOpacity 
-        style={[styles.button,{backgroundColor: this.props.buttonColor}]}
-        onPress={this.props.onPress}>
-
+      <TouchableOpacity
+      onPress={this.props.onPress}>
+      <LinearGradient colors={['#ECF6FF','#E0EDF9', '#CCDEEE','#B9CFE3']} style={styles.button}>
         <Text style={[styles.title,{color: this.props.titleColor, fontSize: moderateScale(20),}]}>
           {this.props.title}
         </Text>
-
+      </LinearGradient>
       </TouchableOpacity>
     )
   }
@@ -39,11 +39,11 @@ export default class MainButton extends Component{
 
 const styles = StyleSheet.create({
   button: {
-    width: moderateScale(320),
+    width: width*0.9,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 10,
-    borderRadius: 25,
+    marginBottom: height*0.01,
+    borderRadius: width*0.9*0.5,
     height:height*0.08,
     shadowColor: 'rgba(0,0,0, .4)', // IOS
     shadowOffset: { height: 1, width: 1 }, // IOS

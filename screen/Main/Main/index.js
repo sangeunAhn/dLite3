@@ -22,7 +22,7 @@ const MAX_HEIGHT = 50.5;
 
 export default class Main extends React.Component {
 	static navigationOptions = ({ navigation, screenProps }) => ({
-		
+
 		header: null,
 	});
 	constructor(props) {
@@ -56,42 +56,32 @@ export default class Main extends React.Component {
 		let { schoolName } = this.state;
 		return (
 			<View style={styles.container}>
-				{/* 전체화면 스크롤 */}
 				<TouchableOpacity
-					style={{ position: 'absolute', width: width * 0.2, height: 30, top: 22, left: 10, zIndex: 1 }}
+					style={{
+						position: 'absolute', width: width * 0.2, height: height * 0.1, top: Platform.OS === 'ios' ? 30 : 15, left: 10, zIndex: 1
+					}}
 					onPress={() => {
-						this.props.navigation.getParam('makeClub', 'NO-ID') == 'done'
-							? this.props.navigation.navigate('Home')
-							: this.props.navigation.goBack();
+						props.navigation.navigate('Home');
 					}}
 				>
-					<Ionicons name="ios-arrow-back" size={28} color="black" />
+					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 				</TouchableOpacity>
 
-				{/* 전체화면 스크롤 */}
 				<HeaderScrollView
 					headerContainerStyle={{ height: height * 0.08 }}
-					headlineStyle={{
-						paddingTop: 23,
-						textAlign: 'center',
-						justifyContent: 'center',
-						alignItems: 'center',
-						alignSelf: 'center',
-						fontSize: width * 0.05,
-					}}
+					headlineStyle={styles.header}
 					headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
-					titleStyle={{ fontSize: width * 0.08, marginBottom: 10 }}
+					titleStyle={{
+						paddingTop: Platform.OS === 'ios'
+							? 15
+							: 0, color: '#3B3B3B', fontSize: width * 0.09
+					}}
 					fadeDirection="up"
 					title="동아리 찾기"
 				>
-					{/* 맨 위 d:Lite */}
-					<ClubView_dLite />
-					{/* 대학교 이름과 동아리 종류 볼수있는 아이콘 */}
-					<View style={styles.div}>
-						<Text style={styles.school}>울산대학교</Text>
-					</View>
+					{/* 맨 위 총동연 */}
+					<ClubDiv clubKind={'동아리 연합'} school={schoolName} navigation={this.props.navigation} />
 
-					{/* 종류에 따라 동아리 구분 */}
 					<ClubDiv clubKind={'예술 공연'} school={schoolName} navigation={this.props.navigation} />
 					<ClubDiv clubKind={'예술 교양'} school={schoolName} navigation={this.props.navigation} />
 					<ClubDiv clubKind={'체육 구기'} school={schoolName} navigation={this.props.navigation} />
@@ -117,7 +107,7 @@ const styles = StyleSheet.create({
 		paddingTop: 10,
 	},
 	div: {
-		height: 50,
+		height: height*0.1,
 		// backgroundColor:'#dcdcdc',
 		paddingLeft: 15,
 		paddingTop: 15,
