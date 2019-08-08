@@ -7,7 +7,7 @@ import MakeRecordPictures from './presenter';
 
 export default class RecordRegister extends React.Component {
 	static navigationOptions = {
-		header: null
+		header: null,
 	};
 	constructor(props) {
 		super(props);
@@ -48,10 +48,9 @@ export default class RecordRegister extends React.Component {
 		}
 	};
 
-
 	componentWillUnmount() {
 		BackHandler.removeEventListener('hardwareBackPress', this._handleBackButtonClick);
-	  }
+	}
 
 	_addImage = image => {
 		const t = this;
@@ -186,7 +185,7 @@ export default class RecordRegister extends React.Component {
 				recordNo: recordNo,
 			})
 			.then(async response => {
-                await t._deleteDatas(response);
+				await t._deleteDatas(response);
 			});
 	};
 
@@ -194,7 +193,7 @@ export default class RecordRegister extends React.Component {
 		for (const item of response.data) {
 			await axios.post('http://dkstkdvkf00.cafe24.com/php/MakeClub/DeletePrevRecords.php', {
 				recordPicture: item.recordPicture,
-            });
+			});
 		}
 	};
 
@@ -229,12 +228,12 @@ export default class RecordRegister extends React.Component {
 	};
 
 	_handleBackButtonClick = () => {
-		this.props.navigation.goBack()
+		this.props.navigation.goBack();
 		return true;
-	  }
+	};
 
-	  _btnDeleteAll = () => {
-		  this._deletePrevDatas()
-		  this.props.navigation.navigate('MakeRecord');
-	  }
+	_btnDeleteAll = () => {
+		this._deletePrevDatas();
+		this.props.navigation.goBack();
+	};
 }
