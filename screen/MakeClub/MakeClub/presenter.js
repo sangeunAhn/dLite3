@@ -24,143 +24,79 @@ const MakeClub = props => (
 		{props.isGetting == false && props.navigation.getParam('from', 'NO-ID') == 'm' ? (
 			<ActivityIndicator size="large" style={styles.activityIndicator} />
 		) : (
-			<View style={styles.container}>
-				<TouchableOpacity
-					style={{
-						position: 'absolute',
-						width: width * 0.2,
-						height: height * 0.1,
-						top: 15,
-						left: 10,
-						zIndex: 1,
-					}}
-					onPress={() => props.navigation.goBack()}
-				>
-					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
-				</TouchableOpacity>
-
-				<HeaderScrollView
-					headerContainerStyle={{ height: height * 0.08 }}
-					headlineStyle={{
-						paddingTop: 23,
-						textAlign: 'center',
-						justifyContent: 'center',
-						alignItems: 'center',
-						alignSelf: 'center',
-						fontSize: width * 0.05,
-					}}
-					headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
-					titleStyle={{ fontSize: width * 0.08 }}
-					fadeDirection="up"
-					title="동아리 소개"
-				>
-					<Text style={styles.blank}>ㅁㅁㅁㅁ</Text>
-
-					<Text style={styles.text1}>동아리 로고, 메인 사진</Text>
-
+				<View style={styles.container}>
 					<TouchableOpacity
-						style={{ alignItems: 'center', marginTop: 5, marginHorizontal: width * 0.05 }}
-						onPress={props.pickMainPicture}
+						style={styles.backButton}
+						onPress={() => props.navigation.goBack()}
 					>
+						<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+					</TouchableOpacity>
+
+					<HeaderScrollView
+						headerContainerStyle={{ height: height * 0.08 }}
+						headlineStyle={styles.header}
+						headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
+						titleStyle={{ fontSize: width * 0.08 }}
+						fadeDirection="up"
+						title="동아리 소개"
+					>
+						<Text style={styles.blank}>ㅁㅁㅁㅁ</Text>
+
+						<Text style={styles.text1}>동아리 로고, 메인 사진</Text>
+
+						<TouchableOpacity
+							style={styles.MainPictureClick}
+							onPress={props.pickMainPicture}
+						>
 						<Image
-							style={{
-								width: width * 0.1,
-								height: width * 0.1,
-								position: 'absolute',
-								zIndex: 1,
-								right: -15,
-								bottom: -15,
-							}}
+							style={styles.PhotoAddMainPicture}
 							source={require('../../../images/pAdd.png')}
 						/>
 						{props.clubMainPicture == null ||
-						props.clubMainPicture == 'ul' ||
-						props.clubMainPicture == '' ? (
-							<View
-								style={{
-									marginTop: 5,
-									width: width * 0.9,
-									height: height * 0.23,
-									borderRadius: 15,
-									backgroundColor: '#CEE1F2',
-								}}
-							/>
-						) : (
-							props.clubMainPicture && (
-								<Image
-									style={{
-										marginTop: 5,
-										width: width * 0.9,
-										height: height * 0.23,
-										borderRadius: 15,
-										backgroundColor: '#CEE1F2',
-									}}
-									source={{ uri: props.clubMainPicture }}
+							props.clubMainPicture == 'ul' ||
+							props.clubMainPicture == '' ? (
+								<View
+									style={styles.MainPictureImage}
 								/>
-							)
-						)}
+							) : (
+								props.clubMainPicture && (
+									<Image
+										style={styles.MainPictureImage}
+										source={{ uri: props.clubMainPicture }}
+									/>
+								)
+							)}
 					</TouchableOpacity>
 
-					<View style={{ alignItems: 'center', top: -width * 0.07, zIndex: 1 }}>
+					<View style={styles.logo}>
 						{props.clubLogo == null || props.clubLogo == 'ul' || props.clubLogo == '' ? (
 							<TouchableOpacity
 								onPress={props.pickLogo}
-								style={{
-									width: width * 0.27,
-									height: width * 0.27,
-									top: -width * 0.07,
-									zIndex: 1,
-									backgroundColor: '#ADCDE9',
-									borderRadius: width * 0.27 * 0.5,
-								}}
+								style={styles.logoClick}
 							>
 								<Image
-									style={{
-										width: width * 0.1,
-										height: width * 0.1,
-										position: 'absolute',
-										zIndex: 1,
-										right: -5,
-										bottom: -5,
-									}}
+									style={styles.photoAddLogo}
 									source={require('../../../images/pAdd.png')}
 								/>
 							</TouchableOpacity>
 						) : (
-							<TouchableOpacity
-								onPress={props.pickLogo}
-								style={{
-									width: width * 0.27,
-									height: width * 0.27,
-									top: -width * 0.07,
-									zIndex: 1,
-									borderRadius: width * 0.27 * 0.5,
-								}}
-							>
-								<Image
-									style={{
-										width: width * 0.27,
-										height: width * 0.27,
-										borderRadius: width * 0.27 * 0.5,
-									}}
-									source={{ uri: props.clubLogo }}
-								/>
-								<Image
-									style={{
-										width: width * 0.1,
-										height: width * 0.1,
-										position: 'absolute',
-										zIndex: 1,
-										right: -5,
-										bottom: -5,
-									}}
-									source={require('../../../images/pAdd.png')}
-								/>
-							</TouchableOpacity>
-						)}
+								<TouchableOpacity
+									onPress={props.pickLogo}
+									style={styles.logoClick}
+								>
+									<Image
+										style={styles.logoImage}
+										source={{ uri: props.clubLogo }}
+									/>
+									<Image
+										style={styles.PhotoAddLogo}
+										source={require('../../../images/pAdd.png')}
+									/>
+								</TouchableOpacity>
+							)}
 					</View>
 
-					<View style={{ paddingHorizontal: width * 0.05 }}>
+					<View style={styles.containerFromClubName}>
 						<View style={styles.block}>
 							<Text
 								style={[
@@ -203,8 +139,8 @@ const MakeClub = props => (
 								{props.navigation.getParam('from', 'NO-ID') == 'm' ? (
 									<ClubPickerM clubKind={props.clubKind} setPrevClubKind={props.setPrevClubKind} />
 								) : (
-									<ClubPicker setPrevClubKind={props.setPrevClubKind} />
-								)}
+										<ClubPicker setPrevClubKind={props.setPrevClubKind} />
+									)}
 							</View>
 						</View>
 						<View style={styles.block}>
@@ -287,32 +223,97 @@ const MakeClub = props => (
 
 					<View style={styles.button}>
 						{props.clubName.length == 0 &&
-						props.clubWellcome.length == 0 &&
-						props.clubPhoneNumber.length == 0 ? (
-							<ConfirmButtonN buttonColor={'#CEE1F2'} titleColor={'#BBBBBB'} title={'확인'} />
-						) : props.isSubmitting ? (
-							<ConfirmButton buttonColor={'#ADCDE9'} titleColor={'#3B3B3B'} title={'로딩'} />
-						) : (
-							<ConfirmButton
-								buttonColor={'#ADCDE9'}
-								titleColor={'#3B3B3B'}
-								title={'확인'}
-								onPress={props.btnPress}
-							/>
-						)}
+							props.clubWellcome.length == 0 &&
+							props.clubPhoneNumber.length == 0 ? (
+								<ConfirmButtonN buttonColor={'#CEE1F2'} titleColor={'#BBBBBB'} title={'확인'} />
+							) : props.isSubmitting ? (
+								<ConfirmButton buttonColor={'#ADCDE9'} titleColor={'#3B3B3B'} title={'로딩'} />
+							) : (
+									<ConfirmButton
+										buttonColor={'#ADCDE9'}
+										titleColor={'#3B3B3B'}
+										title={'확인'}
+										onPress={props.btnPress} 
+									/>
+								)}
 					</View>
 				</HeaderScrollView>
 			</View>
-		)}
+	)}
 	</>
 );
 
 const styles = StyleSheet.create({
+	backButton: {
+		position: 'absolute',
+		width: width * 0.2,
+		height: height * 0.1,
+		top: 15,
+		left: 10,
+		zIndex: 1
+	},
 	container: {
 		flex: 1,
 		backgroundColor: 'white',
 	},
-
+	header: {
+		paddingTop: 23,
+		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
+		alignSelf: 'center',
+		fontSize: width * 0.05,
+	},
+	MainPictureClick:
+	{
+		alignItems: 'center',
+		marginTop: 5,
+		marginHorizontal: width * 0.05
+	},
+	PhotoAddMainPicture:{
+		width: width * 0.1,
+		height: width * 0.1,
+		position: 'absolute',
+		zIndex: 1,
+		right: -15,
+		bottom: -15,
+	},
+	MainPictureImage:{
+		marginTop: 5,
+		width: width * 0.9,
+		height: height * 0.23,
+		borderRadius: 15,
+		backgroundColor: '#CEE1F2',
+	},
+	logo:{ 
+		alignItems: 'center', 
+		top: -width * 0.07, 
+		zIndex: 1 
+	},
+	logoClick:{
+		width: width * 0.27,
+		height: width * 0.27,
+		top: -width * 0.07,
+		zIndex: 1,
+		backgroundColor: '#ADCDE9',
+		borderRadius: width * 0.27 * 0.5,
+	},
+	photoAddLogo:{
+		width: width * 0.1,
+		height: width * 0.1,
+		position: 'absolute',
+		zIndex: 1,
+		right: -5,
+		bottom: -5,
+	},
+	logoImage:{
+		width: width * 0.27,
+		height: width * 0.27,
+		borderRadius: width * 0.27 * 0.5,
+	},
+	containerFromClubName:{ 
+		paddingHorizontal: width * 0.05 
+	},
 	input: {
 		borderRadius: 8,
 		width: '100%',
@@ -328,34 +329,6 @@ const styles = StyleSheet.create({
 	text1: {
 		fontSize: width * 0.04,
 		paddingHorizontal: width * 0.05,
-	},
-	title: {
-		width: width,
-		height: height * 0.6,
-		flexDirection: 'column',
-		alignItems: 'center',
-		backgroundColor: '#F2F2F2',
-		paddingTop: 25,
-	},
-	clubImage: {
-		width: '90%',
-		height: '65%',
-		resizeMode: 'cover',
-		backgroundColor: '#323232',
-		borderRadius: 15,
-	},
-	logo: {
-		height: 70,
-		width: 70,
-		resizeMode: 'cover',
-		backgroundColor: '#fff',
-		borderRadius: 35,
-		top: -30,
-
-		zIndex: 1,
-	},
-	toDos: {
-		alignItems: 'center',
 	},
 	block: {
 		paddingBottom: 30,
