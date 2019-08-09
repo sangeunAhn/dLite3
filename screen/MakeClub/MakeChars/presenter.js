@@ -38,7 +38,7 @@ const MakeChars = props => (
 					title="특징 입력"
 				>
 					<View style={{ flex: 1 }}>
-						{props.count >= 15 ? <View style={{ height: '5%' }} /> : <CharInput addChar={props.addChar} />}
+						{props.count >= 8 ? <View style={{ height: '5%' }} /> : <CharInput addChar={props.addChar} />}
 					</View>
 
 					<View style={styles.contain}>

@@ -30,7 +30,6 @@ const ClubRecordPictures = props => (
 					fadeDirection="up"
 					title="기록 사진"
 				>
-					{/* 회색부분 */}
 					{Object.values(props.getDatas).map(image => (
 						<Picture key={image.createdAt} picture={image.recordPicture} text={image.recordContent} />
 					))}
@@ -54,7 +53,8 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: 'white',
-		
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	header: {
 		width: '100%',

@@ -40,6 +40,7 @@ class Container extends Component {
 			clubLogo: clubLogo,
 			clubMainPicture: clubMainPicture,
 		});
+
 	};
 
 	componentWillUnmount() {
@@ -114,6 +115,10 @@ class Container extends Component {
 					isGetting2: true,
 				});
 			});
+			// const char = this.state.clubChar;
+			// char.map(char => {
+			// 	console.log(char)
+			// })
 	};
 
 
