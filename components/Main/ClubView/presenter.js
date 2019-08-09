@@ -21,8 +21,8 @@ const ClubView = props => (
 				<View style={styles.club}>
 					<Text style={styles.clubTitle}>{props.clubName}</Text>
 					<Text style={styles.clubChar}>
-						{props.clubChar.map((chars, i) => {
-							return <ClubChars chars={props.clubChar[i]} key={i} />;
+						{props.clubChar.map((char, i) => {
+							return <ClubChars chars={char} key={i} />;
 						})}
 					</Text>
 				</View>
@@ -144,20 +144,21 @@ const styles = StyleSheet.create({
 		marginTop: 3,
 		textAlignVertical: 'center',
 		fontSize: moderateScale(20),
-		fontWeight: '100',
+		fontWeight: '300',
 		color:'#3B3B3B'
 		// backgroundColor: 'red',
 	},
 	clubChar: {
-		flex: 1.5,
+		flex: 1.7,
 		textAlignVertical: "center",
 		fontSize: moderateScale(10),
 		color: '#BBBBBB',
 		paddingBottom:5,
 		marginBottom: -5,
-		lineHeight: 12,
+		lineHeight: 14,
 		// backgroundColor: 'green',
-	  },
+	   },
+  
 	button: {
 		top: -40,
 		margin: 30,

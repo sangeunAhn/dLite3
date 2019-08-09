@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Dimensions, View, ScrollView, Platform,TouchableOpacity, ActivityIndicator } from 'react-native';
+import { StyleSheet, Dimensions, View, ScrollView, TouchableOpacity, ActivityIndicator, Platform } from 'react-native';
 import RegisterButton from '../../../components/Button/RegisterButton';
 import RegisterButtonN from '../../../components/Button/RegisterButtonN';
 import { scale, moderateScale, verticalScale } from '../../../components/Scaling';
@@ -53,7 +53,7 @@ const MakeRecordPictures = props => (
                </View>
                <View style={{ height: 80 }} />
             </HeaderScrollView>
-            <View style={styles.footer}>
+            <View style={styles.button}>
                {props.count === 0 ? (
                   <>
                      {props.navigation.getParam('to', 'NO-ID') == 'm' ? (
@@ -101,34 +101,31 @@ const styles = StyleSheet.create({
       flex: 1,
       padding: 10,
    },
+   backBtn: {
+      position: 'absolute',
+      width: width * 0.2,
+      height: height * 0.1,
+      top: Platform.OS === 'ios' ? 30 : 15,
+      left: 10,
+      zIndex: 1,
+   },
    header: {
       width: moderateScale(300),
       height: 50,
-      backgroundColor: '#32AAFF',
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: 10,
       marginBottom: 40,
       textAlign: 'center',
-   },
-   footer: {
-      flex: 1,
-      position: 'absolute',
+      justifyContent: 'center',
       alignItems: 'center',
-      bottom: 0,
-      width: '100%',
-      textAlign: 'center',
-      // backgroundColor: '#1ad657',
-      paddingBottom: height * 0.01,
       alignSelf: 'center',
-      backgroundColor: 'white',
-      paddingHorizontal: width * 0.03,
+      fontSize: width * 0.05,
    },
    button: {
-      flex: 1,
-      backgroundColor: '#50C8FF',
-      alignItems: 'center',
-      justifyContent: 'center',
+      height: height*0.09,
+      marginTop:height*0.01,
+      paddingHorizontal: width * 0.03,
    },
    text: {
       fontSize: 20,

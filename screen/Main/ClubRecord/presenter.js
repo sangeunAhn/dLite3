@@ -17,32 +17,34 @@ const ClubRecord = props => (
 			>
 				<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 			</TouchableOpacity>
-			<HeaderScrollView
-				headerContainerStyle={{ height: height * 0.08 }}
-				headlineStyle={styles.header}
-				headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
-				titleStyle={{
-					paddingTop: Platform.OS === 'ios' ? 15 : 0,
-					color: '#3B3B3B',
-					fontSize: width * 0.09,
-				}}
-				fadeDirection="up"
-				title="동아리 기록"
-			>
-				{props.isGetting ? (
-					<MasonryList
-						imageContainerStyle={{ borderRadius: 17, right: 12 }}
-						spacing={7}
-						images={props.listRecords}
-						onPressImage={(item, index) => {
-							props.goToPictures(item.uri);
-						}}
-						sorted={true}
-					/>
-				) : (
-					<ActivityIndicator size="large" style={styles.activityIndicator} />
-				)}
-			</HeaderScrollView>
+			<View style={styles.container}>
+				<HeaderScrollView
+					headerContainerStyle={{ height: height * 0.08 }}
+					headlineStyle={styles.header}
+					headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
+					titleStyle={{
+						paddingTop: Platform.OS === 'ios' ? 15 : 0,
+						color: '#3B3B3B',
+						fontSize: width * 0.09,
+					}}
+					fadeDirection="up"
+					title="동아리 기록"
+				>
+					{props.isGetting ? (
+						<MasonryList
+							imageContainerStyle={{ borderRadius: 17, right: 12 }}
+							spacing={7}
+							images={props.listRecords}
+							onPressImage={(item, index) => {
+								props.goToPictures(item.uri);
+							}}
+							sorted={true}
+						/>
+					) : (
+						<ActivityIndicator size="large" style={styles.activityIndicator} />
+					)}
+				</HeaderScrollView>
+			</View>
 		</View>
 	</>
 );

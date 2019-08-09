@@ -107,7 +107,7 @@ export default class PhotoModify extends React.Component {
 			});
 
 			if (!result.cancelled) {
-				this.setState({ image: result.uri });
+				this.setState({ image: result.uri, disabled: true });
 				updateImage(id, result.uri);
 			}
 		}

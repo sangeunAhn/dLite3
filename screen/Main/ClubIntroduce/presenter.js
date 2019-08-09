@@ -10,7 +10,7 @@ import {
 	ActivityIndicator,
 	TouchableOpacity,
 } from 'react-native';
-import ClubChars from '../../../components/Char/ClubChars';
+import IntroduceChars from '../../../components/Char/IntroduceChars';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -55,14 +55,9 @@ const ClubIntroduce = props => (
 						{
 							<View style={styles.logoView2}>
 								{props.clubLogo === null || props.clubLogo == '' ? (
-									<Image
-										style={styles.clubLogo}
-									/>
+									<Image style={styles.clubLogo} />
 								) : (
-									<Image
-										style={styles.clubLogo}
-										source={{ uri: props.clubLogo }}
-									/>
+									<Image style={styles.clubLogo} source={{ uri: props.clubLogo }} />
 								)}
 							</View>
 						}
@@ -74,6 +69,14 @@ const ClubIntroduce = props => (
 
 							<View style={styles.input}>
 								<Text style={styles.textIn}>{props.clubName}</Text>
+							</View>
+						</View>
+
+						<View style={styles.block}>
+							<View style={styles.chars}>
+								{props.clubChar.map((char, index) => (
+									<IntroduceChars key={index} char={char} />
+								))}
 							</View>
 						</View>
 
@@ -119,6 +122,11 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		alignSelf: 'center',
 		fontSize: width * 0.05,
+	},
+	chars: {
+		flexWrap: 'wrap',
+		flexDirection: 'row',
+		alignItems: 'center',
 	},
 	blank: {
 		fontSize: 25,

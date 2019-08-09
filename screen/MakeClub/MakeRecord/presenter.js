@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, Dimensions, ActivityIndicator, Platform } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Dimensions, ActivityIndicator, Platform, Text } from 'react-native';
 import RecordFalse from '../../../components/Button/RecordButtonN';
 import RecordTrue from '../../../components/Button/RecordButton';
 import { Icon } from 'react-native-elements';
@@ -23,6 +23,12 @@ const MakeRecord = props => (
 				>
 					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 				</TouchableOpacity>
+				<TouchableOpacity
+					style={styles.addBtn}
+					onPress={props.iconPress}
+				>
+					<Text style={{fontSize: 20, fontWeight: '600'}}>추가</Text>
+				</TouchableOpacity>
 				<View style={styles.container}>
 					<HeaderScrollView
 						headerContainerStyle={{ height: height * 0.08 }}
@@ -36,15 +42,6 @@ const MakeRecord = props => (
 						fadeDirection="up"
 						title="기록 추가"
 					>
-						<Icon
-							raised
-							reverse
-							name="plus"
-							type="entypo"
-							color="#2eaeff"
-							containerStyle={{ right: 10, zIndex: 999 }}
-							onPress={props.iconPress}
-						/>
 
 						{/* 사진들 들어갈 곳 */}
 						<MasonryList
@@ -72,6 +69,10 @@ const MakeRecord = props => (
 );
 
 const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		backgroundColor: '#fff',
+	},
 	backBtn: {
 		position: 'absolute',
 		width: width * 0.2,
@@ -80,16 +81,22 @@ const styles = StyleSheet.create({
 		left: 10,
 		zIndex: 1,
 	},
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
+	addBtn: {
+		position: 'absolute',
+		width: width * 0.1,
+		height: height * 0.1,
+		top: Platform.OS === 'ios' ? 30 : 15,
+		right: 10,
+		zIndex: 1,
+		fontSize: width * 0.05
 	},
 	header: {
-		width: '100%',
-		height: 70,
-		// backgroundColor:'#A0AFFF',
-		flexDirection: 'row',
-		justifyContent: 'flex-end',
+		paddingTop: 23,
+		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
+		alignSelf: 'center',
+		fontSize: width * 0.05,
 	},
 	content: {
 		flex: 1,

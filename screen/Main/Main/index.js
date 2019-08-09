@@ -17,8 +17,6 @@ import HeaderScrollView from 'react-native-header-scroll-view';
 import { Ionicons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
-const MIN_HEIGHT = 50;
-const MAX_HEIGHT = 50.5;
 
 export default class Main extends React.Component {
 	static navigationOptions = ({ navigation, screenProps }) => ({
@@ -65,7 +63,6 @@ export default class Main extends React.Component {
 				>
 					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 				</TouchableOpacity>
-
 				<HeaderScrollView
 					headerContainerStyle={{ height: height * 0.08 }}
 					headlineStyle={styles.header}
@@ -76,7 +73,7 @@ export default class Main extends React.Component {
 						fontSize: width * 0.09,
 					}}
 					fadeDirection="up"
-					title="동아리 찾기"
+					title="동아리 소개"
 				>
 					{/* 맨 위 총동연 */}
 					<ClubDiv clubKind={'동아리 연합'} school={schoolName} navigation={this.props.navigation} />
@@ -109,6 +106,22 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: '#fff',
 	},
+	backBtn: {
+		position: 'absolute',
+		width: width * 0.2,
+		height: height * 0.1,
+		top: Platform.OS === 'ios' ? 30 : 15,
+		left: 10,
+		zIndex: 1,
+	},
+	header: {
+		paddingTop: 23,
+		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
+		alignSelf: 'center',
+		fontSize: width * 0.05,
+	},
 	scroll: {
 		flex: 1,
 		paddingTop: 10,
@@ -124,13 +137,6 @@ const styles = StyleSheet.create({
 	},
 	school: {
 		fontSize: width * 0.06,
-	},
-	navTitleView: {
-		height: MIN_HEIGHT,
-		justifyContent: 'center',
-		alignItems: 'center',
-		paddingTop: 0,
-		opacity: 0,
 	},
 	navTitle: {
 		color: 'black',
