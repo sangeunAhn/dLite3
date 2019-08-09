@@ -27,7 +27,7 @@ const MakeRecord = props => (
 					style={styles.addBtn}
 					onPress={props.iconPress}
 				>
-					<Text style={{fontSize: 20, fontWeight: '600'}}>추가</Text>
+					<Text style={{fontSize: width*0.04, color: '#3B3B3B', fontWeight: '600'}}>추가</Text>
 				</TouchableOpacity>
 				<View style={styles.container}>
 					<HeaderScrollView
@@ -42,8 +42,8 @@ const MakeRecord = props => (
 						fadeDirection="up"
 						title="기록 추가"
 					>
-
-						{/* 사진들 들어갈 곳 */}
+					{props.count >= 1 ?
+						<>
 						<MasonryList
 							imageContainerStyle={{ borderRadius: 17, right: 12 }}
 							spacing={7}
@@ -53,6 +53,14 @@ const MakeRecord = props => (
 							}}
 							sorted={true}
 						/>
+						</>
+						:
+						<>
+						<View style={{width:width, paddingTop:height*0.01,height: height*0.6, justifyContent:'center', alignContent:'center'}}>
+							<Text style={{fontSize:width*0.05, color:'#BBBBBB',textAlign: 'center', alignSelf: 'center',}}>최소 1개 이상 기록해야 합니다.</Text>
+						</View>
+						</>
+					}
 					</HeaderScrollView>
 
 					{/* 완료버튼 */}
@@ -102,10 +110,9 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	footer: {
-		width: '100%',
-		height: 70,
-		// backgroundColor: '#5CEEE6',
-		borderTopWidth: 0,
+		height: height*0.09,
+		marginTop: 30,
+		paddingHorizontal: width * 0.03,
 	},
 	button: {
 		backgroundColor: '#0064FF',
