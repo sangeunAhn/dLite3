@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import {
   TouchableOpacity,
   Text,
-  StyleSheet
+  StyleSheet,
+  Dimensions
 } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
 
 export default class RecordTrue extends Component{
 
@@ -14,10 +17,10 @@ export default class RecordTrue extends Component{
   render(){
     return (
             <TouchableOpacity 
-              style={styles.true}
+              style={styles.button}
               onPress={this.props.onPress}
             >
-                <Text style={styles.text1}>완료</Text>
+                <Text style={styles.title}>완료</Text>
             </TouchableOpacity>
 
     )
@@ -26,16 +29,23 @@ export default class RecordTrue extends Component{
 
 
 const styles = StyleSheet.create({
-  true:{
-      flex:1,
-      borderColor:'white',
-      backgroundColor:'#28E7FF',
-      alignItems:'center',
-      justifyContent: 'center'
+  button: {
+    width:'100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: height*0.01,
+    borderRadius: 15,
+    height: height*0.07,
+    opacity: 0.3,
+    shadowColor: 'rgba(0,0,0, .4)', // IOS
+    shadowOffset: { height: 1, width: 1 }, // IOS
+    shadowOpacity: 1, // IOS
+      shadowRadius: 1, //IOS
+      elevation: 2, // Android 
   },
-  text1:{
-      fontSize:25,
-      color:'#fff',
-      fontWeight:'700'
-  }
+  title: {
+    fontSize: width*0.055,
+    fontWeight: "700",
+    color:'#3B3B3B'
+  },
 });

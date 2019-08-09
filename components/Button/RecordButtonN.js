@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import {
   Text,
   StyleSheet,
-  View
+  View,
+  Dimensions
 } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
 
 export default class RecordFalse extends Component{
 
@@ -13,9 +16,9 @@ export default class RecordFalse extends Component{
 
   render(){
     return (
-            <View style={styles.false}>
-                <Text style={styles.text1}>*최소 1개이상 작성하셔야 합니다.</Text>
-                <Text style={styles.text2}>완료</Text>
+            <View style={styles.button}>
+                
+                <Text style={styles.title}>완료</Text>
             </View>
 
     )
@@ -23,18 +26,23 @@ export default class RecordFalse extends Component{
 }
 
 const styles = StyleSheet.create({
-    false:{
-        flex:1,
-        backgroundColor:'#d2d2d2',
-        alignItems:'center'
-    },
-    text1:{
-        fontSize:15,
-        padding:5,
-        color: 'red'
-    },
-    text2:{
-        fontSize:18,
-        color:'#828282'
-    }
+  button: {
+    width:'100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: height*0.01,
+    borderRadius: 15,
+    height: height*0.07,
+    opacity: 0.3,
+    shadowColor: 'rgba(0,0,0, .4)', // IOS
+    shadowOffset: { height: 1, width: 1 }, // IOS
+    shadowOpacity: 1, // IOS
+      shadowRadius: 1, //IOS
+      elevation: 2, // Android 
+  },
+  title: {
+    fontSize: width*0.055,
+    fontWeight: "700",
+    color:'#fff'
+  },
 });
