@@ -110,13 +110,7 @@ const styles = StyleSheet.create({
 		zIndex: 1,
 	},
 	header: {
-
-		width: moderateScale(300),
-		height: 50,
-		justifyContent: 'center',
-		alignItems: 'center',
-		borderRadius: 10,
-		marginBottom: 40,
+		paddingTop: 23,
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',
