@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     width:'100%',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: height*0.05,
+    marginBottom: height*0.01,
     borderRadius: 15,
     height: height*0.07,
     opacity: 0.3,
