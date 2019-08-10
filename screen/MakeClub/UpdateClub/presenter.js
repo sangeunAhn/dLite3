@@ -10,7 +10,7 @@ const { width, height } = Dimensions.get('window');
 const UpdateClub = props => (
 	<>
 		<TouchableOpacity
-			style={{ position: 'absolute', width: width * 0.2, height: height * 0.1, top: 15, left: 10, zIndex: 1 }}
+			style={styles.backButton}
 			onPress={() => props.navigation.goBack()}
 		>
 			<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
@@ -29,6 +29,14 @@ const UpdateClub = props => (
 );
 
 const styles = StyleSheet.create({
+	backButton:{
+		position: 'absolute',
+		width: width * 0.2,
+		height: height * 0.1,
+		top: Platform.OS === 'ios' ? 30 : 15,
+		left: 10,
+		zIndex: 1,
+	},
 	container: {
 		flex: 1,
 		padding: 10,
