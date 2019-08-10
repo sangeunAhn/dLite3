@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Dimensions, TouchableOpacity, Text, View,} from 'react-native';
+import { StyleSheet, Dimensions, TouchableOpacity, Text, View,Platform} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ClubUpdateBtn from '../../../components/Button/updateClubButton/ClubUpdateBtn';
 import CharUpdateBtn from '../../../components/Button/updateClubButton/CharUpdateBtn';

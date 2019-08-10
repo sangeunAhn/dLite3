@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TouchableOpacity, Dimensions, Text } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Dimensions, Text,Platform } from 'react-native';
 import SchoolBtn from '../../../components/Button/SchoolBtn';
 import { Ionicons } from '@expo/vector-icons';
 import HeaderScrollView from 'react-native-header-scroll-view';
