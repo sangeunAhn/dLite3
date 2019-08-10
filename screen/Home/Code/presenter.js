@@ -34,16 +34,26 @@ const Code = props => (
 			<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 		</TouchableOpacity>
 		<View style={styles.container}>
-			<HeaderScrollView
-				headerContainerStyle={{ height: height * 0.08 }}
-				headlineStyle={styles.header}
-				headerComponentContainerStyle={{ justifyContent: 'center', height: height * 0.08 }}
-				titleStyle={{ paddingTop:Platform.OS === 'ios'
-																? 15
-																: 0,color: '#3B3B3B', fontSize: width * 0.09 }}
-				fadeDirection="up"
-				title="코드 입력"
-			>
+		<HeaderScrollView
+						headerContainerStyle={{
+							justifyContent: 'center', alignItems: 'center', height: Platform.OS === 'ios'
+								? height * 0.1
+								: height * 0.08
+						}}
+						headlineStyle={{
+							height: height * 0.1, textAlign: 'center', justifyContent: 'center', alignItems: 'center',
+							alignSelf: 'center', fontSize: width * 0.05,
+							paddingTop: Platform.OS === 'ios' ? height * 0.055 : height * 0.048
+						}}
+						headerComponentContainerStyle={{ justifyContent: 'center', alignItems: 'center', height: height * 0.08 }}
+						titleStyle={{
+							paddingTop: Platform.OS === 'ios' ? 15 : 0,
+							color: '#3B3B3B',
+							fontSize: width * 0.09,
+						}}
+						fadeDirection="up"
+						title="코드 입력"
+					>
 				<View style={styles.header} />
 
 				{/* 코드입력부분 */}
