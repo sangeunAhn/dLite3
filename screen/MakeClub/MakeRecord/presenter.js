@@ -136,7 +136,9 @@ const styles = StyleSheet.create({
 		color: '#fff',
 	},
 	activityIndicator: {
-		top: 40
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center'
 	}
 });
 
