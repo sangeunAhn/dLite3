@@ -30,18 +30,19 @@ export default class RecordTrue extends Component{
 
 const styles = StyleSheet.create({
   button: {
-    width: '100%',
+    width:'100%',
+    height: height*0.07,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: height*0.01,
+    borderRadius: 15,
     backgroundColor:'#ADCDE9',
-		alignItems: 'center',
-		justifyContent: 'center',
-		marginBottom: height*0.01,
-		borderRadius: 15,
-		height: height * 0.07,
-		shadowColor: 'rgba(0,0,0, .4)', // IOS
-		shadowOffset: { height: 1, width: 1 }, // IOS
-		shadowOpacity: 1, // IOS
-		shadowRadius: 1, //IOS
-		elevation: 2, // Android
+    shadowColor: 'rgba(0,0,0, .4)', // IOS
+    shadowColor: '#E1E1E1', // IOS
+    shadowOffset: { height: 3, width: 1 }, // IOS
+    shadowOpacity: 3, // IOS
+    shadowRadius: 1, //IOS
+    elevation: 2, // Android 
   },
   title: {
     fontSize: width*0.055,

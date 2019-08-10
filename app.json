@@ -34,7 +34,7 @@
       "bundleIdentifier": "co.dLite.dLite"
     },
     "android": {
-      "package": "co.dLite.dLite"
+      "package": "com.dLite.dLite"
     }
   }
 }

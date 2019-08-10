@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Dimensions } from 'react-native';
 import { scale, moderateScale, verticalScale } from '../Scaling';
+
+const { width, height } = Dimensions.get('window');
 
 class CharInput extends Component {
 	state = {
@@ -56,7 +58,7 @@ class CharInput extends Component {
 
 					<View style={styles.btnView}>
 						<TouchableOpacity style={styles.addBtn} onPressOut={this.addNewChar}>
-							<Text style={{ color: 'white', zIndex: 999 }}>추가</Text>
+							<Text style={{ fontSize:width*0.04, color: 'white', zIndex: 999 }}>추가</Text>
 						</TouchableOpacity>
 					</View>
 				</View>
@@ -65,13 +67,19 @@ class CharInput extends Component {
 	}
 }
 const styles = StyleSheet.create({
+	selectView: {
+		flexDirection: 'row',
+		marginTop: 20,
+		paddingHorizontal:width*0.01,
+		paddingBottom: scale(15),
+	},
 	input: {
-		height: 45,
+		height: height*0.07,
 		flex: 3,
 		padding: 10,
 
 		borderBottomWidth: 1,
-		fontSize: 17,
+		fontSize: width*0.05,
 		marginRight: 15,
 	},
 	shap: {
@@ -96,15 +104,15 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#ADCDE9',
-		height: 40,
-		width: moderateScale(50),
+		height: height*0.055,
+		width: width*0.15,
 
 		borderColor: '#f1b3ae',
-		borderRadius: 10,
-		shadowColor: 'rgba(0,0,0, .4)', // IOS
-		shadowOffset: { height: 1, width: 1 }, // IOS
-		shadowOpacity: 1, // IOS
-		shadowRadius: 1, //IOS
+		borderRadius: width*0.15*0.2,
+		shadowColor: '#D7D7D7', // IOS
+		shadowOffset: { height:1 , width: 0 }, // IOS
+		shadowOpacity: 5, // IOS
+		shadowRadius: 2, //IOS
 		elevation: 2, // Android
 	},
 	btnView: {

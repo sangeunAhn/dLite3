@@ -35,11 +35,12 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     height: height*0.07,
     opacity: 0.3,
-    shadowColor: 'rgba(0,0,0, .4)', // IOS
-    shadowOffset: { height: 1, width: 1 }, // IOS
-    shadowOpacity: 1, // IOS
-      shadowRadius: 1, //IOS
-      elevation: 2, // Android 
+    shadowColor: '#E1E1E1', // IOS
+    shadowOffset: { height: 3, width: 1 }, // IOS
+    shadowOpacity: 3, // IOS
+    shadowRadius: 1, //IOS
+    elevation: 2, // Android
+    backgroundColor:'#ADCDE9'
   },
   title: {
     fontSize: width*0.055,

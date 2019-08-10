@@ -14,7 +14,9 @@ export default class TouchMainPicture extends React.Component {
 					{this.props.clubMainPicture === null ? (
 						<View style={styles.picture} backgroundColor={'#CEE1F2'} />
 					) : (
-						<Image blurRadius={5} style={styles.picture} source={{ uri: this.props.clubMainPicture }} />
+						<View style={styles.picture}>
+						<Image blurRadius={5} style={styles.picture2} source={{ uri: this.props.clubMainPicture }} />
+						</View>
 					)}
 				</View>
 				<View style={styles.popup}>
@@ -23,7 +25,7 @@ export default class TouchMainPicture extends React.Component {
 							{this.props.clubLogo === null ? (
 								<View style={styles.Image} backgroundColor={'#ADCDE9'} />
 							) : (
-								<Image resizeMode="center" style={styles.Image} source={{ uri: this.props.clubLogo }} />
+								<Image style={styles.Image} source={{ uri: this.props.clubLogo }} />
 							)}
 						</View>
 
@@ -68,30 +70,37 @@ const styles = StyleSheet.create({
 		margin: width * 0.05,
 		width: width * 0.1,
 		height: width * 0.1,
-		overflow: 'hidden',
 		borderRadius: width * 0.1 * 0.5,
-		borderWidth: 2,
-		borderColor: 'white',
-		shadowColor: 'gray', // IOS
-		shadowOffset: { height: 1, width: 1 }, // IOS
-		shadowOpacity: 1, // IOS
+		shadowColor: '#888888', // IOS
+		shadowOffset: { height:0 , width: 0 }, // IOS
+		shadowOpacity: 15, // IOS
 		shadowRadius: 5, //IOS
-		elevation: 5, // Android
+		elevation: 10, // Android
 	},
 	clickArea: {
 		height: height * 0.1,
 		justifyContent: 'center',
 	},
 	Image: {
-		flex: 1,
-		width: width * 0.09,
-		height: width * 0.09,
-		borderRadius: width * 0.09 * 0.5,
-		backgroundColor: '#fff',
+		width: width * 0.1,
+		height: width * 0.1,
+		borderRadius: width * 0.1 * 0.5,
+		
 	},
 	picture: {
 		zIndex: 0,
 		marginTop: 10,
+		borderRadius: 13,
+		width: width * 0.9,
+		height: height * 0.23,
+		shadowColor: '#B8B8B8', // IOS
+		shadowOffset: { height: 5, width: 1 }, // IOS
+		shadowOpacity: 7, // IOS
+		shadowRadius: 4, //IOS
+		elevation: 5, // Android
+	},
+	picture2: {
+		zIndex: 0,
 		borderRadius: 13,
 		width: width * 0.9,
 		height: height * 0.23,

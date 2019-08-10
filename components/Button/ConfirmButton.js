@@ -38,14 +38,14 @@ const styles = StyleSheet.create({
 		marginBottom: height*0.01,
 		borderRadius: 15,
 		height: height * 0.07,
-		shadowColor: 'rgba(0,0,0, .4)', // IOS
-		shadowOffset: { height: 1, width: 1 }, // IOS
-		shadowOpacity: 1, // IOS
+		shadowColor: '#E1E1E1', // IOS
+		shadowOffset: { height: 3, width: 1 }, // IOS
+		shadowOpacity: 3, // IOS
 		shadowRadius: 1, //IOS
 		elevation: 2, // Android
 	},
 	title: {
-		fontSize: 20,
+		fontSize: width*0.052,
 		fontWeight: '700',
 	},
 });

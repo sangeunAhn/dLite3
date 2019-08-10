@@ -3,7 +3,8 @@ import {
   TouchableOpacity,
   Text,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  View
 } from 'react-native';
 import { scale, moderateScale, verticalScale} from '../../components/Scaling';
 import { LinearGradient } from 'expo';
@@ -15,7 +16,7 @@ export default class MainButton extends Component{
   static defaultProps = {
     title: 'untitled',
     buttonColor: '#f0f0f0',
-    titleColor: '#4d4d4d',
+    titleColor: 'white',
     onPress: () => null,
   }
 
@@ -27,11 +28,15 @@ export default class MainButton extends Component{
     return (
       <TouchableOpacity
       onPress={this.props.onPress}>
-      <LinearGradient colors={['#ECF6FF','#E0EDF9', '#CCDEEE','#B9CFE3']} style={styles.button}>
+        <View style={styles.button}>
+      <LinearGradient colors={['#D7E8F7','#A8D3FA','#A8D2FA']} style={styles.button2} >
+        
         <Text style={[styles.title,{color: this.props.titleColor, fontSize: moderateScale(20),}]}>
           {this.props.title}
         </Text>
+       
       </LinearGradient>
+      </View>
       </TouchableOpacity>
     )
   }
@@ -45,11 +50,18 @@ const styles = StyleSheet.create({
     marginBottom: height*0.01,
     borderRadius: width*0.9*0.5,
     height:height*0.08,
-    shadowColor: 'rgba(0,0,0, .4)', // IOS
-    shadowOffset: { height: 1, width: 1 }, // IOS
-    shadowOpacity: 1, // IOS
-      shadowRadius: 1, //IOS
-      elevation: 2, // Android
+    shadowColor: '#E1E1E1', // IOS
+    shadowOffset: { height: 3, width: 1 }, // IOS
+    shadowOpacity: 3, // IOS
+    shadowRadius: 1, //IOS
+    elevation: 2, // Android
+  },
+  button2: {
+    width: width*0.9,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: width*0.9*0.5,
+    height:height*0.08,
   },
   title: {
     fontSize: 18,

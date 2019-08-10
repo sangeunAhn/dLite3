@@ -60,11 +60,11 @@ const styles = StyleSheet.create({
         backgroundColor:'white',
 		borderRadius:10,
 		
-        shadowColor: '#AEADAD',
-        shadowOffset: { width: 2, height: 2 },
-        shadowOpacity: 2,
-        shadowRadius: 3,
-        elevation: 2,
+        shadowColor: '#A8A8A8',
+        shadowOffset: { width: 1, height: 1 },
+        shadowOpacity: 5,
+        shadowRadius: 5,
+        elevation: 3,
     
     },
     top:{
@@ -73,14 +73,14 @@ const styles = StyleSheet.create({
 	},
 	
     bottom:{
-        height:80,
+        height:height*0.1,
         backgroundColor:'white',
 		justifyContent:'center',
 		borderRadius:10,
 	},
     text:{
 		textAlign: 'center',
-		fontSize: 20,
+		fontSize: width*0.05,
 		color: '#bebebe',
     },
 });

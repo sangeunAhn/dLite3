@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity , Dimensions  } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+
+const { width, height } = Dimensions.get('window');
 
 class Char extends Component {
 	constructor(props) {
@@ -17,14 +19,18 @@ class Char extends Component {
 				<View>
 					{this.state.delBtn == false ? (
 						<TouchableOpacity style={styles.button} onPress={this._charPress}>
-							<Text style={{ color: '#3B3B3B' }}>#{this.props.text}</Text>
+							<View style={styles.button2}> 
+							<Text style={styles.text}>#{this.props.text}</Text>
+							</View>
 						</TouchableOpacity>
 					) : (
 						<TouchableOpacity style={styles.button} onPress={this._charPress}>
-							<Text style={{ color: 'white' }}>#{this.props.text}</Text>
+							<View style={styles.button2}> 
+							<Text style={styles.text2}>#{this.props.text}</Text>
 							<TouchableOpacity style={{ position: 'absolute' }} onPress={() => removeChar(id)}>
-								<Icon reverse size={10} name="cross" type="entypo" color="#676765" />
+							<AntDesign name="closecircleo" size={width * 0.06} color='#3B3B3B' />
 							</TouchableOpacity>
+							</View>
 						</TouchableOpacity>
 					)}
 				</View>
@@ -42,23 +48,36 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 	},
 	button: {
+		borderRadius:  height*0.055*0.5,
+		height: height*0.055,
+		marginBottom: height*0.02,
+	},
+	button2: {
 		alignItems: 'center',
 		justifyContent: 'center',
-		marginBottom: 10,
-		borderRadius: 15,
-		height: 40,
+		
+		borderRadius:  height*0.055*0.5,
+		height: height*0.055,
 		backgroundColor: 'white',
-		paddingRight: 10,
-		paddingLeft: 10,
-		marginRight: 10,
-
+		paddingHorizontal:width*0.02,
+		marginHorizontal: 10,
 		flexDirection: 'row',
-		shadowColor: 'rgba(0,0,0, .4)', // IOS
-		shadowOffset: { height: 1, width: 1 }, // IOS
-		shadowOpacity: 1, // IOS
-		shadowRadius: 1, //IOS
-		elevation: 1, // Android
+		shadowColor: '#D7D7D7', // IOS
+		shadowOffset: { height:1 , width: 0 }, // IOS
+		shadowOpacity: 5, // IOS
+		shadowRadius: 2, //IOS
+		elevation: 2, // Android
 	},
+	text : { 
+		color: '#3B3B3B' , 
+		paddingHorizontal:15,
+		fontSize: width*0.04,
+	},
+	text2 : { 
+		color: 'white' , 
+		paddingHorizontal:10,
+		fontSize: width*0.04,
+	}
 });
 
 export default Char;
