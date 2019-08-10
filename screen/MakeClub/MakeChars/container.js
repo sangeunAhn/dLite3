@@ -107,8 +107,8 @@ class Container extends React.Component {
 		});
 	};
 
-	_removeChar = id => {
-		this.setState(prevState => {
+	_removeChar = async id => {
+		await this.setState(prevState => {
 			const chars = prevState.chars;
 			const count = this.state.count;
 			delete chars[id];
@@ -119,6 +119,7 @@ class Container extends React.Component {
 			};
 			return { ...newState };
 		});
+		console.log(this.state.count)
 	};
 
 	_addChar = char => {

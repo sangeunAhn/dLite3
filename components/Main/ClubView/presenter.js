@@ -129,7 +129,6 @@ const styles = StyleSheet.create({
 	Image: {
 		width: width * 0.15,
 		height: width * 0.15,
-
 		backgroundColor: '#fff',
 		borderRadius: width * 0.15 * 0.5,
 	},

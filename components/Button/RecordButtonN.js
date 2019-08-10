@@ -28,6 +28,7 @@ export default class RecordFalse extends Component{
 const styles = StyleSheet.create({
   button: {
     width:'100%',
+    backgroundColor:'#CDE0F1',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: height*0.01,

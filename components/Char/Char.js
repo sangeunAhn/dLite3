@@ -17,11 +17,11 @@ class Char extends Component {
 				<View>
 					{this.state.delBtn == false ? (
 						<TouchableOpacity style={styles.button} onPress={this._charPress}>
-							<Text style={{ color: '#3B3B3B' }}>{this.props.text}</Text>
+							<Text style={{ color: '#3B3B3B' }}>#{this.props.text}</Text>
 						</TouchableOpacity>
 					) : (
 						<TouchableOpacity style={styles.button} onPress={this._charPress}>
-							<Text style={{ color: 'white' }}>{this.props.text}</Text>
+							<Text style={{ color: 'white' }}>#{this.props.text}</Text>
 							<TouchableOpacity style={{ position: 'absolute' }} onPress={() => removeChar(id)}>
 								<Icon reverse size={10} name="cross" type="entypo" color="#676765" />
 							</TouchableOpacity>

@@ -42,7 +42,7 @@ const MakeChars = props => (
 					</View>
 
 					<View style={styles.contain}>
-						{props.chars == 0 ? (
+						{props.count == 0 ? (
 							<>
 								<View style={{ flexDirection: 'column' }}>
 									<Text style={styles.ex}>
@@ -87,7 +87,7 @@ const MakeChars = props => (
 
 				{/* 완료버튼 */}
 				<View style={styles.footer}>
-					{props.chars == 0 ? (
+					{props.count == 0 ? (
 						<ConfirmButtonN title={'선택완료'} />
 					) : props.isSubmitting ? (
 						<ConfirmButton buttonColor={'#ADCDE9'} titleColor={'#3B3B3B'} title={'로딩'} />

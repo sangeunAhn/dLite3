@@ -1,8 +1,7 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, Dimensions, ActivityIndicator, Platform, Text } from 'react-native';
-import RecordFalse from '../../../components/Button/RecordButtonN';
-import RecordTrue from '../../../components/Button/RecordButton';
-import { Icon } from 'react-native-elements';
+import RecordButtonN from '../../../components/Button/RecordButtonN';
+import RecordButton from '../../../components/Button/RecordButton';
 import MasonryList from 'react-native-masonry-list';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import { Ionicons } from '@expo/vector-icons';
@@ -40,7 +39,7 @@ const MakeRecord = props => (
 							fontSize: width * 0.09,
 						}}
 						fadeDirection="up"
-						title="기록 추가"
+						title="기록 생성"
 					>
 					{props.count >= 1 ?
 						<>
@@ -66,7 +65,7 @@ const MakeRecord = props => (
 					{/* 완료버튼 */}
 					<View style={styles.footer}>
 						{/* true면 <RecordTrue /> false면 <RecordFalse /> */}
-						{props.count >= 1 ? <RecordTrue onPress={props.btnPress} /> : <RecordFalse />}
+						{props.count >= 1 ? <RecordButton onPress={props.btnPress} /> : <RecordButtonN />}
 					</View>
 				</View>
 			</>
@@ -128,6 +127,9 @@ const styles = StyleSheet.create({
 		fontSize: 25,
 		color: '#fff',
 	},
+	activityIndicator: {
+		top: 40
+	}
 });
 
 export default MakeRecord;

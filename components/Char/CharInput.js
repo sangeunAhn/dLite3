@@ -40,6 +40,9 @@ class CharInput extends Component {
 		return (
 			<>
 				<View style={styles.selectView}>
+					<View style={styles.shap}>
+						<Text style={this.state.newChar === '' ? styles.shapText1 : styles.shapText2}>#</Text>
+					</View>
 					<TextInput
 						style={[styles.input, { borderColor: isFocused ? '#75A9D6' : '#DCDCDC' }]}
 						placeholder={'직접입력'}
@@ -51,8 +54,8 @@ class CharInput extends Component {
 						maxLength={8}
 					/>
 
-					<View style={styles.BT}>
-						<TouchableOpacity style={styles.AB} onPressOut={this.addNewChar}>
+					<View style={styles.btnView}>
+						<TouchableOpacity style={styles.addBtn} onPressOut={this.addNewChar}>
 							<Text style={{ color: 'white', zIndex: 999 }}>추가</Text>
 						</TouchableOpacity>
 					</View>
@@ -71,18 +74,24 @@ const styles = StyleSheet.create({
 		fontSize: 17,
 		marginRight: 15,
 	},
-
+	shap: {
+		justifyContent: 'flex-end',
+		bottom: 12,
+		left: 8,
+	},
+	shapText1: {
+		fontSize: 20,
+		color: '#DCDCDC',
+	},
+	shapText2: {
+		fontSize: 20,
+	},
 	selectView: {
 		flexDirection: 'row',
 		marginTop: 20,
 		padding: scale(10),
 	},
-	STBT: {
-		flex: 1,
-		paddingLeft: 50,
-		marginLeft: 50,
-	},
-	AB: {
+	addBtn: {
 		zIndex: 999,
 		alignItems: 'center',
 		justifyContent: 'center',
@@ -98,7 +107,7 @@ const styles = StyleSheet.create({
 		shadowRadius: 1, //IOS
 		elevation: 2, // Android
 	},
-	BT: {
+	btnView: {
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
