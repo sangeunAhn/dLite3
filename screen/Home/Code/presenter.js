@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
 		bottom: 10,
 		width: '100%',
 		textAlign: 'center',
-		//  backgroundColor: '#1ad657',
+		backgroundColor: '#FAFAFA',
 		paddingTop: 10,
 		alignSelf: 'center',
 		backgroundColor: 'white',

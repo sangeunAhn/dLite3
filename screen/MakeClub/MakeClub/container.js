@@ -239,6 +239,7 @@ class Container extends Component {
 
 		if (clubName == '' || clubPhoneNumber == '' || clubIntroduce == '') {
 			Alert.alert('내용을 채워주세요');
+			this.setState({ isSubmitting: false });
 		} else {
 			let formData = new FormData();
 			formData.append('clubName', clubName);

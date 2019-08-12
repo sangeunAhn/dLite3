@@ -144,12 +144,12 @@ const MakeClub = props => (
 										styles.introduce,
 										{
 										
-											borderColor: props.isFocused ? '#DCDCDC': null,
-											shadowColor: props.isFocused ? '#E1E1E1' : null, // IOS
-											shadowOffset: props.isFocused ? { height: 1.5, width: 0 } : null, // IOS
-											shadowOpacity: props.isFocused ? 5 : null, // IOS
-											shadowRadius: props.isFocused ? 3 : null, // IOS
-											elevation: props.isFocused ? 1.5 : null, // IOS
+											borderColor: props.isFocused1 ? '#DCDCDC': null,
+											shadowColor: props.isFocused1 ? '#E1E1E1' : null, // IOS
+											shadowOffset: props.isFocused1 ? { height: 1.5, width: 0 } : null, // IOS
+											shadowOpacity: props.isFocused1 ? 5 : null, // IOS
+											shadowRadius: props.isFocused1 ? 3 : null, // IOS
+											elevation: props.isFocused1 ? 1.5 : null, // IOS
 										},
 									]}
 									multiline={true}
@@ -173,17 +173,17 @@ const MakeClub = props => (
 							</Text>
 								<TextInput
 									onFocus={props.handleFocus2}
-									onBlur={props.clubPhoneNumber.length == 0 ? props.handleBlur3 : null}
+									onBlur={props.clubPhoneNumber.length == 0 ? props.handleBlur2 : null}
 									style={[
 										styles.input,
 										{
 										
-											borderColor: props.isFocused ? '#DCDCDC': null,
-											shadowColor: props.isFocused ? '#E1E1E1' : null, // IOS
-											shadowOffset: props.isFocused ? { height: 1.5, width: 0 } : null, // IOS
-											shadowOpacity: props.isFocused ? 5 : null, // IOS
-											shadowRadius: props.isFocused ? 3 : null, // IOS
-											elevation: props.isFocused ? 1.5 : null, // IOS
+											borderColor: props.isFocused2 ? '#DCDCDC': null,
+											shadowColor: props.isFocused2 ? '#E1E1E1' : null, // IOS
+											shadowOffset: props.isFocused2 ? { height: 1.5, width: 0 } : null, // IOS
+											shadowOpacity: props.isFocused2 ? 5 : null, // IOS
+											shadowRadius: props.isFocused2 ? 3 : null, // IOS
+											elevation: props.isFocused2 ? 1.5 : null, // IOS
 										},
 									]}
 									multiline={true}
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
 	},
 	container: {
 		flex: 1,
-		backgroundColor: 'white',
+		backgroundColor: '#FAFAFA',
 	},
 	header: {
 		height: height * 0.1,

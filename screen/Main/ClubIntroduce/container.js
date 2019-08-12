@@ -21,6 +21,7 @@ class Container extends Component {
 			clubChar: [],
 			isGetting1: false,
 			isGetting2: false,
+			setClubIntroduce: '',
 		};
 	}
 
@@ -86,6 +87,16 @@ class Container extends Component {
 		this.setState({
 			clubIntroduce: clubIntroduce,
 		});
+
+
+		// var newText = clubIntroduce.split('\\n');
+		// for(var i in newText) {
+		// 	console.log( '<br>' + newText[i] + '</p>' )
+		// }
+		
+		// this.setState({
+		// 	setClubIntroduce: newText
+		// })
 	};
 
 	//특성 가져오기

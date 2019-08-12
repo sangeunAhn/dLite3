@@ -18,7 +18,7 @@ export default class Login extends React.Component {
 				<View style={styles.title}>
 					<Image
 						style={styles.logoImage}
-						source={require('../../../images/logo0.png')}
+						source={require('../../../images/logo.png')}
 					/>
 
      
@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		padding: 10,
+		backgroundColor: '#FAFAFA'
 	},
 	logoImage: {
 		height: '70%',

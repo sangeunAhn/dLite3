@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
    container: {
       width: '100%',
       height: height * 0.35,
-      // backgroundColor:'#FAFABE',
+		backgroundColor: '#FAFAFA',
       flexDirection: 'column',
       justifyContent: 'flex-start',
       paddingHorizontal: width * 0.05,

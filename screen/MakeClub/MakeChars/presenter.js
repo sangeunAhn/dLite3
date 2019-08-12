@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		paddingHorizontal: 10,
 		paddingBottom: 10,
-		backgroundColor: 'white',
+		backgroundColor: '#FAFAFA',
 	},
 	header: {
 		width: '100%',

@@ -26,10 +26,10 @@ const MakeRecord = props => (
 					style={styles.addBtn}
 					onPress={props.iconPress}
 				>
-					<Text style={{fontSize: width*0.04, color: '#3B3B3B', fontWeight: '600'}}>추가</Text>
+					<Text style={{ fontSize: width * 0.04, color: '#3B3B3B', fontWeight: '600' }}>추가</Text>
 				</TouchableOpacity>
 				<View style={styles.container}>
-				<HeaderScrollView
+					<HeaderScrollView
 						headerContainerStyle={{
 							justifyContent: 'center', alignItems: 'center', height: Platform.OS === 'ios'
 								? height * 0.1
@@ -49,25 +49,26 @@ const MakeRecord = props => (
 						fadeDirection="up"
 						title="기록 생성"
 					>
-					{props.count >= 1 ?
-						<>
-						<MasonryList
-							imageContainerStyle={{ borderRadius: 17, right: 12 }}
-							spacing={7}
-							images={props.listRecords}
-							onPressImage={(item, index) => {
-								props.RecordRegister(item.uri);
-							}}
-							sorted={true}
-						/>
-						</>
-						:
-						<>
-						<View style={{width:width, paddingTop:height*0.01,height: height*0.6, justifyContent:'center', alignContent:'center'}}>
-							<Text style={{fontSize:width*0.05, color:'#BBBBBB',textAlign: 'center', alignSelf: 'center',}}>최소 1개 이상 기록해야 합니다.</Text>
-						</View>
-						</>
-					}
+						{props.count >= 1 ?
+							<>
+								<MasonryList
+									backgroundColor='#FAFAFA'
+									imageContainerStyle={{ borderRadius: 17 }}
+									spacing={4}
+									images={props.listRecords}
+									onPressImage={(item, index) => {
+										props.RecordRegister(item.uri);
+									}}
+									sorted={true}
+								/>
+							</>
+							:
+							<>
+								<View style={{ width: width, paddingTop: height * 0.01, height: height * 0.6, justifyContent: 'center', alignContent: 'center' }}>
+									<Text style={{ fontSize: width * 0.05, color: '#BBBBBB', textAlign: 'center', alignSelf: 'center', }}>최소 1개 이상 기록해야 합니다.</Text>
+								</View>
+							</>
+						}
 					</HeaderScrollView>
 
 					{/* 완료버튼 */}
@@ -78,15 +79,15 @@ const MakeRecord = props => (
 				</View>
 			</>
 		) : (
-			<ActivityIndicator size="large" style={styles.activityIndicator} />
-		)}
+				<ActivityIndicator size="large" style={styles.activityIndicator} />
+			)}
 	</>
 );
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#fff',
+		backgroundColor: '#FAFAFA',
 	},
 	backBtn: {
 		position: 'absolute',
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	footer: {
-		height: height*0.09,
+		height: height * 0.09,
 		marginTop: 30,
 		paddingHorizontal: width * 0.03,
 	},

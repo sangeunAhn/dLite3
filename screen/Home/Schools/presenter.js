@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		flexDirection: 'column',
-		backgroundColor: 'white',
+		backgroundColor: '#FAFAFA',
 	},
 	title:{
 		marginTop: Platform.OS === 'ios'? height*0.1 : height*0.07,
