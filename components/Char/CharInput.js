@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Dimensions } from 'react-native';
 import { scale, moderateScale, verticalScale } from '../Scaling';
+import { LinearGradient } from 'expo';
 
 const { width, height } = Dimensions.get('window');
 
@@ -70,8 +71,8 @@ const styles = StyleSheet.create({
 	selectView: {
 		flexDirection: 'row',
 		marginTop: 20,
-		paddingHorizontal:width*0.01,
-		paddingBottom: scale(15),
+		marginBottom:height*0.03
+		
 	},
 	input: {
 		height: height*0.07,
@@ -93,11 +94,6 @@ const styles = StyleSheet.create({
 	},
 	shapText2: {
 		fontSize: 20,
-	},
-	selectView: {
-		flexDirection: 'row',
-		marginTop: 20,
-		padding: scale(10),
 	},
 	addBtn: {
 		zIndex: 999,

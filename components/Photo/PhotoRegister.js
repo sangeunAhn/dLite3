@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Dimensions, Text, View, Image, TouchableOpacity } from 'react-native';
-import { scale, moderateScale, verticalScale } from '../Scaling';
-import { ImagePicker, Constants, Permissions } from 'expo';
+import { StyleSheet, Dimensions, Text, View, TouchableOpacity } from 'react-native';
+import { ImagePicker,Permissions } from 'expo';
 import AutoHeightImage from 'react-native-auto-height-image';
 
 const { width, height } = Dimensions.get("window");

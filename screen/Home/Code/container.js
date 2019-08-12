@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Platform } from 'react-native';
 import * as axios from 'axios';
 import Code from './presenter';
 

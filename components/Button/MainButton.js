@@ -29,7 +29,7 @@ export default class MainButton extends Component{
       <TouchableOpacity
       onPress={this.props.onPress}>
         <View style={styles.button}>
-      <LinearGradient colors={['#D7E8F7','#A8D3FA','#A8D2FA']} style={styles.button2} >
+      <LinearGradient colors={['#E4F0FA','#C2DFF9','#B0D5F9']} style={styles.button2} >
         
         <Text style={[styles.title,{color: this.props.titleColor, fontSize: moderateScale(20),}]}>
           {this.props.title}

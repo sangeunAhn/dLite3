@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import MainButton from '../../../components/Button/MainButton';
 import { scale, moderateScale, verticalScale } from '../../../components/Scaling';
+
+const { width, height } = Dimensions.get('window');
 
 export default class Login extends React.Component {
 	static navigationOptions = {
@@ -16,11 +18,11 @@ export default class Login extends React.Component {
 				<View style={styles.title}>
 					<Image
 						style={styles.logoImage}
-						source={require('../../../images/logo3.png')}
+						source={require('../../../images/logo0.png')}
 					/>
 
      
-     <View style={{ paddingTop:scale(10)}}>
+     <View style={{ marginTop:height*0.05}}>
         <Text style={{color:'#3B3B3B',fontSize: moderateScale(20),}}>우리 대학교에는 동아리가?</Text>
         
         </View>

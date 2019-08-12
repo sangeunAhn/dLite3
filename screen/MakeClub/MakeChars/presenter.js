@@ -6,7 +6,7 @@ import CharInput from '../../../components/Char/CharInput';
 import Char from '../../../components/Char/Char';
 import CharEX from '../../../components/Char/CharEX';
 import HeaderScrollView from 'react-native-header-scroll-view';
-import { scale, moderateScale } from '../../../components/Scaling';
+import { moderateScale } from '../../../components/Scaling';
 import { Ionicons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');

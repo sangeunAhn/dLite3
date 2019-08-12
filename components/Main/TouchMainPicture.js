@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
 		height: height * 0.23,
 	},
 	text: {
-		fontSize: width * 0.035,
+		fontSize: width * 0.037,
+		fontWeight:'400'
 	},
 });
