@@ -54,10 +54,10 @@ const styles = StyleSheet.create({
 		height: height * 0.1,
 		backgroundColor: 'white',
 		borderRadius: 5,
-		shadowColor: 'rgba(0,0,0, .4)', // IOS
-		shadowOffset: { height: 1, width: 1 }, // IOS
-		shadowOpacity: 1, // IOS
-		shadowRadius: 1, //IOS
+		shadowColor: '#A8A8A8', // IOS
+		shadowOffset: { height: 0, width: 0 }, // IOS
+		shadowOpacity: 5, // IOS
+		shadowRadius: 5, //IOS
 		elevation: 2,
 	},
 	box2: {

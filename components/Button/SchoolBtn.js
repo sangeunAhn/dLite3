@@ -45,12 +45,12 @@ const styles = StyleSheet.create({
 		width: width * 0.38,
 		height: height * 0.34,
 		backgroundColor: 'white',
-		elevation: 3,
 		borderRadius: width * 0.38 * 0.2,
-		shadowColor: 'rgba(0,0,.2, .2)',
-		shadowOffset: { height: 1, width: 1 },
-		shadowOpacity: 1,
-		shadowRadius: 1.5,
+		shadowColor: '#E1E1E1', // IOS
+		shadowOffset: { height: 3, width: 0 }, // IOS
+		shadowOpacity: 3, // IOS
+		shadowRadius: 3, //IOS
+		elevation: 1.5,
 	},
 	logo: {
 		backgroundColor: 'white',
