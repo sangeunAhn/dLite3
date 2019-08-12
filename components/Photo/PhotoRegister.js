@@ -40,7 +40,6 @@ export default class ClubChars extends React.Component {
 
 		if (status === 'granted') {
 			let result = await ImagePicker.launchImageLibraryAsync({
-				allowsEditing: true,
 				quality: 0.5,
 			});
 

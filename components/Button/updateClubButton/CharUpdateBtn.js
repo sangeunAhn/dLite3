@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions, Text, View, TouchableOpacity } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import UpdateClubBtnText from './UpdateClubBtnText';
 
 const { width, height } = Dimensions.get('window');
@@ -17,7 +17,7 @@ export default class CharUpdateBtn extends Component {
 					<View style={styles.box2}>
 						<View style={styles.box3}>
 							<View style={styles.logo}>
-								<FontAwesome name="hashtag" size={width * 0.1} />
+								<AntDesign name="idcard" size={width * 0.075} />
 							</View>
 							<UpdateClubBtnText title={'특징 수정'} sub={'이렇게 다양한 매력을 가졌답니다 :)'} />
 						</View>
@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
 		flexDirection: 'row'
 	},
 	logo: {
-		marginHorizontal: width * 0.03,
+		marginHorizontal: width * 0.05,
 		justifyContent: 'center',
+		marginRight: width * 0.055
 	},
 });

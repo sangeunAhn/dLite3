@@ -17,12 +17,32 @@ const Schools = props => (
 				<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 			</TouchableOpacity>
 			<Text style={styles.title}>학교 선택</Text>
-			<View style={{ flexDirection: 'column' }}>
+			<View style={{ flexDirection: 'column', height: height*0.8 }}>
 				<View style={styles.schools}>
 					<SchoolBtn
-						school={'울산대학교'}
+						school={'한국대학교'}
 						backgroundColor={'white'}
-						lineColor={'#5EC598'}
+						lineColor={'#c0392b'}
+						onPress={props.ulsanUiv}
+					/>
+					<SchoolBtn
+						school={'미국대학교'}
+						backgroundColor={'white'}
+						lineColor={'#273c75'}
+						onPress={props.ulsanUiv}
+					/>
+				</View>
+				<View style={styles.schools}>
+					<SchoolBtn
+						school={'중국대학교'}
+						backgroundColor={'white'}
+						lineColor={'#fbc531'}
+						onPress={props.ulsanUiv}
+					/>
+					<SchoolBtn
+						school={'독일대학교'}
+						backgroundColor={'white'}
+						lineColor={'#00a8ff'}
 						onPress={props.ulsanUiv}
 					/>
 				</View>

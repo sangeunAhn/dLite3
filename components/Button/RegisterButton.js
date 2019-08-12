@@ -13,7 +13,7 @@ const { width, height } = Dimensions.get("window");
 export default class RegisterButton extends Component{
   static defaultProps = {
     buttonColor: '#ADCDE9',
-    titleColor: '#fff',
+    titleColor: '#3B3B3B',
     onPress: () => null,
   }
 

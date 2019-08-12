@@ -132,8 +132,6 @@ class Container extends Component {
 
 		if (status === 'granted') {
 			let result = await ImagePicker.launchImageLibraryAsync({
-				allowsEditing: true,
-				aspect: [4, 3],
 				quality: 0.5,
 			});
 
@@ -150,8 +148,6 @@ class Container extends Component {
 
 		if (status === 'granted') {
 			let result = await ImagePicker.launchImageLibraryAsync({
-				allowsEditing: true,
-				aspect: [4, 3],
 				quality: 0.5,
 			});
 

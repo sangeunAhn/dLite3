@@ -17,7 +17,7 @@ export default class ClubUpdateBtn extends Component {
 					<View style={styles.box2}>
 						<View style={styles.box3}>
 							<View style={styles.logo}>
-								<EvilIcons name="user" size={width * 0.12} />
+								<EvilIcons name="user" size={width * 0.1} />
 							</View>
 							<UpdateClubBtnText title={'정보 수정'} sub={'우리 동아리'} />
 						</View>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row'
 	},
 	logo: {
-		marginHorizontal: width * 0.03,
+		marginHorizontal: width * 0.04,
 		justifyContent: 'center',
 	},
 });

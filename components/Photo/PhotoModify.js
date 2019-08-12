@@ -102,7 +102,6 @@ export default class PhotoModify extends React.Component {
 
 		if (status === 'granted') {
 			let result = await ImagePicker.launchImageLibraryAsync({
-				allowsEditing: true,
 				quality: 0.5,
 			});
 
@@ -157,6 +156,6 @@ const styles = StyleSheet.create({
 	text: {
 		textAlign: 'center',
 		fontSize: 20,
-		color: '#bebebe',
+		color: '#3B3B3B',
 	},
 });

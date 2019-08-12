@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions, Text, View, TouchableOpacity } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import { SimpleLineIcons } from '@expo/vector-icons';
 import UpdateClubBtnText from './UpdateClubBtnText';
 
 const { width, height } = Dimensions.get('window');
@@ -17,7 +17,7 @@ export default class CharUpdateBtn extends Component {
 					<View style={styles.box2}>
 						<View style={styles.box3}>
 							<View style={styles.logo}>
-								<AntDesign name="slack" size={width * 0.1} />
+								<SimpleLineIcons name="social-instagram" size={width * 0.07} />
 							</View>
 							<UpdateClubBtnText title={'기록 수정'} sub={'이야기 책 속의 여행처럼, 우리 함께 할래요?'} />
 						</View>
@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
 		flexDirection: 'row'
 	},
 	logo: {
-		marginHorizontal: width * 0.03,
+		marginHorizontal: width * 0.05,
 		justifyContent: 'center',
+		marginRight: width* 0.06
 	},
 });
