@@ -101,17 +101,12 @@ const MakeClub = props => (
 									style={[
 										styles.input,
 										{
-											borderColor: props.isFocused
-												? Platform.OS === 'ios'
-													? 'white'
-													: 'transparent'
-												: '#DCDCDC',
-											borderWidth: 1,
-											shadowColor: props.isFocused ? 'rgba(0,0,0, .2)' : null, // IOS
-											shadowOffset: props.isFocused ? { height: 1, width: 1 } : null, // IOS
-											shadowOpacity: props.isFocused ? 1 : null, // IOS
-											shadowRadius: props.isFocused ? 1 : null, // IOS
-											elevation: props.isFocused ? 1 : null, // IOS
+											borderColor: props.isFocused ? '#DCDCDC': null,
+											shadowColor: props.isFocused ? '#E1E1E1' : null, // IOS
+											shadowOffset: props.isFocused ? { height: 1.5, width: 0 } : null, // IOS
+											shadowOpacity: props.isFocused ? 5 : null, // IOS
+											shadowRadius: props.isFocused ? 3 : null, // IOS
+											elevation: props.isFocused ? 1.5 : null, // IOS
 										},
 									]}
 									onChangeText={props.clubNameChange}
@@ -148,17 +143,13 @@ const MakeClub = props => (
 										styles.input,
 										styles.introduce,
 										{
-											borderColor: props.isFocused1
-												? Platform.OS === 'ios'
-													? 'white'
-													: 'transparent'
-												: '#DCDCDC',
-											borderWidth: 1,
-											shadowColor: props.isFocused1 ? 'rgba(0,0,0, .2)' : null, // IOS
-											shadowOffset: props.isFocused1 ? { height: 1, width: 1 } : null, // IOS
-											shadowOpacity: props.isFocused1 ? 1 : null, // IOS
-											shadowRadius: props.isFocused1 ? 1 : null, // IOS
-											elevation: props.isFocused1 ? 1 : null, // IOS
+										
+											borderColor: props.isFocused ? '#DCDCDC': null,
+											shadowColor: props.isFocused ? '#E1E1E1' : null, // IOS
+											shadowOffset: props.isFocused ? { height: 1.5, width: 0 } : null, // IOS
+											shadowOpacity: props.isFocused ? 5 : null, // IOS
+											shadowRadius: props.isFocused ? 3 : null, // IOS
+											elevation: props.isFocused ? 1.5 : null, // IOS
 										},
 									]}
 									multiline={true}
@@ -186,17 +177,13 @@ const MakeClub = props => (
 									style={[
 										styles.input,
 										{
-											borderColor: props.isFocused2
-												? Platform.OS === 'ios'
-													? 'white'
-													: 'transparent'
-												: '#DCDCDC',
-											borderWidth: 1,
-											shadowColor: props.isFocused2 ? 'rgba(0,0,0, .2)' : null, // IOS
-											shadowOffset: props.isFocused2 ? { height: 1, width: 1 } : null, // IOS
-											shadowOpacity: props.isFocused2 ? 1 : null, // IOS
-											shadowRadius: props.isFocused2 ? 1 : null, // IOS
-											elevation: props.isFocused2 ? 1 : null, // IOS
+										
+											borderColor: props.isFocused ? '#DCDCDC': null,
+											shadowColor: props.isFocused ? '#E1E1E1' : null, // IOS
+											shadowOffset: props.isFocused ? { height: 1.5, width: 0 } : null, // IOS
+											shadowOpacity: props.isFocused ? 5 : null, // IOS
+											shadowRadius: props.isFocused ? 3 : null, // IOS
+											elevation: props.isFocused ? 1.5 : null, // IOS
 										},
 									]}
 									multiline={true}
@@ -304,8 +291,7 @@ const styles = StyleSheet.create({
 		borderRadius: 8,
 		width: '100%',
 		padding: 7,
-		borderColor: '#32B8FF',
-		borderWidth: 1,
+		backgroundColor:'white',
 		fontSize: width * 0.04,
 		marginTop: 5,
 	},

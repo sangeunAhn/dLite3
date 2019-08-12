@@ -7,7 +7,6 @@ import {
   Image,
   Dimensions
 } from 'react-native';
-import Overlay from 'react-native-modal-overlay';
 import { scale, moderateScale, verticalScale } from '../components/Scaling';
 
 

@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#FAFAFA',
 	},
 	screenTitle: {
-		marginTop:height*0.07,
+		marginTop: Platform.OS === 'ios'? height*0.1 : height*0.07,
 		marginLeft: width*0.05,
 		fontSize: width * 0.09,
 		fontWeight: '700'

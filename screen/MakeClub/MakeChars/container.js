@@ -1,5 +1,5 @@
 import React from 'react';
-import { AsyncStorage, BackHandler, TouchableWithoutFeedback } from 'react-native';
+import { AsyncStorage, BackHandler } from 'react-native';
 import * as axios from 'axios';
 import MakeChars from './presenter';
 

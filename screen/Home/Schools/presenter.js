@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity, Dimensions, Text,Platform } from 'react-native';
 import SchoolBtn from '../../../components/Button/SchoolBtn';
 import { Ionicons } from '@expo/vector-icons';
-import HeaderScrollView from 'react-native-header-scroll-view';
 
 const { width, height } = Dimensions.get('window');
 
@@ -47,7 +46,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#FAFAFA',
 	},
 	title:{
-		marginTop:height*0.11,
+		marginTop: Platform.OS === 'ios'? height*0.1 : height*0.07,
 		marginLeft: width*0.05,
 		marginBottom:height*0.02,
 		fontSize: width * 0.09,

@@ -118,23 +118,24 @@ const styles = StyleSheet.create({
    },
    club: {
       flex: 1,
-      textAlignVertical: 'center',
+      // textAlignVertical: 'center',
       flexWrap: 'wrap',
-      
+      height: width * 0.19
       // backgroundColor: '#DCEBFF',
    },
    clubTitle: {
-      flex: 1,
-      marginTop: 3,
-      textAlignVertical: 'center',
+      // flex: 1,
+      justifyContent:'flex-start',
+      marginBottom:height*0.01,
+      // textAlignVertical: 'center',
       fontSize: moderateScale(20),
       fontWeight: '300',
       color:'#3B3B3B'
       // backgroundColor: 'red',
    },
    clubChar: {
-      flex: 1.7,
-      textAlignVertical: "center",
+      // flex: 1.7,
+      // textAlignVertical: "center",
       fontSize: moderateScale(10),
       color: '#BBBBBB',
       paddingBottom:5,
