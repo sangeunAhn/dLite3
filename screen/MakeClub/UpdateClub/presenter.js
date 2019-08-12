@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
 		padding: 10,
 		justifyContent: 'center',
 		alignItems: 'center',
+		backgroundColor: '#FAFAFA',
 	},
 	screenTitle: {
 		marginTop:height*0.07,

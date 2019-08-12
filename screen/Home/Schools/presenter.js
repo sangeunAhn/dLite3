@@ -44,10 +44,10 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		flexDirection: 'column',
-		backgroundColor: 'white',
+		backgroundColor: '#FAFAFA',
 	},
 	title:{
-		marginTop:height*0.07,
+		marginTop:height*0.11,
 		marginLeft: width*0.05,
 		marginBottom:height*0.02,
 		fontSize: width * 0.09,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform } from 'react-native';
+import { Alert } from 'react-native';
 import * as axios from 'axios';
 import Code from './presenter';
 
@@ -89,7 +89,7 @@ class Container extends React.Component {
 				if (login === 'true') {
 					t._getClub(userCode);
 				} else {
-					alert('코드가 잘못되었습니다.');
+					Alert.alert('코드가 잘못되었습니다.');
 				}
 			});
 	};

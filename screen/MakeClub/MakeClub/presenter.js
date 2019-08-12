@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
 	},
 	container: {
 		flex: 1,
-		backgroundColor: 'white',
+		backgroundColor: '#FAFAFA',
 	},
 	header: {
 		height: height * 0.1,
