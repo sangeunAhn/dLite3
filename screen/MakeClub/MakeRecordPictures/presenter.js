@@ -27,7 +27,10 @@ const MakeRecordPictures = props => (
                <Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
             </TouchableOpacity>
             <HeaderScrollView
+            containerStyle={{backgroundColor: '#FAFAFA'}}
 						headerContainerStyle={{
+
+                     backgroundColor: '#FAFAFA',
 							justifyContent: 'center', alignItems: 'center', height: Platform.OS === 'ios'
 								? height * 0.1
 								: height * 0.08
@@ -127,8 +130,9 @@ const styles = StyleSheet.create({
 },
    button: {
       height: height*0.09,
-      marginTop:height*0.01,
+      
       paddingHorizontal: width * 0.03,
+      backgroundColor: '#FAFAFA',
    },
    text: {
       fontSize: 20,

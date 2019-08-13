@@ -9,6 +9,7 @@ const { width, height } = Dimensions.get('window');
 
 const UpdateClub = props => (
 	<>
+	<View style={{flex:1, backgroundColor: '#FAFAFA',}}>
 		<TouchableOpacity
 			style={styles.backButton}
 			onPress={() => props.navigation.goBack()}
@@ -25,6 +26,7 @@ const UpdateClub = props => (
 			<View style={styles.emptyPlace} />
 			<RecordUpdateBtn gotoRecord={props.gotoRecord} />
 		</View>
+		</View>
 	</>
 );
 
@@ -36,9 +38,10 @@ const styles = StyleSheet.create({
 		top: Platform.OS === 'ios' ? 30 : 15,
 		left: 10,
 		zIndex: 1,
+		
 	},
 	container: {
-		flex: 1,
+		height:height*0.8,
 		padding: 10,
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -48,17 +51,18 @@ const styles = StyleSheet.create({
 		marginTop: Platform.OS === 'ios'? height*0.1 : height*0.07,
 		marginLeft: width*0.05,
 		fontSize: width * 0.09,
-		fontWeight: '700'
+		fontWeight: '700',
+		backgroundColor: '#FAFAFA',
 	},
 	box1: {
 		width: width * 0.9,
 		height: height * 0.1,
 		backgroundColor: 'white',
 		borderRadius: 5,
-		shadowColor: 'rgba(0,0,0, .4)', // IOS
-		shadowOffset: { height: 1, width: 1 }, // IOS
-		shadowOpacity: 1, // IOS
-		shadowRadius: 1, //IOS
+		shadowColor: '#A8A8A8', // IOS
+		shadowOffset: { height: 0, width: 0 }, // IOS
+		shadowOpacity: 5, // IOS
+		shadowRadius: 5, //IOS
 		elevation: 2,
 	},
 	box2: {

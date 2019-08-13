@@ -19,25 +19,18 @@ const ClubRecord = props => (
 			</TouchableOpacity>
 			<View style={styles.container}>
 				<HeaderScrollView
+					containerStyle={{ backgroundColor: '#FAFAFA' }}
 					headerContainerStyle={{
-						justifyContent: 'center',
-						alignItems: 'center',
-						height: Platform.OS === 'ios' ? height * 0.1 : height * 0.08,
+						justifyContent: 'center', alignItems: 'center', height: Platform.OS === 'ios'
+							? height * 0.1
+							: height * 0.08
 					}}
 					headlineStyle={{
-						height: height * 0.1,
-						textAlign: 'center',
-						justifyContent: 'center',
-						alignItems: 'center',
-						alignSelf: 'center',
-						fontSize: width * 0.05,
-						paddingTop: Platform.OS === 'ios' ? height * 0.055 : height * 0.048,
+						height: height * 0.1, textAlign: 'center', justifyContent: 'center', alignItems: 'center',
+						alignSelf: 'center', fontSize: width * 0.05,
+						paddingTop: Platform.OS === 'ios' ? height * 0.055 : height * 0.048
 					}}
-					headerComponentContainerStyle={{
-						justifyContent: 'center',
-						alignItems: 'center',
-						height: height * 0.08,
-					}}
+					headerComponentContainerStyle={{ justifyContent: 'center', alignItems: 'center', height: height * 0.08 }}
 					titleStyle={{
 						paddingTop: Platform.OS === 'ios' ? 15 : 0,
 						color: '#3B3B3B',
@@ -48,6 +41,8 @@ const ClubRecord = props => (
 				>
 					{props.isGetting ? (
 						<MasonryList
+
+							backgroundColor='#FAFAFA'
 							imageContainerStyle={{ borderRadius: 17 }}
 							spacing={4}
 							images={props.listRecords}
@@ -57,8 +52,8 @@ const ClubRecord = props => (
 							sorted={true}
 						/>
 					) : (
-						<ActivityIndicator size="large" style={styles.activityIndicator} />
-					)}
+							<ActivityIndicator size="large" style={styles.activityIndicator} />
+						)}
 				</HeaderScrollView>
 			</View>
 		</View>

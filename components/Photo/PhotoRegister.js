@@ -58,11 +58,11 @@ const styles = StyleSheet.create({
         backgroundColor:'white',
 		borderRadius:10,
 		
-        shadowColor: '#A8A8A8',
-        shadowOffset: { width: 1, height: 1 },
+        shadowColor: '#E1E1E1',
+        shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 5,
         shadowRadius: 5,
-        elevation: 3,
+        elevation: 2,
     
     },
     top:{

@@ -57,6 +57,7 @@ const MakeRecord = props => (
 						{props.count >= 1 ? (
 							<>
 								<MasonryList
+									backgroundColor="#FAFAFA"
 									imageContainerStyle={{ borderRadius: 17 }}
 									spacing={4}
 									images={props.listRecords}
