@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		paddingTop: 10,
 		alignSelf: 'center',
-		backgroundColor: 'white',
+		backgroundColor: '#FAFAFA',
 	},
 	contain: {
 		height: '25%',

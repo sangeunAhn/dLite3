@@ -19,7 +19,7 @@ export default class ClubUpdateBtn extends Component {
 							<View style={styles.logo}>
 								<EvilIcons name="user" size={width * 0.1} />
 							</View>
-							<UpdateClubBtnText title={'정보 수정'} sub={'우리 동아리'} />
+							<UpdateClubBtnText title={'정보 수정'} sub={'우리 동아리는요!'} />
 						</View>
 					</View>
 				</View>

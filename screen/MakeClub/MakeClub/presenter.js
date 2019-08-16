@@ -53,7 +53,7 @@ const MakeClub = props => (
 						fadeDirection="up"
 						title="동아리 소개"
 					>
-						<Text style={styles.blank}>ㅁㅁㅁㅁ</Text>
+						<View style={{width:'100%', height:10}} />
 
 						<Text style={styles.text1}>동아리 로고, 메인 사진</Text>
 
@@ -141,9 +141,8 @@ const MakeClub = props => (
 									onBlur={props.clubIntroduce.length == 0 ? props.handleBlur1 : null}
 									style={[
 										styles.input,
-										styles.introduce,
 										{
-										
+											height: 120,
 											borderColor: props.isFocused1 ? '#DCDCDC': null,
 											shadowColor: props.isFocused1 ? '#E1E1E1' : null, // IOS
 											shadowOffset: props.isFocused1 ? { height: 1.5, width: 0 } : null, // IOS
@@ -177,7 +176,7 @@ const MakeClub = props => (
 									style={[
 										styles.input,
 										{
-										
+											height:60,
 											borderColor: props.isFocused2 ? '#DCDCDC': null,
 											shadowColor: props.isFocused2 ? '#E1E1E1' : null, // IOS
 											shadowOffset: props.isFocused2 ? { height: 1.5, width: 0 } : null, // IOS
@@ -186,10 +185,10 @@ const MakeClub = props => (
 											elevation: props.isFocused2 ? 1.5 : null, // IOS
 										},
 									]}
-									multiline={true}
 									onChangeText={props.clubPhoneNumberChange}
 									value={props.clubPhoneNumber}
-									maxLength={20}
+									maxLength={300}
+									multiline={true}
 									autoCorrect={false}
 								/>
 							</View>
@@ -304,9 +303,6 @@ const styles = StyleSheet.create({
 	},
 	block: {
 		paddingBottom: 30,
-	},
-	introduce: {
-		height: 120,
 	},
 	button: {
 		height: height * 0.09,

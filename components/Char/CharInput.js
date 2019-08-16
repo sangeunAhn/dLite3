@@ -54,7 +54,7 @@ class CharInput extends Component {
 						placeholderTextColor={'#DCDCDC'}
 						value={this.state.newChar}
 						onChangeText={newChar => this.setState({ newChar })}
-						maxLength={8}
+						maxLength={9}
 					/>
 
 					<View style={styles.btnView}>

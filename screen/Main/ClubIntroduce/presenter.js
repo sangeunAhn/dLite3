@@ -100,15 +100,7 @@ const ClubIntroduce = props => (
 							<Text style={styles.text}>동아리 소개</Text>
 							<View style={styles.input}>
 								<Text style={styles.textIn}>
-									{/* {props.setClubIntroduce}  */}
-									{props.clubIntroduce.split('\\n').map(function(item, key) {
-										return (
-											<Text key={key}>
-												{item}
-												{`\n`}
-											</Text>
-										);
-									})}
+									{props.clubIntroduce} 
 								</Text>
 							</View>
 						</View>

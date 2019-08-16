@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
 		height: height*0.055,
 		backgroundColor: 'white',
 		paddingHorizontal:width*0.02,
-		marginHorizontal: 10,
+		marginHorizontal: 7,
 		flexDirection: 'row',
 		shadowColor: '#D7D7D7', // IOS
 		shadowOffset: { height:1 , width: 0 }, // IOS
@@ -70,12 +70,12 @@ const styles = StyleSheet.create({
 	},
 	text : { 
 		color: '#3B3B3B' , 
-		paddingHorizontal:15,
+		paddingHorizontal:12,
 		fontSize: width*0.04,
 	},
 	text2 : { 
 		color: 'white' , 
-		paddingHorizontal:15,
+		paddingHorizontal:12,
 		fontSize: width*0.04,
 	}
 });

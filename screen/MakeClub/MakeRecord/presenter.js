@@ -23,7 +23,7 @@ const MakeRecord = props => (
 					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 				</TouchableOpacity>
 				<TouchableOpacity style={styles.addBtn} onPress={props.iconPress}>
-					<Text style={{ fontSize: width * 0.04, color: '#3B3B3B', fontWeight: '600' }}>추가</Text>
+					<Text style={{ fontSize: width * 0.053, color: '#3B3B3B', fontWeight: '600', top: 5 }}>추가</Text>
 				</TouchableOpacity>
 				<View style={styles.container}>
 					<HeaderScrollView
@@ -121,12 +121,13 @@ const styles = StyleSheet.create({
 	},
 	addBtn: {
 		position: 'absolute',
-		width: width * 0.1,
+		width: width * 0.25,
 		height: height * 0.1,
 		top: Platform.OS === 'ios' ? 30 : 15,
 		right: 10,
 		zIndex: 1,
 		fontSize: width * 0.05,
+		alignItems: 'flex-end',
 	},
 	header: {
 		paddingTop: 23,
@@ -141,7 +142,7 @@ const styles = StyleSheet.create({
 	},
 	footer: {
 		height: height * 0.09,
-		marginTop: 30,
+		marginTop: height * 0.02,
 		paddingHorizontal: width * 0.03,
 	},
 	button: {

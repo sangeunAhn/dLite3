@@ -23,7 +23,7 @@ export default class Login extends React.Component {
 
      
      <View style={{ marginTop:height*0.05}}>
-        <Text style={{color:'#3B3B3B',fontSize: moderateScale(20),}}>우리 대학교에는 동아리가?</Text>
+        <Text style={{color:'#3B3B3B',fontSize: moderateScale(20),}}>우리 대학교에는 어떤 동아리가?</Text>
         
         </View>
         </View>
@@ -31,7 +31,7 @@ export default class Login extends React.Component {
         <View style={styles.content}>
             <MainButton
                 // buttonColor={'#CEE1F2'}
-                title={'동아리 생성 수정'}
+                title={'동아리 생성 / 수정'}
                 titleColor={'#3B3B3B'}
                 onPress={() => this.props.navigation.navigate('Code')}/>
             <View style={{width:"100%",height:10}} />

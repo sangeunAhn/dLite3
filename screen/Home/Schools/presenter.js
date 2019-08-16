@@ -20,30 +20,24 @@ const Schools = props => (
 			<View style={{ flexDirection: 'column', height: height*0.8 }}>
 				<View style={styles.schools}>
 					<SchoolBtn
-						school={'한국대학교'}
+						school={'AA대학교'}
 						backgroundColor={'white'}
-						lineColor={'#c0392b'}
-						onPress={props.ulsanUiv}
+						lineColor={'#eb2f06'}
+						onPress={props.AAPress}
 					/>
 					<SchoolBtn
-						school={'미국대학교'}
+						school={'BB대학교'}
 						backgroundColor={'white'}
-						lineColor={'#273c75'}
-						onPress={props.ulsanUiv}
+						lineColor={'#f1c40f'}
+						onPress={props.BBPress}
 					/>
 				</View>
-				<View style={styles.schools}>
+				<View style={styles.schools1}>
 					<SchoolBtn
-						school={'중국대학교'}
+						school={'CC대학교'}
 						backgroundColor={'white'}
-						lineColor={'#fbc531'}
-						onPress={props.ulsanUiv}
-					/>
-					<SchoolBtn
-						school={'독일대학교'}
-						backgroundColor={'white'}
-						lineColor={'#00a8ff'}
-						onPress={props.ulsanUiv}
+						lineColor={'#273c75'}
+						onPress={props.CCPress}
 					/>
 				</View>
 			</View>
@@ -77,6 +71,13 @@ const styles = StyleSheet.create({
 		marginHorizontal: width * 0.03,
 		flexDirection: 'row',
 		justifyContent: 'space-around',
+	},
+	schools1: {
+		flex: 1,
+		marginHorizontal: width * 0.03,
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+		left: width * 0.04,
 	},
 });
 

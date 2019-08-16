@@ -21,7 +21,6 @@ class Container extends Component {
 			clubChar: [],
 			isGetting1: false,
 			isGetting2: false,
-			setClubIntroduce: '',
 		};
 	}
 
@@ -78,25 +77,19 @@ class Container extends Component {
 
 		var str = JSON.stringify(response.data.message.clubPhoneNumber);
 		var clubPhoneNumber = str.substring(1, str.length - 1);
+		clubPhoneNumber = clubPhoneNumber.replace(/\\n/gi,"\n")
 		this.setState({
 			clubPhoneNumber: clubPhoneNumber,
 		});
 
 		var str = JSON.stringify(response.data.message.clubIntroduce);
 		var clubIntroduce = str.substring(1, str.length - 1);
+		clubIntroduce = clubIntroduce.replace(/\\n/gi,"\n")
 		this.setState({
 			clubIntroduce: clubIntroduce,
 		});
 
-
-		// var newText = clubIntroduce.split('\\n');
-		// for(var i in newText) {
-		// 	console.log( '<br>' + newText[i] + '</p>' )
-		// }
 		
-		// this.setState({
-		// 	setClubIntroduce: newText
-		// })
 	};
 
 	//특성 가져오기
@@ -126,10 +119,6 @@ class Container extends Component {
 					isGetting2: true,
 				});
 			});
-			// const char = this.state.clubChar;
-			// char.map(char => {
-			// 	console.log(char)
-			// })
 	};
 
 

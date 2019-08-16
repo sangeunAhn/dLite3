@@ -81,31 +81,33 @@ class Container extends Component {
 		var str = JSON.stringify(response.data.message.clubName);
 		var clubName = str.substring(1, str.length - 1);
 		await this.setState({
-			clubName: clubName,
+			clubName
 		});
 
 		var str = JSON.stringify(response.data.message.clubWellcome);
 		var clubWellcome = str.substring(1, str.length - 1);
 		await this.setState({
-			clubWellcome: clubWellcome,
+			clubWellcome
 		});
 
 		var str = JSON.stringify(response.data.message.clubKind);
 		var clubKind = str.substring(1, str.length - 1);
 		await this.setState({
-			clubKind: clubKind,
+			clubKind
 		});
 
 		var str = JSON.stringify(response.data.message.clubPhoneNumber);
 		var clubPhoneNumber = str.substring(1, str.length - 1);
+		clubPhoneNumber = clubPhoneNumber.replace(/\\n/gi,"\n")
 		await this.setState({
-			clubPhoneNumber: clubPhoneNumber,
+			clubPhoneNumber
 		});
 
 		var str = JSON.stringify(response.data.message.clubIntroduce);
 		var clubIntroduce = str.substring(1, str.length - 1);
+		clubIntroduce = clubIntroduce.replace(/\\n/gi,"\n")
 		await this.setState({
-			clubIntroduce: clubIntroduce,
+			clubIntroduce
 		});
 
 		var str = JSON.stringify(response.data.message.clubLogo);
