@@ -196,7 +196,6 @@ const MakeClub = props => (
 
 						<View style={styles.button}>
 							{props.clubName.length == 0 &&
-								props.clubWellcome.length == 0 &&
 								props.clubPhoneNumber.length == 0 ? (
 									<ConfirmButtonN buttonColor={'#CEE1F2'} titleColor={'#BBBBBB'} title={'확인'} />
 								) : props.isSubmitting ? (

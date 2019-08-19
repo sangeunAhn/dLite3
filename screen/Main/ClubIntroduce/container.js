@@ -13,7 +13,6 @@ class Container extends Component {
 		this._handleBackButtonClick = this._handleBackButtonClick.bind(this);
 		this.state = {
 			clubName: '',
-			clubWellcome: '',
 			clubPhoneNumber: '',
 			clubIntroduce: '',
 			clubLogo: null,
@@ -69,11 +68,6 @@ class Container extends Component {
 	};
 
 	_setDatas = response => {
-		var str = JSON.stringify(response.data.message.clubWellcome);
-		var clubWellcome = str.substring(1, str.length - 1);
-		this.setState({
-			clubWellcome: clubWellcome,
-		});
 
 		var str = JSON.stringify(response.data.message.clubPhoneNumber);
 		var clubPhoneNumber = str.substring(1, str.length - 1);
