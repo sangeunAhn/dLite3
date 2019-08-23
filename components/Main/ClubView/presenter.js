@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Text, StyleSheet, View, Image, Dimensions } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, View, Image,Platform, Dimensions } from 'react-native';
 import ClubChars from '../../Char/ClubChars';
 import { moderateScale } from '../../Scaling';
 import TouchMainPicture from '../TouchMainPicture';
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
       width: width * 0.16,
       height: width * 0.16,
       borderRadius: width * 0.16 * 0.5,
-      marginRight: 25,
+      marginRight: 15,
       shadowColor: '#888888', // IOS
       shadowOffset: { height:0 , width: 0 }, // IOS
       shadowOpacity: 15, // IOS
@@ -123,28 +123,30 @@ const styles = StyleSheet.create({
    club: {
       flex: 1,
       // textAlignVertical: 'center',
-      flexWrap: 'wrap',
-      height: width * 0.19
+      
+      height: width * 0.20
       // backgroundColor: '#DCEBFF',
    },
    clubTitle: {
       // flex: 1,
       justifyContent:'flex-start',
-      marginBottom:height*0.01,
+      marginBottom:height*0.005,
       // textAlignVertical: 'center',
-      fontSize: moderateScale(20),
-      fontWeight: '300',
+      fontSize: moderateScale(18),
+      fontWeight: '400',
       color:'#3B3B3B'
       // backgroundColor: 'red',
    },
    clubChar: {
       // flex: 1.7,
       // textAlignVertical: "center",
-      fontSize: moderateScale(10),
+      marginLeft:5,
+      fontWeight:Platform.OS === 'ios' ? '600' : '500',
+      fontSize: Platform.OS === 'ios' ?  moderateScale(12) : moderateScale(10) ,
       color: '#BBBBBB',
       paddingBottom:5,
       marginBottom: -5,
-      lineHeight: 14,
+      lineHeight: Platform.OS === 'ios' ?  16 : 14 ,
       // backgroundColor: 'green',
       },  
    button: {
@@ -159,13 +161,13 @@ const styles = StyleSheet.create({
       borderRadius: 13,
 
       width: width * 0.9,
-      height: height * 0.23,
+      height: height * 0.245,
       shadowColor: '#B8B8B8', // IOS
       shadowOffset: { height: 5, width: 1 }, // IOS
       shadowOpacity: 7, // IOS
       shadowRadius: 4, //IOS
       elevation: 5, // Android
-      backgroundColor:'#E6F0F8',
+      backgroundColor:'white',
    },
    picture: {
       
@@ -175,7 +177,7 @@ const styles = StyleSheet.create({
       borderRadius: 13,
 
       width: width * 0.9,
-      height: height * 0.23,
+      height: height * 0.245,
       
    
    },
@@ -185,7 +187,7 @@ const styles = StyleSheet.create({
       // justifyContent:'flex-start',
       borderRadius: 13,
       width: width * 0.9,
-      height: height * 0.23,   
+      height: height * 0.245,   
    },
 });
 

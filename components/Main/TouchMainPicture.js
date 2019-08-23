@@ -92,14 +92,14 @@ const styles = StyleSheet.create({
 		
 		borderRadius: 13,
 		width: width * 0.9,
-		height: height * 0.23,
+		height: height * 0.245,
 		
 	},
 	picture2: {
 		zIndex: 0,
 		borderRadius: 13,
 		width: width * 0.9,
-		height: height * 0.23,
+		height: height * 0.245,
 	},
 	text: {
 		fontSize: width * 0.037,
