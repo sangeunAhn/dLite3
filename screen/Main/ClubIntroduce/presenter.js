@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
 	},
 	blank: {
 		fontSize: 25,
-		color: 'white',
+		color: '#FAFAFA',
 	},
 	MainPictureView: {
 		alignItems: 'center',

@@ -95,7 +95,7 @@ export default class example extends Component {
 				<View style={{flex:1,justifyContent:'flex-start', alignItems:'center'}}>
 				<MainButton
                 // buttonColor={'#D7E8F7'}
-                title={'Start'}
+                title={'들어가기'}
                 titleColor={'#3B3B3B'}
                 onPress={() => this.props.navigation.navigate('Schools')}/>
 				<TouchableOpacity style={{marginTop:height*0.035}}onPress={() => this.props.navigation.navigate('Code')}>

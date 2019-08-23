@@ -2,33 +2,18 @@ export const ENTRIES1 = [
     {
         title: 'Beautiful and dramatic Antelope Canyon',
         subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-        illustration: 'https://i.imgur.com/UYiroysl.jpg'
+        illustration: 'https://images.unsplash.com/photo-1566527711137-0a970aad4712?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80'
     },
     {
         title: 'Earlier this morning, NYC',
         subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/UPrs1EWl.jpg'
+        illustration: 'https://images.unsplash.com/photo-1565198238702-cbf5174c939a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80'
     },
     {
         title: 'White Pocket Sunset',
         subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
-        illustration: 'https://i.imgur.com/MABUbpDl.jpg'
+        illustration: 'https://images.unsplash.com/photo-1566412172224-6aa86d85954d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80'
     },
-    {
-        title: 'Acrocorinth, Greece',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-        illustration: 'https://i.imgur.com/KZsmUi2l.jpg'
-    },
-    {
-        title: 'The lone tree, majestic landscape of New Zealand',
-        subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/2nCt3Sbl.jpg'
-    },
-    {
-        title: 'Middle Earth, Germany',
-        subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/lceHsT6l.jpg'
-    }
 ];
 
 export const ENTRIES2 = [

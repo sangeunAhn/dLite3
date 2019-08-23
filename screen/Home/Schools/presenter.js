@@ -17,7 +17,7 @@ const Schools = props => (
 				<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 			</TouchableOpacity>
 			<Text style={styles.title}>학교 선택</Text>
-			<View style={{ flexDirection: 'column', height: height*0.8 }}>
+			<View style={{ flexDirection: 'column', height: 560 }}>
 				<View style={styles.schools}>
 					<SchoolBtn
 						school={'AA대학교'}

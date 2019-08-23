@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
 	container: {},
 	button: {
 		width: width * 0.4,
-		height: height * 0.37,
+		height: 260,
 		backgroundColor: 'white',
 		borderRadius: width * 0.38 * 0.2,
 		shadowColor: '#E1E1E1', // IOS
@@ -63,12 +63,12 @@ const styles = StyleSheet.create({
 	},
 	logo: {
 		backgroundColor: 'white',
-		width: width * 0.13,
-		height: width * 0.13,
-		borderRadius: width * 0.11 * 0.5,
-		marginTop: width * 0.052,
-		marginLeft: width * 0.052,
-		marginBottom: height * 0.08,
+		width: 55,
+		height: 55,
+		borderRadius: 27,
+		marginTop: 21,
+		marginLeft: 21,
+		marginBottom: 50,
 		elevation: 2,
 		shadowColor: 'rgba(0,0,.2, .2)',
 		shadowOffset: { height: 1, width: 1 },
@@ -76,14 +76,14 @@ const styles = StyleSheet.create({
 		shadowRadius: 1.5,
 	},
 	logoImage: {
-		width: width * 0.13,
-		height: width * 0.13,
-		borderRadius: width * 0.11 * 0.5,
+		width: 55,
+		height: 55,
+		borderRadius: 27,
 
 		overflow: 'hidden',
 	},
 	title: {
-		marginLeft: width * 0.05,
+		marginLeft: 21,
 	},
 	titleText: {
 		fontSize: width * 0.06,
@@ -91,18 +91,18 @@ const styles = StyleSheet.create({
 		color: '#3B3B3B',
 	},
 	address: {
-		marginLeft: width * 0.05,
-		marginTop: height * 0.01,
+		marginLeft: 21,
+		marginTop: 8,
 	},
 	addressText: {
 		fontSize: width * 0.04,
 		color: '#BBBBBB',
-		lineHeight: height * 0.025,
+		lineHeight: 23,
 	},
 	symbolLine: {
-		marginTop: height * 0.03,
-		marginLeft: width * 0.05,
-		borderBottomWidth: height * 0.006,
+		marginTop: 20,
+		marginLeft: 21,
+		borderBottomWidth: 5,
 		borderRadius: 10,
 		width: width * 0.09,
 	},
