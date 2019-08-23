@@ -12,6 +12,7 @@ export default class CharUpdateBtn extends Component {
 
 	render() {
 		return (
+			<View style={styles.shadow}>
 			<TouchableOpacity onPress={this.props.gotoChar}>
 				<View style={styles.box1}>
 					<View style={styles.box2}>
@@ -24,12 +25,20 @@ export default class CharUpdateBtn extends Component {
 					</View>
 				</View>
 			</TouchableOpacity>
+			</View>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
 	box1: {
+		width: width * 0.9,
+		height: height * 0.1,
+		backgroundColor: 'white',
+		borderRadius: 5,
+		
+	},
+	shadow:{
 		width: width * 0.9,
 		height: height * 0.1,
 		backgroundColor: 'white',

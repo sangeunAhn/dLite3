@@ -1,87 +1,110 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
+import { Platform, View, ScrollView, Text, StatusBar, SafeAreaView,TouchableOpacity, Dimensions} from 'react-native';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
+import { sliderWidth, itemWidth } from '../../../components/Snap/SliderEntry.style';
+import SliderEntry from '../../../components/Snap/SliderEntry';
+import styles, { colors } from '../../../components/Snap/index.style';
+import { ENTRIES1, ENTRIES2 } from '../../../components/Snap/entries';
 import MainButton from '../../../components/Button/MainButton';
-import { scale, moderateScale, verticalScale } from '../../../components/Scaling';
 
 const { width, height } = Dimensions.get('window');
 
-export default class Login extends React.Component {
+const IS_ANDROID = Platform.OS === 'android';
+const SLIDER_1_FIRST_ITEM = 1;
+const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
+
+function wp (percentage) {
+    const value = (percentage * viewportWidth) / 100;
+    return Math.round(value);
+}
+
+export default class example extends Component {
 	static navigationOptions = {
 		header: null,
 	};
-	render() {
+	constructor(props) {
+		super(props);
+		this.state = {
+			slider1ActiveSlide: SLIDER_1_FIRST_ITEM
+		};
+	}
+
+	_renderItem({ item, index }) {
+		return <SliderEntry data={item} even={(index + 1) % 2 === 0} />;
+	}
+
+	_renderItemWithParallax({ item, index }, parallaxProps) {
 		return (
+			<SliderEntry
+				data={item}
+				even={(index + 1) % 2 === 0}
+				parallax={true}
+				parallaxProps={parallaxProps}
+			/>
+		);
+	}
+
+	mainExample(number, title) {
+		const { slider1ActiveSlide } = this.state;
+
+		return (
+			<View style={styles.exampleContainer}>
+
+				<Carousel
+					ref={c => this._slider1Ref = c}
+					data={ENTRIES1}
+					renderItem={this._renderItemWithParallax}
+					sliderWidth={sliderWidth}
+					itemWidth={itemWidth}
+					hasParallaxImages={true}
+					firstItem={SLIDER_1_FIRST_ITEM}
+					inactiveSlideScale={0.80}
+					inactiveSlideOpacity={0.7}
+					// inactiveSlideShift={20}
+					containerCustomStyle={styles.slider}
+					contentContainerCustomStyle={styles.sliderContentContainer}
+					loop={true}
+					loopClonesPerSide={2}
+					autoplay={true}
+					autoplayDelay={3000}
+					autoplayInterval={10000}
+					onSnapToItem={(index) => this.setState({ slider1ActiveSlide: index })}
+				/>
+
+			</View>
+		);
+	}
+
+	render() {
+		const example1 = this.mainExample(1, 'Default layout | Loop | Autoplay | Parallax | Scale | Opacity | Pagination with tappable dots');
+		return (
+
 			<View style={styles.container}>
-				<View style={styles.header} />
+				<View style={{marginTop:Platform.OS === 'ios' ? 30 : 15 , width:width, height:height*0.1, justifyContent:'flex-end',alignItems:'center'}}>
+					<Text style={{color:'#3B3B3B',fontSize:width*0.08,letterSpacing:0.05, fontWeight:'900'}}>내 손 안의 동아리 '동방'</Text>
+				</View>
+				{this.gradient}
+				<ScrollView
+					style={styles.scrollview}
+					scrollEventThrottle={200}
+					directionalLockEnabled={true}
+				>
+					{example1}
 
-				{/* 로고랑 설명 */}
-				<View style={styles.title}>
-					<Image
-						style={styles.logoImage}
-						source={require('../../../images/logo.png')}
-					/>
-
-     
-     <View style={{ marginTop:height*0.05}}>
-        <Text style={{color:'#3B3B3B',fontSize: moderateScale(20),}}>우리 대학교에는 어떤 동아리가?</Text>
-        
-        </View>
-        </View>
-        {/* 버튼2개 */}
-        <View style={styles.content}>
-            <MainButton
-                // buttonColor={'#CEE1F2'}
-                title={'동아리 생성 / 수정'}
-                titleColor={'#3B3B3B'}
-                onPress={() => this.props.navigation.navigate('Code')}/>
-            <View style={{width:"100%",height:10}} />
-            <MainButton
+				</ScrollView>
+				<View style={{flex:1,justifyContent:'flex-start', alignItems:'center'}}>
+				<MainButton
                 // buttonColor={'#D7E8F7'}
-                title={'일반'}
+                title={'Start'}
                 titleColor={'#3B3B3B'}
                 onPress={() => this.props.navigation.navigate('Schools')}/>
-        </View>
-        <View style={styles.footer}>
-          
-        </View>
-      </View>
-    );
-  }
-}
+				<TouchableOpacity style={{marginTop:height*0.035}}onPress={() => this.props.navigation.navigate('Code')}>
+					<Text style={{fontSize:width*0.038, color:'#3B3B3B' }}> 동아리 생성 / 수정 </Text>
+				</TouchableOpacity>
+				
+				</View>
+			</View>
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		padding: 10,
-		backgroundColor: '#FAFAFA'
-	},
-	logoImage: {
-		height: '70%',
-		width: '70%',
-		resizeMode: 'contain',
-	},
-	header: {
-		width: '100%',
-		height: '15%',
-		// backgroundColor: '#ff9a9a',
-	},
-	title: {
-		width: '100%',
-		height: '30%',
-		flexDirection: 'column',
-		alignItems: 'center',
-		// backgroundColor: '#9aa9ff'
-	},
-	content: {
-		flex: 1,
-		paddingTop: scale(150),
-		justifyContent: 'center',
-		alignItems: 'center',
-		// backgroundColor: '#d6ca1a',
-	},
-	footer: {
-		width: '100%',
-		height: '5%',
-		// backgroundColor: '#1ad657'
-	},
-});
+		);
+	}
+}

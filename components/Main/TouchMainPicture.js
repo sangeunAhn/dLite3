@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
 		shadowOffset: { height:0 , width: 0 }, // IOS
 		shadowOpacity: 15, // IOS
 		shadowRadius: 5, //IOS
-		elevation: 10, // Android
+	
 	},
 	clickArea: {
 		height: height * 0.1,
@@ -89,15 +89,11 @@ const styles = StyleSheet.create({
 	},
 	picture: {
 		zIndex: 0,
-		marginTop: 10,
+		
 		borderRadius: 13,
 		width: width * 0.9,
 		height: height * 0.23,
-		shadowColor: '#B8B8B8', // IOS
-		shadowOffset: { height: 5, width: 1 }, // IOS
-		shadowOpacity: 7, // IOS
-		shadowRadius: 4, //IOS
-		elevation: 5, // Android
+		
 	},
 	picture2: {
 		zIndex: 0,

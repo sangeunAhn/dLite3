@@ -30,16 +30,19 @@ const ClubView = props => (
       </View>
 
       {props.disabled == true ? (
+         <View style={styles.shadow}>
          <TouchableOpacity onPress={props.press}>
             {props.clubMainPicture === null || props.clubMainPicture === 'ul' || props.clubMainPicture == '' ? (
-               <View style={styles.picture} backgroundColor={'#CEE1F2'} />
+               <View style={styles.picture}  />
             ) : (
             <View style={styles.picture}>
                <Image style={styles.picture2} source={{ uri: props.clubMainPicture }} />
                </View>
             )}
          </TouchableOpacity>
+         </View>
       ) : (
+         <View style={styles.shadow}>
          <TouchableOpacity onPress={props.press}>
             {props.clubMainPicture === null || props.clubMainPicture === 'ul' || props.clubMainPicture == '' ? (
                <>
@@ -79,6 +82,7 @@ const ClubView = props => (
                </>
             )}
          </TouchableOpacity>
+         </View>
       )}
    </View>
 );
@@ -150,10 +154,7 @@ const styles = StyleSheet.create({
       width: 50,
       zIndex: 999,
    },
-   picture: {
-      zIndex: 0,
-      // alignItems:'flex-start',
-      // justifyContent:'flex-start',
+   shadow:{
       marginTop: 10,
       borderRadius: 13,
 
@@ -164,6 +165,18 @@ const styles = StyleSheet.create({
       shadowOpacity: 7, // IOS
       shadowRadius: 4, //IOS
       elevation: 5, // Android
+      backgroundColor:'#E6F0F8',
+   },
+   picture: {
+      
+      // alignItems:'flex-start',
+      // justifyContent:'flex-start',
+      backgroundColor:'#CEE1F2',
+      borderRadius: 13,
+
+      width: width * 0.9,
+      height: height * 0.23,
+      
    
    },
    picture2: {

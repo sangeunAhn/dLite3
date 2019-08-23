@@ -6,13 +6,20 @@ import {
   Dimensions,
   View
 } from 'react-native';
-import { scale, moderateScale, verticalScale} from '../../components/Scaling';
+import { scale, moderateScale, verticalScale } from '../../components/Scaling';
 import { LinearGradient } from 'expo';
 
-const  {width, height} = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
+
+const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
+
+function wp(percentage) {
+  const value = (percentage * viewportWidth) / 100;
+  return Math.round(value);
+}
 
 
-export default class MainButton extends Component{
+export default class MainButton extends Component {
   static defaultProps = {
     title: 'untitled',
     buttonColor: '#f0f0f0',
@@ -20,23 +27,23 @@ export default class MainButton extends Component{
     onPress: () => null,
   }
 
-  constructor(props){
+  constructor(props) {
     super(props);
   }
 
-  render(){
+  render() {
     return (
       <TouchableOpacity
-      onPress={this.props.onPress}>
+        onPress={this.props.onPress}>
         <View style={styles.button}>
-      <LinearGradient colors={['#E4F0FA','#C2DFF9','#B0D5F9']} style={styles.button2} >
-        
-        <Text style={[styles.title,{color: this.props.titleColor, fontSize: moderateScale(20),}]}>
-          {this.props.title}
-        </Text>
-       
-      </LinearGradient>
-      </View>
+          <LinearGradient colors={['#E4F0FA', '#C2DFF9', '#B0D5F9']} style={styles.button2} >
+
+            <Text style={[styles.title, { color: this.props.titleColor, fontSize: moderateScale(22), }]}>
+              {this.props.title}
+            </Text>
+
+          </LinearGradient>
+        </View>
       </TouchableOpacity>
     )
   }
@@ -44,12 +51,12 @@ export default class MainButton extends Component{
 
 const styles = StyleSheet.create({
   button: {
-    width: width*0.9,
+    width: wp(66),
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: height*0.01,
-    borderRadius: width*0.9*0.5,
-    height:height*0.08,
+    marginBottom: height * 0.01,
+    borderRadius: height * 0.08 * 0.2,
+    height: height * 0.08,
     shadowColor: '#E1E1E1', // IOS
     shadowOffset: { height: 3, width: 1 }, // IOS
     shadowOpacity: 3, // IOS
@@ -57,13 +64,13 @@ const styles = StyleSheet.create({
     elevation: 2, // Android
   },
   button2: {
-    width: width*0.9,
+    width: wp(66),
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: width*0.9*0.5,
-    height:height*0.08,
+    borderRadius: height * 0.08 * 0.2,
+    height: height * 0.08,
   },
   title: {
-    fontSize: 18,
+    fontWeight: 'bold'
   },
 });

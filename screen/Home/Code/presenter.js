@@ -87,7 +87,7 @@ const Code = props => (
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-
+		backgroundColor: '#FAFAFA',
 		paddingBottom: 10,
 		// backgroundColor: 'red',
 	},
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#FAFAFA',
 		paddingTop: 10,
 		alignSelf: 'center',
-		backgroundColor: 'white',
+		
 		paddingHorizontal: width * 0.03,
 	},
 	input: {
