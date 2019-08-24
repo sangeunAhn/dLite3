@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
 		alignItems: 'flex-end',
 	},
 	btnText: {
-		fontSize: width * 0.055,
+		fontSize: width * 0.053,
 		color: '#3B3B3B',
 		fontWeight: '600',
 		top: 5,

@@ -207,11 +207,12 @@ export default class RecordRegister extends React.Component {
 	};
 
 	_inputDatas = async (image, comment, createdAt, imageRoom) => {
+		console.log(image)
 		const { navigation } = this.props;
 		var userNo = navigation.getParam('userNo', 'NO-ID');
 
 		let formData = new FormData();
-		formData.append('image', { uri: image, name: 'image.png', type: 'image/png' });
+		formData.append('image', { uri: image, name: 'image.jpeg', type: 'image/jpeg' });
 		formData.append('recordContent', comment);
 		formData.append('userNo', userNo);
 		formData.append('imageRoom', imageRoom);
@@ -224,7 +225,8 @@ export default class RecordRegister extends React.Component {
 			header: {
 				'content-type': 'multipart/form-data',
 			},
-		});
+		}).then(response => response.json())
+		// .then(result => console.log(result));
 	};
 
 	_handleBackButtonClick = () => {

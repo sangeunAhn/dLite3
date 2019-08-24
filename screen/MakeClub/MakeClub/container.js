@@ -184,13 +184,13 @@ class Container extends Component {
 			if (clubLogo == null) {
 				formData.append('clubLogo', null);
 			} else {
-				formData.append('clubLogo', { uri: clubLogo, name: 'image.png', type: 'image/png' });
+				formData.append('clubLogo', { uri: clubLogo, name: 'image.jpeg', type: 'image/jpeg' });
 			}
 
 			if (clubMainPicture == null) {
 				formData.append('clubMainPicture', null);
 			} else {
-				formData.append('clubMainPicture', { uri: clubMainPicture, name: 'image.png', type: 'image/png' });
+				formData.append('clubMainPicture', { uri: clubMainPicture, name: 'image.jpeg', type: 'image/jpeg' });
 			}
 
 			// 데이터베이스에 넣기
@@ -238,13 +238,13 @@ class Container extends Component {
 			if (clubLogo == null || clubLogo == 'ul') {
 				formData.append('clubLogo', null);
 			} else {
-				formData.append('clubLogo', { uri: clubLogo, name: 'image.png', type: 'image/png' });
+				formData.append('clubLogo', { uri: clubLogo, name: 'image.jpeg', type: 'image/jpeg' });
 			}
 
 			if (clubMainPicture == null || clubMainPicture == 'ul') {
 				formData.append('clubMainPicture', null);
 			} else {
-				formData.append('clubMainPicture', { uri: clubMainPicture, name: 'image.png', type: 'image/png' });
+				formData.append('clubMainPicture', { uri: clubMainPicture, name: 'image.jpeg', type: 'image/jpeg' });
 			}
 
 			// 텍스트 정보 넣기

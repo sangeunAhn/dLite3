@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, View, ScrollView, Text, StatusBar, SafeAreaView,TouchableOpacity, Dimensions} from 'react-native';
+import { Platform, View, ScrollView, Text, StatusBar, SafeAreaView,TouchableOpacity, Dimensions, Alert} from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { sliderWidth, itemWidth } from '../../../components/Snap/SliderEntry.style';
 import SliderEntry from '../../../components/Snap/SliderEntry';
@@ -43,6 +43,7 @@ export default class example extends Component {
 			/>
 		);
 	}
+
 
 	mainExample(number, title) {
 		const { slider1ActiveSlide } = this.state;
@@ -98,11 +99,17 @@ export default class example extends Component {
                 title={'들어가기'}
                 titleColor={'#3B3B3B'}
                 onPress={() => this.props.navigation.navigate('Schools')}/>
-				<TouchableOpacity style={{marginTop:height*0.035}}onPress={() => this.props.navigation.navigate('Code')}>
+				<TouchableOpacity style={{marginTop:height*0.01, padding:10}}onPress={() => this.props.navigation.navigate('Code')}>
 					<Text style={{fontSize:width*0.038, color:'#3B3B3B' }}> 동아리 생성 / 수정 </Text>
 				</TouchableOpacity>
 				
 				</View>
+				<View style={{alignItems:'flex-start', height: 60}}>
+					<TouchableOpacity style={{ padding:10}} onPress={() => Alert.alert('', '[문의사항] \n \n leejjun28@gmail.com \n 010 4372 0440 \n \n 문의 가능 시간 : 09:00 ~ 18:00 ')}>
+						<Text style={{color:'#888888'}}>문의하기</Text>
+					</TouchableOpacity>
+				</View>
+				
 			</View>
 
 		);

@@ -12,9 +12,7 @@ export default class RecordFalse extends Component {
 	render() {
 		return (
 			<View style={styles.button}>
-				<LinearGradient colors={['#CBDFF1', '#8DB5D6']}>
 					<Text style={styles.title}>완료</Text>
-				</LinearGradient>
 			</View>
 		);
 	}

@@ -20,6 +20,7 @@ export default class ClubChars extends React.Component {
 							style={{borderTopLeftRadius:10, borderTopRightRadius:10,}}
 							source={require('../../images/addPhoto5.png')}
 							/>
+					<Text style={styles.warning}>부적절한 사진 업로드 시{'\n'}불이익을 받을 수 있습니다.</Text>
 					</TouchableOpacity>
 					
 				</View>
@@ -53,7 +54,7 @@ export default class ClubChars extends React.Component {
 const styles = StyleSheet.create({
 	container:{
         flex:1,
-		margin:5,
+		margin:1,
 		
         backgroundColor:'white',
 		borderRadius:10,
@@ -64,7 +65,16 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
         elevation: 2,
     
-    },
+	},
+	warning:{
+		position: 'absolute',
+		top: '66%',
+		left: '27%',
+		textAlign:'center',
+		fontSize: 15,
+		color: '#C1D0DC',
+		lineHeight:25,
+	},
     top:{
         height:40,
         backgroundColor:'white'
@@ -78,7 +88,8 @@ const styles = StyleSheet.create({
 	},
     text:{
 		textAlign: 'center',
-		fontSize: width*0.05,
+		justifyContent:'center',
+		fontSize: 19,
 		color: '#bebebe',
     },
 });

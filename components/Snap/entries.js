@@ -2,17 +2,17 @@ export const ENTRIES1 = [
     {
         title: 'Beautiful and dramatic Antelope Canyon',
         subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-        illustration: 'https://images.unsplash.com/photo-1566527711137-0a970aad4712?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80'
+        illustration: 'https://images.unsplash.com/photo-1566572176723-3fe949cfd2ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80'
     },
     {
         title: 'Earlier this morning, NYC',
         subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://images.unsplash.com/photo-1565198238702-cbf5174c939a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80'
+        illustration: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'
     },
     {
         title: 'White Pocket Sunset',
         subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
-        illustration: 'https://images.unsplash.com/photo-1566412172224-6aa86d85954d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80'
+        illustration: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80'
     },
 ];
 
