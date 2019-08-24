@@ -78,7 +78,7 @@ export default class PhotoModify extends React.Component {
 							style={styles.text}
 							placeholder={'간단한 코멘트를 입력해주세요'}
 							placeholderTextColor={'#bebebe'}
-							maxLength={17}
+							maxLength={20}
 							onChangeText={comment => this._updateComment(comment)}
 							value={this.state.commentValue}
 							autoCorrect={false}
