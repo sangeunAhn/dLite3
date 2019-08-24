@@ -6,6 +6,7 @@ import {
 	TouchableOpacity,
 	Platform,
 	BackHandler,
+	SafeAreaView
 } from 'react-native';
 import ClubDiv from '../../../components/Main/ClubDiv';
 import HeaderScrollView from 'react-native-header-scroll-view';
@@ -58,28 +59,30 @@ export default class Main extends React.Component {
 							: this.props.navigation.goBack();
 					}}
 				>
-					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+					<SafeAreaView>
+						<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+					</SafeAreaView>
 				</TouchableOpacity>
 				<HeaderScrollView
-						headerContainerStyle={{
-							justifyContent: 'center', alignItems: 'center', height: Platform.OS === 'ios'
-								? height * 0.1
-								: height * 0.08
-						}}
-						headlineStyle={{
-							height: height * 0.1, textAlign: 'center', justifyContent: 'center', alignItems: 'center',
-							alignSelf: 'center', fontSize: width * 0.05,
-							paddingTop: Platform.OS === 'ios' ? height * 0.055 : height * 0.048
-						}}
-						headerComponentContainerStyle={{ justifyContent: 'center', alignItems: 'center', height: height * 0.08 }}
-						titleStyle={{
-							// paddingTop: Platform.OS === 'ios' ? 15 : 0,
-							color: '#3B3B3B',
-							fontSize: width * 0.09,
-						}}
-						fadeDirection="up"
-						title="동아리 찾기"
-					>
+					headerContainerStyle={{
+						justifyContent: 'center', alignItems: 'center', height: Platform.OS === 'ios'
+							? height * 0.1
+							: height * 0.08
+					}}
+					headlineStyle={{
+						height: height * 0.1, textAlign: 'center', justifyContent: 'center', alignItems: 'center',
+						alignSelf: 'center', fontSize: width * 0.05,
+						paddingTop: Platform.OS === 'ios' ? height * 0.055 : height * 0.048
+					}}
+					headerComponentContainerStyle={{ justifyContent: 'center', alignItems: 'center', height: height * 0.08 }}
+					titleStyle={{
+						// paddingTop: Platform.OS === 'ios' ? 15 : 0,
+						color: '#3B3B3B',
+						fontSize: width * 0.09,
+					}}
+					fadeDirection="up"
+					title="동아리 찾기"
+				>
 					{/* 맨 위 총동연 */}
 					<ClubDiv clubKind={'동아리 연합'} school={schoolName} navigation={this.props.navigation} />
 
@@ -103,7 +106,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		width: width * 0.2,
 		height: height * 0.1,
-		top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
+		top: Platform.OS === 'ios' ? getStatusBarHeight() : 15,
 		left: 10,
 		zIndex: 1,
 	},

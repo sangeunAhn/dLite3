@@ -9,6 +9,7 @@ import {
 	Image,
 	ActivityIndicator,
 	Platform,
+	SafeAreaView,
 } from 'react-native';
 import ConfirmButton from '../../../components/Button/ConfirmButton';
 import ClubPicker from '../../../components/MakeClub/ClubPicker';
@@ -32,7 +33,9 @@ const MakeClub = props => (
 							props.navigation.goBack();
 						}}
 					>
-						<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+						<SafeAreaView>
+							<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+						</SafeAreaView>
 					</TouchableOpacity>
 					<HeaderScrollView
 						headerContainerStyle={{
@@ -54,7 +57,7 @@ const MakeClub = props => (
 						fadeDirection="up"
 						title="동아리 소개"
 					>
-						<View style={{width:'100%', height:10}} />
+						<View style={{ width: '100%', height: 10 }} />
 
 						<Text style={styles.text1}>동아리 로고, 메인 사진</Text>
 
@@ -102,7 +105,7 @@ const MakeClub = props => (
 									style={[
 										styles.input,
 										{
-											borderColor: props.isFocused ? '#DCDCDC': null,
+											borderColor: props.isFocused ? '#DCDCDC' : null,
 											shadowColor: props.isFocused ? '#E1E1E1' : null, // IOS
 											shadowOffset: props.isFocused ? { height: 1.5, width: 0 } : null, // IOS
 											shadowOpacity: props.isFocused ? 5 : null, // IOS
@@ -144,7 +147,7 @@ const MakeClub = props => (
 										styles.input,
 										{
 											height: 120,
-											borderColor: props.isFocused1 ? '#DCDCDC': null,
+											borderColor: props.isFocused1 ? '#DCDCDC' : null,
 											shadowColor: props.isFocused1 ? '#E1E1E1' : null, // IOS
 											shadowOffset: props.isFocused1 ? { height: 1.5, width: 0 } : null, // IOS
 											shadowOpacity: props.isFocused1 ? 5 : null, // IOS
@@ -177,8 +180,8 @@ const MakeClub = props => (
 									style={[
 										styles.input,
 										{
-											
-											borderColor: props.isFocused2 ? '#DCDCDC': null,
+
+											borderColor: props.isFocused2 ? '#DCDCDC' : null,
 											shadowColor: props.isFocused2 ? '#E1E1E1' : null, // IOS
 											shadowOffset: props.isFocused2 ? { height: 1.5, width: 0 } : null, // IOS
 											shadowOpacity: props.isFocused2 ? 5 : null, // IOS
@@ -221,7 +224,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		width: width * 0.2,
 		height: height * 0.1,
-		top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
+		top: Platform.OS === 'ios' ? getStatusBarHeight() : 15,
 		left: 10,
 		zIndex: 1,
 	},
@@ -290,7 +293,7 @@ const styles = StyleSheet.create({
 		borderRadius: 8,
 		width: '100%',
 		padding: 7,
-		backgroundColor:'white',
+		backgroundColor: 'white',
 		fontSize: width * 0.04,
 		marginTop: 5,
 	},
