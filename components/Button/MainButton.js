@@ -7,7 +7,7 @@ import {
   View
 } from 'react-native';
 import { scale, moderateScale, verticalScale } from '../../components/Scaling';
-import { LinearGradient } from 'expo';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const { width, height } = Dimensions.get("window");
 
