@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet,Platform } from 'react-native';
 import { moderateScale } from '../Scaling';
 
 export default class ClubChars extends React.Component {
@@ -7,14 +7,15 @@ export default class ClubChars extends React.Component {
 		super(props);
 	}
 	render() {
-		return <Text style={styles.text}>#{this.props.chars}{'  '} </Text>;
+		return <Text style={styles.text}>#{this.props.chars}{' '} </Text>;
 	}
 }
 
 
 const styles = StyleSheet.create({
 	text: {
-		fontSize: moderateScale(10),
+		
+		fontSize: Platform.OS === 'ios' ?  moderateScale(11) : moderateScale(10) ,
 		textAlignVertical: "center",
 		color: '#BBBBBB',
 	},

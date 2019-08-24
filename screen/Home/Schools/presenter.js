@@ -3,6 +3,8 @@ import { StyleSheet, View, TouchableOpacity, Dimensions, Text,Platform } from 'r
 import SchoolBtn from '../../../components/Button/SchoolBtn';
 import { Ionicons } from '@expo/vector-icons';
 
+
+
 const { width, height } = Dimensions.get('window');
 
 const Schools = props => (

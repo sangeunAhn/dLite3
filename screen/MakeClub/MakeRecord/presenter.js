@@ -47,7 +47,7 @@ const MakeRecord = props => (
 							height: height * 0.08,
 						}}
 						titleStyle={{
-							paddingTop: Platform.OS === 'ios' ? 15 : 0,
+							// paddingTop: Platform.OS === 'ios' ? 15 : 0,
 							color: '#3B3B3B',
 							fontSize: width * 0.09,
 						}}
