@@ -153,7 +153,7 @@ const MakeClub = props => (
 									]}
 									multiline={true}
 									onChangeText={props.clubIntroduceChange}
-									maxLength={500}
+									maxLength={1000}
 									autoCorrect={false}
 									value={props.clubIntroduce}
 								/>
@@ -187,7 +187,7 @@ const MakeClub = props => (
 									]}
 									onChangeText={props.clubPhoneNumberChange}
 									value={props.clubPhoneNumber}
-									maxLength={500}
+									maxLength={1000}
 									multiline={true}
 									autoCorrect={false}
 								/>
