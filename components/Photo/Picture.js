@@ -9,12 +9,13 @@ export default class Pictures extends React.Component {
 		return (
 			<>
 				<View style={styles.container}>
+					<View style={styles.image}>
 						<AutoHeightImage
 							width={width - 22}
-							style={styles.image}
+							
 							source={{ uri: this.props.picture }}
 						/>
-						
+						</View>
 					<View style={styles.bottom}>
 						<Text style={styles.text}>{this.props.text}</Text>
 					</View>
@@ -35,16 +36,17 @@ const styles = StyleSheet.create({
 		borderColor: '#ddd',
 		borderBottomWidth: 0,
 		borderRadius: 10,
-		shadowColor: '#000',
-		shadowOffset: { width: 0, height: 1 },
-		shadowOpacity: 0.8,
-		shadowRadius: 2,
-		elevation: 2,
+		shadowColor: '#DEDEDE',
+        shadowOffset: { width: 1, height: 3 },
+        shadowOpacity: 2,
+        shadowRadius: 3,
+        elevation: 3,
 		alignItems: 'center'
 	},
 	image : { 
-		borderTopLeftRadius: 10, 
-		borderTopRightRadius: 10 
+		borderTopLeftRadius: 9, 
+		borderTopRightRadius: 9 ,
+		overflow: 'hidden'
 	},
 	top: {
 		height: 40,

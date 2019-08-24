@@ -8,6 +8,7 @@ import CharEX from '../../../components/Char/CharEX';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import { moderateScale } from '../../../components/Scaling';
 import { Ionicons } from '@expo/vector-icons';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 
 const { width, height } = Dimensions.get('window');
 
@@ -38,7 +39,7 @@ const MakeChars = props => (
 						}}
 						headerComponentContainerStyle={{ justifyContent: 'center', alignItems: 'center', height: height * 0.08 }}
 						titleStyle={{
-							paddingTop: Platform.OS === 'ios' ? 15 : 0,
+							// paddingTop: Platform.OS === 'ios' ? 15 : 0,
 							color: '#3B3B3B',
 							fontSize: width * 0.09,
 						}}
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		width: width * 0.2,
 		height: height * 0.1,
-		top: Platform.OS === 'ios' ? 30 : 15,
+		top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
 		left: 10,
 		zIndex: 1,
 	},

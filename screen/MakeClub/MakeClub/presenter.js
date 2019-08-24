@@ -16,6 +16,7 @@ import ClubPickerM from '../../../components/MakeClub/ClubPickerM';
 import ConfirmButtonN from '../../../components/Button/ConfirmButtonN';
 import { Ionicons } from '@expo/vector-icons';
 import HeaderScrollView from 'react-native-header-scroll-view';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 
 const { width, height } = Dimensions.get('window');
 
@@ -176,7 +177,7 @@ const MakeClub = props => (
 									style={[
 										styles.input,
 										{
-											height:60,
+											
 											borderColor: props.isFocused2 ? '#DCDCDC': null,
 											shadowColor: props.isFocused2 ? '#E1E1E1' : null, // IOS
 											shadowOffset: props.isFocused2 ? { height: 1.5, width: 0 } : null, // IOS
@@ -220,7 +221,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		width: width * 0.2,
 		height: height * 0.1,
-		top: Platform.OS === 'ios' ? 30 : 15,
+		top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
 		left: 10,
 		zIndex: 1,
 	},

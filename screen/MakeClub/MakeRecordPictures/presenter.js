@@ -14,6 +14,8 @@ import PhotoRegister from '../../../components/Photo/PhotoRegister';
 import PhotoModify from '../../../components/Photo/PhotoModify';
 import { Ionicons } from '@expo/vector-icons';
 import HeaderScrollView from 'react-native-header-scroll-view';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper'
+
 
 const { width, height } = Dimensions.get('window');
 
@@ -28,7 +30,7 @@ const MakeRecordPictures = props => (
 						position: 'absolute',
 						width: width * 0.2,
 						height: height * 0.1,
-						top: Platform.OS === 'ios' ? 30 : 15,
+						top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
 						left: 10,
 						zIndex: 1,
 					}}

@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import ClubUpdateBtn from '../../../components/Button/updateClubButton/ClubUpdateBtn';
 import CharUpdateBtn from '../../../components/Button/updateClubButton/CharUpdateBtn';
 import RecordUpdateBtn from '../../../components/Button/updateClubButton/RecordUpdateBtn';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 
 const { width, height } = Dimensions.get('window');
 
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		width: width * 0.2,
 		height: height * 0.1,
-		top: Platform.OS === 'ios' ? 30 : 15,
+		top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
 		left: 10,
 		zIndex: 1,
 		

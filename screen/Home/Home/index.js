@@ -104,7 +104,7 @@ export default class example extends Component {
 				</TouchableOpacity>
 				
 				</View>
-				<View style={{alignItems:'flex-start', height: 60}}>
+				<View style={{alignItems:'flex-start', height: height*0.07}}>
 					<TouchableOpacity style={{ padding:10}} onPress={() => Alert.alert('', '[문의사항] \n \n leejjun28@gmail.com \n 010 4372 0440 \n \n 문의 가능 시간 : 09:00 ~ 18:00 ')}>
 						<Text style={{color:'#888888'}}>문의하기</Text>
 					</TouchableOpacity>

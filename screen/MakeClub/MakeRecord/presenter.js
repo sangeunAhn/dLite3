@@ -5,6 +5,7 @@ import RecordButton from '../../../components/Button/RecordButton';
 import MasonryList from 'react-native-masonry-list';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import { Ionicons } from '@expo/vector-icons';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 
 const { width, height } = Dimensions.get('window');
 
@@ -58,8 +59,8 @@ const MakeRecord = props => (
 							<>
 								<MasonryList
 									backgroundColor="#FAFAFA"
-									imageContainerStyle={{ borderRadius: 17 }}
-									spacing={4}
+									imageContainerStyle={{ borderRadius: 6, marginBottom:9, }}
+									spacing={2}
 									images={props.listRecords}
 									onPressImage={(item, index) => {
 										props.RecordRegister(item.uri);
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		width: width * 0.2,
 		height: height * 0.1,
-		top: Platform.OS === 'ios' ? 30 : 15,
+		top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
 		left: 10,
 		zIndex: 1,
 	},

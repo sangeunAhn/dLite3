@@ -8,12 +8,14 @@ import {
 	BackHandler,
 	TouchableOpacity,
 	Platform,
+	SafeAreaView,
 } from 'react-native';
 import ConfirmButton from '../../../components/Button/ConfirmButton';
 import ConfirmButtonN from '../../../components/Button/ConfirmButtonN';
 import { TextField } from 'react-native-material-textfield';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import { Ionicons } from '@expo/vector-icons';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 
 const { width, height } = Dimensions.get('window');
 
@@ -28,7 +30,7 @@ const Code = props => (
 				position: 'absolute',
 				width: width * 0.2,
 				height: height * 0.1,
-				top: Platform.OS === 'ios' ? 30 : 15,
+				top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
 				left: 10,
 				zIndex: 1,
 			}}
@@ -36,7 +38,9 @@ const Code = props => (
 				props.navigation.navigate('Home');
 			}}
 		>
-			<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+			<SafeAreaView>
+				<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+			</SafeAreaView>
 		</TouchableOpacity>
 		<View style={styles.container}>
 			<HeaderScrollView
@@ -60,7 +64,7 @@ const Code = props => (
 					height: height * 0.08,
 				}}
 				titleStyle={{
-					paddingTop: Platform.OS === 'ios' ? 15 : 0,
+					// paddingTop: Platform.OS === 'ios' ? 15 : 0,
 					color: '#3B3B3B',
 					fontSize: width * 0.09,
 				}}
@@ -90,8 +94,8 @@ const Code = props => (
 				{props.userCode.length == 0 ? (
 					<ConfirmButtonN title={'확인'} />
 				) : (
-					<ConfirmButton title={'확인'} onPress={props.login} />
-				)}
+						<ConfirmButton title={'확인'} onPress={props.login} />
+					)}
 			</View>
 		</View>
 	</>

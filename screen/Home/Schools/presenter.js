@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TouchableOpacity, Dimensions, Text,Platform } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Dimensions, Text,Platform, SafeAreaView } from 'react-native';
 import SchoolBtn from '../../../components/Button/SchoolBtn';
 import { Ionicons } from '@expo/vector-icons';
-
+import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 
 
 const { width, height } = Dimensions.get('window');
@@ -16,7 +16,9 @@ const Schools = props => (
 					props.navigation.goBack();
 				}}
 			>
+				<SafeAreaView>
 				<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+				</SafeAreaView>
 			</TouchableOpacity>
 			<Text style={styles.title}>학교 선택</Text>
 			<View style={{ flexDirection: 'column', height: 560 }}>
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		width: width * 0.2,
 		height: height * 0.1,
-		top: Platform.OS === 'ios' ? 30 : 15,
+		top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
 		left: 10,
 		zIndex: 1,
 	},

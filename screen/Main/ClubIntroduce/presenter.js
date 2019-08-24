@@ -9,10 +9,12 @@ import {
 	ScrollView,
 	ActivityIndicator,
 	TouchableOpacity,
+	SafeAreaView
 } from 'react-native';
 import IntroduceChars from '../../../components/Char/IntroduceChars';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import { Ionicons } from '@expo/vector-icons';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 
 const { width, height } = Dimensions.get('window');
 
@@ -26,7 +28,9 @@ const ClubIntroduce = props => (
 						props.navigation.goBack();
 					}}
 				>
-					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+					<SafeAreaView>
+						<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+					</SafeAreaView>
 				</TouchableOpacity>
 				<HeaderScrollView
 					headerContainerStyle={{
@@ -63,8 +67,8 @@ const ClubIntroduce = props => (
 						{props.clubMainPicture === null || props.clubMainPicture == '' ? (
 							<View style={styles.clubMainPicture} />
 						) : (
-							<Image style={styles.clubMainPicture} source={{ uri: props.clubMainPicture }} />
-						)}
+								<Image style={styles.clubMainPicture} source={{ uri: props.clubMainPicture }} />
+							)}
 					</View>
 
 					<View style={styles.logoView1}>
@@ -73,8 +77,8 @@ const ClubIntroduce = props => (
 								{props.clubLogo === null || props.clubLogo == '' ? (
 									<Image style={styles.clubLogo} />
 								) : (
-									<Image style={styles.clubLogo} source={{ uri: props.clubLogo }} />
-								)}
+										<Image style={styles.clubLogo} source={{ uri: props.clubLogo }} />
+									)}
 							</View>
 						}
 					</View>
@@ -100,7 +104,7 @@ const ClubIntroduce = props => (
 							<Text style={styles.text}>동아리 소개</Text>
 							<View style={styles.input}>
 								<Text style={styles.textIn}>
-									{props.clubIntroduce} 
+									{props.clubIntroduce}
 								</Text>
 							</View>
 						</View>
@@ -115,8 +119,8 @@ const ClubIntroduce = props => (
 				</HeaderScrollView>
 			</View>
 		) : (
-			<ActivityIndicator size="large" style={styles.activityIndicator} />
-		)}
+				<ActivityIndicator size="large" style={styles.activityIndicator} />
+			)}
 	</>
 );
 
@@ -125,7 +129,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		width: width * 0.2,
 		height: height * 0.1,
-		top: Platform.OS === 'ios' ? 30 : 15,
+		top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
 		left: 10,
 		zIndex: 1,
 	},
@@ -177,7 +181,7 @@ const styles = StyleSheet.create({
 		borderRadius: 8,
 		width: '100%',
 		padding: 7,
-		backgroundColor:'white',
+		backgroundColor: 'white',
 		shadowColor: '#E1E1E1',
 		shadowOffset: { height: 1.5, width: 0 },
 		shadowOpacity: 5,
