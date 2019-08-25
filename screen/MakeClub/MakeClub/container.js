@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Alert } from 'react-native';
 import * as axios from 'axios';
-import { ImagePicker, Permissions } from 'expo';
+import * as ImagePicker from 'expo-image-picker'
+import * as Permissions from 'expo-permissions'
 import MakeClub from './presenter';
 
 class Container extends Component {
@@ -126,7 +127,7 @@ class Container extends Component {
 
 		if (status === 'granted') {
 			let result = await ImagePicker.launchImageLibraryAsync({
-				quality: 0.1,
+				quality: 0.3,
 			});
 
 			if (!result.cancelled) {
@@ -142,7 +143,7 @@ class Container extends Component {
 
 		if (status === 'granted') {
 			let result = await ImagePicker.launchImageLibraryAsync({
-				quality: 0.1,
+				quality: 0.3,
 			});
 
 			if (!result.cancelled) {

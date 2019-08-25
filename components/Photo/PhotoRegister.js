@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions, Text, View, TouchableOpacity } from 'react-native';
-import { ImagePicker, Permissions } from 'expo';
+import * as ImagePicker from 'expo-image-picker'
+import * as Permissions from 'expo-permissions'
 import AutoHeightImage from 'react-native-auto-height-image';
 
 const { width, height } = Dimensions.get("window");
@@ -43,7 +44,9 @@ export default class ClubChars extends React.Component {
 
 		if (status === 'granted') {
 			let result = await ImagePicker.launchImageLibraryAsync({
-				quality: 0.1,
+				quality: 0.4,
+				// allowsEditing: true,
+				// aspect: [4,3]
 			});
 
 			if (!result.cancelled) {

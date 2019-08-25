@@ -3,7 +3,7 @@
     "react-navigation": "3.0.0-rc.5"
   },
   "expo": {
-    "name": "dLite2",
+    "name": "동방",
     "slug": "dLite2",
     "privacy": "public",
     "sdkVersion": "33.0.0",
