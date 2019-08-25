@@ -8,6 +8,7 @@ import {
 	TouchableOpacity,
 	ActivityIndicator,
 	Platform,
+	SafeAreaView,
 } from 'react-native';
 import { scale, moderateScale, verticalScale } from '../../../components/Scaling';
 import PhotoRegister from '../../../components/Photo/PhotoRegister';
@@ -38,7 +39,9 @@ const MakeRecordPictures = props => (
 						props.navigation.goBack();
 					}}
 				>
+					<SafeAreaView>
 					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+										</SafeAreaView>
 				</TouchableOpacity>
 
 				{props.count === 0 ? (
@@ -137,7 +140,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		width: width * 0.2,
 		height: height * 0.1,
-		top: Platform.OS === 'ios' ? 30 : 15,
+		top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
 		left: 10,
 		zIndex: 1,
 	},

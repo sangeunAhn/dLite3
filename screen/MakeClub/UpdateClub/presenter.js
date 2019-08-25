@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Dimensions, TouchableOpacity, Text, View,Platform} from 'react-native';
+import { StyleSheet, Dimensions, TouchableOpacity, SafeAreaView,Text, View, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ClubUpdateBtn from '../../../components/Button/updateClubButton/ClubUpdateBtn';
 import CharUpdateBtn from '../../../components/Button/updateClubButton/CharUpdateBtn';
@@ -10,47 +10,49 @@ const { width, height } = Dimensions.get('window');
 
 const UpdateClub = props => (
 	<>
-	<View style={{flex:1, backgroundColor: '#FAFAFA',}}>
-		<TouchableOpacity
-			style={styles.backButton}
-			onPress={() => props.navigation.goBack()}
-		>
-			<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
-		</TouchableOpacity>
+		<View style={{ flex: 1, backgroundColor: '#FAFAFA', }}>
+			<TouchableOpacity
+				style={styles.backButton}
+				onPress={() => props.navigation.goBack()}
+			>
+				<SafeAreaView>
+					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+				</SafeAreaView>
+			</TouchableOpacity>
 
-		<Text style={styles.screenTitle}>동아리 수정</Text>
+			<Text style={styles.screenTitle}>동아리 수정</Text>
 
-		<View style={styles.container}>
-			<ClubUpdateBtn gotoSignUp={props.gotoSignUp} />
-			<View style={styles.emptyPlace} />
-			<CharUpdateBtn gotoChar={props.gotoChar} />
-			<View style={styles.emptyPlace} />
-			<RecordUpdateBtn gotoRecord={props.gotoRecord} />
-		</View>
+			<View style={styles.container}>
+				<ClubUpdateBtn gotoSignUp={props.gotoSignUp} />
+				<View style={styles.emptyPlace} />
+				<CharUpdateBtn gotoChar={props.gotoChar} />
+				<View style={styles.emptyPlace} />
+				<RecordUpdateBtn gotoRecord={props.gotoRecord} />
+			</View>
 		</View>
 	</>
 );
 
 const styles = StyleSheet.create({
-	backButton:{
+	backButton: {
 		position: 'absolute',
 		width: width * 0.2,
 		height: height * 0.1,
-		top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
+		top: Platform.OS === 'ios' ? getStatusBarHeight() : 15,
 		left: 10,
 		zIndex: 1,
-		
+
 	},
 	container: {
-		height:height*0.8,
+		height: height * 0.8,
 		padding: 10,
 		justifyContent: 'center',
 		alignItems: 'center',
 		backgroundColor: '#FAFAFA',
 	},
 	screenTitle: {
-		marginTop: Platform.OS === 'ios'? height*0.1 : height*0.07,
-		marginLeft: width*0.05,
+		marginTop: Platform.OS === 'ios' ? height * 0.1 : height * 0.07,
+		marginLeft: width * 0.05,
 		fontSize: width * 0.09,
 		fontWeight: '700',
 		backgroundColor: '#FAFAFA',

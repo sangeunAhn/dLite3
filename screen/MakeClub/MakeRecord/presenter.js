@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, Dimensions, ActivityIndicator, Platform, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Dimensions, ActivityIndicator, SafeAreaView,Platform, Text } from 'react-native';
 import RecordButtonN from '../../../components/Button/RecordButtonN';
 import RecordButton from '../../../components/Button/RecordButton';
 import MasonryList from 'react-native-masonry-list';
@@ -21,7 +21,9 @@ const MakeRecord = props => (
 							: props.navigation.navigate('Code');
 					}}
 				>
-					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+					<SafeAreaView>
+						<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+					</SafeAreaView>
 				</TouchableOpacity>
 				<TouchableOpacity style={styles.addBtn} onPress={props.iconPress}>
 					<Text style={{ fontSize: width * 0.053, color: '#3B3B3B', fontWeight: '600', top: 5 }}>추가</Text>
@@ -59,7 +61,7 @@ const MakeRecord = props => (
 							<>
 								<MasonryList
 									backgroundColor="#FAFAFA"
-									imageContainerStyle={{ borderRadius: 6, marginBottom:9, }}
+									imageContainerStyle={{ borderRadius: 6, marginBottom: 9, }}
 									spacing={2}
 									images={props.listRecords}
 									onPressImage={(item, index) => {
@@ -69,29 +71,29 @@ const MakeRecord = props => (
 								/>
 							</>
 						) : (
-							<>
-								<View
-									style={{
-										width: width,
-										paddingTop: height * 0.01,
-										height: height * 0.6,
-										justifyContent: 'center',
-										alignContent: 'center',
-									}}
-								>
-									<Text
+								<>
+									<View
 										style={{
-											fontSize: width * 0.05,
-											color: '#BBBBBB',
-											textAlign: 'center',
-											alignSelf: 'center',
+											width: width,
+											paddingTop: height * 0.01,
+											height: height * 0.6,
+											justifyContent: 'center',
+											alignContent: 'center',
 										}}
 									>
-										최소 1개 이상 기록해야 합니다.
+										<Text
+											style={{
+												fontSize: width * 0.05,
+												color: '#BBBBBB',
+												textAlign: 'center',
+												alignSelf: 'center',
+											}}
+										>
+											최소 1개 이상 기록해야 합니다.
 									</Text>
-								</View>
-							</>
-						)}
+									</View>
+								</>
+							)}
 					</HeaderScrollView>
 
 					{/* 완료버튼 */}
@@ -102,8 +104,8 @@ const MakeRecord = props => (
 				</View>
 			</>
 		) : (
-			<ActivityIndicator size="large" style={styles.activityIndicator} />
-		)}
+				<ActivityIndicator size="large" style={styles.activityIndicator} />
+			)}
 	</>
 );
 
@@ -116,7 +118,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		width: width * 0.2,
 		height: height * 0.1,
-		top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
+		top: Platform.OS === 'ios' ? getStatusBarHeight() : 15,
 		left: 10,
 		zIndex: 1,
 	},

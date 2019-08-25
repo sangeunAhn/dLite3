@@ -60,7 +60,7 @@ const ClubIntroduce = props => (
 					fadeDirection="up"
 					title="동아리 소개"
 				>
-					<Text style={styles.blank}>ㅁㅁㅁㅁ</Text>
+					<View style={styles.blank}/>
 					<Text style={styles.text1}>동아리 로고, 메인 사진</Text>
 
 					<View style={styles.MainPictureView}>
@@ -151,8 +151,9 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	blank: {
-		fontSize: 25,
-		color: '#FAFAFA',
+		
+		width:width,
+		height:height*0.03
 	},
 	MainPictureView: {
 		alignItems: 'center',
@@ -180,7 +181,7 @@ const styles = StyleSheet.create({
 	input: {
 		borderRadius: 8,
 		width: '100%',
-		padding: 7,
+		
 		backgroundColor: 'white',
 		shadowColor: '#E1E1E1',
 		shadowOffset: { height: 1.5, width: 0 },
@@ -190,6 +191,7 @@ const styles = StyleSheet.create({
 		marginTop: 5,
 	},
 	text: {
+
 		color: '#ADCDE9',
 		fontSize: width * 0.06,
 		fontWeight: 'bold',
@@ -201,6 +203,8 @@ const styles = StyleSheet.create({
 		paddingHorizontal: width * 0.05,
 	},
 	textIn: {
+		flex:1,
+		padding: 7,
 		fontSize: width * 0.04,
 	},
 	block: {
