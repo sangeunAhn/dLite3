@@ -57,7 +57,7 @@ const MakeClub = props => (
 						fadeDirection="up"
 						title="동아리 소개"
 					>
-						<View style={{ width: '100%', height: 10 }} />
+						<View style={styles.blank} />
 
 						<Text style={styles.text1}>동아리 로고, 메인 사진</Text>
 
@@ -313,8 +313,9 @@ const styles = StyleSheet.create({
 		paddingHorizontal: width * 0.03,
 	},
 	blank: {
-		fontSize: 25,
-		color: 'white',
+		
+		width:width,
+		height:height*0.03
 	},
 	activityIndicator: {
 		flex: 1,

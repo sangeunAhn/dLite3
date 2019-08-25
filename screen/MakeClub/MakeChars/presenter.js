@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Dimensions, Platform, Text,SafeAreaView, View, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, TouchableOpacity, Dimensions, Platform, Text,SafeAreaView,  View, TouchableWithoutFeedback } from 'react-native';
 import ConfirmButton from '../../../components/Button/ConfirmButton';
 import ConfirmButtonN from '../../../components/Button/ConfirmButtonN';
 import CharInput from '../../../components/Char/CharInput';
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		width: width * 0.2,
 		height: height * 0.1,
-		top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
+		top: Platform.OS === 'ios' ? 30 : 15,
 		left: 10,
 		zIndex: 1,
 	},
