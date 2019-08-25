@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, Dimensions, View, Image, TouchableOpacity, TextInput } from 'react-native';
 import AutoHeightImage from 'react-native-auto-height-image';
-import { ImagePicker, Constants, Permissions } from 'expo';
+import * as ImagePicker from 'expo-image-picker'
+import * as Permissions from 'expo-permissions'
 import PropTypes from 'prop-types';
 import { Feather } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';

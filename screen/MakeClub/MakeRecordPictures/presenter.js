@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
 	},
 	addBtn: {
 		position: 'absolute',
-		width: width * 0.2,
+		width: width * 0.25,
 		height: height * 0.05,
 		top: Platform.OS === 'ios' ? 30 : 15,
 		right: 10,

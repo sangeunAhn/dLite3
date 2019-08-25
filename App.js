@@ -54,7 +54,7 @@ const RootStack = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'MakeRecordPictures',
+    initialRouteName: 'Home',
   },
   
 );

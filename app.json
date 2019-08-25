@@ -3,7 +3,7 @@
     "react-navigation": "3.0.0-rc.5"
   },
   "expo": {
-    "name": "dLite2",
+    "name": "동방",
     "slug": "dLite2",
     "privacy": "public",
     "sdkVersion": "33.0.0",
@@ -13,7 +13,7 @@
     ],
     "androidStatusBar": {
       "backgroundColor": "#FAFAFA",
-      "translucent" : false
+      "translucent": false
     },
     "version": "1.0.0",
     "orientation": "portrait",
@@ -35,6 +35,7 @@
     },
     "android": {
       "package": "com.dLite.dLite"
-    }
+    },
+    "description": ""
   }
 }
