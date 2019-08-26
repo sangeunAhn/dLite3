@@ -15,7 +15,7 @@ import ConfirmButtonN from '../../../components/Button/ConfirmButtonN';
 import { TextField } from 'react-native-material-textfield';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import { Ionicons } from '@expo/vector-icons';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper'
+import { getStatusBarHeight,ifIphoneX  } from 'react-native-iphone-x-helper'
 
 const { width, height } = Dimensions.get('window');
 
