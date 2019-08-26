@@ -15,15 +15,15 @@ import PhotoRegister from '../../../components/Photo/PhotoRegister';
 import PhotoModify from '../../../components/Photo/PhotoModify';
 import { Ionicons } from '@expo/vector-icons';
 import HeaderScrollView from 'react-native-header-scroll-view';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper'
-
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import PhotoLoading from '../../../components/Photo/PhotoLoding';
 
 const { width, height } = Dimensions.get('window');
 
 const MakeRecordPictures = props => (
 	<>
 		{props.isGetting == false && props.navigation.getParam('to', 'NO-ID') == 'm' ? (
-			<ActivityIndicator size="large" style={styles.activityIndicator} />
+			<ActivityIndicator size="large" />
 		) : (
 			<>
 				<TouchableOpacity
@@ -31,7 +31,7 @@ const MakeRecordPictures = props => (
 						position: 'absolute',
 						width: width * 0.2,
 						height: height * 0.1,
-						top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
+						top: Platform.OS === 'ios' ? getStatusBarHeight() : 15,
 						left: 10,
 						zIndex: 1,
 					}}
@@ -40,8 +40,8 @@ const MakeRecordPictures = props => (
 					}}
 				>
 					<SafeAreaView>
-					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
-										</SafeAreaView>
+						<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+					</SafeAreaView>
 				</TouchableOpacity>
 
 				{props.count === 0 ? (
@@ -52,9 +52,7 @@ const MakeRecordPictures = props => (
 							</TouchableOpacity>
 						) : (
 							<View style={styles.addBtn}>
-								<Text style={[styles.btnText, {color: '#bdc3c7'}]} >
-									게시
-								</Text>
+								<Text style={[styles.btnText, { color: '#bdc3c7' }]}>게시</Text>
 							</View>
 						)}
 					</>
@@ -112,10 +110,13 @@ const MakeRecordPictures = props => (
 								deleteImage={props.deleteImage}
 								updateImage={props.updateImage}
 								updateComment={props.updateComment}
+								changeUpdateLoading={props.changeUpdateLoading}
 								{...image}
 							/>
 						))}
-						<PhotoRegister addImage={props.addImage} />
+						{props.addLoading ? <PhotoLoading /> : null}
+
+						<PhotoRegister addImage={props.addImage} changeAddLoading={props.changeAddLoading} />
 					</View>
 					<View style={{ height: 80 }} />
 				</HeaderScrollView>
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		width: width * 0.2,
 		height: height * 0.1,
-		top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
+		top: Platform.OS === 'ios' ? getStatusBarHeight() : 15,
 		left: 10,
 		zIndex: 1,
 	},

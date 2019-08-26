@@ -16,6 +16,7 @@ export default class ClubChars extends React.Component {
 
 				<View style={styles.body}>
 					<TouchableOpacity onPress={this._pickImage}>
+
 						<View style={styles.image}>
 							<AutoHeightImage
 								width={width - 20}
@@ -39,6 +40,10 @@ export default class ClubChars extends React.Component {
 
 	// 이미지피커
 	_pickImage = async () => {
+		setTimeout(() => {
+			this.props.changeAddLoading();
+		}, 1000)
+		
 		const permissions = Permissions.CAMERA_ROLL;
 		const { status } = await Permissions.askAsync(permissions);
 
@@ -50,7 +55,10 @@ export default class ClubChars extends React.Component {
 			});
 
 			if (!result.cancelled) {
-				this.props.addImage(result.uri);
+				await this.props.addImage(result.uri);
+				this.props.changeAddLoading();
+			} else {
+				this.props.changeAddLoading();
 			}
 		}
 	};
