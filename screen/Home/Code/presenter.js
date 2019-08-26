@@ -15,7 +15,7 @@ import ConfirmButtonN from '../../../components/Button/ConfirmButtonN';
 import { TextField } from 'react-native-material-textfield';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import { Ionicons } from '@expo/vector-icons';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper'
+import { getStatusBarHeight,ifIphoneX  } from 'react-native-iphone-x-helper'
 
 const { width, height } = Dimensions.get('window');
 
@@ -30,7 +30,7 @@ const Code = props => (
 				position: 'absolute',
 				width: width * 0.2,
 				height: height * 0.1,
-				top: Platform.OS === 'ios' ? getStatusBarHeight() : 15,
+				top: Platform.OS === 'ios' ? 30 : 15,
 				left: 10,
 				zIndex: 1,
 			}}

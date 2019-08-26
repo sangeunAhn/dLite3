@@ -19,7 +19,7 @@ export default class ClubChars extends React.Component {
 						<View style={styles.image}>
 							<AutoHeightImage
 								width={width - 20}
-								style={{ borderTopLeftRadius: 10, borderTopRightRadius: 10, }}
+								
 								source={require('../../images/addPhoto5.png')}
 							/>
 						</View>
@@ -70,6 +70,11 @@ const styles = StyleSheet.create({
 		shadowRadius: 5,
 		elevation: 2,
 
+	},
+	image: {
+		borderTopLeftRadius: 9,
+		borderTopRightRadius: 9,
+		overflow: 'hidden'
 	},
 	warning: {
 		position: 'absolute',

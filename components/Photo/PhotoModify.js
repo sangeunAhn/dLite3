@@ -40,11 +40,13 @@ export default class PhotoModify extends React.Component {
 					<View style={styles.body}>
 						{this.state.disabled == true ? (
 							<TouchableOpacity onPress={this.Press}>
+<View style={styles.image}>
 								<AutoHeightImage
 									width={width - 20}
-									style={styles.image}
+								
 									source={{ uri: image }}
 								/>
+								</View>
 							</TouchableOpacity>
 						) : (
 							<TouchableOpacity onPress={this.Press}>
@@ -123,7 +125,7 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: '#ddd',
 		borderBottomWidth: 0,
-		borderRadius: 10,
+		borderRadius: 9,
 		shadowColor: '#A8A8A8',
         shadowOffset: { width: 1, height: 1 },
         shadowOpacity: 5,
@@ -131,8 +133,8 @@ const styles = StyleSheet.create({
         elevation: 3,
 	},
 	image : { 
-		borderTopLeftRadius: 10, 
-		borderTopRightRadius: 10 ,
+		borderTopLeftRadius: 9, 
+		borderTopRightRadius: 9 ,
 		overflow: 'hidden'
 	},
 	edit : {
@@ -152,7 +154,7 @@ const styles = StyleSheet.create({
 	},
 	bottom : {
 		height: 80,
-		borderRadius: 10,
+		borderRadius: 9,
 		backgroundColor: 'white',
 		justifyContent: 'center',
 	},
