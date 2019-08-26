@@ -10620,6 +10620,11 @@ react-native-fast-image-expo@^0.0.5:
   resolved "https://registry.yarnpkg.com/react-native-fast-image-expo/-/react-native-fast-image-expo-0.0.5.tgz#162ef0e3006c5d9c3d166195161abb8fa9f7a4db"
   integrity sha512-O2ZmyVepxtPhdKPjwB3CniH1TuHPRWsrNer9v6izyW6YMPECD8tL+t/COzvVwZF4/0AHePtWWzwVy9uQrrSvgA==
 
+react-native-fast-image@^7.0.2:
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-7.0.2.tgz#e06b21f42f4a9786eaa86f3db35d919070fb8403"
+  integrity sha512-MfuzJbC0RjYobR2gFCdqe1I7jvNOCfDkjQ7VGOHXniqjohhULMkcWNBE9Umovi9Dx93lJ6t5utcE2wf/09zvlg==
+
 react-native-gesture-handler@1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.2.1.tgz#9c48fb1ab13d29cece24bbb77b1e847eebf27a2b"
@@ -10755,6 +10760,11 @@ react-native-screens@1.0.0-alpha.22:
   integrity sha512-tOxHGQUN83MTmQB4ghoQkibqOdGiX4JQEmeyEv96MKWO/x8T2PJv84ECUos9hD3blPRQwVwSpAid1PPPhrVEaw==
   dependencies:
     debounce "^1.2.0"
+
+react-native-simple-modal@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-simple-modal/-/react-native-simple-modal-9.0.1.tgz#a753e9493f4bfcd8b9bf7812faaa56336bf56bde"
+  integrity sha512-tAqIWFD2K1qZ71oQDEeyxC+3nwVEqwt/wnho7cbGzz1GB0HpxzC5qHbO5x39PUNgm3iX1DitUUQFhKYnxT3pTg==
 
 react-native-snap-carousel@^3.8.0:
   version "3.8.0"
@@ -10910,7 +10920,7 @@ react-navigation-transitions@^1.0.12:
   resolved "https://registry.yarnpkg.com/react-navigation-transitions/-/react-navigation-transitions-1.0.12.tgz#7307668bc7d5fdbdc1954224e7891f7fe6cb5f74"
   integrity sha512-Hp0wX9KoXwsFch6Fgiz9HpGjQZDhnyucLbCai0LcaOC3VpmgYmvkbeAg/mQ5Z5exuY6PPrh/+FXU00yMPDHkcw==
 
-react-navigation@^3.11.1:
+react-navigation@^3.12.0:
   version "3.12.0"
   resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-3.12.0.tgz#31cc6c7d778c968965e86a820f12f1e1a66e20b9"
   integrity sha512-Lr0l0lbZsFsajUx040I1HYm0yIfa+F9SCEeaNkS1eiey6k2G04eY5hYGZfo4i3kaMj99Yi8tuRcSN7DS0QZu8w==

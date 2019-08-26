@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Platform, View, ScrollView, Text, StatusBar, SafeAreaView,TouchableOpacity, Dimensions, Alert} from 'react-native';
+import { Platform,Linking, View, ScrollView, Text, StatusBar, SafeAreaView,TouchableOpacity, Dimensions, Alert} from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { sliderWidth, itemWidth } from '../../../components/Snap/SliderEntry.style';
 import SliderEntry from '../../../components/Snap/SliderEntry';
 import styles, { colors } from '../../../components/Snap/index.style';
 import { ENTRIES1, ENTRIES2 } from '../../../components/Snap/entries';
 import MainButton from '../../../components/Button/MainButton';
+import Modal from "react-native-simple-modal";
+
 
 const { width, height } = Dimensions.get('window');
 
@@ -19,6 +21,15 @@ function wp (percentage) {
 }
 
 export default class example extends Component {
+	state = { open: false };
+	openModal = () => this.setState({ open: true });
+ 
+	closeModal = () => this.setState({ open: false });
+	modalDidClose = () => {
+		this.setState({ open: false });
+		console.log("Modal did close.");
+	  };
+  
 	static navigationOptions = {
 		header: null,
 	};
@@ -79,7 +90,7 @@ export default class example extends Component {
 	render() {
 		const example1 = this.mainExample(1, 'Default layout | Loop | Autoplay | Parallax | Scale | Opacity | Pagination with tappable dots');
 		return (
-
+<>
 			<View style={styles.container}>
 				<View style={{marginTop:Platform.OS === 'ios' ? 30 : 15 , width:width, height:height*0.1, justifyContent:'flex-end',alignItems:'center'}}>
 					<Text style={{color:'#3B3B3B',fontSize:width*0.08,letterSpacing:0.05, fontWeight:'900'}}>내 손 안의 동아리 '동방'</Text>
@@ -105,13 +116,40 @@ export default class example extends Component {
 				
 				</View>
 				<View style={{alignItems:'flex-start', height: height*0.07}}>
-					<TouchableOpacity style={{ padding:10}} onPress={() => Alert.alert('', '[문의사항] \n \n leejjun28@gmail.com \n 010 4372 0440 \n \n 문의 가능 시간 : 09:00 ~ 18:00 ')}>
+					<TouchableOpacity style={{ padding:10}} onPress={this.openModal}>
 						<Text style={{color:'#888888'}}>문의하기</Text>
 					</TouchableOpacity>
+					
 				</View>
 				
 			</View>
-
+			<Modal
+			  modalDidOpen={this.modalDidOpen}
+			  modalDidClose={this.modalDidClose}
+					open={this.state.open}
+					closeOnTouchOutside={true}
+					modalStyle={{
+						borderRadius: 3,
+						margin: 20,
+						padding: 10,
+						backgroundColor: "#F5F5F5"
+					  }}
+					>
+						<View style={{marginTop:10,marginBottom:15, marginLeft:10}}>
+							<Text style={{fontWeight:'bold', fontSize:20}}>문의사항</Text>
+							
+						</View>
+						<View style={{alignItems:'center', marginTop:15, marginBottom:40}}>
+						
+						<Text style={{fontSize: 16, marginBottom:10}} onPress={() => Linking.openURL('http://pf.kakao.com/_BDxjiT/chat')}>1:1 문의하기</Text>
+						<Text style={{fontSize: 16, marginBottom:10}} onPress={()=>{Linking.openURL('tel:01043720440');} }>010 4372 0440</Text>
+						<Text style={{fontSize: 16, }}>leejjun28@gmail.com</Text>
+						</View>
+						<View style={{marginBottom:5}}>
+							<Text style={{color:'#848484',fontSize:12}}>문의 가능 시간 : 09:00 ~ 18:00</Text>
+						</View>
+					</Modal>
+					</>
 		);
 	}
 }

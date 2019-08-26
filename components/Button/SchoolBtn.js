@@ -20,11 +20,11 @@ export default class ConfirmButton extends Component {
 				<TouchableOpacity style={styles.button} onPress={this.props.onPress}>
 					<View style={styles.logo}>
 						{this.props.school === 'AA대학교' ? (
-							<Image style={styles.logoImage} source={require('../../images/Harvard.png')} />
+							<Image style={styles.logoImage} source={require('../../images/AA.png')} />
 						) : this.props.school === 'BB대학교' ? (
-							<Image style={styles.logoImage} source={require('../../images/Tokyo.jpeg')} />
+							<Image style={styles.logoImage} source={require('../../images/BB.png')} />
 						) : (
-							<Image style={styles.logoImage} source={require('../../images/Yale.jpg')} />
+							<Image style={styles.logoImage} source={require('../../images/CC.png')} />
 						)}
 						{/* <Image style={styles.logoImage} source={require('../../images/ulsan.jpeg')} /> */}
 					</View>
