@@ -17,7 +17,7 @@ import ClubPickerM from '../../../components/MakeClub/ClubPickerM';
 import ConfirmButtonN from '../../../components/Button/ConfirmButtonN';
 import { Ionicons } from '@expo/vector-icons';
 import HeaderScrollView from 'react-native-header-scroll-view';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { getStatusBarHeight, ifIphoneX } from 'react-native-iphone-x-helper';
 
 const { width, height } = Dimensions.get('window');
 
@@ -41,6 +41,7 @@ const MakeClub = props => (
 					headerContainerStyle={{
 						justifyContent: 'center',
 						alignItems: 'center',
+						...ifIphoneX({ paddingTop: 18 }, { paddingTop: 0 }),
 						height: Platform.OS === 'ios' ? height * 0.1 : height * 0.08,
 					}}
 					headlineStyle={{
@@ -87,16 +88,12 @@ const MakeClub = props => (
 					<View style={styles.logo}>
 						<TouchableOpacity onPress={props.pickLogo} style={styles.logoClick}>
 							<Image style={styles.photoAddLogo} source={require('../../../images/photoAdd.png')} />
-							{props.clubLogo == null ||
-							props.clubLogo == 'ul' ||
-							props.clubLogo == '' ? (
-								<View style={styles.logoImage} >
+							{props.clubLogo == null || props.clubLogo == 'ul' || props.clubLogo == '' ? (
+								<View style={styles.logoImage}>
 									{props.logoLoading ? <ActivityIndicator size="large" /> : null}
 								</View>
 							) : (
-								props.clubLogo && (
-								<Image style={styles.logoImage} source={{ uri: props.clubLogo }} />
-								)
+								props.clubLogo && <Image style={styles.logoImage} source={{ uri: props.clubLogo }} />
 							)}
 						</TouchableOpacity>
 					</View>
@@ -300,7 +297,7 @@ const styles = StyleSheet.create({
 		height: width * 0.27,
 		borderRadius: width * 0.27 * 0.5,
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
 	},
 	containerFromClubName: {
 		paddingHorizontal: width * 0.05,

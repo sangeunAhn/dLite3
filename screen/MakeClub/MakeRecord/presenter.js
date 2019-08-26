@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, Dimensions, ActivityIndicator, SafeAreaView,Platform, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Dimensions, ActivityIndicator, SafeAreaView, Platform, Text } from 'react-native';
 import RecordButtonN from '../../../components/Button/RecordButtonN';
 import RecordButton from '../../../components/Button/RecordButton';
 import MasonryList from 'react-native-masonry-list';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import { Ionicons } from '@expo/vector-icons';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper'
+import { getStatusBarHeight,ifIphoneX  } from 'react-native-iphone-x-helper'
 
 const { width, height } = Dimensions.get('window');
 
@@ -31,9 +31,9 @@ const MakeRecord = props => (
 				<View style={styles.container}>
 					<HeaderScrollView
 						headerContainerStyle={{
-							justifyContent: 'center',
-							alignItems: 'center',
-							height: Platform.OS === 'ios' ? height * 0.1 : height * 0.08,
+							justifyContent: 'center', alignItems: 'center', ...ifIphoneX({ paddingTop: 18 }, { paddingTop: 0 }), height: Platform.OS === 'ios'
+								? height * 0.1
+								: height * 0.08
 						}}
 						headlineStyle={{
 							height: height * 0.1,

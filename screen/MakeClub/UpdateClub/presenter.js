@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import ClubUpdateBtn from '../../../components/Button/updateClubButton/ClubUpdateBtn';
 import CharUpdateBtn from '../../../components/Button/updateClubButton/CharUpdateBtn';
 import RecordUpdateBtn from '../../../components/Button/updateClubButton/RecordUpdateBtn';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper'
+import { getStatusBarHeight,ifIphoneX  } from 'react-native-iphone-x-helper'
 
 const { width, height } = Dimensions.get('window');
 

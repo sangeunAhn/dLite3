@@ -11,7 +11,7 @@ import {
 import ClubDiv from '../../../components/Main/ClubDiv';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import { Ionicons } from '@expo/vector-icons';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper'
+import { getStatusBarHeight,ifIphoneX  } from 'react-native-iphone-x-helper'
 
 
 const { width, height } = Dimensions.get('window');
@@ -65,7 +65,7 @@ export default class Main extends React.Component {
 				</TouchableOpacity>
 				<HeaderScrollView
 					headerContainerStyle={{
-						justifyContent: 'center', alignItems: 'center', height: Platform.OS === 'ios'
+						justifyContent: 'center', alignItems: 'center', ...ifIphoneX({paddingTop:18},{paddingTop:0}), height: Platform.OS === 'ios'
 							? height * 0.1
 							: height * 0.08
 					}}

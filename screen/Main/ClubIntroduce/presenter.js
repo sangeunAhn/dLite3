@@ -14,7 +14,7 @@ import {
 import IntroduceChars from '../../../components/Char/IntroduceChars';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import { Ionicons } from '@expo/vector-icons';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper'
+import { getStatusBarHeight,ifIphoneX  } from 'react-native-iphone-x-helper'
 
 const { width, height } = Dimensions.get('window');
 
@@ -34,9 +34,9 @@ const ClubIntroduce = props => (
 				</TouchableOpacity>
 				<HeaderScrollView
 					headerContainerStyle={{
-						justifyContent: 'center',
-						alignItems: 'center',
-						height: Platform.OS === 'ios' ? height * 0.1 : height * 0.08,
+						justifyContent: 'center', alignItems: 'center', ...ifIphoneX({ paddingTop: 18 }, { paddingTop: 0 }), height: Platform.OS === 'ios'
+							? height * 0.1
+							: height * 0.08
 					}}
 					headlineStyle={{
 						height: height * 0.1,
@@ -60,7 +60,7 @@ const ClubIntroduce = props => (
 					fadeDirection="up"
 					title="동아리 소개"
 				>
-					<View style={styles.blank}/>
+					<View style={styles.blank} />
 					<Text style={styles.text1}>동아리 로고, 메인 사진</Text>
 
 					<View style={styles.MainPictureView}>
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		width: width * 0.2,
 		height: height * 0.1,
-		top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
+		top: Platform.OS === 'ios' ? getStatusBarHeight() : 15,
 		left: 10,
 		zIndex: 1,
 	},
@@ -151,9 +151,9 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	blank: {
-		
-		width:width,
-		height:height*0.03
+
+		width: width,
+		height: height * 0.03
 	},
 	MainPictureView: {
 		alignItems: 'center',
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
 	input: {
 		borderRadius: 8,
 		width: '100%',
-		
+
 		backgroundColor: 'white',
 		shadowColor: '#E1E1E1',
 		shadowOffset: { height: 1.5, width: 0 },
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: width * 0.05,
 	},
 	textIn: {
-		flex:1,
+		flex: 1,
 		padding: 7,
 		fontSize: width * 0.04,
 	},
