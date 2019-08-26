@@ -141,7 +141,7 @@ class Container extends React.Component {
 
 	_btnPress = () => {
 		if (this.props.navigation.getParam('from', 'NO-ID') == 'm') {
-			this.props.navigation.navigate('Home');
+			this.props.navigation.goBack()
 		} else {
 			this._goToMain()
 		}

@@ -132,7 +132,7 @@ class Container extends Component {
 
 		if (status === 'granted') {
 			let result = await ImagePicker.launchImageLibraryAsync({
-				quality: 0.3,
+				quality: 0.5,
 			});
 
 			if (!result.cancelled) {
@@ -151,7 +151,7 @@ class Container extends Component {
 
 		if (status === 'granted') {
 			let result = await ImagePicker.launchImageLibraryAsync({
-				quality: 0.3,
+				quality: 0.4,
 			});
 
 			if (!result.cancelled) {
@@ -265,7 +265,7 @@ class Container extends Component {
 				},
 			});
 
-			this.props.navigation.navigate('Home');
+			this.props.navigation.goBack();
 		}
 	};
 

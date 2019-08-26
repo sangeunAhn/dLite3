@@ -159,7 +159,7 @@ class Container extends React.Component {
 		var userNo = navigation.getParam('userNo', 'NO-ID');
 		if (this.props.navigation.getParam('from', 'NO-ID') == 'm') {
 			this._modifySetClubChars();
-			navigation.navigate('Home');
+			navigation.goBack();
 		} else {
 			this._setClubChars();
 			navigation.navigate('MakeRecord', {

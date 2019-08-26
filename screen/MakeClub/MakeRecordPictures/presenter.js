@@ -89,6 +89,7 @@ const MakeRecordPictures = props => (
 							justifyContent: 'center',
 							alignItems: 'center',
 							height: Platform.OS === 'ios' ? height * 0.1 : height * 0.08,
+							...ifIphoneX({ paddingTop: 18 }, { paddingTop: 0 })
 						}}
 						headlineStyle={{
 							height: height * 0.1,
@@ -173,8 +174,7 @@ const styles = StyleSheet.create({
 		fontSize: width * 0.053,
 		color: '#3B3B3B',
 		fontWeight: '600',
-		...ifIphoneX({ paddingTop: 2 }, { paddingTop: 0 })
-
+		...ifIphoneX({ paddingTop: 5 }, { paddingTop: 0 })
 	},
 	header: {
 		paddingTop: 23,
