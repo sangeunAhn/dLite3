@@ -15,7 +15,7 @@ import PhotoRegister from '../../../components/Photo/PhotoRegister';
 import PhotoModify from '../../../components/Photo/PhotoModify';
 import { Ionicons } from '@expo/vector-icons';
 import HeaderScrollView from 'react-native-header-scroll-view';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper'
+import { getStatusBarHeight,ifIphoneX  } from 'react-native-iphone-x-helper'
 
 
 const { width, height } = Dimensions.get('window');

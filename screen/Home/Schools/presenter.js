@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity, Dimensions, Text,Platform, SafeAreaView } from 'react-native';
 import SchoolBtn from '../../../components/Button/SchoolBtn';
 import { Ionicons } from '@expo/vector-icons';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper'
+import { getStatusBarHeight,ifIphoneX  } from 'react-native-iphone-x-helper'
 
 
 const { width, height } = Dimensions.get('window');

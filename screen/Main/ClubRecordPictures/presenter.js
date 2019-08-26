@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, ActivityIndicator, View, TouchableOpacity, SafeAreaView,Dimensions, Platform } from 'react-native';
+import { StyleSheet, ScrollView, ActivityIndicator, View, TouchableOpacity, SafeAreaView, Dimensions, Platform } from 'react-native';
 import Picture from '../../../components/Photo/Picture';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import { Ionicons } from '@expo/vector-icons';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper'
+import { getStatusBarHeight,ifIphoneX  } from 'react-native-iphone-x-helper'
 
 const { width, height } = Dimensions.get('window');
 
@@ -23,7 +23,7 @@ const ClubRecordPictures = props => (
 				</TouchableOpacity>
 				<HeaderScrollView
 					headerContainerStyle={{
-						justifyContent: 'center', alignItems: 'center', height: Platform.OS === 'ios'
+						justifyContent: 'center', alignItems: 'center', ...ifIphoneX({ paddingTop: 18 }, { paddingTop: 0 }), height: Platform.OS === 'ios'
 							? height * 0.1
 							: height * 0.08
 					}}
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		width: width * 0.2,
 		height: height * 0.1,
-		top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
+		top: Platform.OS === 'ios' ? getStatusBarHeight() : 15,
 		left: 10,
 		zIndex: 1,
 	},

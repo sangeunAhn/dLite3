@@ -30,7 +30,7 @@ const Code = props => (
 				position: 'absolute',
 				width: width * 0.2,
 				height: height * 0.1,
-				top: Platform.OS === 'ios'?getStatusBarHeight() : 15,
+				top: Platform.OS === 'ios' ? getStatusBarHeight() : 15,
 				left: 10,
 				zIndex: 1,
 			}}
@@ -45,9 +45,9 @@ const Code = props => (
 		<View style={styles.container}>
 			<HeaderScrollView
 				headerContainerStyle={{
-					justifyContent: 'center',
-					alignItems: 'center',
-					height: Platform.OS === 'ios' ? height * 0.1 : height * 0.08,
+					justifyContent: 'center', alignItems: 'center', ...ifIphoneX({ paddingTop: 18 }, { paddingTop: 0 }), height: Platform.OS === 'ios'
+						? height * 0.1
+						: height * 0.08
 				}}
 				headlineStyle={{
 					height: height * 0.1,
