@@ -23,6 +23,7 @@ export default class RecordRegister extends React.Component {
 			isSubmitting: false,
 			isGetting: false,
 			idCount: 0,
+			addLoading: false,
 		};
 	}
 
@@ -37,6 +38,8 @@ export default class RecordRegister extends React.Component {
 				updateComment={this._updateComment}
 				btnPress={this._btnPress}
 				btnDeleteAll={this._btnDeleteAll}
+				changeAddLoading={this._changeAddLoading}
+				changeUpdateLoading={this._changeUpdateLoading}
 			/>
 		);
 	}
@@ -63,6 +66,7 @@ export default class RecordRegister extends React.Component {
 					image: image,
 					comment: '',
 					createdAt: Date.now(),
+					updateLoading: false,
 				},
 			};
 			const newState = {
@@ -75,6 +79,7 @@ export default class RecordRegister extends React.Component {
 			};
 			return { ...newState };
 		});
+		// console.log(this.state.images);
 	};
 
 	_addImageM = (image, comment, createdAt) => {
@@ -88,6 +93,7 @@ export default class RecordRegister extends React.Component {
 					image: image,
 					comment: comment,
 					createdAt: createdAt,
+					updateLoading: false,
 				},
 			};
 			const newState = {
@@ -207,7 +213,7 @@ export default class RecordRegister extends React.Component {
 	};
 
 	_inputDatas = async (image, comment, createdAt, imageRoom) => {
-		console.log(image)
+		console.log(image);
 		const { navigation } = this.props;
 		var userNo = navigation.getParam('userNo', 'NO-ID');
 
@@ -225,7 +231,7 @@ export default class RecordRegister extends React.Component {
 			header: {
 				'content-type': 'multipart/form-data',
 			},
-		}).then(response => response.json())
+		}).then(response => response.json());
 		// .then(result => console.log(result));
 	};
 
@@ -237,5 +243,40 @@ export default class RecordRegister extends React.Component {
 	_btnDeleteAll = () => {
 		this._deletePrevDatas();
 		this.props.navigation.goBack();
+	};
+
+	_changeAddLoading = () => {
+		const addLoading = this.state.addLoading;
+		{
+			addLoading ? this.setState({ addLoading: false }) : this.setState({ addLoading: true });
+		}
+	};
+
+	_changeUpdateLoading = id => {
+		const updateLoading = this.state.images[id].updateLoading;
+		{
+			updateLoading
+				? this.setState(prevState => {
+						const newState = {
+							...prevState,
+							images: {
+								...prevState.images,
+								[id]: { ...prevState.images[id], updateLoading: false },
+							},
+						};
+						return { ...newState };
+				  })
+				: this.setState(prevState => {
+						const newState = {
+							...prevState,
+							images: {
+								...prevState.images,
+								[id]: { ...prevState.images[id], updateLoading: true },
+							},
+						};
+						return { ...newState };
+				  });
+		}
+		console.log(updateLoading)
 	};
 }

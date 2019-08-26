@@ -15,16 +15,17 @@ import PhotoRegister from '../../../components/Photo/PhotoRegister';
 import PhotoModify from '../../../components/Photo/PhotoModify';
 import { Ionicons } from '@expo/vector-icons';
 import HeaderScrollView from 'react-native-header-scroll-view';
+import PhotoLoading from '../../../components/Photo/PhotoLoding';
 import { getStatusBarHeight, ifIphoneX } from 'react-native-iphone-x-helper'
-
 
 const { width, height } = Dimensions.get('window');
 
 const MakeRecordPictures = props => (
 	<>
 		{props.isGetting == false && props.navigation.getParam('to', 'NO-ID') == 'm' ? (
-			<ActivityIndicator size="large" style={styles.activityIndicator} />
+			<ActivityIndicator size="large" />
 		) : (
+
 				<>
 					<TouchableOpacity
 						style={{
@@ -78,6 +79,7 @@ const MakeRecordPictures = props => (
 										</TouchableOpacity>
 									)}
 							</>
+
 						)}
 
 					<HeaderScrollView
@@ -118,10 +120,13 @@ const MakeRecordPictures = props => (
 									deleteImage={props.deleteImage}
 									updateImage={props.updateImage}
 									updateComment={props.updateComment}
+									changeUpdateLoading={props.changeUpdateLoading}
 									{...image}
 								/>
 							))}
-							<PhotoRegister addImage={props.addImage} />
+							{props.addLoading ? <PhotoLoading /> : null}
+
+							<PhotoRegister addImage={props.addImage} changeAddLoading={props.changeAddLoading} />
 						</View>
 						<View style={{ height: 80 }} />
 					</HeaderScrollView>
@@ -145,8 +150,10 @@ const styles = StyleSheet.create({
 	backBtn: {
 		position: 'absolute',
 		width: width * 0.2,
+
 		height: height * 0.07,
 		top: Platform.OS === 'ios' ? 30 : 15,
+
 		left: 10,
 		zIndex: 1,
 		//   backgroundColor: 'blue'

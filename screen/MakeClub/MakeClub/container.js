@@ -26,7 +26,9 @@ class Container extends Component {
             isFocused: false,
             isFocused1: false,
             isFocused2: false,
-            isFocused3: false,
+			isFocused3: false,
+			logoLoading: false,
+			mainPictureLoading: false,
 		};
 	}
 
@@ -122,6 +124,9 @@ class Container extends Component {
 
 	// 로고 가져오기
 	_pickLogo = async () => {
+		setTimeout(() => {
+			this.setState({logoLoading: true})
+		}, 1000)
 		const permissions = Permissions.CAMERA_ROLL;
 		const { status } = await Permissions.askAsync(permissions);
 
@@ -138,6 +143,9 @@ class Container extends Component {
 
 	// 메인사진 가져오기
 	_pickMainPicture = async () => {
+		setTimeout(() => {
+			this.setState({mainPictureLoading: true})
+		}, 1000)
 		const permissions = Permissions.CAMERA_ROLL;
 		const { status } = await Permissions.askAsync(permissions);
 
