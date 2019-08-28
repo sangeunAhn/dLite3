@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
 		left: 8,
 	},
 	shapText1: {
-		fontSize: 20,
+		fontSize: width*0.05,
 		color: '#DCDCDC',
 	},
 	shapText2: {
-		fontSize: 20,
+		fontSize: width*0.05,
 	},
 	addBtn: {
 		zIndex: 999,

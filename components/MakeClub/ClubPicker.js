@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, Picker, StyleSheet } from 'react-native';
+import { View, Text, Picker, StyleSheet, Dimensions } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+
+const { width, height } = Dimensions.get('window');
 
 class ClubPicker extends Component {
 	state = { user: '' };
 	state = {
-		icon: <AntDesign name="bars" size={25} color="#0A6EFF" />,
+		icon: <AntDesign name="bars" size={height*0.035} color="#0A6EFF" />,
 	};
 	updateUser = user => {
 		this.setState({ user: user });

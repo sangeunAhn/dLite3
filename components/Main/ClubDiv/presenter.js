@@ -8,7 +8,7 @@ const ClubDiv = props => (
 	<View style={styles.container}>
         <View style={{ paddingHorizontal: width * 0.03 }}>
           <Text style={styles.menuTitle}>{props.clubKind}</Text>
-          <View style={{ alignItems: 'flex-end', marginBottom: 20, }}>
+          <View style={{ alignItems: 'flex-end', marginBottom: height*0.032, }}>
             <View style={styles.line} />
           </View>
         </View>
@@ -30,18 +30,17 @@ const ClubDiv = props => (
 const styles = StyleSheet.create({
 	container: {
 		width: '100%',
-		marginBottom: 10,
+		marginBottom: height*0.01,
 		backgroundColor: '#FAFAFA',
 	},
 	menuTitle: {
-		marginBottom: 0,
-		paddingTop: 15,
+		paddingTop: height*0.015,
 		fontWeight:'bold',
 		color: '#ADCDE9',
-		fontSize: width * 0.07,
+		fontSize: height*0.037,
 	},
 	line: {
-		borderBottomWidth: width*0.002,
+		borderBottomWidth: height*0.001,
 		borderColor: '#ADCDE9',
 		width: '85%',
 		alignItems: 'flex-end',

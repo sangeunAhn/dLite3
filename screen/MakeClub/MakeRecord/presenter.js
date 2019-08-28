@@ -27,7 +27,7 @@ const MakeRecord = props => (
             </TouchableOpacity>
             <TouchableOpacity style={styles.addBtn} onPress={props.iconPress}>
                <SafeAreaView>
-                  <Text style={{ ...ifIphoneX({ paddingTop: 4 }, { paddingTop: 0 }),fontSize: width * 0.053, color: '#3B3B3B', fontWeight: '600' }}>추가</Text>
+                  <Text style={{ ...ifIphoneX({ paddingTop: 4 }, { paddingTop: height * 0.008 }),fontSize: width * 0.053, color: '#3B3B3B', fontWeight: '600' }}>추가</Text>
                </SafeAreaView>
             </TouchableOpacity>
             <View style={styles.container}>
@@ -44,7 +44,7 @@ const MakeRecord = props => (
                      alignItems: 'center',
                      alignSelf: 'center',
                      fontSize: width * 0.05,
-                     paddingTop: Platform.OS === 'ios' ? height * 0.055 : height * 0.048,
+                     paddingTop: Platform.OS === 'ios' ? height * 0.065 : height * 0.048,
                   }}
                   headerComponentContainerStyle={{
                      justifyContent: 'center',

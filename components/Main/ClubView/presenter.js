@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#FAFAFA',
       flexDirection: 'column',
       justifyContent: 'flex-start',
-      paddingHorizontal: width * 0.05,
+      paddingHorizontal: height*0.027,
       alignItems: 'center',
       marginBottom: height * 0.04,
    },
@@ -104,10 +104,10 @@ const styles = StyleSheet.create({
       alignItems: 'center' 
    },
    logo: {
-      width: width * 0.16,
-      height: width * 0.16,
-      borderRadius: width * 0.16 * 0.5,
-      marginRight: 15,
+      width: height*0.083,
+      height: height*0.083,
+      borderRadius: height*0.083 * 0.5,
+      marginRight: height*0.021,
       shadowColor: '#888888', // IOS
       shadowOffset: { height:0 , width: 0 }, // IOS
       shadowOpacity: 15, // IOS
@@ -115,16 +115,16 @@ const styles = StyleSheet.create({
       elevation: 10, // Android
    },
    Image: {
-      width: width * 0.16,
-      height: width * 0.16,
-      borderRadius: width * 0.16 * 0.5,
+      width: height*0.083,
+      height: height*0.083,
+      borderRadius: height*0.083 * 0.5,
 	  
    },
    club: {
       flex: 1,
       // textAlignVertical: 'center',
       
-      height: width * 0.20
+      height: height*0.1,
       // backgroundColor: '#DCEBFF',
    },
    clubTitle: {
@@ -140,33 +140,33 @@ const styles = StyleSheet.create({
    clubChar: {
       // flex: 1.7,
       // textAlignVertical: "center",
-      marginLeft:5,
+      marginLeft:height*0.008,
       fontWeight:Platform.OS === 'ios' ? '600' : '500',
-      fontSize: Platform.OS === 'ios' ?  moderateScale(12) : moderateScale(10) ,
+      // fontSize: Platform.OS === 'ios' ?  moderateScale(12) : moderateScale(10) ,
       color: '#BBBBBB',
-      paddingBottom:5,
-      marginBottom: -5,
-      lineHeight: Platform.OS === 'ios' ?  16 : 14 ,
+      paddingBottom:height*0.008,
+      marginBottom: -height*0.008,
+      lineHeight: Platform.OS === 'ios' ?  height*0.025 : height*0.022 ,
       // backgroundColor: 'green',
       },  
    button: {
-      top: -40,
-      margin: 30,
-      height: 70,
-      width: 50,
+      top: -height*0.064,
+      margin: height*0.048,
+      height: height*0.096,
+      width: height*0.08,
       zIndex: 999,
    },
    shadow:{
-      marginTop: 10,
-      borderRadius: 13,
+      marginTop: height*0.016,
+      borderRadius: height*0.02,
 
       width: width * 0.9,
-      height: height * 0.245,
+      height: height * 0.24,
       shadowColor: '#B8B8B8', // IOS
-      shadowOffset: { height: 5, width: 1 }, // IOS
-      shadowOpacity: 7, // IOS
-      shadowRadius: 4, //IOS
-      elevation: 5, // Android
+      shadowOffset: { height: height*0.008, width: 1 }, // IOS
+      shadowOpacity: height*0.011, // IOS
+      shadowRadius: height*0.007, //IOS
+      elevation: height*0.008, // Android
       backgroundColor:'white',
    },
    picture: {
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
       // alignItems:'flex-start',
       // justifyContent:'flex-start',
       backgroundColor:'#CEE1F2',
-      borderRadius: 13,
+      borderRadius: height*0.019,
 
       width: width * 0.9,
       height: height * 0.245,
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
       zIndex: 0,
       // alignItems:'flex-start',
       // justifyContent:'flex-start',
-      borderRadius: 13,
+      borderRadius: height*0.019,
       width: width * 0.9,
       height: height * 0.245,   
    },

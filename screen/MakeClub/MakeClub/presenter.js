@@ -132,7 +132,7 @@ const MakeClub = props => (
 						</View>
 						<View style={styles.block}>
 							<Text style={styles.text}>동아리 종류</Text>
-							<View style={{ width: 160 }}>
+							<View style={{ width: height*0.23 }}>
 								{props.navigation.getParam('from', 'NO-ID') == 'm' ? (
 									<ClubPickerM clubKind={props.clubKind} setPrevClubKind={props.setPrevClubKind} />
 								) : (
@@ -157,7 +157,7 @@ const MakeClub = props => (
 								style={[
 									styles.input,
 									{
-										height: 120,
+										height: height*0.2,
 										borderColor: props.isFocused1 ? '#DCDCDC' : null,
 										shadowColor: props.isFocused1 ? '#E1E1E1' : null, // IOS
 										shadowOffset: props.isFocused1 ? { height: 1.5, width: 0 } : null, // IOS
@@ -191,6 +191,7 @@ const MakeClub = props => (
 								style={[
 									styles.input,
 									{
+										height: height*0.13,
 										borderColor: props.isFocused2 ? '#DCDCDC' : null,
 										shadowColor: props.isFocused2 ? '#E1E1E1' : null, // IOS
 										shadowOffset: props.isFocused2 ? { height: 1.5, width: 0 } : null, // IOS
@@ -251,22 +252,22 @@ const styles = StyleSheet.create({
 	},
 	MainPictureClick: {
 		alignItems: 'center',
-		marginTop: 5,
+		marginTop: height*0.007,
 		marginHorizontal: width * 0.05,
 	},
 	PhotoAddMainPicture: {
-		width: width * 0.1,
-		height: width * 0.1,
+		width: height*0.052,
+		height: height*0.052,
 		position: 'absolute',
 		zIndex: 1,
-		right: -15,
-		bottom: -15,
+		right: -height*0.024,
+		bottom: -height*0.024,
 	},
 	MainPictureImage: {
 		marginTop: 5,
 		width: width * 0.9,
 		height: height * 0.23,
-		borderRadius: 15,
+		borderRadius: height*0.024,
 		backgroundColor: '#CEE1F2',
 		alignItems: 'center',
 		justifyContent: 'center',
@@ -285,12 +286,12 @@ const styles = StyleSheet.create({
 		borderRadius: width * 0.27 * 0.5,
 	},
 	photoAddLogo: {
-		width: width * 0.1,
-		height: width * 0.1,
+		width: height*0.052,
+		height: height*0.052,
 		position: 'absolute',
 		zIndex: 1,
-		right: -5,
-		bottom: -5,
+		right: -height*0.007,
+		bottom: -height*0.007,
 	},
 	logoImage: {
 		width: width * 0.27,
@@ -303,26 +304,26 @@ const styles = StyleSheet.create({
 		paddingHorizontal: width * 0.05,
 	},
 	input: {
-		borderRadius: 8,
+		borderRadius: height*0.01,
 		width: '100%',
-		padding: 7,
+		padding: height*0.009,
 		backgroundColor: 'white',
-		fontSize: width * 0.04,
-		marginTop: 5,
+		fontSize: height*0.021,
+		marginTop: height*0.007,
 	},
 	text: {
-		fontSize: width * 0.04,
+		fontSize: height*0.021,
 	},
 	text1: {
-		fontSize: width * 0.04,
+		fontSize: height*0.021,
 		paddingHorizontal: width * 0.05,
 	},
 	block: {
-		paddingBottom: 30,
+		paddingBottom: height*0.042,
 	},
 	button: {
 		height: height * 0.09,
-		marginTop: 30,
+		marginTop: height*0.042,
 		paddingHorizontal: width * 0.03,
 	},
 	blank: {
@@ -333,7 +334,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		height: 80,
+		height: height*0.112,
 	},
 });
 

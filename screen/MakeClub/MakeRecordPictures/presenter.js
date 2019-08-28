@@ -98,7 +98,7 @@ const MakeRecordPictures = props => (
 							alignItems: 'center',
 							alignSelf: 'center',
 							fontSize: width * 0.05,
-							paddingTop: Platform.OS === 'ios' ? height * 0.055 : height * 0.048,
+							paddingTop: Platform.OS === 'ios' ? height * 0.065 : height * 0.048,
 						}}
 						headerComponentContainerStyle={{
 							justifyContent: 'center',
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: '#FAFAFA',
-		paddingTop: 20,
+		paddingTop: height*0.028,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
 		height: height * 0.07,
 		top: Platform.OS === 'ios' ? 30 : 15,
 
-		left: 10,
+		left: height*0.014,
 		zIndex: 1,
 		//   backgroundColor: 'blue'
 	},
@@ -163,85 +163,17 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		width: width * 0.25,
 		height: height * 0.07,
-		top: Platform.OS === 'ios' ? 32 : 15,
-		right: 10,
+		top: Platform.OS === 'ios' ? height * 0.03 : 15,
+		right: height*0.014,
 		zIndex: 1,
-		fontSize: width * 0.053,
 		alignItems: 'flex-end',
 		// backgroundColor: 'blue'
 	},
 	btnText: {
-		fontSize: width * 0.053,
+		fontSize: height*0.027,
 		color: '#3B3B3B',
 		fontWeight: '600',
 		...ifIphoneX({ paddingTop: 5 }, { paddingTop: 0 })
-	},
-	header: {
-		paddingTop: 23,
-		textAlign: 'center',
-		justifyContent: 'center',
-		alignItems: 'center',
-		alignSelf: 'center',
-		fontSize: width * 0.05,
-	},
-	button: {
-		height: height * 0.09,
-
-		paddingHorizontal: width * 0.03,
-		backgroundColor: '#FAFAFA',
-	},
-	text: {
-		fontSize: 20,
-		color: '#fff',
-	},
-	titleInput: {
-		color: '#fff',
-		//   backgroundColor: '#32AAFF',
-		fontSize: 20,
-		textAlign: 'center',
-	},
-	buttonStyle: {
-		width: 150,
-		height: 75,
-		backgroundColor: 'ivory',
-		borderRadius: 5,
-		justifyContent: 'center',
-		alignItems: 'center',
-		marginVertical: 15,
-	},
-	contentBackground: {
-		marginTop: scale(50),
-		backgroundColor: '#f2f2f2',
-		marginBottom: 15,
-		width: moderateScale(310),
-		height: verticalScale(360),
-		borderRadius: 10,
-		alignItems: 'center',
-		justifyContent: 'center',
-		//그림자효과
-		shadowColor: '#dbdbdb',
-		shadowOpacity: 0.8,
-		shadowRadius: 5,
-		shadowOffset: {
-			height: 5,
-			width: 5,
-		},
-		elevation: 3,
-	},
-	content: {
-		backgroundColor: '#fff',
-		width: moderateScale(270),
-		height: moderateScale(280),
-		borderRadius: 10,
-		alignItems: 'center',
-		justifyContent: 'center',
-		marginTop: 10,
-	},
-	commentInput: {
-		fontSize: 21,
-		textAlign: 'center',
-		paddingTop: 30,
-		paddingBottom: 5,
 	},
 });
 

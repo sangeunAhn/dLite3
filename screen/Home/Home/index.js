@@ -111,13 +111,13 @@ export default class example extends Component {
                 titleColor={'#3B3B3B'}
                 onPress={() => this.props.navigation.navigate('Schools')}/>
 				<TouchableOpacity style={{marginTop:height*0.01, padding:10}}onPress={() => this.props.navigation.navigate('Code')}>
-					<Text style={{fontSize:width*0.038, color:'#3B3B3B' }}> 동아리 생성 / 수정 </Text>
+					<Text style={{fontSize:height*0.023, color:'#3B3B3B' }}> 동아리 생성 / 수정 </Text>
 				</TouchableOpacity>
 				
 				</View>
 				<View style={{alignItems:'flex-start', height: height*0.07}}>
-					<TouchableOpacity style={{ padding:10}} onPress={this.openModal}>
-						<Text style={{color:'#888888'}}>문의하기</Text>
+					<TouchableOpacity style={{ padding:height*0.02}} onPress={this.openModal}>
+						<Text style={{color:'#888888', fontSize: height*0.018}}>문의하기</Text>
 					</TouchableOpacity>
 					
 				</View>
@@ -141,12 +141,12 @@ export default class example extends Component {
 						</View>
 						<View style={{alignItems:'center', marginTop:15, marginBottom:40}}>
 						
-						<Text style={{fontSize: 16, marginBottom:10}} onPress={() => Linking.openURL('http://pf.kakao.com/_BDxjiT/chat')}>1:1 문의하기</Text>
-						<Text style={{fontSize: 16, marginBottom:10}} onPress={()=>{Linking.openURL('tel:01043720440');} }>010 4372 0440</Text>
-						<Text style={{fontSize: 16, }}>leejjun28@gmail.com</Text>
+						<Text style={{fontSize: width*0.03, marginBottom:10}} onPress={() => Linking.openURL('http://pf.kakao.com/_BDxjiT/chat')}>1:1 문의하기</Text>
+						<Text style={{fontSize: width*0.03, marginBottom:10}} onPress={()=>{Linking.openURL('tel:01043720440');} }>010 4372 0440</Text>
+						<Text style={{fontSize: width*0.03, }}>leejjun28@gmail.com</Text>
 						</View>
 						<View style={{marginBottom:5}}>
-							<Text style={{color:'#848484',fontSize:12}}>문의 가능 시간 : 09:00 ~ 18:00</Text>
+							<Text style={{color:'#848484',fontSize:width*0.02}}>문의 가능 시간 : 09:00 ~ 18:00</Text>
 						</View>
 					</Modal>
 					</>

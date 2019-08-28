@@ -137,6 +137,8 @@ class Container extends Component {
 
 			if (!result.cancelled) {
 				this.setState({ clubLogo: result.uri });
+			} else {
+				this.setState({logoLoading: false})
 			}
 		}
 	};
@@ -151,11 +153,13 @@ class Container extends Component {
 
 		if (status === 'granted') {
 			let result = await ImagePicker.launchImageLibraryAsync({
-				quality: 0.4,
+				quality: 1.0,
 			});
 
 			if (!result.cancelled) {
 				this.setState({ clubMainPicture: result.uri });
+			} else {
+				this.setState({mainPictureLoading: false})
 			}
 		}
 	};

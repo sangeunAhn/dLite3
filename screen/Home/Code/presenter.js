@@ -77,12 +77,15 @@ const Code = props => (
 				<View style={styles.title}>
 					<TextField
 						title="발급받은 코드를 입력해 주세요."
+						titleFontSize={height*0.015}
 						label="코드입력"
+						labelFontSize={height*0.018}
 						returnKeyType={'done'}
 						autoCorrect={false}
 						value={props.code}
 						multiline={false}
 						onChangeText={props.changeText}
+						fontSize={height*0.023}
 					/>
 				</View>
 
@@ -116,7 +119,6 @@ const styles = StyleSheet.create({
 	title: {
 		paddingHorizontal: 10,
 		width: '100%',
-
 		// backgroundColor: '#9aa9ff'
 	},
 	content: {
@@ -134,17 +136,6 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 
 		paddingHorizontal: width * 0.03,
-	},
-	input: {
-		padding: 7,
-		borderColor: '#32B8FF',
-		borderWidth: 1,
-		fontSize: 17,
-		marginTop: 7,
-	},
-	codeInput: {
-		fontSize: 17,
-		color: '#32B8FF',
 	},
 });
 

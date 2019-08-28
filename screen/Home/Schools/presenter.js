@@ -21,18 +21,18 @@ const Schools = props => (
 				</SafeAreaView>
 			</TouchableOpacity>
 			<Text style={styles.title}>학교 선택</Text>
-			<View style={{ flexDirection: 'column', height: 560 }}>
+			<View style={{ flexDirection: 'column', height: height*0.83 }}>
 				<View style={styles.schools}>
 					<SchoolBtn
 						school={'AA대학교'}
 						backgroundColor={'white'}
-						lineColor={'#eb2f06'}
+						lineColor={'#34495e'}
 						onPress={props.AAPress}
 					/>
 					<SchoolBtn
 						school={'BB대학교'}
 						backgroundColor={'white'}
-						lineColor={'#f1c40f'}
+						lineColor={'#e67e22'}
 						onPress={props.BBPress}
 					/>
 				</View>
@@ -40,7 +40,7 @@ const Schools = props => (
 					<SchoolBtn
 						school={'CC대학교'}
 						backgroundColor={'white'}
-						lineColor={'#273c75'}
+						lineColor={'#f1c40f'}
 						onPress={props.CCPress}
 					/>
 				</View>

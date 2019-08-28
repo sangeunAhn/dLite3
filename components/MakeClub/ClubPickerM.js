@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Picker, Dimensions,StyleSheet } from 'react-native';
+import { View, Text, Picker, Dimensions, StyleSheet } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
@@ -7,7 +7,7 @@ const { width, height } = Dimensions.get('window');
 class ClubPickerM extends Component {
 	state = { user: this.props.clubKind };
 	state = {
-		icon: <AntDesign name="bars" size={25} color="#0A6EFF" />,
+		icon: <AntDesign name="bars" size={height * 0.035} color="#0A6EFF" />,
 	};
 	updateUser = user => {
 		this.setState({ user: user });
@@ -21,7 +21,12 @@ class ClubPickerM extends Component {
 	render() {
 		return (
 			<View>
-				<Picker mode="dropdown" selectedValue={this.props.clubKind} onValueChange={this.updateUser}>
+				<Picker
+					style={width > 900 ? { transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] } : null}
+					mode="dropdown"
+					selectedValue={this.props.clubKind}
+					onValueChange={this.updateUser}
+				>
 					<Picker.Item label="예술 공연" value="예술 공연" />
 					<Picker.Item label="예술 교양" value="예술 교양" />
 					<Picker.Item label="체육 구기" value="체육 구기" />

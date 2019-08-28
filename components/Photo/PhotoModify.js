@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, Dimensions, View, Image, TouchableOpacity, TextInput } from 'react-native';
 import AutoHeightImage from 'react-native-auto-height-image';
-import * as ImagePicker from 'expo-image-picker'
-import * as Permissions from 'expo-permissions'
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
 import PropTypes from 'prop-types';
 import { Feather } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import PhotoLoading from './PhotoLoding';
 
-
+const { width, height } = Dimensions.get('window');
 
 export default class PhotoModify extends React.Component {
 	constructor(props) {
@@ -40,61 +40,44 @@ export default class PhotoModify extends React.Component {
 		var { height, width } = Dimensions.get('window');
 		return (
 			<>
-			{this.props.updateLoading ? (
+				{this.props.updateLoading ? (
 					<PhotoLoading />
 				) : (
-				<View style={styles.container}>
-					<View style={styles.body}>
-						{this.state.disabled == true ? (
+					<View style={styles.container}>
+						<View style={styles.body}>
 							<TouchableOpacity onPress={this.Press}>
 								<View style={styles.image}>
-									<AutoHeightImage
-										width={width - 20}
-
-										source={{ uri: image }}
-									/>
+									<AutoHeightImage width={width - 20} source={{ uri: image }} />
 								</View>
+								{this.state.disabled == true ? null : (
+									<View style={styles.box}>
+										<View style={styles.edit}>
+											<TouchableOpacity onPress={this._pickImage}>
+												<Feather name="edit" size={width * 0.15} color="black" />
+											</TouchableOpacity>
+										</View>
+										<View style={styles.delete}>
+											<TouchableOpacity onPressOut={() => deleteImage(id)}>
+												<Entypo name="circle-with-cross" size={width * 0.15} color="black" />
+											</TouchableOpacity>
+										</View>
+									</View>
+								)}
 							</TouchableOpacity>
-						) : (
-								<TouchableOpacity onPress={this.Press}>
-									<View style={styles.image}>
-										<AutoHeightImage
-											width={width - 20}
-											blurRadius={10}
+						</View>
 
-											source={{ uri: image }}
-										/>
-									</View>
-									<View
-										style={styles.edit}
-									>
-										<TouchableOpacity style={{}} onPress={this._pickImage}>
-											<Feather name="edit" size={width * 0.15} color="black" />
-										</TouchableOpacity>
-									</View>
-									<View
-										style={styles.delete}
-									>
-										<TouchableOpacity style={{}} onPressOut={() => deleteImage(id)}>
-											<Entypo name="circle-with-cross" size={width * 0.15} color="black" />
-										</TouchableOpacity>
-									</View>
-								</TouchableOpacity>
-							)}
+						<View style={styles.bottom}>
+							<TextInput
+								style={styles.text}
+								placeholder={'간단한 코멘트를 입력해주세요'}
+								placeholderTextColor={'#bebebe'}
+								maxLength={20}
+								onChangeText={comment => this._updateComment(comment)}
+								value={this.state.commentValue}
+								autoCorrect={false}
+							/>
+						</View>
 					</View>
-
-					<View style={styles.bottom}>
-						<TextInput
-							style={styles.text}
-							placeholder={'간단한 코멘트를 입력해주세요'}
-							placeholderTextColor={'#bebebe'}
-							maxLength={20}
-							onChangeText={comment => this._updateComment(comment)}
-							value={this.state.commentValue}
-							autoCorrect={false}
-						/>
-					</View>
-				</View>
 				)}
 			</>
 		);
@@ -134,7 +117,7 @@ export default class PhotoModify extends React.Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		margin: 5,
+		margin: height * 0.015,
 		backgroundColor: 'white',
 		borderWidth: 1,
 		borderColor: '#ddd',
@@ -149,7 +132,18 @@ const styles = StyleSheet.create({
 	image: {
 		borderTopLeftRadius: 9,
 		borderTopRightRadius: 9,
-		overflow: 'hidden'
+		overflow: 'hidden',
+	},
+	box: {
+		position: 'absolute',
+		top: 0,
+		left:0,
+		right: 0,
+		bottom: 0,
+		justifyContent: 'center',
+		backgroundColor: 'white',
+		opacity: 0.7
+		
 	},
 	edit: {
 		position: 'absolute',
@@ -167,14 +161,14 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	bottom: {
-		height: 80,
-		borderRadius: 9,
+		height: height * 0.115,
+		borderRadius: height * 0.015,
 		backgroundColor: 'white',
 		justifyContent: 'center',
 	},
 	text: {
 		textAlign: 'center',
-		fontSize: 20,
+		fontSize: height * 0.028,
 		color: '#3B3B3B',
 	},
 });

@@ -14,7 +14,7 @@ export default class ClubChars extends React.Component {
 		return (
 			<View style={styles.container}>
 
-				<View style={styles.body}>
+				<View>
 					<TouchableOpacity onPress={this._pickImage}>
 
 						<View style={styles.image}>
@@ -24,11 +24,15 @@ export default class ClubChars extends React.Component {
 								source={require('../../images/addPhoto5.png')}
 							/>
 						</View>
-						<Text style={styles.warning}>부적절한 사진 업로드 시{'\n'}불이익을 받을 수 있습니다.</Text>
+						
 					</TouchableOpacity>
 
 				</View>
-
+				<View style={styles.line1} />
+				<TouchableOpacity onPress={this._pickImage}>
+					<Text style={styles.warning}>부적절한 사진 업로드 시{'\n'}불이익을 받을 수 있습니다.</Text>
+				</TouchableOpacity>
+				<View style={styles.line2} />
 				<View style={styles.bottom}>
 					<Text style={styles.text}>간단한 코멘트를 입력해주세요</Text>
 				</View>
@@ -64,18 +68,29 @@ export default class ClubChars extends React.Component {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		margin: 1,
+		flex: width-20,
+		margin: height*0.02,
 
 		backgroundColor: 'white',
 		borderRadius: 10,
-
 		shadowColor: '#E1E1E1',
 		shadowOffset: { width: 0, height: 3 },
 		shadowOpacity: 5,
 		shadowRadius: 5,
 		elevation: 2,
-
+		alignItems:'center'
+	},
+	line1: {
+		width:width*0.98,
+		height:10,
+		backgroundColor:'white',
+		top:-5,
+	},
+	line2: {
+		width:width*0.7,
+		height:2,
+		backgroundColor:'#dcdde1',
+		
 	},
 	image: {
 		borderTopLeftRadius: 9,
@@ -83,19 +98,12 @@ const styles = StyleSheet.create({
 		overflow: 'hidden'
 	},
 	warning: {
-		position: 'absolute',
-		top: '66%',
-		left: '25%',
+		top:-height*0.03,
 		textAlign: 'center',
-		fontSize: 15,
+		fontSize: height*0.0215,
 		color: '#C1D0DC',
-		lineHeight: 25,
+		lineHeight: height*0.035,
 	},
-	top: {
-		height: 40,
-		backgroundColor: 'white'
-	},
-
 	bottom: {
 		height: height * 0.1,
 		backgroundColor: 'white',
@@ -105,7 +113,7 @@ const styles = StyleSheet.create({
 	text: {
 		textAlign: 'center',
 		justifyContent: 'center',
-		fontSize: 19,
+		fontSize: height*0.026,
 		color: '#bebebe',
 	},
 });

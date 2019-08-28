@@ -29,13 +29,13 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		width: width-20,
-		marginTop: 12,
-		marginBottom: 12,
+		marginTop: height*0.0173,
+		marginBottom: height*0.0173,
 		backgroundColor: 'white',
 		borderWidth: 1,
 		borderColor: '#ddd',
 		borderBottomWidth: 0,
-		borderRadius: 10,
+		borderRadius: height*0.015,
 		shadowColor: '#DEDEDE',
         shadowOffset: { width: 1, height: 3 },
         shadowOpacity: 2,
@@ -44,37 +44,19 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	image : { 
-		borderTopLeftRadius: 9, 
-		borderTopRightRadius: 9 ,
+		borderTopLeftRadius: height*0.013, 
+		borderTopRightRadius: height*0.013 ,
 		overflow: 'hidden'
 	},
-	top: {
-		height: 40,
-		backgroundColor: 'white',
-	},
 	bottom: {
-		height: 80,
-		borderRadius: 10,
+		height: height*0.112,
+		borderRadius: height*0.013,
 		backgroundColor: 'white',
 		justifyContent: 'center',
 	},
 	text: {
 		textAlign: 'center',
-		fontSize: 20,
+		fontSize: height*0.028,
 		color: '#2c3e50',
-	},
-
-	delBtn: {
-		position: 'absolute',
-		borderColor: 'gray',
-		borderWidth: 0.3,
-		backgroundColor: 'white',
-		top: -7,
-		right: -7,
-		width: 35,
-		height: 35,
-		alignItems: 'center',
-		justifyContent: 'center',
-		borderRadius: 17,
 	},
 });
