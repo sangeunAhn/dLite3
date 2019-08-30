@@ -17,6 +17,7 @@ import Login from './screen/Login/Login';
 import SignUp from './screen/Login/SignUp';
 import FindIdPw from './screen/Login/FindIdPw';
 import SignUpPermission from './screen/Login/SignUpPermission';
+import ChangePW from './screen/Login/ChangePW';
 
 const RootStack = createStackNavigator(
 	{
@@ -68,9 +69,12 @@ const RootStack = createStackNavigator(
 		SignUpPermission: {
 			screen: SignUpPermission,
 		},
+		ChangePW: {
+			screen: ChangePW,
+		},
 	},
 	{ 
-		initialRouteName: 'Home',
+		initialRouteName: 'UpdateClub',
 	},
 	
 );

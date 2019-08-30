@@ -66,6 +66,7 @@ const Login = props => (
 					<TextField
 						titleFontSize={height*0.015}
 						label="비밀번호"
+						secureTextEntry={true}
 						labelFontSize={height*0.018}
 						returnKeyType={'done'}
 						autoCorrect={false}
