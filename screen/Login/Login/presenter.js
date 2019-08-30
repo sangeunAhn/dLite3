@@ -45,7 +45,6 @@ const Login = props => (
 					height: height * 0.08,
 				}}
 				titleStyle={{
-					// paddingTop: Platform.OS === 'ios' ? 15 : 0,
 					color: '#3B3B3B',
 					fontSize: width * 0.09,
 				}}
@@ -59,9 +58,9 @@ const Login = props => (
 						labelFontSize={height*0.018}
 						returnKeyType={'done'}
 						autoCorrect={false}
-						value={props.code}
+						value={props.id}
 						multiline={false}
-						onChangeText={props.changeText}
+						onChangeText={props.idChange}
 						fontSize={height*0.023}
 					/>
 					<TextField
@@ -70,30 +69,28 @@ const Login = props => (
 						labelFontSize={height*0.018}
 						returnKeyType={'done'}
 						autoCorrect={false}
-						value={props.code}
+						value={props.pw}
 						multiline={false}
-						onChangeText={props.changeText}
+						onChangeText={props.pwChange}
 						fontSize={height*0.023}
 					/>
 					<View style={styles.loginButton}>
-	{/* {props.userCode.length == 0 ? (
-				<LoginButtonN title={'확인'} />
-				) : ( */}
 							<LoginButton title={'로그인'} onPress={props.login} />
-					{/* )} */}
 				</View>
 				<View style={styles.password}>
-					<Text style={styles.passwordFont}>비밀번호를 잊으셨나요?</Text>
+						<TouchableOpacity style={styles.button} onPress={props.idPwFind}>
+						<Text style={styles.passwordFont}>아이디/비밀번호를 잊으셨나요?</Text>
+						</TouchableOpacity>
 					</View>
 					<View style={styles.and}>
 						<View style={styles.andLineLeft}/><Text>또는</Text>
 						<View style={styles.andLineRight}/>
 						</View>
-						<TouchableOpacity>
+						<TouchableOpacity style={styles.signUpButton} onPress={props.signUp}>
 						<View style={styles.signUpButton}>
-							<Text style={styles.signUpText}>동아리회장 계정 만들기</Text>
-							</View>
-							</TouchableOpacity>
+						<Text style={styles.signUpText}>동아리회장 계정 만들기</Text>
+						</View>
+						</TouchableOpacity>
 			</View>
 </HeaderScrollView>
 			</View>

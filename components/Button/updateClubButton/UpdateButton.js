@@ -26,14 +26,6 @@ export default class CharUpdateBtn extends Component {
                                     ?
                                     <EvilIcons name="user" size={width * 0.1} />
                                     :
-                                    this.props.title == '계정 수정'
-                                    ?
-                                    <EvilIcons name="user" size={width * 0.1} />
-                                    :
-                                    this.props.title == '동아리 생성/수정'
-                                    ?
-                                    <FontAwesome name="users" size={width * 0.07} />
-                                    :
                                     this.props.title == '특징 수정'
                                     ?
                                     <AntDesign name="idcard" size={width * 0.075} />

@@ -18,7 +18,7 @@ const MakeRecord = props => (
                onPress={() => {
                   props.navigation.getParam('from', 'NO-ID') == 'm'
                      ? props.navigation.goBack()
-                     : props.navigation.navigate('Code');
+                     : props.navigation.navigate('Login');
                }}
             >
                <SafeAreaView>

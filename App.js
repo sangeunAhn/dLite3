@@ -14,7 +14,8 @@ import RecordPictures from './screen/Main/ClubRecordPictures';
 import UpdateClub from './screen/MakeClub/UpdateClub';
 import Record from './screen/Main/ClubRecord';
 import Login from './screen/Login/Login';
-import ChooseUpdate from './screen/Login/ChooseUpdate';
+import SignUp from './screen/Login/SignUp';
+import FindIdPw from './screen/Login/FindIdPw';
 import SignUpPremission from './screen/Login/SignUpPremission';
 
 const RootStack = createStackNavigator(
@@ -58,16 +59,21 @@ const RootStack = createStackNavigator(
 		Login: {
 			screen: Login,
 		},
-		ChooseUpdate: {
-			screen: ChooseUpdate,
+		SignUp: {
+			screen: SignUp
+		},
+		FindIdPw: {
+			screen: FindIdPw
 		},
 		SignUpPremission: {
 			screen: SignUpPremission,
 		},
 	},
-	{
-		initialRouteName: 'SignUpPremission',
-	}
+	{ 
+		initialRouteName: 'Home',
+		
+	},
+	
 );
 
 const AppContainer = createAppContainer(RootStack);

@@ -110,7 +110,7 @@ export default class example extends Component {
                 title={'들어가기'}
                 titleColor={'#3B3B3B'}
                 onPress={() => this.props.navigation.navigate('Schools')}/>
-				<TouchableOpacity style={{marginTop:height*0.01, padding:10}}onPress={() => this.props.navigation.navigate('Code')}>
+				<TouchableOpacity style={{marginTop:height*0.01, padding:10}}onPress={() => this.props.navigation.navigate('Login')}>
 					<Text style={{fontSize:height*0.023, color:'#3B3B3B' }}> 동아리 생성 / 수정 </Text>
 				</TouchableOpacity>
 				
