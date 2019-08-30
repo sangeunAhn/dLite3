@@ -86,7 +86,7 @@ const SignUpPremission = props => (
                     </Text>
 					<View style={{ marginVertical: height * 0.05,  width: '100%',  }}>
 						<View style={{borderBottomWidth: 1,borderColor: '#CCCFD2'}}>
-						<Text style={{ marginBottom: 10, fontSize: width * 0.053, fontWeight: 'bold' }}>
+						<Text style={{ color:'#3B3B3B',marginBottom: 10, fontSize: width * 0.053, fontWeight: 'bold' }}>
 							동방 계정 이용약관
        					</Text>
 						   </View>
@@ -199,7 +199,7 @@ const SignUpPremission = props => (
 					</View>
 					<View style={{marginBottom:height*0.05}}>
 					<View style={{borderBottomWidth: 1,borderColor: '#CCCFD2'}}>
-						<Text style={{ marginBottom: 10, fontSize: width * 0.053, fontWeight: 'bold' }}>개인정보 처리방침</Text>
+						<Text style={{color:'#3B3B3B', marginBottom: 10, fontSize: width * 0.053, fontWeight: 'bold' }}>개인정보 처리방침</Text>
 						</View>
 						<ScrollView nestedScrollEnabled={true} style={{ flex: 1, height: height * 0.4 }}>
 							<Text>
