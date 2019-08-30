@@ -25,6 +25,8 @@ class Container extends Component {
 			isFocused2: false,
 			isFocused3: false,
 			pictureLoading: false,
+			date:"2000-01-01",
+			gender:true
 		};
 	}
 
@@ -47,6 +49,7 @@ class Container extends Component {
 				handleFocus3={this._handleFocus3}
 				handleBlur3={this._handleBlur3}
 				pickPicture={this._pickPicture}
+				genderPress={this._genderPress}
 			/>
 		);
 	}
@@ -178,6 +181,16 @@ class Container extends Component {
 
 	_handleFocus3 = () => this.setState({ isFocused3: true });
 	_handleBlur3 = () => this.setState({ isFocused3: false });
+
+	_genderPress = () => {
+		const {gender} = this.state
+		if (gender==true) {
+			this.setState({gender:false})
+		}
+		else {
+			this.setState({gender:true})
+		}
+	}
 }
 
 export default Container;
