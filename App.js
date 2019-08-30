@@ -74,7 +74,7 @@ const RootStack = createStackNavigator(
 		},
 	},
 	{ 
-		initialRouteName: 'UpdateClub',
+		initialRouteName: 'MakeClub',
 	},
 	
 );
