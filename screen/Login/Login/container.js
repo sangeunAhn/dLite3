@@ -5,29 +5,113 @@ import Login from './presenter';
 
 class Container extends React.Component {
 	static navigationOptions = ({ navigation, screenProps }) => ({
-		header: null
-	  });
+		header: null,
+	});
 
 	constructor(props) {
 		super(props);
-		this.state = { userCode: '' };
+		this.state = {
+			id: '',
+			password: '',
+		};
 	}
 	render() {
-		return <Login {...this.props} login={this._login} idPwFind={this._idPwFind} signUp={this._signUp} />;
-    }
-    
-    _login = () => {
+		return <Login {...this.props} login={this._login} idPwFind={this._idPwFind} signUp={this._signUp} idChange={this._idChange} pwChange={this._pwChange} />;
+	}
 
-    }
+	_goToUpdateClub = () => {
+		const t = this;
+		const { id } = this.state;
 
-    _idPwFind = () => {
+		axios
+			.post('http://dkstkdvkf00.cafe24.com/php/Login/GetUserNo.php', {
+				id
+			})
+			.then(function(response) {
+				userNo = JSON.stringify(response.data.message.userNo);
+				t.props.navigation.navigate('UpdateClub', {
+					userNo: userNo,
+				});
+			});
+	}
 
-    }
+	_goToCreateClub = () => {
+		const t = this;
+		const { id } = this.state;
 
-    _signUp = () => {
-        
-    }
+		axios
+			.post('http://dkstkdvkf00.cafe24.com/php/Login/GetUserNo.php', {
+				id
+			})
+			.then(function(response) {
+				userNo = JSON.stringify(response.data.message.userNo);
+				school = JSON.stringify(response.data.message.school);
+				setTimeout(() => {
+					t.props.navigation.navigate(
+						'MakeClub',
+						{
+							userNo: userNo,
+							school: school,
+						},
+						1000
+					);
+				});
+			});
+	}
 
-}
+	_getClub = () => {
+		const { id } = this.state;
+		const t = this;
+		axios
+			.post('http://dkstkdvkf00.cafe24.com/php/Login/LoginGetClub.php', {
+				id
+			})
+			.then(function(response) {
+				ms = response.data.message;
+				{
+					ms === 'true' ? t._goToUpdateClub() : t._goToCreateClub();
+				}
+			});
+	}
+
+	_getIdPw = () => {
+		const { id, password } = this.state;
+		const t = this;
+		axios
+			.post('http://dkstkdvkf00.cafe24.com/php/Login/Login.php', {
+				id,
+				password,
+			})
+			.then(function(response) {
+				login = response.data.message;
+
+				if (login === 'true') {
+					t._getClub();
+				} else {
+					Alert.alert('ID나 패스워드가 맞지 않습니다.');
+				}
+			});
+	};
+
+	_login = () => {
+		this._getIdPw();
+	};
+
+	_idPwFind = () => {
+		this.props.navigation.navigate('FindIdPw');
+	};
+
+	_signUp = () => {
+		this.props.navigation.navigate('SignUp');
+	};
+
+	_idChange = id => {
+		this.setState({id})
+	}
+
+	_pwChange = password => {
+		this.setState({password})
+	}
+ }
 
 export default Container;

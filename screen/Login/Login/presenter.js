@@ -35,6 +35,8 @@ const Login = props => (
 									elevation: props.isFocused ? 1.5 : null, // IOS
 								},
 							]}
+							onChangeText={props.idChange}
+							value={props.id}
 							maxLength={20}
 							autoCorrect={false}
 						/>
@@ -53,6 +55,8 @@ const Login = props => (
 									elevation: props.isFocused ? 1.5 : null, // IOS
 								},
 							]}
+							onChangeText={props.pwChange}
+							value={props.pw}
 							maxLength={20}
 							autoCorrect={false}
 						/>
