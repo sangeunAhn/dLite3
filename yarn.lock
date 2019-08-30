@@ -4033,7 +4033,7 @@ crypto-browserify@^3.11.0:
     randombytes "^2.0.0"
     randomfill "^1.0.3"
 
-crypto-js@3.1.9-1:
+crypto-js@3.1.9-1, crypto-js@^3.1.9-1:
   version "3.1.9-1"
   resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-3.1.9-1.tgz#fda19e761fc077e01ffbfdc6e9fdfc59e8806cd8"
   integrity sha1-/aGedh/Ad+Af+/3G6f38WeiAbNg=
@@ -10689,6 +10689,14 @@ react-native-elements@^1.0.0:
     react-native-ratings "^6.3.0"
     react-native-status-bar-height "^2.2.0"
 
+react-native-expo-image-cache@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/react-native-expo-image-cache/-/react-native-expo-image-cache-4.0.8.tgz#51763f22c2684edfe8e7229481da45727f2268a1"
+  integrity sha512-2KVZnZsDQV9y8GAfZzF6sQQdEwzNVEbxaRIdeefRlIrNLS69ab93m+0gE2xO2gnBF2oc0dYWrW4w7NvFrw/Fdw==
+  dependencies:
+    crypto-js "^3.1.9-1"
+    lodash "^4.17.4"
+
 react-native-fade@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/react-native-fade/-/react-native-fade-1.0.3.tgz#e27cd5a75c0d09a9ee82d854fb3851006c228d23"
@@ -10912,6 +10920,14 @@ react-native-webview@5.8.1:
   version "5.8.1"
   resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-5.8.1.tgz#6f5a83dec55bbc02700155b1a16a668870f14de0"
   integrity sha512-b6pSvmjoiWtcz6YspggW02X+BRXJWuquHwkh37BRx1NMW1iwMZA31SnFQvTpPzWYYIb9WF/mRsy2nGtt9C6NIg==
+  dependencies:
+    escape-string-regexp "1.0.5"
+    invariant "2.2.4"
+
+react-native-webview@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-7.0.1.tgz#ea2650d30acaa1fd443595d9f7f2a2648f54e0b5"
+  integrity sha512-KySHdf/nvGgFXwQEb7AH8id2dYdzSiIqWjMPdlql6+5Gi9kaEGiojGabXV2UYJRNk54Y8COFMDr65zdgdLlctw==
   dependencies:
     escape-string-regexp "1.0.5"
     invariant "2.2.4"

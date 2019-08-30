@@ -37,7 +37,7 @@
       "NSCameraUsageDescription": "This app uses the camera to scan barcodes on event tickets."
     },
     "android": {
-      "package": "com.dLite.dLite"
+      "package": "com.dongbang.dongbang"
     },
     "description": ""
   }
