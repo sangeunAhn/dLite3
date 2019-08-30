@@ -25,19 +25,20 @@ const UpdateClub = props => (
 			<Text style={styles.screenTitle}>동아리 수정</Text>
 
 			<View style={styles.container}>
-				<View style={{alignItems: 'center', top:height*0.15}}>
+				<View style={{alignItems: 'center'}}>
 					<UpdateButton title={'정보 수정'} sub={'우리 동아리는요!'} press={props.gotoSignUp} />
 					<View style={styles.emptyPlace} />
 					<UpdateButton title={'특징 수정'} sub={'이렇게 다양한 매력을 가졌답니다 :)'} press={props.gotoChar} />
 					<View style={styles.emptyPlace} />
 					<UpdateButton title={'기록 수정'} sub={'이야기 책 속의 여행처럼,우리 함께 할래요?'} press={props.gotoRecord} />
+
 				</View>
-				<View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-end', height: height * 0.07 }}>
-					<TouchableOpacity style={{ paddingBottom: height * 0.005, paddingLeft:height*0.01 }} onPress={this.openModal}>
-						<Text style={{ color: '#888888', fontSize: height * 0.018 }}>비밀번호 변경하기</Text>
+				<View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-end', height: height * 0.07, bottom: 20 }}>
+					<TouchableOpacity style={{ paddingBottom: height * 0.005, paddingLeft:height*0.01 }} onPress={props.changePw}>
+						<Text style={{ color: '#888888', fontSize: height * 0.018, padding:4 }}>비밀번호 변경하기</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={{ padding: height * 0.01 }} onPress={this.openModal}>
-						<Text style={{ color: '#888888', fontSize: height * 0.018 }}>탈퇴하기</Text>
+					<TouchableOpacity style={{ padding: height * 0.01 }} onPress={props.goodBye}>
+						<Text style={{ color: '#888888', fontSize: height * 0.018, padding:4 }}>탈퇴하기</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
@@ -85,6 +86,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		padding: 10,
+		paddingTop: height*0.15,
 		justifyContent: 'center',
 	},
 	screenTitle: {

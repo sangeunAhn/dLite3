@@ -12,10 +12,8 @@ class Container extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selectBtn: true,
-			idEmail: '',
-			pwEmail: '',
-			pwId: '',
+			pw: '',
+			pw2: ''
 		};
 	}
 	render() {
@@ -23,83 +21,57 @@ class Container extends React.Component {
 			<Login
 				{...this.props}
 				{...this.state}
-				idBtnPress={this._idBtnPress}
-				pwBtnPress={this._pwBtnPress}
-				idConfirmBtn={this._idConfirmBtn}
-				pwConfirmBtn={this._pwConfirmBtn}
-				idEmailChange={this._idEmailChange}
-				pwIdChange={this._pwIdChange}
-				pwEmailChange={this._pwEmailChange}
+				pwChange={this._pwChange}
+				pw2Change={this._pw2Change}
+				btnPress={this._btnPress}
 			/>
 		);
 	}
 
-	_idBtnPress = () => {
-		this.setState({ selectBtn: true });
+
+	_pwChange = pw => {
+		this.setState({ pw });
 	};
 
-	_pwBtnPress = () => {
-		this.setState({ selectBtn: false });
+	_pw2Change = pw2 => {
+		this.setState({ pw2 });
 	};
 
-	_idConfirmBtn = () => {
-		const { idEmail } = this.state;
+	_changePW = async () => {
+		const { navigation } = this.props;
+		const {pw} = this.state;
+		var userNo = navigation.getParam('userNo', 'NO-ID');
+		userNo = userNo.substring(1, userNo.length - 1);
+
+		let formData = new FormData();
+		formData.append('pw', pw);
+		formData.append('userNo', userNo);
+
+		await fetch('http://dkstkdvkf00.cafe24.com/php/Login/ChangePw.php', {
+			method: 'POST',
+			body: formData,
+			header: {
+				'content-type': 'multipart/form-data',
+			},
+		});
+
+		Alert.alert('비밀번호가 수정되었습니다')
+		navigation.goBack();
+	}
+
+	_btnPress = () => {
+		const {pw,pw2} = this.state;
 		const t = this;
-		axios
-			.post('http://dkstkdvkf00.cafe24.com/php/FindIdPw/FindId.php', {
-				email: idEmail,
-			})
-			.then(function(response) {
-				response = response.data.message;
-				// console.log(response)
-				if (response === 'null') {
-					Alert.alert('등록되지 않은 이메일입니다.');
-				} else {
-					t._sendIdEmail();
-				}
-			});
-	};
-
-	_pwConfirmBtn = () => {
-		const { idEmail, pwId } = this.state;
-		const t = this;
-		axios
-			.post('http://dkstkdvkf00.cafe24.com/php/FindIdPw/FindPw.php', {
-				id: pwId,
-				email: idEmail,
-			})
-			.then(function(response) {
-				response = response.data.message;
-				// console.log(response);
-				if (response === 'null') {
-					Alert.alert('ID 또는 이메일이 잘못입력되었습니다.');
-				} else {
-					t._sendPwEmail()
-				}
-			});
-	};
-
-	_idEmailChange = idEmail => {
-		this.setState({ idEmail });
-	};
-
-	_pwIdChange = pwId => {
-		this.setState({ pwId });
-	};
-
-	_pwEmailChange = pwEmail => {
-		this.setState({ pwEmail });
-	};
-
-	_sendIdEmail = () => {
-		const { idEmail } = this.state;
-		const to = idEmail;
-		Mailer.mail({
-			recipients: to,
-			subject: 'Show how to use',
-			body: 'Some body right here',
-		}).catch(console.error);
-	};
+		if(pw==''||pw2==''){
+			Alert.alert('모두 채워주세요!')
+		} else if (pw !== pw2) {
+			Alert.alert('비밀번호가 맞지 않습니다')
+		} else if (pw.length<7||pw.length>14){
+			Alert.alert('비밀번호는 7자 이상 14자 이하여야합니다')
+		} else {
+			t._changePW()
+		}
+	}
 }
 
 export default Container;

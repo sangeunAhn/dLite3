@@ -8,7 +8,7 @@ import UpdateClubBtnText from './UpdateClubBtnText';
 
 const { width, height } = Dimensions.get('window');
 
-export default class CharUpdateBtn extends Component {
+export default class UpdateButton extends Component {
 	constructor(props) {
 		super(props);
 	}

@@ -14,6 +14,8 @@ export default class ClubModify extends React.Component {
 				gotoSignUp={this._gotoSignUp}
 				gotoChar={this._gotoChar}
 				gotoRecord={this._gotoRecord}
+				changePw={this._changePw}
+				goodBye={this._goodBye}
 				// openModal={this._openModal}
 				// closeModal={this._closeModal}
 				// modalDidClose={this._modalDidClose}
@@ -27,6 +29,16 @@ export default class ClubModify extends React.Component {
 	// 	this.setState({ open: false });
 	// 	console.log("Modal did close.");
 	//   };
+	_changePw = () => {
+		this.props.navigation.navigate('ChangePW', {
+			userNo
+		})
+	}
+
+	_goodBye = () => {
+		
+	}
+
 	_gotoSignUp = () => {
 		const { navigation } = this.props;
 		var userNo = navigation.getParam('userNo', 'NO-ID');
@@ -50,6 +62,7 @@ export default class ClubModify extends React.Component {
 	};
 
 	_gotoRecord = () => {
+		console.log('씨발')
 		const { navigation } = this.props;
 		var userNo = navigation.getParam('userNo', 'NO-ID');
 		userNo = userNo.replace(/[^0-9]/g, '');

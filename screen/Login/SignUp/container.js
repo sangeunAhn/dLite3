@@ -138,7 +138,14 @@ class Container extends Component {
 		if (password !== password2) {
 			Alert.alert('비밀번호가 맞지 않습니다.');
 			this.setState({ isSubmitting: false });
-		} else {
+		} else if (id.length < 7 || id.length > 14){
+			Alert.alert('ID 길이는 7글자이상 14글자 이하여야 합니다.')
+			this.setState({ isSubmitting: false });
+		} else if (password.length < 7 || password.length > 14){
+			Alert.alert('비밀번호 길이는 7글자이상 14글자 이하여야 합니다.')
+			this.setState({ isSubmitting: false });
+		}
+		 else {
 			t._getId();
 		}
 	};

@@ -16,6 +16,7 @@ const Login = props => (
 						labelFontSize={height*0.018}
 						returnKeyType={'done'}
 						autoCorrect={false}
+						autoCapitalize={'none'}
 						value={props.pwId}
 						multiline={false}
 						onChangeText={props.pwIdChange}
@@ -28,6 +29,7 @@ const Login = props => (
 						labelFontSize={height*0.018}
 						returnKeyType={'done'}
 						autoCorrect={false}
+						autoCapitalize={'none'}
 						value={props.idEmail}
 						multiline={false}
 						onChangeText={props.idEmailChange}

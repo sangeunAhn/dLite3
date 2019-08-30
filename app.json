@@ -35,6 +35,7 @@
       "infoPlist": {
         "NSPhotoLibraryUsageDescription":"사용자의 앨범의 사진을 불러오며, 앱에 사진을 게시하는데에 사용됩니다."
       }
+
     },
     
     "android": {
