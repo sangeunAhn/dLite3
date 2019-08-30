@@ -81,7 +81,7 @@ const SignUpPermission = props => (
 				title="약관 및 개인정보처리방침"
 			>
 				<View style={styles.container}>
-					<Text style={{fontSize:width*0.053, marginTop:height*0.04, color:'#ADCDE9', fontWeight:'bold'}}>
+					<Text style={{fontSize:width*0.05, marginTop:height*0.04, color:'#ADCDE9', fontWeight:'bold'}}>
 						동방 계정을 생성하려면 약관을 확인하세요.
                     </Text>
 					<View style={{ marginVertical: height * 0.05,  width: '100%',  }}>

@@ -119,7 +119,6 @@ export default class example extends Component {
 					<TouchableOpacity style={{ padding:height*0.02}} onPress={this.openModal}>
 						<Text style={{color:'#888888', fontSize: height*0.018}}>문의하기</Text>
 					</TouchableOpacity>
-					
 				</View>
 				
 			</View>
@@ -141,7 +140,7 @@ export default class example extends Component {
 						</View>
 						<View style={{alignItems:'center', marginTop:15, marginBottom:40}}>
 						
-						<Text style={{fontSize: width*0.03, marginBottom:10}} onPress={() => Linking.openURL('http://pf.kakao.com/_BDxjiT/chat')}>1:1 문의하기</Text>
+						
 						<Text style={{fontSize: width*0.03, marginBottom:10}} onPress={()=>{Linking.openURL('tel:01043720440');} }>010 4372 0440</Text>
 						<Text style={{fontSize: width*0.03, }}>leejjun28@gmail.com</Text>
 						</View>
