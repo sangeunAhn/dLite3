@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Alert } from 'react-native';
 import Login from './presenter';
 import * as axios from 'axios';
-import Mailer from 'react-native-mail';
+import Communications from 'react-native-communications';
 
 class Container extends React.Component {
 	static navigationOptions = ({ navigation, screenProps }) => ({
@@ -45,38 +45,46 @@ class Container extends React.Component {
 	_idConfirmBtn = () => {
 		const { idEmail } = this.state;
 		const t = this;
-		axios
-			.post('http://dkstkdvkf00.cafe24.com/php/FindIdPw/FindId.php', {
-				email: idEmail,
-			})
-			.then(function(response) {
-				response = response.data.message;
-				// console.log(response)
-				if (response === 'null') {
-					Alert.alert('등록되지 않은 이메일입니다.');
-				} else {
-					t._sendIdEmail();
-				}
-			});
+		if (idEmail == '') {
+			Alert.alert('이메일을 입력해주세요');
+		} else {
+			axios
+				.post('http://dkstkdvkf00.cafe24.com/php/FindIdPw/FindId.php', {
+					email: idEmail,
+				})
+				.then(function(response) {
+					response = response.data.message;
+					// console.log(response)
+					if (response === null) {
+						Alert.alert('등록되지 않은 이메일입니다.');
+					} else {
+						t._sendIdEmail();
+					}
+				});
+		}
 	};
 
 	_pwConfirmBtn = () => {
-		const { idEmail, pwId } = this.state;
+		const { pwEmail, pwId } = this.state;
 		const t = this;
-		axios
-			.post('http://dkstkdvkf00.cafe24.com/php/FindIdPw/FindPw.php', {
-				id: pwId,
-				email: idEmail,
-			})
-			.then(function(response) {
-				response = response.data.message;
-				// console.log(response);
-				if (response === 'null') {
-					Alert.alert('ID 또는 이메일이 잘못입력되었습니다.');
-				} else {
-					t._sendPwEmail()
-				}
-			});
+		if (pwEmail == '' || pwId == '') {
+			Alert.alert('모두 입력해주세요');
+		} else {
+			axios
+				.post('http://dkstkdvkf00.cafe24.com/php/FindIdPw/FindPw.php', {
+					id: pwId,
+					email: pwEmail,
+				})
+				.then(function(response) {
+					response = response.data.message;
+					// console.log(response);
+					if (response === null) {
+						Alert.alert('ID 또는 이메일이 잘못입력되었습니다.');
+					} else {
+						t._sendPwEmail();
+					}
+				});
+		}
 	};
 
 	_idEmailChange = idEmail => {
@@ -93,12 +101,8 @@ class Container extends React.Component {
 
 	_sendIdEmail = () => {
 		const { idEmail } = this.state;
-		const to = idEmail;
-		Mailer.mail({
-			recipients: to,
-			subject: 'Show how to use',
-			body: 'Some body right here',
-		}).catch(console.error);
+		const to = ['tiaan@email.com', 'foo@bar.com'] // string or array of email addresses
+		Communications.email(['angineer01@naver.com'],null,null,'Demo Subject','Demo Content for the mail')
 	};
 }
 

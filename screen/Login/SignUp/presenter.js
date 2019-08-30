@@ -98,6 +98,7 @@ const SignUp = props => (
 									maxLength={20}
 									value={props.id}
 									autoCorrect={false}
+									autoCapitalize={'none'}
 								/>
 							</View>
 
@@ -131,6 +132,7 @@ const SignUp = props => (
 									maxLength={20}
 									value={props.password}
 									autoCorrect={false}
+									autoCapitalize={'none'}
 								/>
 							</View>
 
@@ -164,6 +166,7 @@ const SignUp = props => (
 									maxLength={20}
 									value={props.password2}
 									autoCorrect={false}
+									autoCapitalize={'none'}
 								/>
 							</View>
 
@@ -196,6 +199,7 @@ const SignUp = props => (
 									maxLength={20}
 									value={props.email}
 									autoCorrect={false}
+									autoCapitalize={'none'}
 								/>
 							</View>
 
@@ -277,6 +281,7 @@ const SignUp = props => (
 									maxLength={20}
 									value={props.school}
 									autoCorrect={false}
+									autoCapitalize={'none'}
 								/>
 							</View>
 							<View style={styles.block}>

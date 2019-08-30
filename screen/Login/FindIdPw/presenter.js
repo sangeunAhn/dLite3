@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import FindId from '../../../components/FindIdPw/FindId';
 import FindPw from '../../../components/FindIdPw/FindPw';
 import HeaderScrollView from 'react-native-header-scroll-view';
-import { getStatusBarHeight, ifIphoneX } from 'react-native-iphone-x-helper'
+import { getStatusBarHeight, ifIphoneX } from 'react-native-iphone-x-helper';
 
 const { width, height } = Dimensions.get('window');
 
@@ -23,9 +23,10 @@ const Login = props => (
 			</TouchableOpacity>
 			<HeaderScrollView
 				headerContainerStyle={{
-					justifyContent: 'center', alignItems: 'center', ...ifIphoneX({ paddingTop: 18 }, { paddingTop: 0 }), height: Platform.OS === 'ios'
-						? height * 0.1
-						: height * 0.08
+					justifyContent: 'center',
+					alignItems: 'center',
+					...ifIphoneX({ paddingTop: 18 }, { paddingTop: 0 }),
+					height: Platform.OS === 'ios' ? height * 0.1 : height * 0.08,
 				}}
 				headlineStyle={{
 					height: height * 0.1,
@@ -49,37 +50,50 @@ const Login = props => (
 				fadeDirection="up"
 				title="ID/PW 찾기"
 			>
-
-			<View style={styles.container2}>
-				<View style={styles.buttons}>
-					<View style={{flex:1,height: width * 0.15, borderRightWidth:0.5, borderColor:'#CBCBCB'}}>
-					<TouchableOpacity
-						style={props.selectBtn ? [styles.button1,{borderTopLeftRadius:15}] : [styles.button2,{borderTopLeftRadius:15}]}
-						onPress={props.idBtnPress}
-					>
-						<Text style={props.selectBtn ? styles.buttonText1 : styles.buttonText2}>아이디찾기</Text>
-					</TouchableOpacity>
+				<View style={styles.container2}>
+					<View style={styles.buttons}>
+						<View style={{ flex: 1, height: width * 0.15, borderRightWidth: 0.5, borderColor: '#CBCBCB' }}>
+							<TouchableOpacity
+								style={
+									props.selectBtn
+										? [styles.button1, { borderTopLeftRadius: 15 }]
+										: [styles.button2, { borderTopLeftRadius: 15 }]
+								}
+								onPress={props.idBtnPress}
+							>
+								<Text style={props.selectBtn ? styles.buttonText1 : styles.buttonText2}>
+									아이디찾기
+								</Text>
+							</TouchableOpacity>
+						</View>
+						<TouchableOpacity
+							style={
+								props.selectBtn
+									? [styles.button2, { borderTopRightRadius: 15 }]
+									: [styles.button1, { borderTopRightRadius: 15 }]
+							}
+							onPress={props.pwBtnPress}
+						>
+							<Text style={props.selectBtn ? styles.buttonText2 : styles.buttonText1}>비밀번호찾기</Text>
+						</TouchableOpacity>
 					</View>
-					<TouchableOpacity
-						style={props.selectBtn ? [styles.button2,{borderTopRightRadius:15}] : [styles.button1,{borderTopRightRadius:15}]}
-						onPress={props.pwBtnPress}
-					>
-						<Text style={props.selectBtn ? styles.buttonText2 : styles.buttonText1}>비밀번호찾기</Text>
-					</TouchableOpacity>
+					<View style={{ marginTop: height * 0.06, paddingHorizontal: '5%' }}>
+						{props.selectBtn ? (
+							<FindId
+								{...this.props}
+								idConfirmBtn={props.idConfirmBtn}
+								idEmailChange={props.idEmailChange}
+							/>
+						) : (
+							<FindPw
+								{...this.props}
+								pwConfirmBtn={props.pwConfirmBtn}
+								pwIdChange={props.pwIdChange}
+								pwEmailChange={props.pwEmailChange}
+							/>
+						)}
+					</View>
 				</View>
-				<View style={{marginTop:height*0.06, paddingHorizontal:'5%'}}>
-				{props.selectBtn ? (
-					<FindId {...this.props} idConfirmBtn={props.idConfirmBtn} idEmailChange={props.idEmailChange} />
-				) : (
-					<FindPw
-						{...this.props}
-						pwConfirmBtn={props.pwConfirmBtn}
-						pwIdChange={props.pwIdChange}
-						pwEmailChange={props.pwEmailChange}
-					/>
-				)}
-				</View>
-			</View>
 			</HeaderScrollView>
 		</View>
 	</>
@@ -107,24 +121,22 @@ const styles = StyleSheet.create({
 		fontWeight: '700',
 	},
 	container2: {
-		
 		backgroundColor: '#F5F5F5',
 		// top: height * 0.15,
-		borderTopLeftRadius:15,
-		borderTopRightRadius:15,
-		height:height*0.6,
-		marginTop:height*0.1
+		borderTopLeftRadius: 15,
+		borderTopRightRadius: 15,
+		height: height * 0.6,
+		marginTop: height * 0.1,
 	},
 	buttons: {
 		width: '100%',
 		backgroundColor: '#bdc3c7',
 		flexDirection: 'row',
-		borderTopLeftRadius:15,
-		borderTopRightRadius:15,
-		
+		borderTopLeftRadius: 15,
+		borderTopRightRadius: 15,
 	},
 	button1: {
-		flex:1,
+		flex: 1,
 		backgroundColor: 'white',
 		height: width * 0.15,
 		alignItems: 'center',
@@ -132,7 +144,7 @@ const styles = StyleSheet.create({
 		fontSize: 30,
 	},
 	button2: {
-		flex:1,
+		flex: 1,
 		backgroundColor: '#F3F3F3',
 		height: width * 0.15,
 		alignItems: 'center',
@@ -140,11 +152,11 @@ const styles = StyleSheet.create({
 		fontSize: 30,
 	},
 	buttonText1: {
-		fontSize: width*0.05,
+		fontSize: width * 0.05,
 		color: '#3B3B3B',
 	},
 	buttonText2: {
-		fontSize: width*0.05,
+		fontSize: width * 0.05,
 		color: 'gray',
 	},
 	container3: {

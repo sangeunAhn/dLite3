@@ -5298,6 +5298,13 @@ expo-location@~5.0.1:
   dependencies:
     invariant "^2.2.4"
 
+expo-mail-composer@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/expo-mail-composer/-/expo-mail-composer-6.0.0.tgz#cb79499772818f23a00cdb2db8b4f7a75a26ef07"
+  integrity sha512-UHacya/0iR9KBIxOD6OszZTqxRu4Qir6Gmr+Z1UCeF5dXcbd6BCC0TPbwrshGVXuF7IjwGYATEtZ1JK5CQ3kbg==
+  dependencies:
+    query-string "^6.2.0"
+
 expo-mail-composer@~5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/expo-mail-composer/-/expo-mail-composer-5.0.1.tgz#adf4eb2e9a3d4f79b9d128b6c45e8a16c89db818"
@@ -10682,6 +10689,11 @@ react-native-clcasher@1.0.0:
   integrity sha1-H3f7Gkq8agM37xnJkeBPGa9tJ4k=
   dependencies:
     mock-async-storage "^1.0.3"
+
+react-native-communications@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-communications/-/react-native-communications-2.2.1.tgz#7883b56b20a002eeb790c113f8616ea8692ca795"
+  integrity sha1-eIO1ayCgAu63kMET+GFuqGksp5U=
 
 react-native-datepicker@^1.7.2:
   version "1.7.2"
