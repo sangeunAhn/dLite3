@@ -30,11 +30,13 @@ export default class ClubModify extends React.Component {
 	// 	console.log("Modal did close.");
 	//   };
 	_changePw = () => {
-		this.props.navigation.navigate('ChangePW')
+		this.props.navigation.navigate('ChangePW', {
+			userNo
+		})
 	}
 
 	_goodBye = () => {
-
+		
 	}
 
 	_gotoSignUp = () => {

@@ -31,11 +31,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.korea.pinkravvit"
+      "bundleIdentifier": "com.korea.pinkravvit",
+      "infoPlist": {
+        "NSCameraUsageDescription": "1234",
+        "NSPhotoLibraryUsageDescription":"5678",
+        "NSPhotoLibraryAddUsageDescription":"9101112"
+      }
     },
-    "infoPlist": {
-      "NSCameraUsageDescription": "This app uses the camera to scan barcodes on event tickets."
-    },
+    
     "android": {
       "package": "com.dongbang.dongbang"
     },
