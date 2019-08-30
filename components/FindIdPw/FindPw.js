@@ -8,10 +8,12 @@ const Login = props => (
 	<View style={styles.container}>
 		<View style={styles.block}>
 			<Text>ID</Text>
-			<TextInput />
-            <Text>이메일</Text>
-			<TextInput />
-			<TouchableOpacity><Text>확인</Text></TouchableOpacity>
+			<TextInput onChangeText={props.pwIdChange} value={props.pwId} />
+			<Text>이메일</Text>
+			<TextInput onChangeText={props.pwEmailChange} value={props.pwEmail} />
+			<TouchableOpacity onPress={props.pwConfirmBtn}>
+				<Text>확인</Text>
+			</TouchableOpacity>
 		</View>
 	</View>
 );

@@ -153,7 +153,7 @@ class Container extends Component {
 
 		if (status === 'granted') {
 			let result = await ImagePicker.launchImageLibraryAsync({
-				quality: 1.0,
+				quality: 0.5,
 			});
 
 			if (!result.cancelled) {

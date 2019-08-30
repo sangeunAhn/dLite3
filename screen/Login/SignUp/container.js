@@ -24,6 +24,7 @@ class Container extends Component {
 			isFocused1: false,
 			isFocused2: false,
 			isFocused3: false,
+			pictureLoading: false,
 		};
 	}
 
@@ -45,6 +46,7 @@ class Container extends Component {
 				handleBlur2={this._handleBlur2}
 				handleFocus3={this._handleFocus3}
 				handleBlur3={this._handleBlur3}
+				pickPicture={this._pickPicture}
 			/>
 		);
 	}
@@ -54,43 +56,43 @@ class Container extends Component {
 		//userNo 가지고 오기
 		const { navigation } = this.props;
 
-		const { id, password, email } = this.state;
+		const { id, password, email, picture } = this.state;
 
-			let formData = new FormData();
-			formData.append('id', id);
-			formData.append('password', password);
-			formData.append('email', email);
+		let formData = new FormData();
+		formData.append('id', id);
+		formData.append('password', password);
+		formData.append('email', email);
+		formData.append('picture', { uri: picture, name: 'image.jpeg', type: 'image/jpeg' });
 
-			// 데이터베이스에 넣기
-			await fetch('http://dkstkdvkf00.cafe24.com/php/MakeClub/UserRegister.php', {
-				method: 'POST',
-				body: formData,
-				header: {
-					'content-type': 'multipart/form-data',
-				},
-			});
+		// 데이터베이스에 넣기
+		await fetch('http://dkstkdvkf00.cafe24.com/php/SignUp/SignUp.php', {
+			method: 'POST',
+			body: formData,
+			header: {
+				'content-type': 'multipart/form-data',
+			},
+		});
 
-			this.props.navigation.navigate('MakeChars', {
-				userNo: getUserNo,
-			});
-		
+		this.props.navigation.navigate('MakeChars', {
+			userNo: getUserNo,
+		});
 	};
 
 	_existId = () => {
 		Alert.alert('같은 ID가 존재합니다.\n 다른 ID를 써주세요');
 		this.setState({ isSubmitting: false });
-	}
+	};
 
 	_existEmail = () => {
-		Alert.alert('같은 email이 존재합니다.\n 다른 email을 써주세요')
+		Alert.alert('같은 email이 존재합니다.\n 다른 email을 써주세요');
 		this.setState({ isSubmitting: false });
-	}
+	};
 
 	_getEmail = () => {
 		const { email } = this.state;
 		const t = this;
 		axios
-			.post('http://dkstkdvkf00.cafe24.com/php/SignUp/GetId.php', {
+			.post('http://dkstkdvkf00.cafe24.com/php/SignUp/GetEmail.php', {
 				email,
 			})
 			.then(function(response) {
@@ -111,7 +113,7 @@ class Container extends Component {
 			.then(function(response) {
 				ms = response.data.message;
 				{
-					ms === 'true' ? t._existId()   : t._getEmail();
+					ms === 'true' ? t._existId() : t._getEmail();
 				}
 			});
 	};
@@ -120,14 +122,31 @@ class Container extends Component {
 		const { id, password, password2, email } = this.state;
 		this.setState({ isSubmitting: true });
 		const t = this;
-		if (id == '' || password == '' || password2 == '' || email == '') {
-			Alert.alert('모든 내용을 채워주세요.');
-			this.setState({ isSubmitting: false });
-		} else if (password !== password2) {
+		if (password !== password2) {
 			Alert.alert('비밀번호가 맞지 않습니다.');
 			this.setState({ isSubmitting: false });
 		} else {
 			t._getId();
+		}
+	};
+
+	_pickPicture = async () => {
+		setTimeout(() => {
+			this.setState({ pictureLoading: true });
+		}, 1000);
+		const permissions = Permissions.CAMERA_ROLL;
+		const { status } = await Permissions.askAsync(permissions);
+
+		if (status === 'granted') {
+			let result = await ImagePicker.launchImageLibraryAsync({
+				quality: 0.5,
+			});
+
+			if (!result.cancelled) {
+				this.setState({ picture: result.uri });
+			} else {
+				this.setState({ pictureLoading: false });
+			}
 		}
 	};
 

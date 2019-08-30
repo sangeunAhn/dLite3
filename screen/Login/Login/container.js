@@ -88,13 +88,18 @@ class Container extends React.Component {
 				if (login === 'true') {
 					t._getClub();
 				} else {
-					Alert.alert('ID나 패스워드가 맞지 않습니다.');
+					Alert.alert('ID나 비밀번호가 맞지 않습니다.');
 				}
 			});
 	};
 
 	_login = () => {
-		this._getIdPw();
+		const {id, password} = this.state;
+		if(id==''||password==''){
+			Alert.alert('아이디와 비밀번호를 입력해주세요.')
+		} else {
+			this._getIdPw();
+		}
 	};
 
 	_idPwFind = () => {

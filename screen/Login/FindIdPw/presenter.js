@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity, TextInput, Dimensions, Text, Platform, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import FindId from '../../../components/FindIdPw/FindId'
-import FindPw from '../../../components/FindIdPw/FindPw'
+import FindId from '../../../components/FindIdPw/FindId';
+import FindPw from '../../../components/FindIdPw/FindPw';
 
 const { width, height } = Dimensions.get('window');
 
@@ -22,24 +22,32 @@ const Login = props => (
 			<Text style={styles.title}>ID/PW 찾기</Text>
 			<View style={styles.container2}>
 				<View style={styles.buttons}>
-					<TouchableOpacity style={props.selectBtn ? styles.button1 : styles.button2} onPress={props.idBtnPress}>
+					<TouchableOpacity
+						style={props.selectBtn ? styles.button1 : styles.button2}
+						onPress={props.idBtnPress}
+					>
 						<Text style={styles.buttonText}>ID찾기</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={props.selectBtn ? styles.button2 : styles.button1} onPress={props.pwBtnPress}>
+					<TouchableOpacity
+						style={props.selectBtn ? styles.button2 : styles.button1}
+						onPress={props.pwBtnPress}
+					>
 						<Text style={styles.buttonText}>PW찾기</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
-            <View style={styles.container3}>
-                {
-                    props.selectBtn 
-                    ?
-                    <FindId />
-                    :
-                    <FindPw />
-                }
-                
-            </View>
+			<View style={styles.container3}>
+				{props.selectBtn ? (
+					<FindId {...this.props} idConfirmBtn={props.idConfirmBtn} idEmailChange={props.idEmailChange} />
+				) : (
+					<FindPw
+						{...this.props}
+						pwConfirmBtn={props.pwConfirmBtn}
+						pwIdChange={props.pwIdChange}
+						pwEmailChange={props.pwEmailChange}
+					/>
+				)}
+			</View>
 		</View>
 	</>
 );
@@ -63,48 +71,47 @@ const styles = StyleSheet.create({
 		marginLeft: width * 0.05,
 		marginBottom: height * 0.02,
 		fontSize: width * 0.09,
-        fontWeight: '700',
+		fontWeight: '700',
 	},
 	container2: {
 		flex: 1,
 		backgroundColor: '#FAFAFA',
-        // top: height * 0.15,
-        justifyContent:'flex-end'
+		// top: height * 0.15,
+		justifyContent: 'flex-end',
 	},
 	buttons: {
 		width: '100%',
 		height: height * 0.35,
 		backgroundColor: '#bdc3c7',
-        alignItems: 'center',
-        justifyContent: 'space-around',
+		alignItems: 'center',
+		justifyContent: 'space-around',
 		flexDirection: 'row',
-    },
-    button1: {
-        backgroundColor: '#3498db',
-        width: width*0.35,
-        height: width*0.15,
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: 30
-    },
-    button2: {
-        backgroundColor: '#81ecec',
-        width: width*0.35,
-        height: width*0.15,
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: 30
-    },
-    buttonText: {
-        fontSize: 20,
-        color: 'white',
-    },
-    container3: {
-        flex: 1,
-        backgroundColor: '#FAFAFA',
-        top: -height*0.05
-    }
-
+	},
+	button1: {
+		backgroundColor: '#3498db',
+		width: width * 0.35,
+		height: width * 0.15,
+		alignItems: 'center',
+		justifyContent: 'center',
+		fontSize: 30,
+	},
+	button2: {
+		backgroundColor: '#81ecec',
+		width: width * 0.35,
+		height: width * 0.15,
+		alignItems: 'center',
+		justifyContent: 'center',
+		fontSize: 30,
+	},
+	buttonText: {
+		fontSize: 20,
+		color: 'white',
+	},
+	container3: {
+		flex: 1,
+		backgroundColor: '#FAFAFA',
+		top: -height * 0.05,
+	},
 });
 
 export default Login;

@@ -206,7 +206,7 @@ const SignUp = props => (
 							>
 								학생증 인증
 							</Text>
-							<TouchableOpacity style={styles.Picture} onPress={props.pickMainPicture}>
+							<TouchableOpacity style={styles.Picture} onPress={props.pickPicture}>
 								<Image
 									style={styles.PhotoAddMainPicture}
 									source={require('../../../images/photoAdd.png')}
@@ -230,7 +230,7 @@ const SignUp = props => (
 					</View>
 
 					<View style={styles.button}>
-						{props.id.length == 0 && props.password.length == 0 ? (
+						{props.id == '' || props.password == '' || props.password2 == '' || props.email == '' || props.picture == null ? (
 							<ConfirmButtonN buttonColor={'#CEE1F2'} titleColor={'#BBBBBB'} title={'확인'} />
 						) : props.isSubmitting ? (
 							<ConfirmButton buttonColor={'#ADCDE9'} titleColor={'#3B3B3B'} title={'로딩'} />

@@ -71,7 +71,6 @@ const RootStack = createStackNavigator(
 	},
 	{ 
 		initialRouteName: 'Home',
-		
 	},
 	
 );
