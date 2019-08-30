@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform } from 'react-native';
+import { Platform, Alert } from 'react-native';
 import UpdateClub from './presenter';
 
 export default class ClubModify extends React.Component {
@@ -16,27 +16,45 @@ export default class ClubModify extends React.Component {
 				gotoRecord={this._gotoRecord}
 				changePw={this._changePw}
 				goodBye={this._goodBye}
-				// openModal={this._openModal}
-				// closeModal={this._closeModal}
-				// modalDidClose={this._modalDidClose}
 			/>
 		);
 	}
-	// _openModal = () => this.setState({ open: true });
- 
-	// _closeModal = () => this.setState({ open: false });
-	// _modalDidClose = () => {
-	// 	this.setState({ open: false });
-	// 	console.log("Modal did close.");
-	//   };
 	_changePw = () => {
 		this.props.navigation.navigate('ChangePW', {
 			userNo
 		})
 	}
 
+	_deleteUser = async () => {
+		const { navigation } = this.props;
+		var userNo = navigation.getParam('userNo', 'NO-ID');
+		userNo = userNo.replace(/[^0-9]/g, '');
+
+		let formData = new FormData();
+		formData.append('userNo', userNo);
+
+		await fetch('http://dkstkdvkf00.cafe24.com/php/Login/deleteUser.php', {
+			method: 'POST',
+			body: formData,
+			header: {
+				'content-type': 'multipart/form-data',
+			},
+		});
+		Alert.alert('탈퇴되었습니다.');
+		navigation.navigate('Home');
+	}
+
 	_goodBye = () => {
-		
+		const t = this;
+		Alert.alert(
+			'회원 탈퇴',
+			'정말 탈퇴하시겠습니까?',
+			[
+				{text:'예', onPress: ()=>t._deleteUser()},
+				{text:'아니요', onPress: ()=>console.log('아니요')}
+			]
+			
+		)
 	}
 
 	_gotoSignUp = () => {
@@ -62,7 +80,6 @@ export default class ClubModify extends React.Component {
 	};
 
 	_gotoRecord = () => {
-		console.log('씨발')
 		const { navigation } = this.props;
 		var userNo = navigation.getParam('userNo', 'NO-ID');
 		userNo = userNo.replace(/[^0-9]/g, '');

@@ -44,32 +44,6 @@ const UpdateClub = props => (
 			</View>
 
 		</View>
-		{/* <Modal
-			  modalDidOpen={props.modalDidOpen}
-			  modalDidClose={props.modalDidClose}
-					open={props.open}
-					closeOnTouchOutside={true}
-					modalStyle={{
-						borderRadius: 3,
-						margin: 20,
-						padding: 10,
-						backgroundColor: "#F5F5F5"
-					  }}
-					>
-						<View style={{marginTop:10,marginBottom:15, marginLeft:10}}>
-							<Text style={{fontWeight:'bold', fontSize:20}}>문의사항</Text>
-							
-						</View>
-						<View style={{alignItems:'center', marginTop:15, marginBottom:40}}>
-						
-						<Text style={{fontSize: width*0.03, marginBottom:10}} onPress={() => Linking.openURL('http://pf.kakao.com/_BDxjiT/chat')}>1:1 문의하기</Text>
-						<Text style={{fontSize: width*0.03, marginBottom:10}} onPress={()=>{Linking.openURL('tel:01043720440');} }>010 4372 0440</Text>
-						<Text style={{fontSize: width*0.03, }}>leejjun28@gmail.com</Text>
-						</View>
-						<View style={{marginBottom:5}}>
-							<Text style={{color:'#848484',fontSize:width*0.02}}>문의 가능 시간 : 09:00 ~ 18:00</Text>
-						</View>
-					</Modal> */}
 	</>
 );
 
