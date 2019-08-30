@@ -28,6 +28,8 @@ class Container extends React.Component {
 				idConfirmBtn={this._idConfirmBtn}
 				pwConfirmBtn={this._pwConfirmBtn}
 				idEmailChange={this._idEmailChange}
+				pwIdChange={this._pwIdChange}
+				pwEmailChange={this._pwEmailChange}
 			/>
 		);
 	}
@@ -40,8 +42,8 @@ class Container extends React.Component {
 		this.setState({ selectBtn: false });
 	};
 
-  _idConfirmBtn = () => {
-    const { idEmail } = this.state;
+	_idConfirmBtn = () => {
+		const { idEmail } = this.state;
 		const t = this;
 		axios
 			.post('http://dkstkdvkf00.cafe24.com/php/FindIdPw/FindId.php', {
@@ -49,24 +51,55 @@ class Container extends React.Component {
 			})
 			.then(function(response) {
 				response = response.data.message;
-
-				if (response === 'true') {
-					console.log('있다')
+				// console.log(response)
+				if (response === 'null') {
+					Alert.alert('등록되지 않은 이메일입니다.');
 				} else {
-					Alert.alert('등록되지 않은 이메일입니다.')
+					t._sendIdEmail();
 				}
 			});
-  };
+	};
 
 	_pwConfirmBtn = () => {
-		
+		const { idEmail, pwId } = this.state;
+		const t = this;
+		axios
+			.post('http://dkstkdvkf00.cafe24.com/php/FindIdPw/FindPw.php', {
+				id: pwId,
+				email: idEmail,
+			})
+			.then(function(response) {
+				response = response.data.message;
+				// console.log(response);
+				if (response === 'null') {
+					Alert.alert('ID 또는 이메일이 잘못입력되었습니다.');
+				} else {
+					t._sendPwEmail()
+				}
+			});
 	};
 
 	_idEmailChange = idEmail => {
 		this.setState({ idEmail });
 	};
 
-	_sendIdEmail = () => {};
+	_pwIdChange = pwId => {
+		this.setState({ pwId });
+	};
+
+	_pwEmailChange = pwEmail => {
+		this.setState({ pwEmail });
+	};
+
+	_sendIdEmail = () => {
+		const { idEmail } = this.state;
+		const to = idEmail;
+		Mailer.mail({
+			recipients: to,
+			subject: 'Show how to use',
+			body: 'Some body right here',
+		}).catch(console.error);
+	};
 }
 
 export default Container;

@@ -178,7 +178,7 @@ const SignUp = props => (
 							</Text>
 								<TextInput
 									onFocus={props.handleFocus}
-									onBlur={props.password2.length == 0 ? props.handleBlur : null}
+									onBlur={props.email.length == 0 ? props.handleBlur : null}
 									style={[
 										styles.input,
 										{
@@ -190,9 +190,9 @@ const SignUp = props => (
 											elevation: props.isFocused ? 1.5 : null, // IOS
 										},
 									]}
-									onChangeText={props.pw2Change}
+									onChangeText={props.emailChange}
 									maxLength={20}
-									value={props.password2}
+									value={props.email}
 									autoCorrect={false}
 								/>
 							</View>
@@ -226,7 +226,7 @@ const SignUp = props => (
 										}
 										// ... You can check the source to find the other keys.
 									}}
-									onDateChange={(date) => { this.setState({ date: date }) }}
+									onDateChange={props.dateChange}
 								/>
 								
 							</View>
@@ -259,7 +259,7 @@ const SignUp = props => (
 							</Text>
 								<TextInput
 									onFocus={props.handleFocus}
-									onBlur={props.password2.length == 0 ? props.handleBlur : null}
+									onBlur={props.school.length == 0 ? props.handleBlur : null}
 									style={[
 										styles.input,
 										{
@@ -271,9 +271,9 @@ const SignUp = props => (
 											elevation: props.isFocused ? 1.5 : null, // IOS
 										},
 									]}
-									onChangeText={props.pw2Change}
+									onChangeText={props.schoolChange}
 									maxLength={20}
-									value={props.password2}
+									value={props.school}
 									autoCorrect={false}
 								/>
 							</View>
@@ -296,13 +296,13 @@ const SignUp = props => (
 									{props.picture == null ||
 										props.picture == 'ul' ||
 										props.picture == '' ? (
-											<View style={styles.MainPictureImage}>
-												{props.mainPictureLoading ? <ActivityIndicator size="large" /> : null}
+											<View style={styles.pictureImage}>
+												{props.pictureLoading ? <ActivityIndicator size="large" /> : null}
 											</View>
 										) : (
 											props.picture && (
 												<Image
-													style={styles.MainPictureImage}
+													style={styles.pictureImage}
 													source={{ uri: props.picture }}
 												/>
 											)
@@ -313,7 +313,7 @@ const SignUp = props => (
 
 
 					<View style={styles.button}>
-						{props.id == '' || props.password == '' || props.password2 == '' || props.email == '' || props.picture == null ? (
+						{props.id == '' || props.password == '' || props.password2 == '' || props.email == '' || props.school == '' || props.picture == null ? (
 							<ConfirmButtonN buttonColor={'#CEE1F2'} titleColor={'#BBBBBB'} title={'확인'} />
 						) : props.isSubmitting ? (
 							<ConfirmButton buttonColor={'#ADCDE9'} titleColor={'#3B3B3B'} title={'로딩'} />
@@ -366,7 +366,7 @@ const styles = StyleSheet.create({
 		right: -height * 0.024,
 		bottom: -height * 0.024,
 	},
-	MainPictureImage: {
+	pictureImage: {
 		marginTop: 5,
 		width: width * 0.9,
 		height: height * 0.23,

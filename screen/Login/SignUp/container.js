@@ -18,6 +18,7 @@ class Container extends Component {
 			email: '',
 			picture: null,
 			userNo: '',
+			school: '',
 			isGetting: false,
 			isSubmitting: false,
 			isFocused: false,
@@ -25,8 +26,8 @@ class Container extends Component {
 			isFocused2: false,
 			isFocused3: false,
 			pictureLoading: false,
-			date:"2000-01-01",
-			gender:true
+			date: '2000-01-01',
+			gender: true,
 		};
 	}
 
@@ -40,6 +41,8 @@ class Container extends Component {
 				pwChange={this._pwChange}
 				pw2Change={this._pw2Change}
 				emailChange={this._emailChange}
+				dateChange={this._dateChange}
+				schoolChange={this._schoolChange}
 				handleFocus={this._handleFocus}
 				handleBlur={this._handleBlur}
 				handleFocus1={this._handleFocus1}
@@ -59,12 +62,21 @@ class Container extends Component {
 		//userNo 가지고 오기
 		const { navigation } = this.props;
 
-		const { id, password, email, picture } = this.state;
+		const { id, password, email, date, gender, school, picture } = this.state;
+		let getGender = '';
+		if (gender == true) {
+			getGender = 'male';
+		} else {
+			getGender = 'female';
+		}
 
 		let formData = new FormData();
 		formData.append('id', id);
 		formData.append('password', password);
 		formData.append('email', email);
+		formData.append('date', date);
+		formData.append('gender', getGender);
+		formData.append('school', school);
 		formData.append('picture', { uri: picture, name: 'image.jpeg', type: 'image/jpeg' });
 
 		// 데이터베이스에 넣기
@@ -76,9 +88,7 @@ class Container extends Component {
 			},
 		});
 
-		this.props.navigation.navigate('MakeChars', {
-			userNo: getUserNo,
-		});
+		this.props.navigation.navigate('Login');
 	};
 
 	_existId = () => {
@@ -142,7 +152,7 @@ class Container extends Component {
 
 		if (status === 'granted') {
 			let result = await ImagePicker.launchImageLibraryAsync({
-				quality: 0.5,
+				quality: 0.2,
 			});
 
 			if (!result.cancelled) {
@@ -169,6 +179,14 @@ class Container extends Component {
 		this.setState({ email });
 	};
 
+	_dateChange = date => {
+		this.setState({ date });
+	};
+
+	_schoolChange = school => {
+		this.setState({ school });
+	};
+
 	// 테두리 색 변경 효과
 	_handleFocus = () => this.setState({ isFocused: true });
 	_handleBlur = () => this.setState({ isFocused: false });
@@ -183,14 +201,13 @@ class Container extends Component {
 	_handleBlur3 = () => this.setState({ isFocused3: false });
 
 	_genderPress = () => {
-		const {gender} = this.state
-		if (gender==true) {
-			this.setState({gender:false})
+		const { gender } = this.state;
+		if (gender == true) {
+			this.setState({ gender: false });
+		} else {
+			this.setState({ gender: true });
 		}
-		else {
-			this.setState({gender:true})
-		}
-	}
+	};
 }
 
 export default Container;
