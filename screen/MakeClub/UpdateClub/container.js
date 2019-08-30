@@ -62,6 +62,7 @@ export default class ClubModify extends React.Component {
 	};
 
 	_gotoRecord = () => {
+		console.log('씨발')
 		const { navigation } = this.props;
 		var userNo = navigation.getParam('userNo', 'NO-ID');
 		userNo = userNo.replace(/[^0-9]/g, '');

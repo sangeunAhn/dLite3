@@ -41,6 +41,7 @@ class Container extends React.Component {
 		const { navigation } = this.props;
 		const {pw} = this.state;
 		var userNo = navigation.getParam('userNo', 'NO-ID');
+		userNo = userNo.substring(1, userNo.length - 1);
 
 		let formData = new FormData();
 		formData.append('pw', pw);
@@ -55,7 +56,7 @@ class Container extends React.Component {
 		});
 
 		Alert.alert('비밀번호가 수정되었습니다')
-		navigation.back();
+		navigation.goBack();
 	}
 
 	_btnPress = () => {

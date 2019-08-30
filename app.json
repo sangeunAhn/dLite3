@@ -31,10 +31,11 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.korea.pinkravvit",
-      "infoPlist": {
-        "NSPhotoLibraryUsageDescription":"5678",
-      }
+      "bundleIdentifier": "com.korea.pinkravvit"
+      
+    },
+    "infoPlist": {
+      "NSPhotoLibraryUsageDescription":"5678"
     },
     
     "android": {

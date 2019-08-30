@@ -25,12 +25,13 @@ const UpdateClub = props => (
 			<Text style={styles.screenTitle}>동아리 수정</Text>
 
 			<View style={styles.container}>
-				<View style={{alignItems: 'center', top:height*0.15}}>
+				<View style={{alignItems: 'center'}}>
 					<UpdateButton title={'정보 수정'} sub={'우리 동아리는요!'} press={props.gotoSignUp} />
 					<View style={styles.emptyPlace} />
 					<UpdateButton title={'특징 수정'} sub={'이렇게 다양한 매력을 가졌답니다 :)'} press={props.gotoChar} />
 					<View style={styles.emptyPlace} />
 					<UpdateButton title={'기록 수정'} sub={'이야기 책 속의 여행처럼,우리 함께 할래요?'} press={props.gotoRecord} />
+
 				</View>
 				<View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-end', height: height * 0.07, bottom: 20 }}>
 					<TouchableOpacity style={{ paddingBottom: height * 0.005, paddingLeft:height*0.01 }} onPress={props.changePw}>
@@ -85,6 +86,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		padding: 10,
+		paddingTop: height*0.15,
 		justifyContent: 'center',
 	},
 	screenTitle: {
