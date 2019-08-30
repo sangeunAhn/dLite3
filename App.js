@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
-import { createAppContainer, createStackNavigator } from 'react-navigation'; 
+import { createAppContainer, createStackNavigator } from 'react-navigation';
 import Home from './screen/Home/Home';
 import Code from './screen/Home/Code';
 import Schools from './screen/Home/Schools';
@@ -13,72 +13,78 @@ import ClubIntroduce from './screen/Main/ClubIntroduce';
 import RecordPictures from './screen/Main/ClubRecordPictures';
 import UpdateClub from './screen/MakeClub/UpdateClub';
 import Record from './screen/Main/ClubRecord';
+import Login from './screen/Login/Login';
+import ChooseUpdate from './screen/Login/ChooseUpdate';
 
 const RootStack = createStackNavigator(
-  {
-    Home: {
-      screen: Home,
-    },
-    Code: {
-      screen: Code,
-    },
-    Schools: {
-      screen: Schools,
-    },
-    MakeClub: {
-      screen: MakeClub,
-    },
-    MakeChars: {
-      screen: MakeChars,
-    },
-    MakeRecord: {
-      screen: MakeRecord,
-    },
-    MakeRecordPictures: {
-      screen: MakeRecordPictures,
-    },
-    Main: {
-      screen: Main,
-    },
-    ClubIntroduce: {
-      screen: ClubIntroduce,
-    },
-    RecordPictures: {
-      screen: RecordPictures,
-    },
-    UpdateClub: {
-      screen: UpdateClub,
-    },
-    Record: {
-      screen: Record,
-    },
-  },
-  {
-    initialRouteName: 'Home',
-  },
-  
+	{
+		Home: {
+			screen: Home,
+		},
+		Code: {
+			screen: Code,
+		},
+		Schools: {
+			screen: Schools,
+		},
+		MakeClub: {
+			screen: MakeClub,
+		},
+		MakeChars: {
+			screen: MakeChars,
+		},
+		MakeRecord: {
+			screen: MakeRecord,
+		},
+		MakeRecordPictures: {
+			screen: MakeRecordPictures,
+		},
+		Main: {
+			screen: Main,
+		},
+		ClubIntroduce: {
+			screen: ClubIntroduce,
+		},
+		RecordPictures: {
+			screen: RecordPictures,
+		},
+		UpdateClub: {
+			screen: UpdateClub,
+		},
+		Record: {
+			screen: Record,
+		},
+		Login: {
+			screen: Login,
+		},
+		ChooseUpdate: {
+			screen: ChooseUpdate,
+		},
+	},
+	{
+		initialRouteName: 'ChooseUpdate',
+	}
 );
-
 
 const AppContainer = createAppContainer(RootStack);
 
 export default class App extends React.Component {
-  render() {
-    return (
-      <>
-      <AppContainer />
-      <StatusBar
-      barStyle = "dark-content"
-      // dark-content, light-content and default
-      hidden = {false}
-      //To hide statusBar
-      backgroundColor = "#FAFAFA"
-      //Background color of statusBar only works for Android
-      translucent = {false}
-      //allowing light, but not detailed shapes
-      networkActivityIndicatorVisible = {true}
-  />
-  </>
-      )
-    }
-  }
+	render() {
+		return (
+			<>
+				<AppContainer />
+				<StatusBar
+					barStyle="dark-content"
+					// dark-content, light-content and default
+					hidden={false}
+					//To hide statusBar
+					backgroundColor="#FAFAFA"
+					//Background color of statusBar only works for Android
+					translucent={false}
+					//allowing light, but not detailed shapes
+					networkActivityIndicatorVisible={true}
+				/>
+			</>
+		);
+	}
+}
