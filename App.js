@@ -14,13 +14,9 @@ import RecordPictures from './screen/Main/ClubRecordPictures';
 import UpdateClub from './screen/MakeClub/UpdateClub';
 import Record from './screen/Main/ClubRecord';
 import Login from './screen/Login/Login';
-<<<<<<< HEAD
 import SignUp from './screen/Login/SignUp';
 import FindIdPw from './screen/Login/FindIdPw';
-=======
-import ChooseUpdate from './screen/Login/ChooseUpdate';
 import SignUpPremission from './screen/Login/SignUpPremission';
->>>>>>> 500c455a1f2f0e77ddd0665998d0405c18976772
 
 const RootStack = createStackNavigator(
 	{
@@ -66,22 +62,18 @@ const RootStack = createStackNavigator(
 		SignUp: {
 			screen: SignUp
 		},
-<<<<<<< HEAD
 		FindIdPw: {
 			screen: FindIdPw
-		}
-	},
-	{ 
-		initialRouteName: 'Home',
-=======
+		},
 		SignUpPremission: {
 			screen: SignUpPremission,
 		},
 	},
-	{
-		initialRouteName: 'SignUpPremission',
->>>>>>> 500c455a1f2f0e77ddd0665998d0405c18976772
-	}
+	{ 
+		initialRouteName: 'Home',
+		
+	},
+	
 );
 
 const AppContainer = createAppContainer(RootStack);
