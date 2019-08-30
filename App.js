@@ -15,6 +15,7 @@ import UpdateClub from './screen/MakeClub/UpdateClub';
 import Record from './screen/Main/ClubRecord';
 import Login from './screen/Login/Login';
 import ChooseUpdate from './screen/Login/ChooseUpdate';
+import SignUpPremission from './screen/Login/SignUpPremission';
 
 const RootStack = createStackNavigator(
 	{
@@ -60,9 +61,12 @@ const RootStack = createStackNavigator(
 		ChooseUpdate: {
 			screen: ChooseUpdate,
 		},
+		SignUpPremission: {
+			screen: SignUpPremission,
+		},
 	},
 	{
-		initialRouteName: 'ChooseUpdate',
+		initialRouteName: 'SignUpPremission',
 	}
 );
 

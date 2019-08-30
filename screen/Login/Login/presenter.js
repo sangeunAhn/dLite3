@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity, TextInput, Dimensions, Text, Platform, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { TextField } from 'react-native-material-textfield';
+import MainButton from '../../../components/Button/MainButton';
+import LoginButton from '../../../components/Button/LoginButton';
+import LoginButtonN from '../../../components/Button/LoginButtonN';
+import HeaderScrollView from 'react-native-header-scroll-view';
+import { getStatusBarHeight,ifIphoneX  } from 'react-native-iphone-x-helper'
+
 
 const { width, height } = Dimensions.get('window');
 
@@ -17,65 +24,85 @@ const Login = props => (
 					<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 				</SafeAreaView>
 			</TouchableOpacity>
-			<Text style={styles.title}>로그인</Text>
+			<HeaderScrollView
+				headerContainerStyle={{
+					justifyContent: 'center', alignItems: 'center', ...ifIphoneX({ paddingTop: 18 }, { paddingTop: 0 }), height: Platform.OS === 'ios'
+						? height * 0.1
+						: height * 0.08
+				}}
+				headlineStyle={{
+					height: height * 0.1,
+					textAlign: 'center',
+					justifyContent: 'center',
+					alignItems: 'center',
+					alignSelf: 'center',
+					fontSize: width * 0.05,
+					paddingTop: Platform.OS === 'ios' ? height * 0.055 : height * 0.048,
+				}}
+				headerComponentContainerStyle={{
+					justifyContent: 'center',
+					alignItems: 'center',
+					height: height * 0.08,
+				}}
+				titleStyle={{
+					// paddingTop: Platform.OS === 'ios' ? 15 : 0,
+					color: '#3B3B3B',
+					fontSize: width * 0.09,
+				}}
+				fadeDirection="up"
+				title="로그인"
+			>
 			<View style={styles.container2}>
-				<View style={styles.login}>
-					<Text style={styles.loginText}>로그인</Text>
-					<View style={styles.idPw}>
-						<Text style={styles.idPwText}>ID</Text>
-						<TextInput
-							style={[
-								styles.input,
-								{
-									borderColor: props.isFocused ? '#DCDCDC' : null,
-									shadowColor: props.isFocused ? '#E1E1E1' : null, // IOS
-									shadowOffset: props.isFocused ? { height: 1.5, width: 0 } : null, // IOS
-									shadowOpacity: props.isFocused ? 5 : null, // IOS
-									shadowRadius: props.isFocused ? 3 : null, // IOS
-									elevation: props.isFocused ? 1.5 : null, // IOS
-								},
-							]}
-							maxLength={20}
-							autoCorrect={false}
-						/>
-					</View>
-					<View style={styles.idPw}>
-						<Text style={styles.idPwText}>패스워드</Text>
-						<TextInput
-							style={[
-								styles.input,
-								{
-									borderColor: props.isFocused ? '#DCDCDC' : null,
-									shadowColor: props.isFocused ? '#E1E1E1' : null, // IOS
-									shadowOffset: props.isFocused ? { height: 1.5, width: 0 } : null, // IOS
-									shadowOpacity: props.isFocused ? 5 : null, // IOS
-									shadowRadius: props.isFocused ? 3 : null, // IOS
-									elevation: props.isFocused ? 1.5 : null, // IOS
-								},
-							]}
-							maxLength={20}
-							autoCorrect={false}
-						/>
-					</View>
-					<TouchableOpacity style={styles.loginButton} onPress={props.login}>
-						<Text>로그인</Text>
-					</TouchableOpacity>
-					<View style={styles.buttons}>
-						<TouchableOpacity style={styles.button} onPress={props.idPwFind}>
-							<Text>ID/PW 찾기</Text>
-						</TouchableOpacity>
-						<TouchableOpacity style={styles.button} onPress={props.signUp}>
-							<Text>회원가입</Text>
-						</TouchableOpacity>
-					</View>
+					<TextField
+						titleFontSize={height*0.015}
+						label="아이디"
+						labelFontSize={height*0.018}
+						returnKeyType={'done'}
+						autoCorrect={false}
+						value={props.code}
+						multiline={false}
+						onChangeText={props.changeText}
+						fontSize={height*0.023}
+					/>
+					<TextField
+						titleFontSize={height*0.015}
+						label="비밀번호"
+						labelFontSize={height*0.018}
+						returnKeyType={'done'}
+						autoCorrect={false}
+						value={props.code}
+						multiline={false}
+						onChangeText={props.changeText}
+						fontSize={height*0.023}
+					/>
+					<View style={styles.loginButton}>
+	{/* {props.userCode.length == 0 ? (
+				<LoginButtonN title={'확인'} />
+				) : ( */}
+							<LoginButton title={'로그인'} onPress={props.login} />
+					{/* )} */}
 				</View>
+				<View style={styles.password}>
+					<Text style={styles.passwordFont}>비밀번호를 잊으셨나요?</Text>
+					</View>
+					<View style={styles.and}>
+						<View style={styles.andLineLeft}/><Text>또는</Text>
+						<View style={styles.andLineRight}/>
+						</View>
+						<TouchableOpacity>
+						<View style={styles.signUpButton}>
+							<Text style={styles.signUpText}>동아리회장 계정 만들기</Text>
+							</View>
+							</TouchableOpacity>
 			</View>
-		</View>
+</HeaderScrollView>
+			</View>
+			
 	</>
 );
 
 const styles = StyleSheet.create({
-	backButton: {
+	backButton : {
 		position: 'absolute',
 		width: width * 0.2,
 		height: height * 0.1,
@@ -83,76 +110,57 @@ const styles = StyleSheet.create({
 		left: 10,
 		zIndex: 1,
 	},
-	container: {
+	container : {
 		flex: 1,
 		flexDirection: 'column',
 		backgroundColor: '#FAFAFA',
 	},
-	title: {
-		marginTop: Platform.OS === 'ios' ? height * 0.1 : height * 0.07,
-		marginLeft: width * 0.05,
-		marginBottom: height * 0.02,
-		fontSize: width * 0.09,
-		fontWeight: '700',
+	container2 : {
+		paddingHorizontal:'7%', 
+		paddingTop:'28%'
+		},
+loginButton : {
+	marginTop:20
 	},
-	container2: {
-		flex: 1,
-		backgroundColor: '#FAFAFA',
-		justifyContent: 'center',
+password : {
+	alignItems:'center',
+	marginTop:height*0.02
 	},
-	login: {
-		width: '100%',
-		height: height * 0.3,
-		top: -height * 0.08,
-		backgroundColor: '#bdc3c7',
-		alignItems: 'center',
-		paddingTop: height * 0.04,
+passwordFont : {
+	fontSize: width * 0.04, 
+	color:'#B7B9BC'
 	},
-	loginText: {
-		fontSize: 20,
+and : { 
+	marginVertical:height*0.065, 
+	height: 20, 
+	alignItems: 'center', 
+	flexDirection: 'row'
 	},
-	idPw: {
-		width: '60%',
-		flexDirection: 'row',
-		alignItems: 'center',
-		// backgroundColor: 'green',
+andLineLeft : {
+	flex:1,width:'100%', 
+	backgroundColor:'#CCCFD2', 
+	height:1, 
+	marginRight:4
 	},
-	idPwText: {
-		fontSize: 15,
-		width: '30%',
-		textAlign: 'center',
-		// backgroundColor: 'blue',
+andLineRight : {
+	flex:1,
+	width:'100%', 
+	backgroundColor:'#CCCFD2', 
+	height:1, 
+	marginLeft:4
 	},
-	input: {
-		borderRadius: height * 0.01,
-		padding: height * 0.009,
-		backgroundColor: 'white',
-		fontSize: height * 0.021,
-		marginTop: height * 0.007,
-		width: '70%',
-	},
-	loginButton: {
-		marginTop: height * 0.03,
-		width: width * 0.5,
-		height: width * 0.1,
-		backgroundColor: '#3498db',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	buttons: {
-		width: '100%',
-		flex: 1,
-		flexDirection: 'row',
-		alignItems: 'flex-end',
-		justifyContent: 'space-around',
-	},
-	button: {
-		backgroundColor: '#3498db',
-		width: '30%',
-		height: height * 0.03,
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
+	signUpButton : {
+		backgroundColor:'#00A400', 
+		height:height*0.07, 
+		marginHorizontal:width*0.1,
+		borderRadius:15, 
+		alignItems:'center', 
+		justifyContent:'center'
+		},
+		signUpText : {
+			color:'white', 
+			fontSize: width * 0.04
+			}
 });
 
 export default Login;
