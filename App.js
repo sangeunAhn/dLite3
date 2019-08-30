@@ -16,7 +16,7 @@ import Record from './screen/Main/ClubRecord';
 import Login from './screen/Login/Login';
 import SignUp from './screen/Login/SignUp';
 import FindIdPw from './screen/Login/FindIdPw';
-import SignUpPremission from './screen/Login/SignUpPremission';
+import SignUpPermission from './screen/Login/SignUpPermission';
 
 const RootStack = createStackNavigator(
 	{
@@ -65,8 +65,8 @@ const RootStack = createStackNavigator(
 		FindIdPw: {
 			screen: FindIdPw
 		},
-		SignUpPremission: {
-			screen: SignUpPremission,
+		SignUpPermission: {
+			screen: SignUpPermission,
 		},
 	},
 	{ 

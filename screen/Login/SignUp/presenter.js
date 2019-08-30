@@ -106,24 +106,25 @@ const SignUp = props => (
 									style={[
 										styles.text,
 										{
-											color: props.isFocused ? '#000000' : '#8d97a5',
+											color: props.isFocused1 ? '#000000' : '#8d97a5',
 										},
 									]}
 								>
 									비밀번호
 							</Text>
 								<TextInput
-									onFocus={props.handleFocus}
-									onBlur={props.password.length == 0 ? props.handleBlur : null}
+								secureTextEntry={true}
+									onFocus={props.handleFocus1}
+									onBlur={props.password.length == 0 ? props.handleBlur1 : null}
 									style={[
 										styles.input,
 										{
-											borderColor: props.isFocused ? '#DCDCDC' : null,
-											shadowColor: props.isFocused ? '#E1E1E1' : null, // IOS
-											shadowOffset: props.isFocused ? { height: 1.5, width: 0 } : null, // IOS
-											shadowOpacity: props.isFocused ? 5 : null, // IOS
-											shadowRadius: props.isFocused ? 3 : null, // IOS
-											elevation: props.isFocused ? 1.5 : null, // IOS
+											borderColor: props.isFocused1 ? '#DCDCDC' : null,
+											shadowColor: props.isFocused1 ? '#E1E1E1' : null, // IOS
+											shadowOffset: props.isFocused1 ? { height: 1.5, width: 0 } : null, // IOS
+											shadowOpacity: props.isFocused1 ? 5 : null, // IOS
+											shadowRadius: props.isFocused1 ? 3 : null, // IOS
+											elevation: props.isFocused1 ? 1.5 : null, // IOS
 										},
 									]}
 									onChangeText={props.pwChange}
@@ -138,24 +139,25 @@ const SignUp = props => (
 									style={[
 										styles.text,
 										{
-											color: props.isFocused ? '#000000' : '#8d97a5',
+											color: props.isFocused2 ? '#000000' : '#8d97a5',
 										},
 									]}
 								>
 									비밀번호 확인
 							</Text>
 								<TextInput
-									onFocus={props.handleFocus}
-									onBlur={props.password2.length == 0 ? props.handleBlur : null}
+								secureTextEntry={true}
+									onFocus={props.handleFocus2}
+									onBlur={props.password2.length == 0 ? props.handleBlur2 : null}
 									style={[
 										styles.input,
 										{
-											borderColor: props.isFocused ? '#DCDCDC' : null,
-											shadowColor: props.isFocused ? '#E1E1E1' : null, // IOS
-											shadowOffset: props.isFocused ? { height: 1.5, width: 0 } : null, // IOS
-											shadowOpacity: props.isFocused ? 5 : null, // IOS
-											shadowRadius: props.isFocused ? 3 : null, // IOS
-											elevation: props.isFocused ? 1.5 : null, // IOS
+											borderColor: props.isFocused2 ? '#DCDCDC' : null,
+											shadowColor: props.isFocused2 ? '#E1E1E1' : null, // IOS
+											shadowOffset: props.isFocused2 ? { height: 1.5, width: 0 } : null, // IOS
+											shadowOpacity: props.isFocused2 ? 5 : null, // IOS
+											shadowRadius: props.isFocused2 ? 3 : null, // IOS
+											elevation: props.isFocused2 ? 1.5 : null, // IOS
 										},
 									]}
 									onChangeText={props.pw2Change}
@@ -170,24 +172,24 @@ const SignUp = props => (
 									style={[
 										styles.text,
 										{
-											color: props.isFocused ? '#000000' : '#8d97a5',
+											color: props.isFocused3 ? '#000000' : '#8d97a5',
 										},
 									]}
 								>
 									이메일
 							</Text>
 								<TextInput
-									onFocus={props.handleFocus}
-									onBlur={props.email.length == 0 ? props.handleBlur : null}
+									onFocus={props.handleFocus3}
+									onBlur={props.email.length == 0 ? props.handleBlur3 : null}
 									style={[
 										styles.input,
 										{
-											borderColor: props.isFocused ? '#DCDCDC' : null,
-											shadowColor: props.isFocused ? '#E1E1E1' : null, // IOS
-											shadowOffset: props.isFocused ? { height: 1.5, width: 0 } : null, // IOS
-											shadowOpacity: props.isFocused ? 5 : null, // IOS
-											shadowRadius: props.isFocused ? 3 : null, // IOS
-											elevation: props.isFocused ? 1.5 : null, // IOS
+											borderColor: props.isFocused3 ? '#DCDCDC' : null,
+											shadowColor: props.isFocused3? '#E1E1E1' : null, // IOS
+											shadowOffset: props.isFocused3 ? { height: 1.5, width: 0 } : null, // IOS
+											shadowOpacity: props.isFocused3 ? 5 : null, // IOS
+											shadowRadius: props.isFocused3 ? 3 : null, // IOS
+											elevation: props.isFocused3 ? 1.5 : null, // IOS
 										},
 									]}
 									onChangeText={props.emailChange}

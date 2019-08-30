@@ -209,7 +209,7 @@ class Container extends React.Component {
 	_handleBackButtonClick = () => {
 		this.props.navigation.getParam('from', 'NO-ID') == 'm'
 			? this.props.navigation.goBack()
-			: this.props.navigation.navigate('Code');
+			: this.props.navigation.navigate('Login');
 		return true;
 	};
 

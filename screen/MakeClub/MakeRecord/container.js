@@ -158,7 +158,7 @@ class Container extends React.Component {
 		?
 		this.props.navigation.goBack()
 		:
-		this.props.navigation.navigate('Code');
+		this.props.navigation.navigate('Login');
 
 		return true;
 	  }
