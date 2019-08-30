@@ -37,12 +37,7 @@ const Schools = props => (
 					/>
 				</View>
 				<View style={styles.schools1}>
-					<SchoolBtn
-						school={'CC대학교'}
-						backgroundColor={'white'}
-						lineColor={'#f1c40f'}
-						onPress={props.CCPress}
-					/>
+				
 				</View>
 			</View>
 		</View>

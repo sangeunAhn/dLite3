@@ -27,6 +27,7 @@
     "react-native-base64": "^0.0.2",
     "react-native-cached-image": "^1.4.3",
     "react-native-elements": "^1.0.0",
+    "react-native-expo-image-cache": "^4.0.8",
     "react-native-fast-image": "^7.0.2",
     "react-native-fast-image-expo": "^0.0.5",
     "react-native-header-scroll-view": "^2.0.0",

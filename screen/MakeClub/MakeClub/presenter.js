@@ -10,6 +10,7 @@ import {
 	ActivityIndicator,
 	Platform,
 	SafeAreaView,
+	KeyboardAvoidingView
 } from 'react-native';
 import ConfirmButton from '../../../components/Button/ConfirmButton';
 import ClubPicker from '../../../components/MakeClub/ClubPicker';
@@ -37,6 +38,7 @@ const MakeClub = props => (
 						<Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
 					</SafeAreaView>
 				</TouchableOpacity>
+				<KeyboardAvoidingView style={{flex:1}}>
 				<HeaderScrollView
 					headerContainerStyle={{
 						justifyContent: 'center',
@@ -224,6 +226,7 @@ const MakeClub = props => (
 						)}
 					</View>
 				</HeaderScrollView>
+				</KeyboardAvoidingView>
 			</View>
 		)}
 	</>
