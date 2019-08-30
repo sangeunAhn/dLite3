@@ -70,7 +70,7 @@ const RootStack = createStackNavigator(
 		},
 	},
 	{ 
-		initialRouteName: 'Home',
+		initialRouteName: 'FindIdPw',
 		
 	},
 	

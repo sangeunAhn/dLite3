@@ -11,7 +11,6 @@ import {
 	SafeAreaView,
 	Text,
 	ScrollView,
-	CheckBox,
 	WebView
 } from 'react-native';
 import ConfirmButton from '../../../components/Button/ConfirmButton';
@@ -22,6 +21,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { getStatusBarHeight, ifIphoneX } from 'react-native-iphone-x-helper'
 import LoginButton from '../../../components/Button/LoginButton';
 import LoginButtonN from '../../../components/Button/LoginButtonN';
+import { CheckBox } from 'react-native-elements'
+
 
 const { width, height } = Dimensions.get('window');
 const PolicyHTML = require('../../../terms2.html');
@@ -193,7 +194,7 @@ const SignUpPremission = props => (
 							</Text>
 						</ScrollView>
 						<View style={{flexDirection:'row', marginTop:10}}>
-							<Text>동의</Text><CheckBox onValueChange={props.agree1} value={props.value1} />
+							<CheckBox containerStyle={{marginLeft:'-2%',borderColor:'transparent'}} left title="동의" onPress={props.agree1} checked={props.value1} />
 						</View>
 					</View>
 					<View style={{marginBottom:height*0.05}}>
@@ -240,7 +241,7 @@ const SignUpPremission = props => (
 							</Text>
 						</ScrollView>
 						<View style={{flexDirection:'row', marginTop:10}}>
-							<Text>동의</Text><CheckBox onValueChange={props.agree2} value={props.value2} />
+						<CheckBox containerStyle={{marginLeft:'-2%',borderColor:'transparent'}}  title="동의" onPress={props.agree2} checked={props.value2} />
 						</View>
 					</View>
 				{props.value1 && props.value2 == true ? (
