@@ -33,9 +33,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.korea.pinkravvit",
       "infoPlist": {
-        "NSCameraUsageDescription": "1234",
         "NSPhotoLibraryUsageDescription":"5678",
-        "NSPhotoLibraryAddUsageDescription":"9101112"
       }
     },
     
