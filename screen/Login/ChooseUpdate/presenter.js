@@ -18,14 +18,13 @@ const UpdateClub = props => (
 				</SafeAreaView>
 			</TouchableOpacity>
 
-			<Text style={styles.screenTitle}>동아리 수정</Text>
+			<Text style={styles.screenTitle}>선택</Text>
 
 			<View style={styles.container}>
-				<UpdateButton title={'정보 수정'} sub={'우리 동아리는요!'} press={props.gotoSignUp} />
+				<UpdateButton title={'계정 수정'} sub={''} press={props.gotoSignUp} />
 				<View style={styles.emptyPlace} />
-				<UpdateButton title={'특징 수정'} sub={'이렇게 다양한 매력을 가졌답니다 :)'} press={props.gotoChar} />
+				<UpdateButton title={'동아리 생성/수정'} sub={''} press={props.gotoSignUp} />
 				<View style={styles.emptyPlace} />
-				<UpdateButton title={'기록 수정'} sub={'이야기 책 속의 여행처럼,우리 함께 할래요?'} press={props.gotoRecord} />
 			</View>
 		</View>
 	</>
