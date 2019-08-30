@@ -24,13 +24,13 @@ const Schools = props => (
 			<View style={{ flexDirection: 'column', height: height*0.83 }}>
 				<View style={styles.schools}>
 					<SchoolBtn
-						school={'AA대학교'}
+						school={'상언대학교'}
 						backgroundColor={'white'}
 						lineColor={'#34495e'}
 						onPress={props.AAPress}
 					/>
 					<SchoolBtn
-						school={'BB대학교'}
+						school={'강민대학교'}
 						backgroundColor={'white'}
 						lineColor={'#e67e22'}
 						onPress={props.BBPress}

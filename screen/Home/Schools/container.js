@@ -15,13 +15,13 @@ class Container extends React.Component {
 
 	_AAPress = () => {
 		this.props.navigation.navigate('Main', {
-			schoolName: 'AA대학교',
+			schoolName: '상언대학교',
 		});
 	};
 
 	_BBPress = () => {
 		this.props.navigation.navigate('Main', {
-			schoolName: 'BB대학교',
+			schoolName: '강민대학교',
 		});
 	};
 

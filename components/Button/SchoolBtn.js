@@ -19,9 +19,9 @@ export default class ConfirmButton extends Component {
 			<View style={styles.container}>
 				<TouchableOpacity style={styles.button} onPress={this.props.onPress}>
 					<View style={styles.logo}>
-						{this.props.school === 'AA대학교' ? (
+						{this.props.school === '상언대학교' ? (
 							<Image style={styles.logoImage} source={require('../../images/AA.png')} />
-						) : this.props.school === 'BB대학교' ? (
+						) : this.props.school === '강민대학교' ? (
 							<Image style={styles.logoImage} source={require('../../images/BB.png')} />
 						) : (
 							<Image style={styles.logoImage} source={require('../../images/CC.png')} />
@@ -32,9 +32,9 @@ export default class ConfirmButton extends Component {
 						<Text style={styles.titleText}>{this.props.school}</Text>
 					</View>
 					<View style={styles.address}>
-						{this.props.school === 'AA대학교' ? (
+						{this.props.school === '상언대학교' ? (
 							<Text style={styles.addressText}>{'서울특별시 \n남구'}</Text>
-						) : this.props.school === 'BB대학교' ? (
+						) : this.props.school === '강민대학교' ? (
 							<Text style={styles.addressText}>{'부산광역시 \n북구'}</Text>
 						) : (
 							<Text style={styles.addressText}>{'울산광역시 \n동구'}</Text>
