@@ -115,11 +115,15 @@ export default class example extends Component {
 				</TouchableOpacity>
 				
 				</View>
-				<View style={{alignItems:'flex-start', height: height*0.07}}>
+				<View style={{flexDirection:'row', justifyContent:'space-between', height: height*0.07}}>
+				<View style={{alignItems:'flex-start'}}>
 					<TouchableOpacity style={{ padding:height*0.02}} onPress={this.openModal}>
 						<Text style={{color:'#888888', fontSize: height*0.018}}>문의하기</Text>
 					</TouchableOpacity>
 				</View>
+				<View style={{alignItems:'flex-end'}}><Text style={{padding:height*0.02, color:'#888888', fontSize: height*0.015}}>v1.0.5</Text></View>
+				</View>
+				
 				
 			</View>
 			<Modal

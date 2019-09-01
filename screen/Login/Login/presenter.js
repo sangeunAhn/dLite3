@@ -81,12 +81,10 @@ const Login = props => (
 							<LoginButton title={'로그인'} onPress={props.login} />
 				</View>
 				<View style={styles.password}>
-						<TouchableOpacity style={styles.button} onPress={props.idPwFind}>
-						<Text style={styles.passwordFont}>아이디/비밀번호를 잊으셨나요?</Text>
-						</TouchableOpacity>
+						
 					</View>
 					<View style={styles.and}>
-						<View style={styles.andLineLeft}/><Text>또는</Text>
+						<View style={styles.andLineLeft}/><Text style={{fontSize:height*0.02}}>또는</Text>
 						<View style={styles.andLineRight}/>
 						</View>
 						<TouchableOpacity style={styles.signUpButton} onPress={props.signUp}>
@@ -132,7 +130,7 @@ passwordFont : {
 	},
 and : { 
 	marginVertical:height*0.065, 
-	height: 20, 
+	height: height*0.025, 
 	alignItems: 'center', 
 	flexDirection: 'row'
 	},
