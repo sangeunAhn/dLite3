@@ -27,7 +27,7 @@ const MakeRecord = props => (
             </TouchableOpacity>
             <TouchableOpacity style={styles.addBtn} onPress={props.iconPress}>
                <SafeAreaView>
-                  <Text style={{ ...ifIphoneX({ paddingTop: 5 }, { paddingTop: 0 }),fontSize: width * 0.053, color: '#3B3B3B', fontWeight: '600' }}>추가</Text>
+                  <Text style={{ ...ifIphoneX({ paddingTop: 5 }, { paddingTop: 0 }),fontSize: width * 0.05, color: '#3B3B3B', fontWeight: '600' }}>추가</Text>
                </SafeAreaView>
             </TouchableOpacity>
             <View style={styles.container}>

@@ -37,7 +37,8 @@ class Container extends Component {
                     {...this.state} 
                     {...this.props} 
                     pickLogo={this._pickLogo}
-                    pickMainPicture={this._pickMainPicture}
+					pickMainPicture={this._pickMainPicture}
+					pickPoster={this._pickPoster}
                     btnPress={this._btnPress}
                     setPrevClubKind={this._setPrevClubKind}
                     clubNameChange={this._clubNameChange}
@@ -163,7 +164,27 @@ class Container extends Component {
 			}
 		}
 	};
+	_pickPoster = async () => {
+		setTimeout(() => {
+			this.props.changeAddLoading();
+		}, 1000)
+		
+		const permissions = Permissions.CAMERA_ROLL;
+		const { status } = await Permissions.askAsync(permissions);
 
+		if (status === 'granted') {
+			let result = await ImagePicker.launchImageLibraryAsync({
+				quality: 0.4,
+			});
+
+			if (!result.cancelled) {
+				await this.props.addImage(result.uri);
+				this.props.changeAddLoading();
+			} else {
+				this.props.changeAddLoading();
+			}
+		}
+	};
 	// 처음 가입
 	_insertRegister = async () => {
 		//userNo 가지고 오기

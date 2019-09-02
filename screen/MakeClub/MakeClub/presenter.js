@@ -19,6 +19,8 @@ import ConfirmButtonN from '../../../components/Button/ConfirmButtonN';
 import { Ionicons } from '@expo/vector-icons';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import { getStatusBarHeight, ifIphoneX } from 'react-native-iphone-x-helper';
+import AutoHeightImage from 'react-native-auto-height-image';
+
 
 const { width, height } = Dimensions.get('window');
 
@@ -143,6 +145,25 @@ const MakeClub = props => (
 							</View>
 						</View>
 						<View style={styles.block}>
+							<Text style={styles.text}>동아리 포스터 (선택사항)</Text>
+							<TouchableOpacity onPress={props.pickPoster}>
+							<View style={{marginLeft:-width*0.05}}>
+							<AutoHeightImage
+								width={width}
+								
+								source={require('../../../images/addPhoto5.png')}
+							/>
+							</View>
+					</TouchableOpacity>
+					<View style={{alignItems:'center'}}>
+					
+				<TouchableOpacity onPress={this._pickImage}>
+					<Text style={styles.warning}>부적절한 사진 업로드 시{'\n'}불이익을 받을 수 있습니다.</Text>
+				</TouchableOpacity>
+				
+				</View>
+						</View>
+						<View style={styles.block}>
 							<Text
 								style={[
 									styles.text,
@@ -265,6 +286,14 @@ const styles = StyleSheet.create({
 		zIndex: 1,
 		right: -height*0.024,
 		bottom: -height*0.024,
+	},
+	
+	warning: {
+		top:-height*0.2,
+		textAlign: 'center',
+		fontSize: height*0.0215,
+		color: '#C1D0DC',
+		lineHeight: height*0.035,
 	},
 	MainPictureImage: {
 		marginTop: 5,
