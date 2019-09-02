@@ -33,15 +33,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.korea.pinkravvit",
       "infoPlist": {
-        "NSCameraUsageDescription":"1234",
-        "NSContactsUsageDescription":"5678",
-        "NSLocationWhenInUseUsageDescription":"9101112",
-        "NSMicrophoneUsageDescription":"13141516",
-        "NSMotionUsageDescription":"17181920",
-        "NSPhotoLibraryAddUsageDescription":"44444444",
-        "NSRemindersUsageDescription":"55555555",
-        "NSCalendarsUsageDescription":"666666666",
-        "NSPhotoLibraryUsageDescription":"777777777"
+        "NSPhotoLibraryUsageDescription":"사용자의 앨범의 사진을 불러오며, 앱에 사진을 게시하는데에 사용됩니다."
       }
 
     },

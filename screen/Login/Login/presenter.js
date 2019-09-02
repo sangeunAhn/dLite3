@@ -7,6 +7,7 @@ import LoginButton from '../../../components/Button/LoginButton';
 import LoginButtonN from '../../../components/Button/LoginButtonN';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import { getStatusBarHeight,ifIphoneX  } from 'react-native-iphone-x-helper'
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 const { width, height } = Dimensions.get('window');
@@ -90,9 +91,13 @@ const Login = props => (
 						<View style={styles.andLineRight}/>
 						</View>
 						<TouchableOpacity style={styles.signUpButton} onPress={props.signUp}>
+						<LinearGradient colors={['#53D8E1', '#1F8476'] }style={styles.signUpButton2}  >
 						<View style={styles.signUpButton}>
+						
 						<Text style={styles.signUpText}>동아리회장 계정 만들기</Text>
+						
 						</View>
+						</LinearGradient>
 						</TouchableOpacity>
 			</View>
 </HeaderScrollView>
@@ -150,12 +155,17 @@ andLineRight : {
 	marginLeft:4
 	},
 	signUpButton : {
-		backgroundColor:'#00A400', 
+		backgroundColor:'transparent', 
 		height:height*0.07, 
-		marginHorizontal:width*0.1,
+		
 		borderRadius:15, 
 		alignItems:'center', 
 		justifyContent:'center'
+		},
+		signUpButton2:{
+			width:width*0.6,
+			height:height*0.07, 
+			borderRadius:15, 
 		},
 		signUpText : {
 			color:'white', 

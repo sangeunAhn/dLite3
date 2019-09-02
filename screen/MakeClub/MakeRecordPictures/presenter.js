@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
 		// backgroundColor: 'blue'
 	},
 	btnText: {
-		fontSize: height*0.027,
+		fontSize: width * 0.05,
 		color: '#3B3B3B',
 		fontWeight: '600',
 		...ifIphoneX({ paddingTop: 5 }, { paddingTop: 0 })
