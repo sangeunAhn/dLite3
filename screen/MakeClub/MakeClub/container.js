@@ -140,7 +140,7 @@ class Container extends Component {
 			} else {
 				this.setState({logoLoading: false})
 			}
-		}
+		} 
 	};
 
 	// 메인사진 가져오기
